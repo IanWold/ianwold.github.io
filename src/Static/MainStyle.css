@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css?family=Biryani|Inconsolata|Noto+Sans|Raleway');
+
+html, body {
+	margin: 0px;
+	padding: 0px;
+	font-family: "Noto Sans";
+	font-size: 12pt;
+	background-color: whitesmoke;
+}
+
+p {
+	text-align: justify;
+	letter-spacing: 1px;
+	line-height: 130%;
+}
+
+h1 {
+	text-transform: uppercase;
+	font-family: "Roboto";
+	font-weight: 500;
+	font-size: 24pt;
+	padding-bottom: 6px;
+	border-bottom: 1px solid #727272;
+}
+
+h2 {
+	text-transform: uppercase;
+	font-family: "Roboto";
+	font-weight: 300;
+	font-size: 24pt;
+}
+
+h3 {
+	text-transform: uppercase;
+	font-family: "Roboto";
+	font-weight: 300;
+	font-size: 18pt;
+}
+
+code {
+	border-radius: 3px;
+	padding: 12px;
+	display: block;
+	background-color: white;
+	font-family: "Inconsolata";
+}
+
+a {
+	color: #1E1E1E;
+	text-decoration: underline;
+}
+
+a:visited {
+	color: #646464;
+}
+
+a:hover {
+	color: #FF3C24;
+}
+
+.wrapper {
+
+}
+
+.header {
+	padding: 48px 0px;
+	margin-top: 24px;
+}
+
+.title {
+	padding: 12px 0px;
+	font-size: 32pt;
+	text-transform: uppercase;
+	text-align: center;
+	font-family: "Montserrat";
+	font-weight: 900;
+}
+
+.title a {
+	color: #1E1E1E;
+	text-decoration: none;
+}
+
+.title a:hover {
+	color: #FF3C24;
+}
+
+.navigation {
+	padding: 12px 0px;
+}
+
+.navigation ul {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	text-align: center;
+}
+
+.navigation ul li {
+	display: inline-block;
+	padding: 0px 12px;
+}
+
+.navigation a {
+	color: #1E1E1E;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-family: "Raleway";
+	font-weight: 300;
+	font-size: 12pt;
+}
+
+.navigation a:hover {
+	color: #FF3C24;
+}
+
+.navigation a:active {
+	color: #FF3C24;
+}
+
+.navigation ul li .active {
+	color: #FF3C24;
+}
+
+.content-wrapper {
+	width: 100%;
+}
+
+.content {
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.footer-wrapper {
+	padding-top: 12px;
+}
+
+.footer {
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	border-top: 1px solid #727272;
+}
+
+.footer-left {
+	float: left;
+	padding-top: 12px;
+	padding-bottom: 15px;
+}
+
+.footer-right {
+	float: right;
+	padding-top: 12px;
+	padding-bottom: 15px;
+}
