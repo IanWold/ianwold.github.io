@@ -1,32 +1,39 @@
-{% assign directoryPrefix = "" %}
-{% for i in (1..level) %}
-	{% assign directoryPrefix = directoryPrefix + "../" %}
-{% endfor %}
 
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="MainStyle.css" />
-		<title>Ian Wold</title>
+		<link rel="stylesheet" type="text/css" href="../MainStyle.css" />
+		<title>Ian Wold | Console2048 </title>
 	</head>
 	<body>
 		<div class="wrapper">
 			<div class="header">
 				<div class="title">
-					<a href="index.html">Ian Wold</a>
+					<a href="../index.html">Ian Wold</a>
 				</div>
 				<div class="navigation">
 					<ul>
-						<li><a href="{{ directoryPrefix }}projects.html">Projects</a></li>
-						<li><a href="{{ directoryPrefix }}resume.html">Resume</a></li>
-						<li><a href="{{ directoryPrefix }}blog.html">Blog</a></li>
-						<li><a href="{{ directoryPrefix }}contact.html">Contact</a></li>
+						<li><a class="" href="../projects.html">Projects</a></li>
+						<li><a class="" href="../resume.html">Resume</a></li>
+						<li><a class="active" href="../blog.html">Blog</a></li>
+						<li><a class="" href="../contact.html">Contact</a></li>
 					</ul>
 				</div>
 			</div>
 
 			<div class="content-wrapper">
 				<div class="content">
-					{{ content }}
+					<h1 style="margin-bottom: 0;">Console2048</h1>
+
+<p>
+	Posted 26 April 2014
+</p>
+
+<hr/>
+
+<p>Jumping on the bandwagon, here's a C# implementation of Console 2048. Of course, 2048 has had a few console implementations, and most better done than this, but here it is anyway, because sometimes life is a mixed bag of apples and grapes.</p>
+<p>I've got it on the GitHub <a href="https://github.com/IanWold/Console2048">here</a>.</p>
+
+
 				</div>
 			</div>
 

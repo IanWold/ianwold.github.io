@@ -1,3 +1,10 @@
+;;;
+{
+	"title": "Projects",
+	"highlight": "projects"
+}
+;;;
+
 # GitHub Projects
 
 ## Language/Parsing

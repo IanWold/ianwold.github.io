@@ -1,8 +1,11 @@
----
-title: SpracheJSON
-author: Ian Wold
-date: 10 April 2015
----
+;;;
+{
+	"title": "SpracheJSON",
+	"author": "Ian Wold",
+	"date": "10 April 2015",
+	"description": "A small library serializing and deserializing JSON using Sprache."
+}
+;;;
 
 I've been meaning to write about this for a while now, but college got in the way of that. I wrote a deal I called SpracheJSON to parse JSON text into C# objects with Sprache, and it's kinda neat. I also played with the GitHub pages feature on this project, but that's not really interesting.
 

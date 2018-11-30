@@ -1,8 +1,11 @@
----
-title: Meanwhile in the Win Console ... Minesweeper!
-author: Ian Wold
-date: 23 August 2017
----
+;;;
+{
+	"title": "Meanwhile in the Win Console ... Minesweeper!",
+	"author": "Ian Wold",
+	"date": "23 August 2017",
+	"description": "My tyranny of classic game implementations in the console expands. Knows it no end?"
+}
+;;;
 
 My tyranny of classic game implementations in the console expands. Knows it no end?
 

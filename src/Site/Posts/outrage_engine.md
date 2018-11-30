@@ -1,8 +1,11 @@
----
-title: The Outrage Engine
-author: Ian Wold
-date: 25 October 2016
----
+;;;
+{
+	"title": "The Outrage Engine",
+	"author": "Ian Wold",
+	"date": "25 October 2016",
+	"description": "Perhaps an ASCII game in the Windows Console is ridiculous. Something akin to Dwarf Fortress comes to mind, so it's not entirely off the mark. But a game engine devoted to ASCII games in the console? Perhaps that's outrageous. I don't know if it's been done (or is being done) currently, but that's what I'm doing right now, and I've called it the Outrage Engine."
+}
+;;;
 
 Perhaps an ASCII game in the Windows Console is ridiculous. Something akin to Dwarf Fortress comes to mind, so it's not entirely off the mark. But a game engine devoted to ASCII games in the console? Perhaps that's outrageous. I don't know if it's been done (or is being done) currently, but that's what I'm doing right now, and I've called it the [Outrage Engine](https://github.com/IanWold/OutrageEngine). I'll give a little overview here of where my early engine is at after I've been working on it piecemeal between classes and summer jobs, and where I hope to go in future. It started as more of a *proof of concept* than an attempt to create a solid product, and I imagine that's where it will remain, but it's all good fun.
 

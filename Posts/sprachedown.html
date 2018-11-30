@@ -1,0 +1,59 @@
+
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../MainStyle.css" />
+		<title>Ian Wold | SpracheDown </title>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				<div class="title">
+					<a href="../index.html">Ian Wold</a>
+				</div>
+				<div class="navigation">
+					<ul>
+						<li><a class="" href="../projects.html">Projects</a></li>
+						<li><a class="" href="../resume.html">Resume</a></li>
+						<li><a class="active" href="../blog.html">Blog</a></li>
+						<li><a class="" href="../contact.html">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="content-wrapper">
+				<div class="content">
+					<h1 style="margin-bottom: 0;">SpracheDown</h1>
+
+<p>
+	Posted 26 September 2014
+</p>
+
+<hr/>
+
+<p>About a year and a half ago I attended one of the <a href="http://www.twincitiescodecamp.com">Twin Cities Code Camps</a>, and there I was shown a nifty library called Sprache. Sprache is, by no means, a novel invention. It's a monadic parser combinator based on years of programming done with similar libraries popular in functional languages. I say it's nifty because it seems to be the cleanest monadic parser combinator made in C#. It's also got a large enough following that keeps it up-to-date well enough, and it's what I was taught at the code camp.</p>
+<p>Half a year after that, almost a full year ago now, I attended my first <a href="http://www.iowacodecamp.com">Iowa Code Camp</a>. One guy I taught about Sprache and monadic parser combinators asked if it was possible to create a markdown parser with it, and my answer was a brief &quot;Well, yeah, you can totally do that.&quot; I've been mulling that over for about a year now, and I decided to look for a Markdown parser implemented with a monadic parser combinator to see what it would look like.</p>
+<p>I found an excellent <a href="http://www.greghendershott.com/2013/11/markdown-parser-redesign.html">article</a> by Greg Hendershott who implemented a MarkDown parser with a variation of Parsec for Racket. I browsed through his <a href="https://github.com/greghendershott/markdown">parser</a> on GitHub, and to my alarm it seemed that the parser itself was 1,000 lines long (I could be misreading that, I've no prior experience with Racket, but I'm assuming &quot;parse.rkt&quot; contains the parser). This compelled me to attempt such a parser with Sprache. If nothing else, it would be an interesting comparison.</p>
+<p>So I began writing this parser in steps, gradually adding features to it. I started out with headers, then lists, then paragraphs, and so forth. As I was writing this parser, I deliberately omitted features from MarkDown, notably reference-style links and inline HTML. I think if you can parse the majority of MarkDown the little bits could be implemented with equal ease, so I don't believe this invalidates the parser. I may go on and add inline HTML (Sprache ships with an XML parser example), but so long as this is a neat little pet project, I don't think I'll go too far beyond that.</p>
+<p>At first, I parsed the MarkDown text directly into strings representing the HTML output. This was efficient, but of course it wouldn't do for any parser - the user needs to be able to manipulate the output. To save time, I borrowed the syntax tree that Sprache's XML example comes with. I adapted and modified the objects with a couple methods to bend them to my will, so to speak, and from there it only took a minute to plug them into my parser.</p>
+<p>One problem that Mr. Hendershott faced was parsing MarkDown's nested list feature (this is achieved by inserting spaces before the asterisk in MarkDown). I don't know if this was due to the language he was using or a limitation of the parser,</p>
+<p>Now, I can't say I actually ran into any major problems when I implemented the parser. Granted, I ignored the MarkDown I didn't like so well, but as I said, I don't believe that invalidates the parser. In fact, my success with this parser speaks to the beauty inherent in parser combinators, specifically Sprache in this case. Over the past two days, I've spent a total of six hours working on this, and it's already relatively well-polished. The code is clear and readable, thoroughly commented, and the syntax tree is easily scalable. In addition, my parser is significantly smaller than Mr. Hendershott's parser (perhaps an advantage of Sprache in C# over Parsack in Racket?), and I don't believe I could top 1000 lines in the parser alone if I were to bring the parser up to speed with all of MarkDown's features.</p>
+<p>As I've been saying, I wrote this as a proof of concept, and I don't really intend for it to go anywhere, but if you think this is the coolest thing ever and you want it to be something, you're more than welcome to submit pull requests, or you can fork it and do your own thing with it. I believe I've documented everything thoroughly, so it should be easy to find your way around, but if I've missed something don't wait to contact me. Have fun!</p>
+<p>You can find SpracheDown on GitHub right <a href="https://github.com/IanWold/SpracheDown">here</a>.</p>
+
+
+				</div>
+			</div>
+
+			<div class="footer-wrapper">
+				<div class="footer">
+					<div class="footer-left">
+						Copyright &copy; Ian Wold. Site generated by <a href="https://github.com/ianwold/Metalsharp">Metalsharp</a>.
+					</div>
+					<div class="footer-right">
+						Find me on <a href="https://github.com/ianwold">GitHub</a>, <a href="http://linked.in/ianwold">LinkedIn</a>, <a href="http://discord.gg/ianwold">Discord</a>, <a href="http://instagram.com/ianwold">Instagram</a>, and <a href="http://twitter.com/ianwold">Twitter</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

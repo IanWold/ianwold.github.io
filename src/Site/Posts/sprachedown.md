@@ -1,8 +1,11 @@
----
-title: SpracheDown
-author: Ian Wold
-date: 26 September 2014
----
+;;;
+{
+	"title": "SpracheDown",
+	"author": "Ian Wold",
+	"date": "26 September 2014",
+	"description": "I created a Markdown parser with the Sprache library after it was recommended to me at the Iowa Code Camp."
+}
+;;;
 
 About a year and a half ago I attended one of the [Twin Cities Code Camps](http://www.twincitiescodecamp.com), and there I was shown a nifty library called Sprache. Sprache is, by no means, a novel invention. It's a monadic parser combinator based on years of programming done with similar libraries popular in functional languages. I say it's nifty because it seems to be the cleanest monadic parser combinator made in C#. It's also got a large enough following that keeps it up-to-date well enough, and it's what I was taught at the code camp.
 

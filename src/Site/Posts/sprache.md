@@ -1,8 +1,11 @@
----
-title: An Introduction to Sprache
-author: Ian Wold
-date: 22 January 2016
----
+;;;
+{
+    "title": "An Introduction to Sprache",
+    "author": "Ian Wold",
+    "date": "   22 January 2016",
+	"description": "Sprache is a parser-combinator library for C# that uses Linq to construct parsers. In this post I describe the fundamentals of understanding grammars and parsing them with Sprache, with several real-world examples."
+}
+;;;
 
 As my activity on this blog and my GitHub account may attest, I'm quite fond of a C# library called Sprache. Sprache is a parser-combinator that uses LINQ (Language INtegrated Query) to allow for the elegant construction of parsers in C#. I've been using Sprache for three years now, before I started college, and I've used it to implement a number of domain-specific languages (DSLs) both in side projects on my GitHub and on applications I've worked on. It's only natural I would want to share my favorite C# library with my fellow undergraduate classmates, but there are several factors which make it rather unapproachable for the average undergraduate computer science student. Thus, I have written this piece to provide a completely introductory tutorial to using Sprache. 
 

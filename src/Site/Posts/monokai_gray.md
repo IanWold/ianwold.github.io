@@ -1,8 +1,11 @@
----
-title: Monokai Gray
-author: Ian Wold
-date: 5 December 2013
----
+;;;
+{
+	"title": "Monokai Gray",
+	"author": "Ian Wold",
+	"date": "5 December 2013",
+	"description": "I made a color scheme for Sublime Text."
+}
+;;;
 
 About a week (?) or so ago I hashed out a quick Sublime Text color scheme called Monokai Gray. I did so because I desperately love Monokai and I love the [Wombat Theme](https://sublime.wbond.net/packages/Wombat%20Theme) as well. Unfortunately, I couldn't use Monokai with Wombat (without throwing up) because the yellowey hue of Monokai clashed with the classy grays of Wombat. Truthfully, I had been using a similar color scheme in Visual Studio for some time (the yellowey background didn't fly there, either). So I copied many of the colors over and prettied it up a tad, and this was the result.
 

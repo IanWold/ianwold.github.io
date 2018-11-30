@@ -1,3 +1,10 @@
+;;;
+{
+	"title": "Resume",
+	"highlight": "resume"
+}
+;;;
+
 # Summary
 
 Software and web developer; has been learning for 10+ years through self-pursuit. Strong desire to learn new things, especially new languages and libraries. Enjoys finding creative solutions to problems.

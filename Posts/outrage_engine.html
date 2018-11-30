@@ -1,0 +1,68 @@
+
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../MainStyle.css" />
+		<title>Ian Wold | The Outrage Engine </title>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				<div class="title">
+					<a href="../index.html">Ian Wold</a>
+				</div>
+				<div class="navigation">
+					<ul>
+						<li><a class="" href="../projects.html">Projects</a></li>
+						<li><a class="" href="../resume.html">Resume</a></li>
+						<li><a class="active" href="../blog.html">Blog</a></li>
+						<li><a class="" href="../contact.html">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="content-wrapper">
+				<div class="content">
+					<h1 style="margin-bottom: 0;">The Outrage Engine</h1>
+
+<p>
+	Posted 25 October 2016
+</p>
+
+<hr/>
+
+<p>Perhaps an ASCII game in the Windows Console is ridiculous. Something akin to Dwarf Fortress comes to mind, so it's not entirely off the mark. But a game engine devoted to ASCII games in the console? Perhaps that's outrageous. I don't know if it's been done (or is being done) currently, but that's what I'm doing right now, and I've called it the <a href="https://github.com/IanWold/OutrageEngine">Outrage Engine</a>. I'll give a little overview here of where my early engine is at after I've been working on it piecemeal between classes and summer jobs, and where I hope to go in future. It started as more of a <em>proof of concept</em> than an attempt to create a solid product, and I imagine that's where it will remain, but it's all good fun.</p>
+<h2>The Current State</h2>
+<p>Overall, the engine is event-driven and not time-driven, so  the game will only ever update when the user provides input to the console. I attempted implementing a time-driven system (updating 24 times a second), but I was unable to capture input using the traditional <em>Console.ReadKey()</em>. So, for the time being (in the true POC method) we're stuck with event-driven games. In the engine's base directory lives the class <em>GameLoop</em>. This provides a game with the central loop that drives everything. You can see it keeps tract of the current <em>view</em> (a <em>scene</em> or a <em>menu</em>) that's on display, and updates after every key input. It also contains methods to navigate between views and scenes.</p>
+<p>Going into the <em>Engine</em> directory, we see we have <em>camera</em>, <em>entity</em>, <em>scene</em>, and <em>terrain</em>. These components are rather simple concepts. A scene contains the other three, and the game can switch from scene to scene as needed. An entity is a &quot;thing,&quot; so to speak - any object in the scene that can interact or be interacted with (the player, walls, flowers, etc.). The terrain is the thing which manages the locations of all the entities and detects collisions and whatnot. Finally, the camera provides the information for what to render - this way the view can be controlled independently of the state of the player or terrain.</p>
+<p>With this setup, a game programmer would need to create classes for each of their entities, each inheriting from the entity class. However, they would not create classes for each scene - every scene is just an instance of the scene class. I'm not sure if this is the proper (most optimal and easiest to implement) system, but it's working pretty well. The programmer will also not need to concern themselves with the terrain management system - they just need to choose which one to use (I envision different ones for different uses). The camera is of much greater concern, because its state is tied to the state and capabilities of the console to which we're deploying.</p>
+<h2>The Future State</h2>
+<p>As you can see on my GitHub repo, I have a shortlist of things to get done for a beta version:</p>
+<pre><code class="language-md">1. Menu system
+2. Create a few [different] terrain management options
+3. Create a template for VS
+4. Write the docs
+5. Optimize it
+6. Create a samples library of pre-made assets
+7. Finish a sample game showing off everything
+</code></pre>
+<p>I have an ad-hoc menu system on <a href="https://github.com/IanWold/ConsoleMazeWoot">another game</a> I made with the engine, and I think that's the best route to go, that's just a matter of getting the work done. I'm much more interested in the terrain management and optimization (the terrain is largely where the optimization is needed).</p>
+<p>Then, in the far future, color, time and physics (physics needs time) , and a view manager would be nice. By view manager, I mean something which could display both a scene and menu on the screen concurrently. Furthermore, if the game programmer could control the console settings (to be able to deliver a guaranteed-usable product), that could go a long way to making the engine actually usable.</p>
+<p>In the meantime though, have fun with it! I'll write another post about this when I've got a Beta version done (or close to).</p>
+
+
+				</div>
+			</div>
+
+			<div class="footer-wrapper">
+				<div class="footer">
+					<div class="footer-left">
+						Copyright &copy; Ian Wold. Site generated by <a href="https://github.com/ianwold/Metalsharp">Metalsharp</a>.
+					</div>
+					<div class="footer-right">
+						Find me on <a href="https://github.com/ianwold">GitHub</a>, <a href="http://linked.in/ianwold">LinkedIn</a>, <a href="http://discord.gg/ianwold">Discord</a>, <a href="http://instagram.com/ianwold">Instagram</a>, and <a href="http://twitter.com/ianwold">Twitter</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

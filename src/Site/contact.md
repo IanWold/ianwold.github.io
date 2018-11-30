@@ -1,3 +1,10 @@
+;;;
+{
+	"title": "Contact",
+	"highlight": "contact"
+}
+;;;
+
 # Contact Me
 
 Business and work inquiries can be sent to [ian.wold@inilliant.net][2]

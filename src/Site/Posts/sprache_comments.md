@@ -1,8 +1,11 @@
----
-title: Parsing Comments with Sprache
-author: Ian Wold
-date: 6 February 2015
----
+;;;
+{
+	"title": "Parsing Comments with Sprache",
+	"author": "Ian Wold",
+	"date": "6 February 2015",
+	"description": "I recently made a comment parser for the Sprache framework, and I wanted to give a basic run-down on how it works."
+}
+;;;
 
 I recently made a comment parser for the Sprache framework, and I wanted to give a basic run-down on how it works.
 
