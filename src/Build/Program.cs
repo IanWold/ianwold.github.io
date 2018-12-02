@@ -9,61 +9,47 @@ namespace Build
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-            var a = new MetalsharpDirectory("..\\..\\..\\..\\Site");
-            a.AddInput("..\\..\\..\\..\\Templates");
-            a.MoveInput("..\\..\\..\\..\\Templates", ".\\Templates");
-            a.UseFrontmatter();
-            a.UseMarkdown();
-            a.AddOutput("..\\..\\..\\..\\Static");
-            a.MoveOutput("..\\..\\..\\..\\Static", ".\\");
-            a.MoveOutput("..\\..\\..\\..\\Site", ".\\");
-            a.MoveOutput("..\\..\\..\\..\\Site\\Posts", ".\\Posts");
-            a.Use(dir =>
-            {
-                dir.Meta("posts", new List<Post>());
-
-                foreach (var file in dir.OutputFiles
-                    .Where(file => file.Directory == ".\\Posts")
-                    .OrderByDescending(file => DateTime.TryParse(file.Metadata["date"] as string, out var date) ? date.Year : 0)
-                    .ThenByDescending(file => DateTime.TryParse(file.Metadata["date"] as string, out var date) ? date.Month : 0)
-                    .ThenByDescending(file => DateTime.TryParse(file.Metadata["date"] as string, out var date) ? date.Day : 0))
+        static void Main(string[] args) =>
+            new MetalsharpDirectory("..\\..\\..\\..\\Site", ".\\")
+                .UseFrontmatter()
+                .UseMarkdown()
+                .Use(dir =>
                 {
-                    file.Metadata.Add("template", ".\\Templates\\article.liquid");
-                    file.Metadata.Add("highlight", "blog");
+                    dir.Meta("posts", new List<Post>());
 
-                    (dir.Metadata["posts"] as List<Post>).Add(new Post(file.Metadata["title"] as string, file.Metadata["date"] as string, file.Metadata["description"] as string, file.Metadata["author"] as string, file.Name));
-                }
-            });
-            a.Use(dir => dir.OutputFiles.Add(new MetalsharpFile("", ".\\blog.html") { Metadata = new Dictionary<string, object>() { ["posts"] = dir.Metadata["posts"], ["highlight"] = "blog", ["template"] = ".\\Templates\\blog.liquid" } }));
-            a.Use(LeveledFiles);
-            a.UseFluidTemplate(".\\Templates\\layout.liquid");
-            a.Build(new BuildOptions
-            {
-                OutputDirectory = "built",
-                ClearOutputDirectory = false
-            });
-        }
+                    foreach (var file in dir.OutputFiles
+                        .Where(file => file.Directory == ".\\Posts")
+                        .OrderByDescending(file => DateTime.TryParse(file.Metadata["date"] as string, out var date) ? ((date.Year * 10000) + (date.Month * 100) + date.Day) : 0))
+                    {
+                        file.Metadata.Add("template", ".\\Templates\\article.liquid");
+                        file.Metadata.Add("highlight", "blog");
+
+                        (dir.Metadata["posts"] as List<Post>).Add(new Post(file.Metadata["title"] as string, file.Metadata["date"] as string, file.Metadata["description"] as string, file.Metadata["author"] as string, file.Name));
+                    }
+                })
+                .Use(dir => dir.AddOutput(new MetalsharpFile("", ".\\blog.html")
+                {
+                    Metadata = new Dictionary<string, object>()
+                    {
+                        ["posts"] = dir.Metadata["posts"],
+                        ["highlight"] = "blog",
+                        ["title"] = "Blog",
+                        ["template"] = ".\\Templates\\blog.liquid"
+                    }
+                }))
+                .Use(LeveledFiles)
+                .AddInput("..\\..\\..\\..\\Templates", ".\\Templates")
+                .UseFluidTemplate(".\\Templates\\layout.liquid")
+                .AddOutput("..\\..\\..\\..\\Static", ".\\")
+                .Build(new BuildOptions
+                {
+                    OutputDirectory = "built",
+                    ClearOutputDirectory = false
+                });
 
         static void LeveledFiles(MetalsharpDirectory directory)
         {
-            foreach (var file in directory.InputFiles)
-            {
-                var dirLevels = file.Directory.Split(Path.DirectorySeparatorChar);
-                var dirLevelCount = dirLevels.Count() - (dirLevels[0] == "." ? 1 : 0);
-
-                if (file.Metadata.ContainsKey("level"))
-                {
-                    file.Metadata["level"] = dirLevelCount;
-                }
-                else
-                {
-                    file.Metadata.Add("level", dirLevelCount);
-                }
-            }
-
-            foreach (var file in directory.OutputFiles)
+            foreach (var file in directory.InputFiles.Concat(directory.OutputFiles))
             {
                 var dirLevels = file.Directory.Split(Path.DirectorySeparatorChar);
                 var dirLevelCount = dirLevels.Count() - (dirLevels[0] == "." ? 1 : 0);
