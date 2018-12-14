@@ -7,15 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fluid.Core" Version="1.0.0-beta-9463" />
-    <PackageReference Include="Markdig" Version="0.15.4" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Fluid.Core" Version="1.0.0-beta-9480" />
+    <PackageReference Include="Metalsharp" Version="0.9.0-rc.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Metalsharp">
-      <HintPath>..\..\..\Metalsharp\Metalsharp\bin\Debug\netstandard2.0\Metalsharp.dll</HintPath>
-    </Reference>
     <Reference Include="Metalsharp.FluidTemplate">
       <HintPath>..\..\..\Metalsharp.FluidTemplate\Metalsharp.FluidTemplate\bin\Debug\netstandard2.0\Metalsharp.FluidTemplate.dll</HintPath>
     </Reference>
