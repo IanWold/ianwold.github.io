@@ -5,19 +5,38 @@ on:
     branches: [ "master" ]
 
 jobs:
+#  build:
+#    runs-on: windows-latest
+#    steps:
+#    - name: Checkout
+#      uses: actions/checkout@v3
+#    - name: Setup (dotnet)
+#      uses: actions/setup-dotnet@v2
+#      with:
+#        dotnet-version: 6.0.x
+#    - name: Setup (dotnet script)
+#      run: dotnet tool install -g dotnet-script
+#    - name: Build
+#      run: dotnet script build.csx
+#    - name: Deploy
+#      uses: peaceiris/actions-gh-pages@v3
+#      with:
+#        github_token: ${{ secrets.GITHUB_TOKEN }}
+#        publish_dir: ./output
   build:
     runs-on: windows-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Setup (dotnet)
+    - uses: actions/checkout@v3
+    - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
-    - name: Setup (dotnet script)
-      run: dotnet tool install -g dotnet-script
+    - name: Restore dependencies
+      run: dotnet restore
     - name: Build
-      run: dotnet script build.csx
+      run: dotnet build --no-restore -c Release -o build
+    - name: Metalsharp
+      run: build\build
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
