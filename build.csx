@@ -7,7 +7,7 @@ using Metalsharp;
 using Metalsharp.LiquidTemplates;
 using Metalsharp.SimpleBlog;
 
-new MetalsharpProject(MetalsharpConfiguration.FromArgs(args))
+new MetalsharpProject(new MetalsharpConfiguration { Verbosity = Metalsharp.Logging.LogLevel.Info })
 .AddInput("Site", ".\\")
 .UseFrontmatter()
 .UseMarkdown()
