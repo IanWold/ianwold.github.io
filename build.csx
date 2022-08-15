@@ -1,6 +1,6 @@
 ﻿#! "net6.0.4"
 #r "nuget: Metalsharp, 0.9.0-rc.4"
-#r "nuget: Metalsharp.LiquidTemplates, 0.9.0-rc.3"
+#r "nuget: Metalsharp.LiquidTemplates, 0.9.0-rc-3"
 #r "nuget: Metalsharp.SimpleBlog, 0.9.0-rc.1"
 
 using Metalsharp;
