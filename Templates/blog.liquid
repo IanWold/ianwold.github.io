@@ -1,0 +1,20 @@
+<h1 style="margin-bottom: 0;">Posts</h1>
+
+<p>
+	The occasional blog...
+</p>
+
+{% for post in posts %}
+
+	<hr/>
+
+	<a class="post-link" href="posts/{{ post.fileName }}.html"><h2 style="margin-bottom: 0;">{{ post.title }}</h2></a>
+
+	<p>
+		<b>Posted {{ post.date }}</b>
+	</p>
+
+	<p>
+		{{ post.description }}
+	</p>
+{% endfor %}

@@ -1,6 +1,6 @@
 {% assign directoryPrefix = "" %}
 {% for i in (1..level) %}
-	{% assign directoryPrefix = directoryPrefix + "../" %}
+	{% assign directoryPrefix = directoryPrefix | append: "../" %}
 {% endfor %}
 
 <html>
