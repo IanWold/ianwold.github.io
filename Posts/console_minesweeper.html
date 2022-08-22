@@ -5,50 +5,56 @@
 
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="../MainStyle.css" />
+		<link rel="stylesheet" href="../reset.css" />
+		<link rel="stylesheet" href="../highlight/styles/monokai-sublime.min.css" />
+		<link rel="stylesheet" href="../site.css" />
+		
+		<script src="https://unpkg.com/feather-icons"></script>
 
-		<link rel="apple-touch-icon" sizes="180x180" href="../Icons/apple-touch-icon.png?v=kP3q0kdxR8">
-		<link rel="icon" type="image/png" sizes="32x32" href="../Icons/favicon-32x32.png?v=kP3q0kdxR8">
-		<link rel="icon" type="image/png" sizes="16x16" href="../Icons/favicon-16x16.png?v=kP3q0kdxR8">
-		<link rel="manifest" href="../Icons/site.webmanifest?v=kP3q0kdxR8">
-		<link rel="mask-icon" href="../Icons/safari-pinned-tab.svg?v=kP3q0kdxR8" color="#5bbad5">
-		<link rel="shortcut icon" href="../Icons/favicon.ico?v=kP3q0kdxR8">
-		<meta name="apple-mobile-web-app-title" content="Ian Wold">
-		<meta name="application-name" content="Ian Wold">
-		<meta name="msapplication-TileColor" content="#da532c">
-		<meta name="msapplication-config" content="../Icons/browserconfig.xml?v=kP3q0kdxR8">
-		<meta name="theme-color" content="#ffffff">
-
-		<title>Ian Wold | Meanwhile in the Win Console ... Minesweeper! </title>
+		<title>
+			Ian Wold | Meanwhile in the Windows Console ... Minesweeper! 
+		</title>
 	</head>
 	<body>
-		<div class="wrapper">
-			<div class="header">
-				<div class="title">
-					<a href="../index.html">Ian Wold</a>
-				</div>
-				<div class="navigation">
-					<ul>
-						<li><a class="" href="../projects.html">Projects</a></li>
-						<li><a class="" href="../resume.html">Resume</a></li>
-						<li><a class="active" href="../blog.html">Blog</a></li>
-						<li><a class="" href="../contact.html">Contact</a></li>
-					</ul>
-				</div>
+		<nav class="content">
+			<div class="headshot">
+				<img src="../images/hero1.svg" />
 			</div>
+			<div class="title">
+				<a href="../index.html">Ian Wold</a>
+			</div>
+			<ul>
+				<li><a href="../about.html">About</a></li>
+				<li><a href="../contact.html">Contact</a></li>
+			</ul>
+		</nav>
+		
+		
 
-			<div class="content-wrapper">
-				<div class="content">
-					<h1 style="margin-bottom: 0;">Meanwhile in the Win Console ... Minesweeper!</h1>
 
-<p>
-	Posted 23 August 2017
-</p>
 
-<hr/>
 
-<p>My tyranny of classic game implementations in the console expands. Knows it no end?</p>
-<h2>Why?</h2>
+<header class="content">
+	<h1>Meanwhile in the Windows Console ... Minesweeper!</h1>
+	<small>
+		<span class="date">
+			<i data-feather="calendar"></i> 23 August 2017
+		</span>
+		<span class="time">
+			<i data-feather="clock"></i> 3  Minutes 
+		</span>
+	</small>
+	<p>My tyranny of classic game implementations in the console expands. Knows it no end?</p>
+</header>
+
+<div class="content hero">
+	<img src="https://images.unsplash.com/photo-1583634852966-130c15654305?w=1000&h=525&fit=crop&crop=entropy" />
+</div>
+
+<div class="content">
+	
+	<div class="post">
+		<h2>Why?</h2>
 <p>I've done <a href="https://github.com/IanWold/Console2048">2048</a>, <a href="https://github.com/IanWold/ConsoleMinesweeper">Minesweeper</a>, Solitaire (coming soon to GitHub), and a number of others. They only take a few hours and, one ultimately concludes, they are more or less exactly the same thing. I've found the exercises of producing these classic desktop arcade games from scratch to be very useful. The obvious excuse, besides boredom, is in line with the addage &quot;practice makes perfect&quot;: just as a musician must continuously practice their instrumentation skills, a programmer must practice their programmering skills. This is a bit of a cop-out. My admirable high school band director would quip &quot;practice makes <em>permanent</em>; <em>perfect</em> practice makes perfect,&quot; and so I extend his correction across the analogy to its relation to programming. Practice is not enough in itself, perfect practice is necessary.</p>
 <p>The implementation of these sub-400-lines games are intuitively obvious, even to non-programmers. It is very easy to perfect their implementation. There is no database, no business logic, a single file, and the most complicated data structure you should need to rely on is a two-dimensional array.</p>
 <p>Not only does this allow you to craft a perfect implementation of the game, it allows you to craft a perfectly horrendous implementation. C# 7.0 introduced language-level tuples, and my latest creation is a good testament as to why this was not the best decision. It could easily have been a perfect testament to that fact (speaking of perfection), but I desired to preserve my sanity.</p>
@@ -57,20 +63,88 @@
 <p>Another goal was more interesting for the programmer looking to sharpen their skills: I wrote the entire program in one sitting without testing it. When I did hit F5, I am proud to report, it worked exactly as I intended. I shouldn't have to mention that this really isn't best practice, but it's a fun accomplishment. It probably helps your brain practice thinking sorts of skills, and so I assume it is helpful to the practicing programmer. Practgrammer, if you will.</p>
 <p>There's really not too much more to write here, but if you've stumbled across this I encourage you to check out the projects I've linked to on <a href="https://github.com/IanWold">my GitHub</a>. I'm also developing (at a snail's pace) a <a href="https://github.com/IanWold/OutrageEngine">game engine</a> for the Windows console. I've got no design notes and I hit programmer's block with some frequency, but you might find it not <em>completely</em> lacking.</p>
 
+	</div>
+</div>
 
-				</div>
-			</div>
-
-			<div class="footer-wrapper">
-				<div class="footer">
-					<div class="footer-left">
-						Copyright &copy; Ian Wold. Site generated by <a href="https://github.com/ianwold/Metalsharp">Metalsharp</a> and hosted by <a href="https://github.com/ianwold/ianwold.github.io">GitHub Pages</a>.
-					</div>
-					<div class="footer-right">
-						<a href="https://github.com/ianwold"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/github.svg" /></a>&nbsp;&nbsp;&nbsp;<a href="http://linked.in/ianwold"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/linkedin.svg" /></a>&nbsp;&nbsp;&nbsp;<a href="http://instagram.com/ianwold"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/instagram.svg" /></a>&nbsp;&nbsp;&nbsp;<a href="http://twitter.com/ianwold"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/twitter.svg" /></a>
-					</div>
-				</div>
+<div class="section-gray">
+	<div class="content post-end">
+		<img src="../images/hero1.svg" />
+		<div class="bio">
+			<h1>Hi, I'm Ian</h1>
+			<p>
+				I'm a software engineer, architect, and team leader in Minneapolis. My career has largely focused on .NET and web technologies, spread across several industries. Currently I'm working for Crate &amp; Barrel on their ecommerce solutions. You can find me on this blog, contributing to open source repositories, and at conferences around the Midwest.
+			</p>
+			<hr/>
+			<p>
+				Thank you for reading this post, I hope you found it valuable. Please <a href="mailto:mail@ian.wold.guru">contact me</a> if you have any comments, and I encourage you to subscribe to my <a href="#">RSS feed</a>.
+			</p>
+			<hr/>
+			<p>
+				Some other posts you might be interested in:
+			</p>
+			<div class="archive">
+				<ul>
+					
+						<li>
+							<a href="../Posts/sprache.html">
+								An Introduction to Sprache<small>Sprache is a parser-combinator library for C# that uses Linq to construct parsers. In this post I describe the fundamentals of understanding grammars and parsing them with Sprache, with several real-world examples.</small>
+							</a>
+						</li>
+					
+						<li>
+							<a href="../Posts/console2048.html">
+								Console2048<small>Jumping on the bandwagon, here's a C# implementation of Console 2048. Of course, 2048 has had a few console implementations, and most better done than this, but here it is anyway, because sometimes life is a mixed bag of apples and grapes.</small>
+							</a>
+						</li>
+					
+						<li>
+							<a href="../Posts/outrage_engine.html">
+								The Outrage Engine<small>Perhaps an ASCII game in the Windows Console is ridiculous. Something akin to Dwarf Fortress comes to mind, so it's not entirely off the mark. But a game engine devoted to ASCII games in the console? Perhaps that's outrageous. I don't know if it's been done (or is being done) currently, but that's what I'm doing right now, and I've called it the Outrage Engine.</small>
+							</a>
+						</li>
+					
+				</ul>
 			</div>
 		</div>
+	</div>
+</div>
+
+
+		<footer>
+			<div class="content content-footer">
+				<span>
+					Copyright &copy; Ian Wold. Site generated by <a href="https://www.github.com/IanWold/Metalsharp">Metalsharp</a> and hosted by <a href="https://www.github.com/IanWold/ianwold.github.io">GitHub Pages</a>.
+				</span>
+				<div class="icon-links">
+					<a href="https://github.com/ianwold"><i data-feather="github"></i></a>
+					<!--<a href="#"><i data-feather="rss"></i></a>-->
+				</div>
+			</div>
+		</footer>
+
+		<script src="../highlight/highlight.min.js"></script>
+		<script>
+			feather.replace();
+			hljs.highlightAll();
+
+			window.addEventListener('DOMContentLoaded', () => {
+				const observer = new IntersectionObserver(entries => {
+					entries.forEach(entry => {
+						const id = entry.target.getAttribute('id');
+						let classList = document.querySelector(`.pane li a[href="#${id}"]`).parentElement.classList;
+
+						if (entry.intersectionRatio > 0) {
+							classList.add('active');
+						} else {
+							classList.remove('active');
+						}
+					});
+				});
+
+				document.querySelectorAll('section[id]').forEach((section) => {
+					observer.observe(section);
+				});
+			});
+		</script>
 	</body>
 </html>

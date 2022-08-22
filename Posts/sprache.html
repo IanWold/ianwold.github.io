@@ -5,52 +5,148 @@
 
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="../MainStyle.css" />
+		<link rel="stylesheet" href="../reset.css" />
+		<link rel="stylesheet" href="../highlight/styles/monokai-sublime.min.css" />
+		<link rel="stylesheet" href="../site.css" />
+		
+		<script src="https://unpkg.com/feather-icons"></script>
 
-		<link rel="apple-touch-icon" sizes="180x180" href="../Icons/apple-touch-icon.png?v=kP3q0kdxR8">
-		<link rel="icon" type="image/png" sizes="32x32" href="../Icons/favicon-32x32.png?v=kP3q0kdxR8">
-		<link rel="icon" type="image/png" sizes="16x16" href="../Icons/favicon-16x16.png?v=kP3q0kdxR8">
-		<link rel="manifest" href="../Icons/site.webmanifest?v=kP3q0kdxR8">
-		<link rel="mask-icon" href="../Icons/safari-pinned-tab.svg?v=kP3q0kdxR8" color="#5bbad5">
-		<link rel="shortcut icon" href="../Icons/favicon.ico?v=kP3q0kdxR8">
-		<meta name="apple-mobile-web-app-title" content="Ian Wold">
-		<meta name="application-name" content="Ian Wold">
-		<meta name="msapplication-TileColor" content="#da532c">
-		<meta name="msapplication-config" content="../Icons/browserconfig.xml?v=kP3q0kdxR8">
-		<meta name="theme-color" content="#ffffff">
-
-		<title>Ian Wold | An Introduction to Sprache </title>
+		<title>
+			Ian Wold | An Introduction to Sprache 
+		</title>
 	</head>
 	<body>
-		<div class="wrapper">
-			<div class="header">
-				<div class="title">
-					<a href="../index.html">Ian Wold</a>
-				</div>
-				<div class="navigation">
-					<ul>
-						<li><a class="" href="../projects.html">Projects</a></li>
-						<li><a class="" href="../resume.html">Resume</a></li>
-						<li><a class="active" href="../blog.html">Blog</a></li>
-						<li><a class="" href="../contact.html">Contact</a></li>
-					</ul>
-				</div>
+		<nav class="content">
+			<div class="headshot">
+				<img src="../images/hero1.svg" />
 			</div>
+			<div class="title">
+				<a href="../index.html">Ian Wold</a>
+			</div>
+			<ul>
+				<li><a href="../about.html">About</a></li>
+				<li><a href="../contact.html">Contact</a></li>
+			</ul>
+		</nav>
+		
+		
 
-			<div class="content-wrapper">
-				<div class="content">
-					<h1 style="margin-bottom: 0;">An Introduction to Sprache</h1>
 
-<p>
-	Posted    22 January 2016
-</p>
 
-<hr/>
 
-<p>As my activity on this blog and my GitHub account may attest, I'm quite fond of a C# library called Sprache. Sprache is a parser-combinator that uses LINQ (Language INtegrated Query) to allow for the elegant construction of parsers in C#. I've been using Sprache for three years now, before I started college, and I've used it to implement a number of domain-specific languages (DSLs) both in side projects on my GitHub and on applications I've worked on. It's only natural I would want to share my favorite C# library with my fellow undergraduate classmates, but there are several factors which make it rather unapproachable for the average undergraduate computer science student. Thus, I have written this piece to provide a completely introductory tutorial to using Sprache.</p>
+<header class="content">
+	<h1>An Introduction to Sprache</h1>
+	<small>
+		<span class="date">
+			<i data-feather="calendar"></i> 22 January 2016
+		</span>
+		<span class="time">
+			<i data-feather="clock"></i> 28  Minutes 
+		</span>
+	</small>
+	<p>Sprache is a parser-combinator library for C# that uses Linq to construct parsers. In this post I describe the fundamentals of understanding grammars and parsing them with Sprache, with several real-world examples.</p>
+</header>
+
+<div class="content hero">
+	<img src="https://images.unsplash.com/photo-1494435658045-a657e4a01bcc?w=1000&h=525&fit=crop&crop=entropy" />
+</div>
+
+<div class="content">
+	
+		<div class="pane">
+			<ul>
+				
+				<li>
+					<a href="#prerequisites">
+						
+							<b>Prerequisites</b>
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="##linq">
+						
+							LINQ
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="##backus-naur-form">
+						
+							Backus-Naur Form
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#sprache">
+						
+							<b>Sprache</b>
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="##our-first-language">
+						
+							Our First Language
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="##comma-separated-values">
+						
+							Comma-Separated Values
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="##xml">
+						
+							XML
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="##json">
+						
+							JSON
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#my-work-with-sprache">
+						
+							<b>My Work With Sprache</b>
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="##further-reading">
+						
+							Further Reading
+						
+					</a>
+				</li>
+				
+			</ul>
+		</div>
+	
+	<div class="post">
+		<p>As my activity on this blog and my GitHub account may attest, I'm quite fond of a C# library called Sprache. Sprache is a parser-combinator that uses LINQ (Language INtegrated Query) to allow for the elegant construction of parsers in C#. I've been using Sprache for three years now, before I started college, and I've used it to implement a number of domain-specific languages (DSLs) both in side projects on my GitHub and on applications I've worked on. It's only natural I would want to share my favorite C# library with my fellow undergraduate classmates, but there are several factors which make it rather unapproachable for the average undergraduate computer science student. Thus, I have written this piece to provide a completely introductory tutorial to using Sprache.</p>
 <p>I'll explain LINQ and BNF, and then I'll walk you through the implementation of a few simple grammars in Sprache such that I may touch upon all the most important concepts in the Sprache library to allow the reader to immediately begin to implement the grammars which they desire. At the end of this post, I link to several articles which cover the framework and other related readings. In the future, I may also write a short handbook/reference to certain Sprache concepts.</p>
 <p>One does not necessarily need to have an understanding of C# to begin using Sprache, but a familiarity of a similar language (i.e. Java) would go a long way. I'm going to assume the reader has an understanding of object-oriented programming. I won't be going into an explanation of what a parser-combinator is, nor what a &quot;combinator&quot; is, in general. If you would like to become more involved in the development of Sprache, though, you should definitely familiarize yourself with the concept. I provide some links at the end of this tutorial to that end.</p>
+<section id="prerequisites">
+<h1>Prerequisites</h1>
 <p>To begin with, of course, you'll need to download Sprache. You can find it <a href="https://github.com/sprache/Sprache">on GitHub</a>.</p>
+<section id="#linq">
 <h2>LINQ</h2>
 <p>LINQ, short for Language INtegrated Query, is a wonderful feature of Visual C# which adds data-querying operators to C#. LINQ expressions are sometimes (grammatically incorrectly) referred to as &quot;LINQ queries&quot; as they read rather fluently as a query on a data set. Here is an example of a LINQ expression:</p>
 <pre><code class="language-c#">var myList = new List&lt;string&gt;()
@@ -61,12 +157,10 @@
     &quot;are&quot;,
     &quot;you&quot;
 };
-
 var startsWithH =
     from s in myList
     where s.ToCharArray()[0] == 'h'
     select s;
-
 foreach (var a in startsWithH)
 	Console.WriteLine(a);
 </code></pre>
@@ -78,16 +172,16 @@ select s;
 <p>Let's look at what's going on here. First, we have a <em>from</em> statement. This will iterate over each object in <em>myList</em>, using <em>s</em> as the iterator variable. Next, we have a <em>where</em> statement, which filters out the objects in <em>myList</em> based on the condition provided. Note that several <em>where</em> statements could be specified here. At the end of this LINQ expression, as with every LINQ expression, we have a <em>select</em> statement, which returns each &quot;queried&quot; object. In this case, we only desire to return the strings which begin with the letter 'h'.</p>
 <p>LINQ supports several operators apart from <em>from</em>, <em>where</em>, and <em>select</em>, though these are the main ones. Microsoft, naturally, provides a very in-depth <a href="https://msdn.microsoft.com/en-us/library/bb394939.aspx">list of LINQ operators</a>, though Wikipedia has <a href="https://en.wikipedia.org/wiki/Language_Integrated_Query#Standard_Query_Operators">a much more succinct list</a>.</p>
 <p>Sprache uses LINQ to construct its parsers. This allows for quick implementation and easy and intuitive readability.</p>
+</section>
+<section id="#backus-naur-form">
 <h2>Backus-Naur Form</h2>
 <p>Backus-Naur Form, or BNF for short, is a metalanguage used to describe the grammars and syntax of context-free grammars (essentially, for our purposes, this means the grammars of computing languages). BNF defines expressions in terms of other expressions and strings using a number of rules which will become more familiar as we begin implementing these grammars in Sprache.</p>
 <p>As an example, suppose I want to define a grammar which specifies an arithmetic expression which might add, subtract, multiply, or divide two digits. I'll provide a BNF definition of this grammar, and then explain it.</p>
 <pre><code class="language-bnf">&lt;expr&gt;      ::= &lt;add&gt; | &lt;subtract&gt; | &lt;multiply&gt; | &lt;divide&gt;
-
 &lt;add&gt;       ::= &lt;digit&gt; &quot;+&quot; &lt;digit&gt;
 &lt;subtract&gt;  ::= &lt;digit&gt; &quot;-&quot; &lt;digit&gt;
 &lt;multiply&gt;  ::= &lt;digit&gt; &quot;*&quot; &lt;digit&gt;
 &lt;divide&gt;    ::= &lt;digit&gt; &quot;/&quot; &lt;digit&gt;
-
 &lt;digit&gt;     ::= &quot;0&quot; | &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot; | &quot;7&quot; | &quot;8&quot; | &quot;9&quot;
 </code></pre>
 <p>Let's look at each of the elements and what they do. First, the most notable and important element is the reference for an expression, which looks like the following:</p>
@@ -103,24 +197,24 @@ select s;
 <p>This specifies that an <em>add</em> can be a <em>digit</em>, followed by a plus sign, followed by another <em>digit</em>.</p>
 <p>You might notice a bit of an inefficiency in the grammar I defined above. Namely, we define <em>add</em>, <em>subtract</em>, <em>multiply</em>, and <em>divide</em> separately, but due to the similarity in their structures, it feels like we should be able to define them all together. While there are certainly good reasons one might want to define them separately as I did above, for succinctness one might desire to redefine the grammar as such:</p>
 <pre><code class="language-bnf">&lt;expr&gt;      ::= &lt;digit&gt; (&quot;+&quot; | &quot;-&quot; | &quot;*&quot; | &quot;/&quot;) &lt;digit&gt;
-
 &lt;digit&gt;     ::= &quot;0&quot; | &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot; | &quot;7&quot; | &quot;8&quot; | &quot;9&quot;
 </code></pre>
 <p>Here I introduce a grouping of terms, defined by the parentheses. Now, <em>expr</em> is defined to be two <em>digits</em> separated by either an addition, subtraction, multiplication, or division symbol. This is, however, a rather dumb grammar, in that only two <em>digits</em> can be used in the arithmetic expression, while we might want to allow any number to be used. We can extend the grammar further to allow for this:</p>
 <pre><code class="language-bnf">&lt;expr&gt;      ::= &lt;number&gt; (&quot;+&quot; | &quot;-&quot; | &quot;*&quot; | &quot;/&quot;) &lt;number&gt;
-
 &lt;number&gt;    ::= &lt;integer&gt; [&quot;.&quot; &lt;integer&gt;]
 &lt;integer&gt;   ::= +(&quot;0&quot; | &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot; | &quot;7&quot; | &quot;8&quot; | &quot;9&quot;)
 </code></pre>
 <p>Here we have broken a number into two parts, a <em>number</em> and an <em>integer</em>. Where I define <em>integer</em>, I introduce a plus sign, which allows the expression which it suffixes to be repeated one or more times. Where I define <em>number</em>, I introduce the square brackets, which surround optional expressions. Thus, the following terms are captured by the expression <em>number</em>: 0, 125, 3.14, and 123.456. However, the following terms are not captured by <em>number</em>, and I will allow the reader to postulate why they are not, and how the grammar might need to be altered to capture them: .31, -12, -12.56, and -.987.</p>
 <p>When we want to parse a language with Sprache (or any other parser, for that matter), we will first define the language in BNF, so that we can easily reference the pieces of the parser we must create, and to keep track of our progress.</p>
-<h2>Sprache</h2>
+</section>
+</section>
+<section id="sprache">
+<h1>Sprache</h1>
 <p>Ultimately, once you get used to using LINQ to construct parsers, Sprache is just another library, and becoming proficient in Sprache is the same process one should be used to of learning the methods given by the library and learning how to ask questions on stack overflow.</p>
 <p>Let's begin familiarizing ourselves by constructing a parser which can parse the string &quot;hello&quot; into a string &quot;hello.&quot; This is an entirely non-useful task for Sprache, but it gets our feet wet:</p>
 <pre><code class="language-c#">Parser&lt;string&gt; myParser =
     from str in Parse.String(&quot;hello&quot;).Text()
     select str;
-
 string val = myParser.Parse(&quot;hello&quot;);
 </code></pre>
 <p><em>val</em> will, unremarkably, be &quot;hello.&quot;However, the parser should be very easy to understand, especially given our understanding of the working of a LINQ expression. The method <em>String(string)</em> is a parser which parses any string you desire (in this case, we desired to parse the string &quot;hello&quot;). The <em>String</em> parser returns an enumerable of chars, so we need to use <em>Text</em> to turn the enumerable into a string. From there, it should be rather obvious what is going on.</p>
@@ -142,6 +236,7 @@ string val = myParser.Parse(&quot;hello&quot;);
     select new string(first.Concat(rest).ToArray());
 </code></pre>
 <p>Thus, &quot;   abc123   &quot; should come out as &quot;abc123&quot;. Notice how staggering several <em>from</em> statements in a row reads as though we are saying &quot;then&quot;. For example, this parser could be read by a human as &quot;Parse many whitespace characters, <em>then</em> parse one letter, <em>then</em> parse 0 or more letters or digits, <em>then</em> parse more whitespace, and return the first letter and the rest of the letters/digits concatenated to it&quot;.</p>
+<section id="#our-first-language">
 <h2>Our First Language</h2>
 <p>So, let's now define the grammar for a small DSL, and we'll try to parse it. Let's make a language that defines variables: we can have an identifier, followed by a colon, and then a string, and we can define as many variables as we want on different lines. Ultimately, we want to parse this into a dictionary. So, our resulting language could look like this:</p>
 <pre><code>identifier1 : &quot;hello&quot;
@@ -160,7 +255,6 @@ identifier3 : &quot;yay parsing&quot;
     from first in Parse.Letter.Once()
     from rest in Parse.LetterOrDigit.Many()
     select new string(first.Concat(rest).ToArray());
-
 Parser&lt;string&gt; stringParser =
     from first in Parse.Char('&quot;')
     from text in Parse.AnyChar.Except(Parse.Char('&quot;')).Many().Text()
@@ -169,7 +263,6 @@ Parser&lt;string&gt; stringParser =
 </code></pre>
 <p>Here we use <em>Except</em> to add an exception to the <em>AnyChar</em> parser. In addition, we use <em>Text</em> at the end to tell sprache to convert the IEnumerable returned by <em>Many</em> into a string. Now, we can add the parser for the expressions:</p>
 <pre><code class="language-c#">//Adding to the code above:
-
 Parser&lt;Dictionary&lt;string, string&gt;&gt; expr =
     from id in identifier
     from colon in Parse.Char(':').Token()
@@ -178,11 +271,12 @@ Parser&lt;Dictionary&lt;string, string&gt;&gt; expr =
 </code></pre>
 <p><em>Optional</em> is used here - that does exactly what it says - it makes the parser optional. In addition, I introduced <em>Token</em>, which will parse whitespace before and after the <em>CHar</em> parser. Notice how we are able to reference the parsers we created earlier, and we can use the values they return to create a new object. Let's finish it off by creating the &quot;block&quot; parser, which is supposed to parse several expressions separated by newlines:</p>
 <pre><code class="language-c#">//Adding to the code above:
-
 Parser&lt;IEnumerable&lt;Dictionary&lt;string,string&gt;&gt;&gt; block =
     expr.DelimitedBy(Parse.Char('\n'));
 </code></pre>
 <p>Notice  how we are not using the fancy LINQ expressions here. Because our parser fits on one line, and <em>DelimitedBy</em> returns the type that we want, then we can condense our parser a bit. Now that we're done with our parser, we should be able to parse our example file just fine into an <em>IEnumberable</em> of dictionaries containing our identifier-string pairs.</p>
+</section>
+<section id="#comma-separated-values">
 <h2>Comma-Separated Values</h2>
 <p>CSV files are extremely popular for storing tables in plaintext, and they're very easy to parse, as you might imagine. Frequently, programs which read from CSV files desire to read the files into their own data structures. So, we'll imagine a couple different scenarios involving CSVs, and we'll look at how we can go about parsing each one.</p>
 <p>First, I'll provide a rough CSV parser that sorts the CSV into a list of a list of strings, and from there we can talk about a custom data structure for it.</p>
@@ -214,7 +308,6 @@ Parser&lt;IEnumerable&lt;Dictionary&lt;string,string&gt;&gt;&gt; block =
         .Or(Parse.Char('\n'))).Many().Text()
         .DelimitedBy(Parse.Char(',').Token())
     select new Row() { Title = first, Items = rest };
-
 Parser&lt;IEnumerable&lt;Row&gt;&gt; csv = line.DelimitedBy(Parse.Char('\n'));
 </code></pre>
 <p>Naturally, if you're just interested in obtaining the rows, then this parser works perfectly. But let's suppose we didn't want the nested lists to contain the rows, but the columns. In this case, we can do some nifty snafu:</p>
@@ -222,33 +315,29 @@ Parser&lt;IEnumerable&lt;Row&gt;&gt; csv = line.DelimitedBy(Parse.Char('\n'));
     Parse.AnyChar.Except(Parse.Char(',')
         .Or(Parse.Char('\n'))).Many().Text()
         .DelimitedBy(Parse.Char(',').Token());
-
 Parser&lt;IEnumerable&lt;IEnumerable&lt;string&gt;&gt;&gt; csv =
     from l in line.DelimitedBy(Parse.Char('\n'))
     select Transform(l);
-
 //Here's the Transform method:
 //Assume the table is n-by-n
-static IEnumerable&lt;IEnumerable&lt;string&gt;&gt;
-Transform(IEnumerable&lt;IEnumerable&lt;string&gt;&gt; t)
+static IEnumerable&lt;IEnumerable&lt;string&gt;&gt; Transform(IEnumerable&lt;IEnumerable&lt;string&gt;&gt; t)
 {
     var toReturn = new List&lt;List&lt;string&gt;&gt;();
-    
     for (int i = 0; i &lt; t.ElementAt(0).Count(); i++)
     {
         for (int j = 0; j &lt; t.Count(); j++)
         {
             if (toReturn.Count == i) toReturn.Add(new List&lt;string&gt;);
             if (toReturn[i].Count == j) toReturn[i].Add(&quot;&quot;);
-            
             toReturn[i][j] = t.ElementAt(j).ElementAt(i);
         }
     }
-
     return toReturn;
 }
 </code></pre>
 <p><em>Transform</em> just rotates the list of lists as though it's a matrix, so we're not adding anything too special here. What if we wanted to do what we did above with the rows, but with the columns? Try modifying this code to do just that. Bonus points if you can eliminate <em>Transform</em> and perform the transformation within the parser!</p>
+</section>
+<section id="#xml">
 <h2>XML</h2>
 <p>Obviously, XML is a rather complex language, and a <a href="http://www.w3.org/TR/REC-xml/">complete BNF specification</a> is thus very large. Therefore, we'll be using a much simpler variation of XML, which we can see below:</p>
 <pre><code class="language-bnf">&lt;tag&gt; ::= &lt;single_line_tag&gt; | &lt;multi_line_tag&gt;
@@ -277,6 +366,8 @@ very well could have been written using solely the LINQ statements, and that wou
 <p>The next parser up from <em>Document</em> is <em>Item</em>. We'll ignore the code regarding the comments (if you're interested in this, please see my post <a href="https://ianwold.silvrback.com/parsing-comments-with-sprache">Parsing Comments with Sprache</a>). This makes it easy to see that an <em>Item</em> is either a <em>Node</em> cast as an Item, or a <em>Content</em>, and a <em>Node</em> (looking above in the document) is either a short or full node.</p>
 <p>Looking at the <em>ShortNode</em> parser, we can see it seems completely familiar, except that the LINQ expression is used as an argument to the <em>Tag</em> method. The <em>Tag</em> method returns a parser that parses a greater than and less than sign before and after the parser you specify. This abstraction allows us to write cleaner code.</p>
 <p><em>FullNode</em> is fun for a couple reasons. First, look at how they solved the issue of requiring opening and closing tags to be named the same with the <em>EndTag</em> method. In addition, notice the use of the <em>Ref</em> parser. In <em>FullNode</em>, we need to use <em>Item</em>, but it has obviously not yet been created. <em>Ref</em> allows us to reference a parser later in the document, thus allowing us to create some recursive or ambiguous grammars with Sprache.</p>
+</section>
+<section id="#json">
 <h2>JSON</h2>
 <p>JSON, or JavaScript Object Notation, is kind of like XML. It's a way of storing data in plaintext (in a key-value pair manner) which is also easily readable by a human. In addition, it's very easy to construct a parser for it. The BNF form is very clear and concise - here, I have transcribed the <a href="http://json.org/">informal definition on json.org</a> into the more formal BNF notation which we have been using in this tutorial:</p>
 <pre><code class="language-bnf">&lt;object&gt;    ::= &quot;{}&quot; | &quot;{&quot; &lt;members&gt; &quot;}&quot;
@@ -313,11 +404,9 @@ very well could have been written using solely the LINQ statements, and that wou
 <p>This should allow us to construct the data structure we're going to store our data in (called an Abstract Syntax Tree):</p>
 <pre><code class="language-c#">
 public class JSONValue {}
-
 public class JSONObject : JSONValue
 {
     public Dictionary&lt;string, JSONValue&gt; Pairs { get; set; }
-
     public JSONObject(IEnumerable&lt;KeyValuePair&lt;string, JSONValue&gt;&gt; pairs)
     {
         Pairs = new Dictionary&lt;string, JSONValue&gt;();
@@ -326,11 +415,9 @@ public class JSONObject : JSONValue
                 Pairs.Add(p.Key, p.Value);
     }
 }
-
 public class JSONArray : JSONValue
 {
     public List&lt;JSONValue&gt; Elements { get; set; }
-
     public JSONArray(IEnumerable&lt;JSONValue&gt; elements)
     {
         Elements = new List&lt;JSONValue&gt;();
@@ -339,19 +426,15 @@ public class JSONArray : JSONValue
                 Elements.Add(e);
     }
 }
-
 public class JSONLiteral : JSONValue
 {
     public string Value { get; set; }
-
     public LiteralType ValueType { get; set; }
-
     public JSONLiteral(string value, LiteralType type)
     {
         Value = value;
         ValueType = type;
     }
-
     pubilc static enum LiteralType
     {
         String,
@@ -365,7 +448,6 @@ public class JSONLiteral : JSONValue
 <pre><code class="language-c#">Parser&lt;JSONLiteral&gt; JNull =
     from str in Parse.IgnoreCase(&quot;null&quot;)
     select new JSONLiteral(null, JSONLiteral.LiteralType.Null);
-
 Parser&lt;JSONLiteral&gt; JBoolean =
     from str in Parse.IgnoreCase(&quot;true&quot;).Text()
     			.Or(Parse.IgnoreCase(&quot;false&quot;).Text())
@@ -379,17 +461,14 @@ Parser&lt;JSONLiteral&gt; JBoolean =
                  .Optional()
     from digits in Parse.Digit.Many().Text()
     select e + ((sign.IsDefined) ? sign.Get() : &quot;&quot;) + digits;
-
 Parser&lt;string&gt; JFrac =
     from dot in Parse.String(&quot;.&quot;).Text()
     from digits in Parse.Digit.Many().Text()
     select dot + digits;
-
 Parser&lt;string&gt; JInt =
     from minus in Parse.String(&quot;-&quot;).Text().Optional()
     from digits in Parse.Digit.Many().Text()
     select (minus.IsDefined ? minus.Get() : &quot;&quot;) + digits;
-
 Parser&lt;JSONLiteral&gt; JNumber =
     from integer in JInt
     from frac in JFrac.Optional()
@@ -402,7 +481,6 @@ Parser&lt;JSONLiteral&gt; JNumber =
 <p>Parsing a number is much more exciting. We need to account for integers, decimals, negation, and 'e'. The code above for <em>JNumber</em> knows we need at least an integer, and can be optionally followed by the fraction or the exponential term. Notice that <em>Optional</em> returns a special object which may or may not be defined. Thus, we need to check whether it is defined with <em>IsDefined</em> before we can <em>Get</em> its value.</p>
 <pre><code class="language-c#">List&lt;char&gt; EscapeChars = new List&lt;char&gt;
     { '\&quot;', '\\', 'b', 'f', 'n', 'r', 't' };
-
 Parser&lt;char&gt; ControlChar =
     from first in Parse.Char('\\')
     from next in Parse.EnumerateInput(EscapeChars, c =&gt; Parse.Char(c))
@@ -412,13 +490,11 @@ Parser&lt;char&gt; ControlChar =
             (next == 'f') ? '\f' :
             (next == 'b') ? '\b' :
             next );
-
 Parser&lt;char&gt; JChar =
     Parse.AnyChar
     .Except(Parse.Char('&quot;')
     .Or(Parse.Char('\\')))
     .Or(ControlChar);
-
 Parser&lt;JSONLiteral&gt; JString =
     from first in Parse.Char('&quot;')
     from chars in JChar.Many().Text()
@@ -453,7 +529,6 @@ Parser&lt;JSONLiteral&gt; JString =
 <p>We can see that <em>arrray</em> and <em>object</em> look very much alike, and the definition of <em>array</em> appears to be a tad more simple. Therefore, we should write our <em>array</em> parser first, and we can copy it down to create our slightly more complicated <em>object</em> parser.</p>
 <pre><code class="language-c#">Parser&lt;IEnumerable&lt;JSONValue&gt;&gt; JElements =
     JValue.DelimitedBy(Parse.Char(',').Token());
-
 Parser&lt;JSONValue&gt; JArray =
     from first in Parse.Char('[').Token()
     from elements in JElements.Optional()
@@ -474,10 +549,8 @@ Parser&lt;JSONValue&gt; JArray =
     from colon in Parse.Char(':').Token()
     from val in JValue
     select new KeyValuePair&lt;string, JSONValue&gt;(name.Value, val);
-
 Parser&lt;IEnumerable&lt;KeyValuePair&lt;string, JSONValue&gt;&gt;&gt; JMembers =
     JPair.DelimitedBy(Parse.Char(',').Token());
-
 Parser&lt;JSONValue&gt; JObject =
     from first in Parse.Char('{').Token()
     from members in JMembers.Optional()
@@ -486,10 +559,14 @@ Parser&lt;JSONValue&gt; JObject =
 </code></pre>
 <p>By now, this should all be trivial to you - especially considering <em>JObject</em> and <em>JMembers</em> are copies of <em>JArray</em> and <em>JElements</em>, respectively. With that, we should now be able to parse any document which conforms to the JSON standard. Notice that every JSON document is itself a single JSON object. Thus, given a JSON document, we would parse it with our <em>JObject</em> parser.</p>
 <p>If you would like to see the parser in full, there is a version <a href="https://github.com/IanWold/SpracheJSON/blob/master/SpracheJSON/JSONParser.cs">on my GitHub</a>.</p>
-<h2>My Work With Sprache</h2>
+</section>
+</section>
+<section id="my-work-with-sprache">
+<h1>My Work With Sprache</h1>
 <p>As I mentioned above, I've been working with Sprache for three years now, after seeing a presentation about it at the <a href="http://twincitiescodecamp.com/">Twin Cities Code Camp</a>, which is totally awesome and you should all go (it's even free).</p>
 <p>I've contributed to Sprache by adding a <a href="https://ianwold.silvrback.com/parsing-comments-with-sprache">comment parser</a>, I've published a <a href="https://github.com/IanWold/SpracheJSON">JSON serializer/mapper</a>, and I'm working on a <a href="https://github.com/IanWold/SpracheDown">Markdown parser</a>.</p>
 <p>I've used Sprache in small amounts in a couple other projects, and I enjoy using it wherever I'm able. An idea suggested to me at an <a href="http://iowacodecamp.com/">Iowa Code Camp</a>, which is also awesome and free and you should all go, was to write a tool to convert BNF into Sprache. I haven't done anything with this concept yet, but that is further work that could be done - if you're feeling the Sprache bug and you want to tackle that, go right ahead!</p>
+<section id="#further-reading">
 <h2>Further Reading</h2>
 <p>I'll keep this list updated as I encounter more on the interwebs. This list should provide a good base to continue exploring the topics introduced in this tutorial.</p>
 <ul>
@@ -498,21 +575,91 @@ Parser&lt;JSONValue&gt; JObject =
 <li>The <a href="https://github.com/sprache/Sprache">Sprache GitHub</a> links several examples, projects, and other tutorials.</li>
 <li>The <a href="http://stackoverflow.com/unanswered/tagged/sprache">StackOverflow tag</a> receives regular traffic.</li>
 </ul>
+</section>
+</section>
 
+	</div>
+</div>
 
-				</div>
-			</div>
-
-			<div class="footer-wrapper">
-				<div class="footer">
-					<div class="footer-left">
-						Copyright &copy; Ian Wold. Site generated by <a href="https://github.com/ianwold/Metalsharp">Metalsharp</a> and hosted by <a href="https://github.com/ianwold/ianwold.github.io">GitHub Pages</a>.
-					</div>
-					<div class="footer-right">
-						<a href="https://github.com/ianwold"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/github.svg" /></a>&nbsp;&nbsp;&nbsp;<a href="http://linked.in/ianwold"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/linkedin.svg" /></a>&nbsp;&nbsp;&nbsp;<a href="http://instagram.com/ianwold"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/instagram.svg" /></a>&nbsp;&nbsp;&nbsp;<a href="http://twitter.com/ianwold"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/twitter.svg" /></a>
-					</div>
-				</div>
+<div class="section-gray">
+	<div class="content post-end">
+		<img src="../images/hero1.svg" />
+		<div class="bio">
+			<h1>Hi, I'm Ian</h1>
+			<p>
+				I'm a software engineer, architect, and team leader in Minneapolis. My career has largely focused on .NET and web technologies, spread across several industries. Currently I'm working for Crate &amp; Barrel on their ecommerce solutions. You can find me on this blog, contributing to open source repositories, and at conferences around the Midwest.
+			</p>
+			<hr/>
+			<p>
+				Thank you for reading this post, I hope you found it valuable. Please <a href="mailto:mail@ian.wold.guru">contact me</a> if you have any comments, and I encourage you to subscribe to my <a href="#">RSS feed</a>.
+			</p>
+			<hr/>
+			<p>
+				Some other posts you might be interested in:
+			</p>
+			<div class="archive">
+				<ul>
+					
+						<li>
+							<a href="../Posts/sprache_comments.html">
+								Parsing Comments in Sprache<small>I recently made a comment parser for the Sprache framework, and I wanted to give a basic run-down on how it works.</small>
+							</a>
+						</li>
+					
+						<li>
+							<a href="../Posts/sprachedown.html">
+								SpracheDown<small>I created a Markdown parser with the Sprache library after it was recommended to me at the Iowa Code Camp.</small>
+							</a>
+						</li>
+					
+						<li>
+							<a href="../Posts/sprachejson.html">
+								SpracheJSON<small>A small library serializing and deserializing JSON using Sprache.</small>
+							</a>
+						</li>
+					
+				</ul>
 			</div>
 		</div>
+	</div>
+</div>
+
+
+		<footer>
+			<div class="content content-footer">
+				<span>
+					Copyright &copy; Ian Wold. Site generated by <a href="https://www.github.com/IanWold/Metalsharp">Metalsharp</a> and hosted by <a href="https://www.github.com/IanWold/ianwold.github.io">GitHub Pages</a>.
+				</span>
+				<div class="icon-links">
+					<a href="https://github.com/ianwold"><i data-feather="github"></i></a>
+					<!--<a href="#"><i data-feather="rss"></i></a>-->
+				</div>
+			</div>
+		</footer>
+
+		<script src="../highlight/highlight.min.js"></script>
+		<script>
+			feather.replace();
+			hljs.highlightAll();
+
+			window.addEventListener('DOMContentLoaded', () => {
+				const observer = new IntersectionObserver(entries => {
+					entries.forEach(entry => {
+						const id = entry.target.getAttribute('id');
+						let classList = document.querySelector(`.pane li a[href="#${id}"]`).parentElement.classList;
+
+						if (entry.intersectionRatio > 0) {
+							classList.add('active');
+						} else {
+							classList.remove('active');
+						}
+					});
+				});
+
+				document.querySelectorAll('section[id]').forEach((section) => {
+					observer.observe(section);
+				});
+			});
+		</script>
 	</body>
 </html>
