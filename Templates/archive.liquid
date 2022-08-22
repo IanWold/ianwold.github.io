@@ -1,0 +1,20 @@
+{% assign years = posts | map: "year" | uniq | sort | reverse %}
+
+<div class="content archive">
+	{% for year in years %}
+		<section id="{{ year }}">
+			<h1>{{ year }}</h1>
+			<ul>
+				{% assign postsForYear = posts | where: "year", year %}
+				{% for post in postsForYear %}
+					<li>
+						<em>{{ post.month }}.{{ post.day }}</em>
+						<a href="Posts/{{ post.fileName }}.html">
+							{{ post.title }}<small>{{ post.description }}</small>
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</section>
+	{% endfor %}
+</div>

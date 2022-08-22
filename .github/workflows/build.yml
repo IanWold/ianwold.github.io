@@ -5,7 +5,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build-script:
+  build:
     runs-on: windows-latest
     steps:
     - name: Checkout
@@ -23,22 +23,4 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./output
-  build:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore -c Release -o build
-    - name: Metalsharp
-      run: build\build
-#    - name: Deploy
-#      uses: peaceiris/actions-gh-pages@v3
-#      with:
-#        github_token: ${{ secrets.GITHUB_TOKEN }}
-#        publish_dir: ./output
+

@@ -1,9 +1,15 @@
 ;;;
 {
     "title": "An Introduction to Sprache",
-    "author": "Ian Wold",
-    "date": "   22 January 2016",
-	"description": "Sprache is a parser-combinator library for C# that uses Linq to construct parsers. In this post I describe the fundamentals of understanding grammars and parsing them with Sprache, with several real-world examples."
+	"description": "Sprache is a parser-combinator library for C# that uses Linq to construct parsers. In this post I describe the fundamentals of understanding grammars and parsing them with Sprache, with several real-world examples.",
+    "date": "22 January 2016",
+	"contents": true,
+    "hero": "photo-1494435658045-a657e4a01bcc",
+    "related": [
+        { "title": "Parsing Comments in Sprache", "description": "I recently made a comment parser for the Sprache framework, and I wanted to give a basic run-down on how it works.", "fileName": "sprache_comments" },
+        { "title": "SpracheDown", "description": "I created a Markdown parser with the Sprache library after it was recommended to me at the Iowa Code Camp.", "fileName": "sprachedown" },
+        { "title": "SpracheJSON", "description": "A small library serializing and deserializing JSON using Sprache.", "fileName": "sprachejson" }
+    ]
 }
 ;;;
 
@@ -12,6 +18,8 @@ As my activity on this blog and my GitHub account may attest, I'm quite fond of 
 I'll explain LINQ and BNF, and then I'll walk you through the implementation of a few simple grammars in Sprache such that I may touch upon all the most important concepts in the Sprache library to allow the reader to immediately begin to implement the grammars which they desire. At the end of this post, I link to several articles which cover the framework and other related readings. In the future, I may also write a short handbook/reference to certain Sprache concepts.
 
 One does not necessarily need to have an understanding of C# to begin using Sprache, but a familiarity of a similar language (i.e. Java) would go a long way. I'm going to assume the reader has an understanding of object-oriented programming. I won't be going into an explanation of what a parser-combinator is, nor what a "combinator" is, in general. If you would like to become more involved in the development of Sprache, though, you should definitely familiarize yourself with the concept. I provide some links at the end of this tutorial to that end.
+
+# Prerequisites
 
 To begin with, of course, you'll need to download Sprache. You can find it [on GitHub](https://github.com/sprache/Sprache).
 
@@ -112,7 +120,7 @@ Here we have broken a number into two parts, a *number* and an *integer*. Where 
 
 When we want to parse a language with Sprache (or any other parser, for that matter), we will first define the language in BNF, so that we can easily reference the pieces of the parser we must create, and to keep track of our progress.
 
-## Sprache
+# Sprache
 
 Ultimately, once you get used to using LINQ to construct parsers, Sprache is just another library, and becoming proficient in Sprache is the same process one should be used to of learning the methods given by the library and learning how to ask questions on stack overflow.
 
@@ -274,8 +282,7 @@ Parser<IEnumerable<IEnumerable<string>>> csv =
 
 //Here's the Transform method:
 //Assume the table is n-by-n
-static IEnumerable<IEnumerable<string>>
-Transform(IEnumerable<IEnumerable<string>> t)
+static IEnumerable<IEnumerable<string>> Transform(IEnumerable<IEnumerable<string>> t)
 {
     var toReturn = new List<List<string>>();
     
@@ -595,7 +602,7 @@ By now, this should all be trivial to you - especially considering *JObject* and
 
 If you would like to see the parser in full, there is a version [on my GitHub](https://github.com/IanWold/SpracheJSON/blob/master/SpracheJSON/JSONParser.cs).
 
-## My Work With Sprache
+# My Work With Sprache
 
 As I mentioned above, I've been working with Sprache for three years now, after seeing a presentation about it at the [Twin Cities Code Camp](http://twincitiescodecamp.com/), which is totally awesome and you should all go (it's even free).
 

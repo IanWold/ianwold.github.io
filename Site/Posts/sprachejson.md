@@ -1,9 +1,15 @@
 ;;;
 {
 	"title": "SpracheJSON",
-	"author": "Ian Wold",
+	"description": "A small library serializing and deserializing JSON using Sprache.",
 	"date": "10 April 2015",
-	"description": "A small library serializing and deserializing JSON using Sprache."
+	"contents": false,
+	"hero": "photo-1610986602538-431d65df4385",
+    "related": [
+		{ "title": "An Introduction to Sprache", "description": "Sprache is a parser-combinator library for C# that uses Linq to construct parsers. In this post I describe the fundamentals of understanding grammars and parsing them with Sprache, with several real-world examples.", "fileName": "sprache" },
+        { "title": "Parsing Comments in Sprache", "description": "I recently made a comment parser for the Sprache framework, and I wanted to give a basic run-down on how it works.", "fileName": "sprache_comments" },
+        { "title": "SpracheDown", "description": "I created a Markdown parser with the Sprache library after it was recommended to me at the Iowa Code Camp.", "fileName": "sprachedown" }
+    ]
 }
 ;;;
 

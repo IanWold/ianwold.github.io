@@ -1,9 +1,15 @@
 ;;;
 {
 	"title": "Parsing Comments with Sprache",
-	"author": "Ian Wold",
+	"description": "I recently made a comment parser for the Sprache framework, and I wanted to give a basic run-down on how it works.",
 	"date": "6 February 2015",
-	"description": "I recently made a comment parser for the Sprache framework, and I wanted to give a basic run-down on how it works."
+	"contents": false,
+	"hero": "photo-1617040619263-41c5a9ca7521",
+    "related": [
+		{ "title": "An Introduction to Sprache", "description": "Sprache is a parser-combinator library for C# that uses Linq to construct parsers. In this post I describe the fundamentals of understanding grammars and parsing them with Sprache, with several real-world examples.", "fileName": "sprache" },
+        { "title": "SpracheDown", "description": "I created a Markdown parser with the Sprache library after it was recommended to me at the Iowa Code Camp.", "fileName": "sprachedown" },
+        { "title": "SpracheJSON", "description": "A small library serializing and deserializing JSON using Sprache.", "fileName": "sprachejson" }
+    ]
 }
 ;;;
 
@@ -13,13 +19,13 @@ The CommentParser class gives you the option to define the header styles for com
 
 Using CommentParser is pretty simple, but it's a tad different from the rest of the flow of Sprache as a combinator library. You'll need to make an instance of the CommentParser class, using the comment headers and (optional) newline character you require as arguments:
 
-```c#
+```csharp
 static CommentParser comments = new CommentParser("//", "/*", "*/");
 ```
 
 From there, CommentParser gives you a couple parsers you can use to parse single- and multi-line comments:
 
-```c#
+```csharp
 static Parser<string> myParser = Parse.String("foobar").Text().Or(comments.AnyComment);
 ```
 

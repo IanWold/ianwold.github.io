@@ -1,11 +1,10 @@
 ;;;
 {
 	"title": "Contact",
-	"highlight": "contact"
+	"highlight": "contact",
+	"template": "page"
 }
 ;;;
-
-# Contact Me
 
 Business and work inquiries can be sent to [ian.wold@inilliant.net][2]
 

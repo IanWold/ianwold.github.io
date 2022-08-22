@@ -1,9 +1,75 @@
-<h1 style="margin-bottom: 0;">{{ title }}</h1>
+{% assign directoryPrefix = "" %}
+{% for i in (1..level) %}
+{% assign directoryPrefix = directoryPrefix | append: "../" %}
+{% endfor %}
 
-<p>
-	Posted {{ date }}
-</p>
+<header class="content">
+	<h1>{{ title }}</h1>
+	<small>
+		<span class="date">
+			<i data-feather="calendar"></i> {{ date }}
+		</span>
+		<span class="time">
+			<i data-feather="clock"></i> {{ readingTime }} {% if readingTime == 1 %} Minute {% else %} Minutes {% endif %}
+		</span>
+	</small>
+	<p>{{ description }}</p>
+</header>
 
-<hr/>
+<div class="content hero">
+	<img src="https://images.unsplash.com/{{ hero }}?w=1000&h=525&fit=crop&crop=entropy" />
+</div>
 
-{{ content | raw }}
+<div class="content">
+	{% if contents %}
+		<div class="pane">
+			<ul>
+				{% for section in sections %}
+				<li>
+					<a href="#{{ section.id }}">
+						{% if section.level == 1 %}
+							<b>{{ section.name }}</b>
+						{% else %}
+							{{ section.name }}
+						{% endif %}
+					</a>
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+	{% endif %}
+	<div class="post">
+		{{ content | raw }}
+	</div>
+</div>
+
+<div class="section-gray">
+	<div class="content post-end">
+		<img src="{{ directoryPrefix }}images/hero1.svg" />
+		<div class="bio">
+			<h1>Hi, I'm Ian</h1>
+			<p>
+				I'm a software engineer, architect, and team leader in Minneapolis. My career has largely focused on .NET and web technologies, spread across several industries. Currently I'm working for Crate &amp; Barrel on their ecommerce solutions. You can find me on this blog, contributing to open source repositories, and at conferences around the Midwest.
+			</p>
+			<hr/>
+			<p>
+				Thank you for reading this post, I hope you found it valuable. Please <a href="mailto:mail@ian.wold.guru">contact me</a> if you have any comments, and I encourage you to subscribe to my <a href="#">RSS feed</a>.
+			</p>
+			<hr/>
+			<p>
+				Some other posts you might be interested in:
+			</p>
+			<div class="archive">
+				<ul>
+					{% for post in related %}
+						<li>
+							<a href="{{ directoryPrefix }}Posts/{{ post.fileName }}.html">
+								{{ post.title }}<small>{{ post.description }}</small>
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
