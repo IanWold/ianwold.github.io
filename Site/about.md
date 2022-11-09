@@ -6,10 +6,6 @@
 }
 ;;;
 
-I'm a software engineer, architect, and team leader in Minneapolis. My career has largely focused on .NET and web technologies, spread across several industries. Currently I'm working for Crate & Barrel on their ecommerce solutions. You can find me on this blog, contributing to open source repositories, and at conferences around the Midwest.
-
-Hello, World!
-
 I am a software engineer, architect, and team leader based in Minneapolis, Minnesota, though I have always worked distributed. As such, I have had the pleasure of working with firms all across the US.
 
 Currently I'm working for Crate & Barrel developing new ecommerce solutions, with a particular emphasis on distributed, cloud-based systems. In my career I have worked as an independent consultant (as well as holding a couple of employed positions) spread across several industries, while technologically I have largely focussed on Microsoft and .NET technologies. That has led me to engage with a multitude of problems, with which I have gained particular experience related to distributed and concurrent systems, web applications and services, cloud and infrastructure management, and cross-platform and mobile applications. 
