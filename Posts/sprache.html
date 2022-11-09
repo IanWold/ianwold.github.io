@@ -65,7 +65,7 @@
 				</li>
 				
 				<li>
-					<a href="##linq">
+					<a href="#linq">
 						
 							LINQ
 						
@@ -73,7 +73,7 @@
 				</li>
 				
 				<li>
-					<a href="##backus-naur-form">
+					<a href="#backus-naur-form">
 						
 							Backus-Naur Form
 						
@@ -89,7 +89,7 @@
 				</li>
 				
 				<li>
-					<a href="##our-first-language">
+					<a href="#our-first-language">
 						
 							Our First Language
 						
@@ -97,7 +97,7 @@
 				</li>
 				
 				<li>
-					<a href="##comma-separated-values">
+					<a href="#comma-separated-values">
 						
 							Comma-Separated Values
 						
@@ -105,7 +105,7 @@
 				</li>
 				
 				<li>
-					<a href="##xml">
+					<a href="#xml">
 						
 							XML
 						
@@ -113,7 +113,7 @@
 				</li>
 				
 				<li>
-					<a href="##json">
+					<a href="#json">
 						
 							JSON
 						
@@ -129,7 +129,7 @@
 				</li>
 				
 				<li>
-					<a href="##further-reading">
+					<a href="#further-reading">
 						
 							Further Reading
 						
@@ -146,7 +146,7 @@
 <section id="prerequisites">
 <h1>Prerequisites</h1>
 <p>To begin with, of course, you'll need to download Sprache. You can find it <a href="https://github.com/sprache/Sprache">on GitHub</a>.</p>
-<section id="#linq">
+<section id="linq">
 <h2>LINQ</h2>
 <p>LINQ, short for Language INtegrated Query, is a wonderful feature of Visual C# which adds data-querying operators to C#. LINQ expressions are sometimes (grammatically incorrectly) referred to as &quot;LINQ queries&quot; as they read rather fluently as a query on a data set. Here is an example of a LINQ expression:</p>
 <pre><code class="language-c#">var myList = new List&lt;string&gt;()
@@ -173,7 +173,7 @@ select s;
 <p>LINQ supports several operators apart from <em>from</em>, <em>where</em>, and <em>select</em>, though these are the main ones. Microsoft, naturally, provides a very in-depth <a href="https://msdn.microsoft.com/en-us/library/bb394939.aspx">list of LINQ operators</a>, though Wikipedia has <a href="https://en.wikipedia.org/wiki/Language_Integrated_Query#Standard_Query_Operators">a much more succinct list</a>.</p>
 <p>Sprache uses LINQ to construct its parsers. This allows for quick implementation and easy and intuitive readability.</p>
 </section>
-<section id="#backus-naur-form">
+<section id="backus-naur-form">
 <h2>Backus-Naur Form</h2>
 <p>Backus-Naur Form, or BNF for short, is a metalanguage used to describe the grammars and syntax of context-free grammars (essentially, for our purposes, this means the grammars of computing languages). BNF defines expressions in terms of other expressions and strings using a number of rules which will become more familiar as we begin implementing these grammars in Sprache.</p>
 <p>As an example, suppose I want to define a grammar which specifies an arithmetic expression which might add, subtract, multiply, or divide two digits. I'll provide a BNF definition of this grammar, and then explain it.</p>
@@ -207,6 +207,7 @@ select s;
 <p>Here we have broken a number into two parts, a <em>number</em> and an <em>integer</em>. Where I define <em>integer</em>, I introduce a plus sign, which allows the expression which it suffixes to be repeated one or more times. Where I define <em>number</em>, I introduce the square brackets, which surround optional expressions. Thus, the following terms are captured by the expression <em>number</em>: 0, 125, 3.14, and 123.456. However, the following terms are not captured by <em>number</em>, and I will allow the reader to postulate why they are not, and how the grammar might need to be altered to capture them: .31, -12, -12.56, and -.987.</p>
 <p>When we want to parse a language with Sprache (or any other parser, for that matter), we will first define the language in BNF, so that we can easily reference the pieces of the parser we must create, and to keep track of our progress.</p>
 </section>
+</section>
 <section id="sprache">
 <h1>Sprache</h1>
 <p>Ultimately, once you get used to using LINQ to construct parsers, Sprache is just another library, and becoming proficient in Sprache is the same process one should be used to of learning the methods given by the library and learning how to ask questions on stack overflow.</p>
@@ -235,7 +236,7 @@ string val = myParser.Parse(&quot;hello&quot;);
     select new string(first.Concat(rest).ToArray());
 </code></pre>
 <p>Thus, &quot;   abc123   &quot; should come out as &quot;abc123&quot;. Notice how staggering several <em>from</em> statements in a row reads as though we are saying &quot;then&quot;. For example, this parser could be read by a human as &quot;Parse many whitespace characters, <em>then</em> parse one letter, <em>then</em> parse 0 or more letters or digits, <em>then</em> parse more whitespace, and return the first letter and the rest of the letters/digits concatenated to it&quot;.</p>
-<section id="#our-first-language">
+<section id="our-first-language">
 <h2>Our First Language</h2>
 <p>So, let's now define the grammar for a small DSL, and we'll try to parse it. Let's make a language that defines variables: we can have an identifier, followed by a colon, and then a string, and we can define as many variables as we want on different lines. Ultimately, we want to parse this into a dictionary. So, our resulting language could look like this:</p>
 <pre><code>identifier1 : &quot;hello&quot;
@@ -275,7 +276,7 @@ Parser&lt;IEnumerable&lt;Dictionary&lt;string,string&gt;&gt;&gt; block =
 </code></pre>
 <p>Notice  how we are not using the fancy LINQ expressions here. Because our parser fits on one line, and <em>DelimitedBy</em> returns the type that we want, then we can condense our parser a bit. Now that we're done with our parser, we should be able to parse our example file just fine into an <em>IEnumberable</em> of dictionaries containing our identifier-string pairs.</p>
 </section>
-<section id="#comma-separated-values">
+<section id="comma-separated-values">
 <h2>Comma-Separated Values</h2>
 <p>CSV files are extremely popular for storing tables in plaintext, and they're very easy to parse, as you might imagine. Frequently, programs which read from CSV files desire to read the files into their own data structures. So, we'll imagine a couple different scenarios involving CSVs, and we'll look at how we can go about parsing each one.</p>
 <p>First, I'll provide a rough CSV parser that sorts the CSV into a list of a list of strings, and from there we can talk about a custom data structure for it.</p>
@@ -336,7 +337,7 @@ static IEnumerable&lt;IEnumerable&lt;string&gt;&gt; Transform(IEnumerable&lt;IEn
 </code></pre>
 <p><em>Transform</em> just rotates the list of lists as though it's a matrix, so we're not adding anything too special here. What if we wanted to do what we did above with the rows, but with the columns? Try modifying this code to do just that. Bonus points if you can eliminate <em>Transform</em> and perform the transformation within the parser!</p>
 </section>
-<section id="#xml">
+<section id="xml">
 <h2>XML</h2>
 <p>Obviously, XML is a rather complex language, and a <a href="http://www.w3.org/TR/REC-xml/">complete BNF specification</a> is thus very large. Therefore, we'll be using a much simpler variation of XML, which we can see below:</p>
 <pre><code class="language-bnf">&lt;tag&gt; ::= &lt;single_line_tag&gt; | &lt;multi_line_tag&gt;
@@ -366,7 +367,7 @@ very well could have been written using solely the LINQ statements, and that wou
 <p>Looking at the <em>ShortNode</em> parser, we can see it seems completely familiar, except that the LINQ expression is used as an argument to the <em>Tag</em> method. The <em>Tag</em> method returns a parser that parses a greater than and less than sign before and after the parser you specify. This abstraction allows us to write cleaner code.</p>
 <p><em>FullNode</em> is fun for a couple reasons. First, look at how they solved the issue of requiring opening and closing tags to be named the same with the <em>EndTag</em> method. In addition, notice the use of the <em>Ref</em> parser. In <em>FullNode</em>, we need to use <em>Item</em>, but it has obviously not yet been created. <em>Ref</em> allows us to reference a parser later in the document, thus allowing us to create some recursive or ambiguous grammars with Sprache.</p>
 </section>
-<section id="#json">
+<section id="json">
 <h2>JSON</h2>
 <p>JSON, or JavaScript Object Notation, is kind of like XML. It's a way of storing data in plaintext (in a key-value pair manner) which is also easily readable by a human. In addition, it's very easy to construct a parser for it. The BNF form is very clear and concise - here, I have transcribed the <a href="http://json.org/">informal definition on json.org</a> into the more formal BNF notation which we have been using in this tutorial:</p>
 <pre><code class="language-bnf">&lt;object&gt;    ::= &quot;{}&quot; | &quot;{&quot; &lt;members&gt; &quot;}&quot;
@@ -559,12 +560,13 @@ Parser&lt;JSONValue&gt; JObject =
 <p>By now, this should all be trivial to you - especially considering <em>JObject</em> and <em>JMembers</em> are copies of <em>JArray</em> and <em>JElements</em>, respectively. With that, we should now be able to parse any document which conforms to the JSON standard. Notice that every JSON document is itself a single JSON object. Thus, given a JSON document, we would parse it with our <em>JObject</em> parser.</p>
 <p>If you would like to see the parser in full, there is a version <a href="https://github.com/IanWold/SpracheJSON/blob/master/SpracheJSON/JSONParser.cs">on my GitHub</a>.</p>
 </section>
+</section>
 <section id="my-work-with-sprache">
 <h1>My Work With Sprache</h1>
 <p>As I mentioned above, I've been working with Sprache for three years now, after seeing a presentation about it at the <a href="http://twincitiescodecamp.com/">Twin Cities Code Camp</a>, which is totally awesome and you should all go (it's even free).</p>
 <p>I've contributed to Sprache by adding a <a href="https://ianwold.silvrback.com/parsing-comments-with-sprache">comment parser</a>, I've published a <a href="https://github.com/IanWold/SpracheJSON">JSON serializer/mapper</a>, and I'm working on a <a href="https://github.com/IanWold/SpracheDown">Markdown parser</a>.</p>
 <p>I've used Sprache in small amounts in a couple other projects, and I enjoy using it wherever I'm able. An idea suggested to me at an <a href="http://iowacodecamp.com/">Iowa Code Camp</a>, which is also awesome and free and you should all go, was to write a tool to convert BNF into Sprache. I haven't done anything with this concept yet, but that is further work that could be done - if you're feeling the Sprache bug and you want to tackle that, go right ahead!</p>
-<section id="#further-reading">
+<section id="further-reading">
 <h2>Further Reading</h2>
 <p>I'll keep this list updated as I encounter more on the interwebs. This list should provide a good base to continue exploring the topics introduced in this tutorial.</p>
 <ul>
@@ -573,6 +575,7 @@ Parser&lt;JSONValue&gt; JObject =
 <li>The <a href="https://github.com/sprache/Sprache">Sprache GitHub</a> links several examples, projects, and other tutorials.</li>
 <li>The <a href="http://stackoverflow.com/unanswered/tagged/sprache">StackOverflow tag</a> receives regular traffic.</li>
 </ul>
+</section>
 </section>
 
 	</div>
