@@ -207,7 +207,6 @@ select s;
 <p>Here we have broken a number into two parts, a <em>number</em> and an <em>integer</em>. Where I define <em>integer</em>, I introduce a plus sign, which allows the expression which it suffixes to be repeated one or more times. Where I define <em>number</em>, I introduce the square brackets, which surround optional expressions. Thus, the following terms are captured by the expression <em>number</em>: 0, 125, 3.14, and 123.456. However, the following terms are not captured by <em>number</em>, and I will allow the reader to postulate why they are not, and how the grammar might need to be altered to capture them: .31, -12, -12.56, and -.987.</p>
 <p>When we want to parse a language with Sprache (or any other parser, for that matter), we will first define the language in BNF, so that we can easily reference the pieces of the parser we must create, and to keep track of our progress.</p>
 </section>
-</section>
 <section id="sprache">
 <h1>Sprache</h1>
 <p>Ultimately, once you get used to using LINQ to construct parsers, Sprache is just another library, and becoming proficient in Sprache is the same process one should be used to of learning the methods given by the library and learning how to ask questions on stack overflow.</p>
@@ -560,7 +559,6 @@ Parser&lt;JSONValue&gt; JObject =
 <p>By now, this should all be trivial to you - especially considering <em>JObject</em> and <em>JMembers</em> are copies of <em>JArray</em> and <em>JElements</em>, respectively. With that, we should now be able to parse any document which conforms to the JSON standard. Notice that every JSON document is itself a single JSON object. Thus, given a JSON document, we would parse it with our <em>JObject</em> parser.</p>
 <p>If you would like to see the parser in full, there is a version <a href="https://github.com/IanWold/SpracheJSON/blob/master/SpracheJSON/JSONParser.cs">on my GitHub</a>.</p>
 </section>
-</section>
 <section id="my-work-with-sprache">
 <h1>My Work With Sprache</h1>
 <p>As I mentioned above, I've been working with Sprache for three years now, after seeing a presentation about it at the <a href="http://twincitiescodecamp.com/">Twin Cities Code Camp</a>, which is totally awesome and you should all go (it's even free).</p>
@@ -575,7 +573,6 @@ Parser&lt;JSONValue&gt; JObject =
 <li>The <a href="https://github.com/sprache/Sprache">Sprache GitHub</a> links several examples, projects, and other tutorials.</li>
 <li>The <a href="http://stackoverflow.com/unanswered/tagged/sprache">StackOverflow tag</a> receives regular traffic.</li>
 </ul>
-</section>
 </section>
 
 	</div>
