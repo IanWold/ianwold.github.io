@@ -53,22 +53,32 @@ new MetalsharpProject()
 		var isInContainingSection = false;
 		var isInInnerSection = false;
 
+		void addSection(Match headerMatch, int level)
+		{
+			var sectionName = headerMatch.Groups[1].Captures[0].Value;
+			var sectionId = string.Join('-', sectionName.Split(' ')).ToLower();
+
+			sections.Add(new { name = sectionName, id = sectionId, level = level });
+			postBuilder.AppendLine($"<section id=\"{sectionId}\">");
+		}
+
 		foreach (var line in postLines)
 		{
 			if (Regex.Match(line.Trim(), @"(?:<h1>)([^<]*)(?:<\/h1>)$") is Match matchContainingHeader && matchContainingHeader.Success)
 			{
-				if (isInInnerSection || isInContainingSection)
+				if (isInInnerSection)
+				{
+					postBuilder.AppendLine("</section>");
+					isInInnerSection = false;
+				}
+
+				if (isInContainingSection)
 				{
 					postBuilder.AppendLine("</section>");
 				}
 
-				var sectionName = matchContainingHeader.Groups[1].Captures[0].Value;
-				var sectionId = string.Join('-', sectionName.Split(' ')).ToLower();
+				addSection(matchContainingHeader, 1);
 
-				sections.Add(new { name = sectionName, id = sectionId, level = 1 });
-				postBuilder.AppendLine($"<section id=\"{sectionId}\">");
-
-				isInInnerSection = false;
 				isInContainingSection = true;
 			}
 			else if (Regex.Match(line.Trim(), @"(?:<h2>)([^<]*)(?:<\/h2>)$") is Match matchInnerHeader && matchInnerHeader.Success)
@@ -78,11 +88,7 @@ new MetalsharpProject()
 					postBuilder.AppendLine("</section>");
 				}
 
-				var sectionName = matchInnerHeader.Groups[1].Captures[0].Value;
-				var sectionId = $"#{string.Join('-', sectionName.ToLower().Split(' '))}";
-
-				sections.Add(new { name = sectionName, id = sectionId, level = 2 });
-				postBuilder.AppendLine($"<section id=\"{sectionId}\">");
+				addSection(matchInnerHeader, 2);
 
 				isInInnerSection = true;
 			}
@@ -90,16 +96,20 @@ new MetalsharpProject()
 			postBuilder.AppendLine(line);
 		}
 
-		if (isInInnerSection || isInContainingSection)
+		if (isInInnerSection)
 		{
 			postBuilder.AppendLine("</section>");
+			isInInnerSection = false;
+		}
+
+		if (isInContainingSection)
+		{
+			postBuilder.AppendLine("</section>");
+			isInContainingSection = false;
 		}
 
 		post.Text = postBuilder.ToString();
 		post.Metadata.Add("sections", sections);
-
-		isInInnerSection = false;
-		isInContainingSection = false;
 	}
 })
 .UseLiquidTemplates("Templates")
