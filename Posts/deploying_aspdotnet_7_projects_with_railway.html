@@ -188,15 +188,15 @@ git push -u origin master
 <p>One of Railway's coolest features is that you can start a project off by pointing it at a GitHub repo, and it'll automatically (ish) deploy the repo, and set up hooks to listen to any changes on <code>master</code> and deploy then.</p>
 <h3>Configuring the Repository for Deployment</h3>
 <p>After logging in, we should be faced with a big New Project button</p>
-<p><img src="images/deploy-railway-new-project.png" alt="New Project button in Railway" /></p>
+<p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-new-project.png" alt="New Project button in Railway" /></p>
 <p>Here we'll select Deploy from GitHub repo</p>
-<p><img src="images/deploy-railway-new-project-select-github.png" alt="Select GitHub in Railway" /></p>
+<p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-new-project-select-github.png" alt="Select GitHub in Railway" /></p>
 <p>And then we can select the repo we just pushed</p>
-<p><img src="images/deploy-railway-new-project-select-repo.png" alt="Select Repo in Railway" /></p>
+<p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-new-project-select-repo.png" alt="Select Repo in Railway" /></p>
 <p>And why not try deploying right off the bat, so long as it's giving us the option?</p>
-<p><img src="images/deploy-railway-new-project-deploy-repo.png" alt="Deploy Repo in Railway" /></p>
+<p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-new-project-deploy-repo.png" alt="Deploy Repo in Railway" /></p>
 <p>We should see the deployment fail in just a few seconds.</p>
-<p><img src="images/deploy-railway-deploy-first-fail.png" alt="Deploy Repo in Railway" /></p>
+<p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-deploy-first-fail.png" alt="Deploy Repo in Railway" /></p>
 <h3>Debugging the First Errors</h3>
 <p>Let's click on the deployment and inspect the deploy logs. The first thing to notice is that Railway actually did a really good job guessing what our build config should be. At the top of the logs, we can see:</p>
 <pre><code>╔═════════════════════ Nixpacks v1.13.0 ═════════════════════╗
@@ -216,15 +216,15 @@ git push -u origin master
 <pre><code>NIXPACKS_CSHARP_SDK_VERSION=&quot;7.0&quot;
 </code></pre>
 <p>This can be set on the <code>Variables</code> tab on the UI for the service:</p>
-<p><img src="images/deploy-railway-variables-sdk-version.png" alt="Deploy Repo in Railway" /></p>
+<p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-variables-sdk-version.png" alt="Deploy Repo in Railway" /></p>
 <p>Adding that variable should reschedule the deployment. Indeed, it works!</p>
-<p><img src="images/deploy-railway-deploy-second-success.png" alt="Deploy Repo in Railway" /></p>
+<p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-deploy-second-success.png" alt="Deploy Repo in Railway" /></p>
 <p>Just one thing - how do we see it? We'll need to generate a domain ourselves in the <code>Settings</code> tab in the UI for the service:</p>
-<p><img src="images/deploy-railway-settings-networking.png" alt="Deploy Repo in Railway" /></p>
+<p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-settings-networking.png" alt="Deploy Repo in Railway" /></p>
 <p>That will generate a slightly random <code>.up.railway.app</code> domain for you to get started with. Of course, you can add a custom domain here if you've purchased one, but I'm going to roll with this because somehow I managed to snag <a href="http://railwayaspapidemo-production.up.railway.app">railwayaspapidemo-production.up.railway.app</a>. Luky me!</p>
 <p>Now we can navigate to that link and see &quot;Hello, World!&quot; right?</p>
 <p>Right?</p>
-<p><img src="images/deploy-railway-failed-respond.png" alt="Deploy Repo in Railway" /></p>
+<p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-failed-respond.png" alt="Deploy Repo in Railway" /></p>
 <p>Well, the build deployed, so let's look at our deploy logs. I imagine yours will look similar to mine:</p>
 <pre><code>info: Microsoft.Hosting.Lifetime[14]
 Now listening on: http://0.0.0.0:3000
@@ -241,7 +241,7 @@ Content root path: /app
 <pre><code>PORT=&quot;3000&quot;
 </code></pre>
 <p>This will trigger a redeploy, and then we'll cross our fingers, refresh the app, and...</p>
-<p><img src="images/deploy-railway-hello-world-success.png" alt="Deploy Repo in Railway" /></p>
+<p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-hello-world-success.png" alt="Deploy Repo in Railway" /></p>
 <p>Nice!</p>
 <h3>Using Railway's Port in our API</h3>
 <p>Alternatively, if you want to use the Railway-generated port, we can add just a bit of code to do that. Go ahead and delete the <code>PORT</code> environment variable if you added that.</p>
@@ -272,7 +272,7 @@ app.Run();
 <pre><code>dotnet new blazorwasm --hosted -n RailwayBlazorDemo
 </code></pre>
 <p>This will create an &quot;ASP.NET-hosted&quot; Blazor app, which means we'll get a separate client and server project. Go ahead and run this locally - it will spin up the server, and the server will serve you the Blazor WASM client at root:</p>
-<p><img src="images/deploy-railway-blazor-default.png" alt="Deploy Repo in Railway" /></p>
+<p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-blazor-default.png" alt="Deploy Repo in Railway" /></p>
 <p>Go ahead and push this to a new repository (for reference you can <a href="https://github.com/IanWold/RailwayBlazorDemo">see mine here</a>) and create a new project in Railway, linking to this new repository.</p>
 <p>That should start a deploy like before, and just like before you'll get a failed build. Remember to set the <code>NIXPACKS_CSHARP_SDK_VERSION</code> environment variable, and resolve the port issue however you choose. I'll choose to resolve it in my code. In order to do that, I'll edit the <code>/Server/Program.cs</code> file with the same lines we added to the barebones API. While that deploys, we also need to generate a domain for this app like we did before. And, don't you know it, I got lucky again: <a href="http://railwayblazordemo-production.up.railway.app">railwayblazordemo-production.up.railway.app</a>! Neat.</p>
 <h3>Configuring Railway to Deploy the Server</h3>
@@ -291,10 +291,10 @@ app.Run();
 ╚════════════════════════════════════════════════════════════╝
 </code></pre>
 <p>This, like the other environment configuration issues in Railway, is simple to resolve. If you navigate back to the <code>Settings</code> tab on the UI for the service, scroll down and you'll see Deploy settings, with a helpful place to override the start command. In fact you can override any of the build steps in these settings, although you'll notice that they're pretty sparse. For our needs here though, those settings are all fine, so we'll just update the start command to <code>./out/RailwayBlazorDemo.Server</code>:</p>
-<p><img src="images/deploy-railway-settings-start-command.png" alt="Deploy Repo in Railway" /></p>
+<p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-settings-start-command.png" alt="Deploy Repo in Railway" /></p>
 <p>This will trigger a rebuild, and that should succeed! Our app should now be at the address we generated earlier, right?</p>
 <p>Right?</p>
-<p><img src="images/deploy-railway-failed-404.png" alt="Deploy Repo in Railway" /></p>
+<p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-failed-404.png" alt="Deploy Repo in Railway" /></p>
 <h3>Configuring the ContentRootPath</h3>
 <p>Well, that's interesting, because it's a different error than we got when first deploying the barebones API earlier. In that case, we got a nice error displayed with Railway's UI. This tells us that the server is up and running - of course though we verified that when the server started logging after it deployed a minute ago. Thus, we know that the problem is with the server being able to serve up the client app.</p>
 <p>What's going on here isn't entirely obvious and it relies on a bit of knowledge about Docker to be able to intuit what's going on. There are two key lines in the logs. The key line is in the deploy logs:</p>
@@ -309,7 +309,7 @@ app.Run();
 </code></pre>
 <p>Yes, <code>ContentRootPath</code> is <em>supposed</em> to default to its root directory, but there's some weirdness that got introduced ... <em>*checks notes*</em> ... somewhere? Honestly, I'm not sure how this solves it - I've just debugged enough weird directory issues with Docker in my professional career that it triggered my spidey senses.</p>
 <p>Making that change and pushing to <code>master</code> will trigger a rebuild. Then, as if by magic, our app is working at the link:</p>
-<p><img src="images/deploy-railway-blazor-success.png" alt="Deploy Repo in Railway" /></p>
+<p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-blazor-success.png" alt="Deploy Repo in Railway" /></p>
 </section>
 </section>
 <section id="conclusion">
