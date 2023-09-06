@@ -120,7 +120,11 @@ Let's click on the deployment and inspect the deploy logs. The first thing to no
 That's really spectacular! Just because we had a `.csproj` file, it was able to fill this all out. But it's not all peaches and pringles, we've got a build error. And indeed we're able to see a failure just a few lines down:
 
 ```
-#10 1.426 /nix/store/832ihvqk3vxgqqs5hvcyvg6bxqybky14-dotnet-sdk-6.0.403/sdk/6.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(144,5): error NETSDK1045: The current .NET SDK does not support targeting .NET 7.0.  Either target .NET 6.0 or lower, or use a version of the .NET SDK that supports .NET 7.0. [/app/RailwayAspApiDemo.csproj]
+#10 1.426 /nix/store/832ihvqk3vxgqqs5hvcyvg6bxqybky14-dotnet-sdk-6.0.403/sdk/6.0.403/Sdks
+          /Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(144,5):
+          error NETSDK1045: The current .NET SDK does not support targeting .NET 7.0.
+          Either target .NET 6.0 or lower, or use a version of the .NET SDK
+          that supports .NET 7.0. [/app/RailwayAspApiDemo.csproj]
 ```
 
 Classic cloud moment - we need to know how to configure the .NET SDK version. Thankfully, [Railway's docs](https://nixpacks.com/docs/providers/csharp), though sparse, do give us exactly what we need, an environment variable:
