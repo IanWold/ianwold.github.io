@@ -83,23 +83,23 @@ One of Railway's coolest features is that you can start a project off by pointin
 
 After logging in, we should be faced with a big New Project button
 
-![New Project button in Railway](images/deploy-railway-new-project.png)
+![New Project button in Railway](https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-new-project.png)
 
 Here we'll select Deploy from GitHub repo
 
-![Select GitHub in Railway](images/deploy-railway-new-project-select-github.png)
+![Select GitHub in Railway](https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-new-project-select-github.png)
 
 And then we can select the repo we just pushed
 
-![Select Repo in Railway](images/deploy-railway-new-project-select-repo.png)
+![Select Repo in Railway](https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-new-project-select-repo.png)
 
 And why not try deploying right off the bat, so long as it's giving us the option?
 
-![Deploy Repo in Railway](images/deploy-railway-new-project-deploy-repo.png)
+![Deploy Repo in Railway](https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-new-project-deploy-repo.png)
 
 We should see the deployment fail in just a few seconds.
 
-![Deploy Repo in Railway](images/deploy-railway-deploy-first-fail.png)
+![Deploy Repo in Railway](https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-deploy-first-fail.png)
 
 ### Debugging the First Errors
 
@@ -131,15 +131,15 @@ NIXPACKS_CSHARP_SDK_VERSION="7.0"
 
 This can be set on the `Variables` tab on the UI for the service:
 
-![Deploy Repo in Railway](images/deploy-railway-variables-sdk-version.png)
+![Deploy Repo in Railway](https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-variables-sdk-version.png)
 
 Adding that variable should reschedule the deployment. Indeed, it works!
 
-![Deploy Repo in Railway](images/deploy-railway-deploy-second-success.png)
+![Deploy Repo in Railway](https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-deploy-second-success.png)
 
 Just one thing - how do we see it? We'll need to generate a domain ourselves in the `Settings` tab in the UI for the service:
 
-![Deploy Repo in Railway](images/deploy-railway-settings-networking.png)
+![Deploy Repo in Railway](https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-settings-networking.png)
 
 That will generate a slightly random `.up.railway.app` domain for you to get started with. Of course, you can add a custom domain here if you've purchased one, but I'm going to roll with this because somehow I managed to snag [railwayaspapidemo-production.up.railway.app](http://railwayaspapidemo-production.up.railway.app). Luky me!
 
@@ -147,7 +147,7 @@ Now we can navigate to that link and see "Hello, World!" right?
 
 Right?
 
-![Deploy Repo in Railway](images/deploy-railway-failed-respond.png)
+![Deploy Repo in Railway](https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-failed-respond.png)
 
 Well, the build deployed, so let's look at our deploy logs. I imagine yours will look similar to mine:
 
@@ -174,7 +174,7 @@ PORT="3000"
 
 This will trigger a redeploy, and then we'll cross our fingers, refresh the app, and...
 
-![Deploy Repo in Railway](images/deploy-railway-hello-world-success.png)
+![Deploy Repo in Railway](https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-hello-world-success.png)
 
 Nice!
 
@@ -221,7 +221,7 @@ dotnet new blazorwasm --hosted -n RailwayBlazorDemo
 
 This will create an "ASP.NET-hosted" Blazor app, which means we'll get a separate client and server project. Go ahead and run this locally - it will spin up the server, and the server will serve you the Blazor WASM client at root:
 
-![Deploy Repo in Railway](images/deploy-railway-blazor-default.png)
+![Deploy Repo in Railway](https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-blazor-default.png)
 
 Go ahead and push this to a new repository (for reference you can [see mine here](https://github.com/IanWold/RailwayBlazorDemo)) and create a new project in Railway, linking to this new repository.
 
@@ -251,13 +251,13 @@ Uh oh - we don't want to deploy the _client_, we want to deploy the _server_, be
 
 This, like the other environment configuration issues in Railway, is simple to resolve. If you navigate back to the `Settings` tab on the UI for the service, scroll down and you'll see Deploy settings, with a helpful place to override the start command. In fact you can override any of the build steps in these settings, although you'll notice that they're pretty sparse. For our needs here though, those settings are all fine, so we'll just update the start command to `./out/RailwayBlazorDemo.Server`:
 
-![Deploy Repo in Railway](images/deploy-railway-settings-start-command.png)
+![Deploy Repo in Railway](https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-settings-start-command.png)
 
 This will trigger a rebuild, and that should succeed! Our app should now be at the address we generated earlier, right?
 
 Right?
 
-![Deploy Repo in Railway](images/deploy-railway-failed-404.png)
+![Deploy Repo in Railway](https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-failed-404.png)
 
 ### Configuring the ContentRootPath
 
@@ -284,7 +284,7 @@ Yes, `ContentRootPath` is _supposed_ to default to its root directory, but there
 
 Making that change and pushing to `master` will trigger a rebuild. Then, as if by magic, our app is working at the link:
 
-![Deploy Repo in Railway](images/deploy-railway-blazor-success.png)
+![Deploy Repo in Railway](https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-blazor-success.png)
 
 # Conclusion
 
@@ -302,4 +302,3 @@ You can see my GitHub repos used in this article here:
 * [RailwayBlazorDemo](https://github.com/IanWold/RailwayBlazorDemo)
 
 [Railway's documentation](https://docs.railway.app/) is pretty good, but their [Discord server](https://discord.com/invite/railway) is an excellent and lively place to get help when you need it.
-
