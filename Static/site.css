@@ -300,6 +300,10 @@ header {
 			font-weight: 300;
 		}
 
+		.post h3 {
+			font-size: 18pt;
+		}
+
 		.post p, .post ul, .post ol, .post blockquote {
 			font-size: 13pt;
 			line-height: 1.75;

@@ -106,15 +106,13 @@ We should see the deployment fail in just a few seconds.
 Let's click on the deployment and inspect the deploy logs. The first thing to notice is that Railway actually did a really good job guessing what our build config should be. At the top of the logs, we can see:
 
 ```plaintext
-╔═════════════════════ Nixpacks v1.13.0 ═════════════════════╗
-║ setup      │ dotnet-sdk                                    ║
-║────────────────────────────────────────────────────────────║
-║ install    │ dotnet restore                                ║
-║────────────────────────────────────────────────────────────║
-║ build      │ dotnet publish --no-restore -c Release -o out ║
-║────────────────────────────────────────────────────────────║
-║ start      │ ./out/RailwayAspApiDemo                       ║
-╚════════════════════════════════════════════════════════════╝
+ setup      │ dotnet-sdk                                    
+────────────────────────────────────────────────────────────
+ install    │ dotnet restore                                
+────────────────────────────────────────────────────────────
+ build      │ dotnet publish --no-restore -c Release -o out 
+────────────────────────────────────────────────────────────
+ start      │ ./out/RailwayAspApiDemo                       
 ```
 
 That's really spectacular! Just because we had a `.csproj` file, it was able to fill this all out. But it's not all peaches and pringles, we've got a build error. And indeed we're able to see a failure just a few lines down:
@@ -129,7 +127,7 @@ That's really spectacular! Just because we had a `.csproj` file, it was able to 
 
 Classic cloud moment - we need to know how to configure the .NET SDK version. Thankfully, [Railway's docs](https://nixpacks.com/docs/providers/csharp), though sparse, do give us exactly what we need, an environment variable:
 
-```
+```plaintext
 NIXPACKS_CSHARP_SDK_VERSION="7.0"
 ```
 
@@ -191,7 +189,8 @@ We can update our `Program.cs`:
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 
-if (Environment.GetEnvironmentVariable("PORT") is not null and string environmentPort && int.TryParse(environmentPort, out int port))
+if (Environment.GetEnvironmentVariable("PORT") is not null and string environmentPort
+    && int.TryParse(environmentPort, out int port))
 {
     builder.WebHost.ConfigureKestrel(o => o.ListenAnyIP(port));
 }
@@ -242,15 +241,13 @@ At this point, we might expect it to work. However, you'll notice after building
 Uh oh - we don't want to deploy the _client_, we want to deploy the _server_, because the server is configured to serve the client. The cause of this can be seen in the build logs like we'd expect - the automagic build figurer-outer guessed that we wanted to deploy the client:
 
 ```plaintext
-╔═════════════════════ Nixpacks v1.13.0 ═════════════════════╗
-║ setup      │ dotnet-sdk_7                                  ║
-║────────────────────────────────────────────────────────────║
-║ install    │ dotnet restore                                ║
-║────────────────────────────────────────────────────────────║
-║ build      │ dotnet publish --no-restore -c Release -o out ║
-║────────────────────────────────────────────────────────────║
-║ start      │ ./out/RailwayBlazorDemo.Client                ║
-╚════════════════════════════════════════════════════════════╝
+setup      │ dotnet-sdk_7                                  
+───────────────────────────────────────────────────────────
+install    │ dotnet restore                                
+───────────────────────────────────────────────────────────
+build      │ dotnet publish --no-restore -c Release -o out 
+───────────────────────────────────────────────────────────
+start      │ ./out/RailwayBlazorDemo.Client                
 ```
 
 This, like the other environment configuration issues in Railway, is simple to resolve. If you navigate back to the `Settings` tab on the UI for the service, scroll down and you'll see Deploy settings, with a helpful place to override the start command. In fact you can override any of the build steps in these settings, although you'll notice that they're pretty sparse. For our needs here though, those settings are all fine, so we'll just update the start command to `./out/RailwayBlazorDemo.Server`:
