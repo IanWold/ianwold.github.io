@@ -199,15 +199,13 @@ git push -u origin master
 <p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-deploy-first-fail.png" alt="Deploy Repo in Railway" /></p>
 <h3>Debugging the First Errors</h3>
 <p>Let's click on the deployment and inspect the deploy logs. The first thing to notice is that Railway actually did a really good job guessing what our build config should be. At the top of the logs, we can see:</p>
-<pre><code class="language-plaintext">╔═════════════════════ Nixpacks v1.13.0 ═════════════════════╗
-║ setup      │ dotnet-sdk                                    ║
-║────────────────────────────────────────────────────────────║
-║ install    │ dotnet restore                                ║
-║────────────────────────────────────────────────────────────║
-║ build      │ dotnet publish --no-restore -c Release -o out ║
-║────────────────────────────────────────────────────────────║
-║ start      │ ./out/RailwayAspApiDemo                       ║
-╚════════════════════════════════════════════════════════════╝
+<pre><code class="language-plaintext"> setup      │ dotnet-sdk                                    
+────────────────────────────────────────────────────────────
+ install    │ dotnet restore                                
+────────────────────────────────────────────────────────────
+ build      │ dotnet publish --no-restore -c Release -o out 
+────────────────────────────────────────────────────────────
+ start      │ ./out/RailwayAspApiDemo                       
 </code></pre>
 <p>That's really spectacular! Just because we had a <code>.csproj</code> file, it was able to fill this all out. But it's not all peaches and pringles, we've got a build error. And indeed we're able to see a failure just a few lines down:</p>
 <pre><code class="language-plaintext">#10 1.426 /nix/store/832ihvqk3vxgqqs5hvcyvg6bxqybky14-dotnet-sdk-6.0.403/sdk/6.0.403/Sdks
@@ -217,7 +215,7 @@ git push -u origin master
           that supports .NET 7.0. [/app/RailwayAspApiDemo.csproj]
 </code></pre>
 <p>Classic cloud moment - we need to know how to configure the .NET SDK version. Thankfully, <a href="https://nixpacks.com/docs/providers/csharp">Railway's docs</a>, though sparse, do give us exactly what we need, an environment variable:</p>
-<pre><code>NIXPACKS_CSHARP_SDK_VERSION=&quot;7.0&quot;
+<pre><code class="language-plaintext">NIXPACKS_CSHARP_SDK_VERSION=&quot;7.0&quot;
 </code></pre>
 <p>This can be set on the <code>Variables</code> tab on the UI for the service:</p>
 <p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-variables-sdk-version.png" alt="Deploy Repo in Railway" /></p>
@@ -251,7 +249,8 @@ Content root path: /app
 <p>Alternatively, if you want to use the Railway-generated port, we can add just a bit of code to do that. Go ahead and delete the <code>PORT</code> environment variable if you added that.</p>
 <p>We can update our <code>Program.cs</code>:</p>
 <pre><code class="language-csharp">var builder = WebApplication.CreateBuilder(args);
-if (Environment.GetEnvironmentVariable(&quot;PORT&quot;) is not null and string environmentPort &amp;&amp; int.TryParse(environmentPort, out int port))
+if (Environment.GetEnvironmentVariable(&quot;PORT&quot;) is not null and string environmentPort
+    &amp;&amp; int.TryParse(environmentPort, out int port))
 {
     builder.WebHost.ConfigureKestrel(o =&gt; o.ListenAnyIP(port));
 }
@@ -284,15 +283,13 @@ app.Run();
 <pre><code class="language-plaintext">/bin/bash: line 1: ./out/RailwayBlazorDemo.Client: No such file or directory
 </code></pre>
 <p>Uh oh - we don't want to deploy the <em>client</em>, we want to deploy the <em>server</em>, because the server is configured to serve the client. The cause of this can be seen in the build logs like we'd expect - the automagic build figurer-outer guessed that we wanted to deploy the client:</p>
-<pre><code class="language-plaintext">╔═════════════════════ Nixpacks v1.13.0 ═════════════════════╗
-║ setup      │ dotnet-sdk_7                                  ║
-║────────────────────────────────────────────────────────────║
-║ install    │ dotnet restore                                ║
-║────────────────────────────────────────────────────────────║
-║ build      │ dotnet publish --no-restore -c Release -o out ║
-║────────────────────────────────────────────────────────────║
-║ start      │ ./out/RailwayBlazorDemo.Client                ║
-╚════════════════════════════════════════════════════════════╝
+<pre><code class="language-plaintext">setup      │ dotnet-sdk_7                                  
+───────────────────────────────────────────────────────────
+install    │ dotnet restore                                
+───────────────────────────────────────────────────────────
+build      │ dotnet publish --no-restore -c Release -o out 
+───────────────────────────────────────────────────────────
+start      │ ./out/RailwayBlazorDemo.Client                
 </code></pre>
 <p>This, like the other environment configuration issues in Railway, is simple to resolve. If you navigate back to the <code>Settings</code> tab on the UI for the service, scroll down and you'll see Deploy settings, with a helpful place to override the start command. In fact you can override any of the build steps in these settings, although you'll notice that they're pretty sparse. For our needs here though, those settings are all fine, so we'll just update the start command to <code>./out/RailwayBlazorDemo.Server</code>:</p>
 <p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-settings-start-command.png" alt="Deploy Repo in Railway" /></p>
