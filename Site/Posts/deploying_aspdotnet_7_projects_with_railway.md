@@ -34,7 +34,7 @@ Let's go top to bottom there
 
 To begin with, I'll assume you have .NET installed, and you have a GitHub account. We can create a barebones API from the console:
 
-```
+```plaintext
 dotnet new web -n RailwayAspApiDemo
 ```
 
@@ -51,14 +51,14 @@ app.Run();
 
 In the `MyApi` directory, we can create a new repo. I'd recommend adding the [VS .gitignore](https://raw.githubusercontent.com/github/gitignore/main/VisualStudio.gitignore) first, too.
 
-```
+```plaintext
 git add .
 git commit -m "Getting Started"
 ```
 
 Once you've created a repo in GitHub, we can push it:
 
-```
+```plaintext
 git remote add origin https://github.com/{username}/RailwayAspApiDemo.git
 git push -u origin master
 ```
@@ -105,7 +105,7 @@ We should see the deployment fail in just a few seconds.
 
 Let's click on the deployment and inspect the deploy logs. The first thing to notice is that Railway actually did a really good job guessing what our build config should be. At the top of the logs, we can see:
 
-```
+```plaintext
 ╔═════════════════════ Nixpacks v1.13.0 ═════════════════════╗
 ║ setup      │ dotnet-sdk                                    ║
 ║────────────────────────────────────────────────────────────║
@@ -119,7 +119,7 @@ Let's click on the deployment and inspect the deploy logs. The first thing to no
 
 That's really spectacular! Just because we had a `.csproj` file, it was able to fill this all out. But it's not all peaches and pringles, we've got a build error. And indeed we're able to see a failure just a few lines down:
 
-```
+```plaintext
 #10 1.426 /nix/store/832ihvqk3vxgqqs5hvcyvg6bxqybky14-dotnet-sdk-6.0.403/sdk/6.0.403/Sdks
           /Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(144,5):
           error NETSDK1045: The current .NET SDK does not support targeting .NET 7.0.
@@ -155,7 +155,7 @@ Right?
 
 Well, the build deployed, so let's look at our deploy logs. I imagine yours will look similar to mine:
 
-```
+```plaintext
 info: Microsoft.Hosting.Lifetime[14]
 Now listening on: http://0.0.0.0:3000
 info: Microsoft.Hosting.Lifetime[0]
@@ -172,7 +172,7 @@ It says it's listening on port 3000, so it seems like the app is running, but wh
 
 To override Railway's port assignment, we can just set the environment variable in the variables tab, just like how we set the `NIXPACKS_CSHARP_SDK_VERSION` variable earlier:
 
-```
+```plaintext
 PORT="3000"
 ```
 
@@ -219,7 +219,7 @@ We've got our barebones API up and running, but it's missing a number of things 
 
 Similar to the API we created above, we can get the default Blazor project initialized with
 
-```
+```plaintext
 dotnet new blazorwasm --hosted -n RailwayBlazorDemo
 ```
 
@@ -235,13 +235,13 @@ That should start a deploy like before, and just like before you'll get a failed
 
 At this point, we might expect it to work. However, you'll notice after building Railway attempts to start the service several times, but fails with the same message:
 
-```
+```plaintext
 /bin/bash: line 1: ./out/RailwayBlazorDemo.Client: No such file or directory
 ```
 
 Uh oh - we don't want to deploy the _client_, we want to deploy the _server_, because the server is configured to serve the client. The cause of this can be seen in the build logs like we'd expect - the automagic build figurer-outer guessed that we wanted to deploy the client:
 
-```
+```plaintext
 ╔═════════════════════ Nixpacks v1.13.0 ═════════════════════╗
 ║ setup      │ dotnet-sdk_7                                  ║
 ║────────────────────────────────────────────────────────────║
@@ -269,7 +269,7 @@ Well, that's interesting, because it's a different error than we got when first 
 
 What's going on here isn't entirely obvious and it relies on a bit of knowledge about Docker to be able to intuit what's going on. There are two key lines in the logs. The key line is in the deploy logs:
 
-```
+```plaintext
 Content root path: /app
 ```
 
