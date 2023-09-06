@@ -156,7 +156,7 @@
 <section id="setting-up-a-new-.net-api">
 <h2>Setting up a new .NET API</h2>
 <p>To begin with, I'll assume you have .NET installed, and you have a GitHub account. We can create a barebones API from the console:</p>
-<pre><code>dotnet new web -n RailwayAspApiDemo
+<pre><code class="language-plaintext">dotnet new web -n RailwayAspApiDemo
 </code></pre>
 <p>This starts us off with the following, which will output &quot;Hello, World!&quot; at <code>/</code>:</p>
 <pre><code class="language-csharp">var builder = WebApplication.CreateBuilder(args);
@@ -165,11 +165,11 @@ app.MapGet(&quot;/&quot;, () =&gt; &quot;Hello World!&quot;);
 app.Run();
 </code></pre>
 <p>In the <code>MyApi</code> directory, we can create a new repo. I'd recommend adding the <a href="https://raw.githubusercontent.com/github/gitignore/main/VisualStudio.gitignore">VS .gitignore</a> first, too.</p>
-<pre><code>git add .
+<pre><code class="language-plaintext">git add .
 git commit -m &quot;Getting Started&quot;
 </code></pre>
 <p>Once you've created a repo in GitHub, we can push it:</p>
-<pre><code>git remote add origin https://github.com/{username}/RailwayAspApiDemo.git
+<pre><code class="language-plaintext">git remote add origin https://github.com/{username}/RailwayAspApiDemo.git
 git push -u origin master
 </code></pre>
 <p>For reference, you can <a href="https://github.com/IanWold/RailwayAspApiDemo">see this repo here</a>.</p>
@@ -199,7 +199,7 @@ git push -u origin master
 <p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-deploy-first-fail.png" alt="Deploy Repo in Railway" /></p>
 <h3>Debugging the First Errors</h3>
 <p>Let's click on the deployment and inspect the deploy logs. The first thing to notice is that Railway actually did a really good job guessing what our build config should be. At the top of the logs, we can see:</p>
-<pre><code>╔═════════════════════ Nixpacks v1.13.0 ═════════════════════╗
+<pre><code class="language-plaintext">╔═════════════════════ Nixpacks v1.13.0 ═════════════════════╗
 ║ setup      │ dotnet-sdk                                    ║
 ║────────────────────────────────────────────────────────────║
 ║ install    │ dotnet restore                                ║
@@ -210,7 +210,7 @@ git push -u origin master
 ╚════════════════════════════════════════════════════════════╝
 </code></pre>
 <p>That's really spectacular! Just because we had a <code>.csproj</code> file, it was able to fill this all out. But it's not all peaches and pringles, we've got a build error. And indeed we're able to see a failure just a few lines down:</p>
-<pre><code>#10 1.426 /nix/store/832ihvqk3vxgqqs5hvcyvg6bxqybky14-dotnet-sdk-6.0.403/sdk/6.0.403/Sdks
+<pre><code class="language-plaintext">#10 1.426 /nix/store/832ihvqk3vxgqqs5hvcyvg6bxqybky14-dotnet-sdk-6.0.403/sdk/6.0.403/Sdks
           /Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(144,5):
           error NETSDK1045: The current .NET SDK does not support targeting .NET 7.0.
           Either target .NET 6.0 or lower, or use a version of the .NET SDK
@@ -230,7 +230,7 @@ git push -u origin master
 <p>Right?</p>
 <p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-failed-respond.png" alt="Deploy Repo in Railway" /></p>
 <p>Well, the build deployed, so let's look at our deploy logs. I imagine yours will look similar to mine:</p>
-<pre><code>info: Microsoft.Hosting.Lifetime[14]
+<pre><code class="language-plaintext">info: Microsoft.Hosting.Lifetime[14]
 Now listening on: http://0.0.0.0:3000
 info: Microsoft.Hosting.Lifetime[0]
 Application started. Press Ctrl+C to shut down.
@@ -242,7 +242,7 @@ Content root path: /app
 <p>It says it's listening on port 3000, so it seems like the app is running, but why can't we see it? That's because when Railway deploys our app, it deploys it in a Docker container and generates a port for us. That means we either need to wire our app up to listen on the port that Railway dictates, or we need to tell Railway to use our nice, pretty port 3000. Luckily, Railway allows us to do both; the port number lives in the environment variable <code>PORT</code>, so we can either override that in Railway or consume the environment variable from our API.</p>
 <h3>Overriding Railway's Port Assignment</h3>
 <p>To override Railway's port assignment, we can just set the environment variable in the variables tab, just like how we set the <code>NIXPACKS_CSHARP_SDK_VERSION</code> variable earlier:</p>
-<pre><code>PORT=&quot;3000&quot;
+<pre><code class="language-plaintext">PORT=&quot;3000&quot;
 </code></pre>
 <p>This will trigger a redeploy, and then we'll cross our fingers, refresh the app, and...</p>
 <p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-hello-world-success.png" alt="Deploy Repo in Railway" /></p>
@@ -273,7 +273,7 @@ app.Run();
 <section id="setting-up-a-blazor-project">
 <h2>Setting up a Blazor Project</h2>
 <p>Similar to the API we created above, we can get the default Blazor project initialized with</p>
-<pre><code>dotnet new blazorwasm --hosted -n RailwayBlazorDemo
+<pre><code class="language-plaintext">dotnet new blazorwasm --hosted -n RailwayBlazorDemo
 </code></pre>
 <p>This will create an &quot;ASP.NET-hosted&quot; Blazor app, which means we'll get a separate client and server project. Go ahead and run this locally - it will spin up the server, and the server will serve you the Blazor WASM client at root:</p>
 <p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-blazor-default.png" alt="Deploy Repo in Railway" /></p>
@@ -281,10 +281,10 @@ app.Run();
 <p>That should start a deploy like before, and just like before you'll get a failed build. Remember to set the <code>NIXPACKS_CSHARP_SDK_VERSION</code> environment variable, and resolve the port issue however you choose. I'll choose to resolve it in my code. In order to do that, I'll edit the <code>/Server/Program.cs</code> file with the same lines we added to the barebones API. While that deploys, we also need to generate a domain for this app like we did before. And, don't you know it, I got lucky again: <a href="http://railwayblazordemo-production.up.railway.app">railwayblazordemo-production.up.railway.app</a>! Neat.</p>
 <h3>Configuring Railway to Deploy the Server</h3>
 <p>At this point, we might expect it to work. However, you'll notice after building Railway attempts to start the service several times, but fails with the same message:</p>
-<pre><code>/bin/bash: line 1: ./out/RailwayBlazorDemo.Client: No such file or directory
+<pre><code class="language-plaintext">/bin/bash: line 1: ./out/RailwayBlazorDemo.Client: No such file or directory
 </code></pre>
 <p>Uh oh - we don't want to deploy the <em>client</em>, we want to deploy the <em>server</em>, because the server is configured to serve the client. The cause of this can be seen in the build logs like we'd expect - the automagic build figurer-outer guessed that we wanted to deploy the client:</p>
-<pre><code>╔═════════════════════ Nixpacks v1.13.0 ═════════════════════╗
+<pre><code class="language-plaintext">╔═════════════════════ Nixpacks v1.13.0 ═════════════════════╗
 ║ setup      │ dotnet-sdk_7                                  ║
 ║────────────────────────────────────────────────────────────║
 ║ install    │ dotnet restore                                ║
@@ -302,7 +302,7 @@ app.Run();
 <h3>Configuring the ContentRootPath</h3>
 <p>Well, that's interesting, because it's a different error than we got when first deploying the barebones API earlier. In that case, we got a nice error displayed with Railway's UI. This tells us that the server is up and running - of course though we verified that when the server started logging after it deployed a minute ago. Thus, we know that the problem is with the server being able to serve up the client app.</p>
 <p>What's going on here isn't entirely obvious and it relies on a bit of knowledge about Docker to be able to intuit what's going on. There are two key lines in the logs. The key line is in the deploy logs:</p>
-<pre><code>Content root path: /app
+<pre><code class="language-plaintext">Content root path: /app
 </code></pre>
 <p>What's going on is that the client is stored as a static file on the server, and the server needs access to that file to be able to serve it, of course. ASP calls the root directory for static files the &quot;content root path&quot;, and this one is a bit bunked.</p>
 <p>This has a code solution. Replace the first line of <code>Server/Program.cs</code> with the following:</p>
