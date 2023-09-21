@@ -14,6 +14,10 @@ body {
 	grid-template-rows: 1fr 1fr 1fr 1fr 1fr auto;
 }
 
+body.dark {
+	background-color: #121212;
+}
+
 h1, h2, h3, h4, h5, h6 {
 	display: block;
 }
@@ -27,6 +31,10 @@ p {
 
 a {
 	color: #323232;
+}
+
+.dark a {
+	color: white;
 }
 
 	a:hover {
@@ -70,6 +78,9 @@ nav {
 			font-weight: 800;
 			color: #0A0A0A;
 		}
+		.dark nav .title a {
+			color: #f0f0f0;
+		}
 
 			nav .title a:hover {
 				color: orangered;
@@ -111,11 +122,17 @@ nav {
 	margin-right: auto;
 	color: #121212;
 }
+.dark .content {
+	color: #f0f0f0;
+}
 
 
 
 .section-gray {
 	background-color: whitesmoke;
+}
+.dark .section-gray {
+	background-color: #222222;
 }
 
 
@@ -273,6 +290,10 @@ header {
 		border-right: 1px solid gainsboro;
 		font-weight: 200;
 	}
+	.dark .pane a {
+		color: #9a9a9a;
+		border-color: #808080;
+	}
 
 		.pane a b {
 			font-weight: 500;
@@ -281,9 +302,15 @@ header {
 		.pane a:hover, .pane a:focus, .pane li.active > a {
 			color: black;
 		}
+		.dark .pane a:hover, .pane a:focus, .pane li.active > a {
+			color: white;
+		}
 
 	.pane li.active > a {
 		border-right: 1px solid black;
+	}
+	.dark .pane li.active > a {
+		border-right: 1px solid white;
 	}
 
 
@@ -345,6 +372,11 @@ header {
 			padding-right: 5px;
 		}
 
+		.dark .post p code {
+			background-color: #363636 !important;
+			border: 1px solid #424242;
+		}
+
 		.post ul {
 			list-style-type: disc;
 			list-style-position: inside;
@@ -393,6 +425,9 @@ header {
 			margin: 0 auto;
 			border: 1px solid gainsboro;
 			border-radius: 3px;
+		}
+		.dark .post p img {
+			border-color: #424242;
 		}
 
 
@@ -458,6 +493,9 @@ footer {
 	padding-top: 24px;
 	padding-bottom: 24px;
 	background-color: #323232;
+}
+.dark footer {
+	background-color: #121212;
 }
 
 	footer .feather {
