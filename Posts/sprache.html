@@ -697,7 +697,7 @@ Parser&lt;JSONValue&gt; JObject =
 			darkModeToggle.addEventListener("click", toggleDarkMode);
 
 			if (localStorage.getItem("dark") === "enabled") {
-				toggleDarkMode();
+				body.classList.toggle("dark");
 			}
 		</script>
 	</body>
