@@ -35,6 +35,22 @@ a {
 
 
 
+#dark-mode-toggle {
+	border: 0;
+	background-color: transparent;
+	color: whitesmoke;
+
+	position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 999;
+}
+.dark #dark-mode-toggle {
+	color: #A0A0A0;
+}
+
+
+
 nav {
 	padding-top: 72px;
 	display: flex;

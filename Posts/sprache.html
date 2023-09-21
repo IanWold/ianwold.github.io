@@ -16,6 +16,8 @@
 		</title>
 	</head>
 	<body>
+		<button id="dark-mode-toggle"><i data-feather="sun"></i></button>
+
 		<nav class="content">
 			<div class="headshot">
 				<img src="../images/hero1.svg" />
@@ -678,6 +680,25 @@ Parser&lt;JSONValue&gt; JObject =
 					observer.observe(section);
 				});
 			});
+
+			const darkModeToggle = document.getElementById("dark-mode-toggle");
+			const body = document.body;
+
+			function toggleDarkMode() {
+				body.classList.toggle("dark");
+
+				if (localStorage.getItem("dark") === "enabled") {
+					localStorage.setItem("dark", "disabled");
+				} else {
+					localStorage.setItem("dark", "enabled");
+				}
+			}
+
+			darkModeToggle.addEventListener("click", toggleDarkMode);
+
+			if (localStorage.getItem("dark") === "enabled") {
+				toggleDarkMode();
+			}
 		</script>
 	</body>
 </html>
