@@ -46,7 +46,7 @@ a {
 #dark-mode-toggle {
 	border: 0;
 	background-color: transparent;
-	color: whitesmoke;
+	color: gainsboro;
 
 	position: fixed;
     top: 24px;
