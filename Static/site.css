@@ -302,7 +302,7 @@ header {
 		.pane a:hover, .pane a:focus, .pane li.active > a {
 			color: black;
 		}
-		.dark .pane a:hover, .pane a:focus, .pane li.active > a {
+		.dark .pane a:hover, .dark .pane a:focus, .dark .pane li.active > a {
 			color: white;
 		}
 
