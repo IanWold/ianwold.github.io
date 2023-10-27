@@ -356,6 +356,14 @@ header {
 			word-spacing: 1;
 		}
 
+		.post em {
+			font-style: italic;
+		}
+
+		.post strong {
+			font-weight: 600;
+		}
+
 		.post code {
 			font-size: 15px;
 			line-height: 1.2;
