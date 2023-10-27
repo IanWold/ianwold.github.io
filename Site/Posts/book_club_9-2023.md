@@ -20,6 +20,6 @@ However, I had never been to a Strange Loop before! It's bitersweet then that I 
 
 * [Generalized Parser Combinators - Daniel Spiewak](https://dinhe.net/~aredridel/.notmine/PDFs/Parsing/SPIEWAK%2C%20Daniel%20%282010%29%20-%20Generalized%20Parser%20Combinators.pdf)
 * [Semantic Information and the Correctness Theory of Truth - Luciano Floridi](https://philpapers.org/archive/FLOSIA-5.pdf)
-* [Idris, a General Purpose Dependently Typed Programming Language: Design and Implementation](https://www.type-driven.org.uk/edwinb/papers/impldtp.pdf)
+* [Idris, a General Purpose Dependently Typed Programming Language: Design and Implementation - Edwin Brady](https://www.type-driven.org.uk/edwinb/papers/impldtp.pdf)
 * [Russell's 1903-1905 Anticiaption of the Lambda Calculus - Kevin C. Klement](https://people.umass.edu/klement/lambda.pdf)
-* [Architectural Styles and the Design of Network-based Software Architectures](https://ics.uci.edu/~fielding/pubs/dissertation/top.htm)
+* [Architectural Styles and the Design of Network-based Software Architectures - Roy Thomas Fielding](https://ics.uci.edu/~fielding/pubs/dissertation/top.htm)
