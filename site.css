@@ -302,7 +302,7 @@ header {
 		.pane a:hover, .pane a:focus, .pane li.active > a {
 			color: black;
 		}
-		.dark .pane a:hover, .pane a:focus, .pane li.active > a {
+		.dark .pane a:hover, .dark .pane a:focus, .dark .pane li.active > a {
 			color: white;
 		}
 
@@ -354,6 +354,14 @@ header {
 			font-weight: 400;
 			letter-spacing: 0.75;
 			word-spacing: 1;
+		}
+
+		.post em {
+			font-style: italic;
+		}
+
+		.post strong {
+			font-weight: 600;
 		}
 
 		.post code {
