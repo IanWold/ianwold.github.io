@@ -1,6 +1,6 @@
 ;;;
 {
-	"title": "Book Club 10/2023: Papers I Love",
+	"title": "Book Club 9/2023: Papers I Love",
 	"description": "Reflecting on the final Strange Loop conference, having attended several 'Papers We Love' talks, I'm motivated to share five papers I love.",
 	"date": "28 September 2023",
 	"contents": false,
