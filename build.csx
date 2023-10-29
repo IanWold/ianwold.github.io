@@ -2,7 +2,7 @@
 #r "nuget: Metalsharp, 0.9.0-rc.5"
 #r "nuget: Metalsharp.LiquidTemplates, 0.9.0-rc-3"
 #r "nuget: Metalsharp.SimpleBlog, 0.9.0-rc.2"
-#r "nuget: System.ServiceModel.Syndication 7.0.0"
+#r "nuget: System.ServiceModel.Syndication 6.0.0"
 
 using Metalsharp;
 using Metalsharp.LiquidTemplates;
