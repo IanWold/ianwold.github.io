@@ -2,12 +2,15 @@
 #r "nuget: Metalsharp, 0.9.0-rc.5"
 #r "nuget: Metalsharp.LiquidTemplates, 0.9.0-rc-3"
 #r "nuget: Metalsharp.SimpleBlog, 0.9.0-rc.2"
+#r "nuget: System.ServiceModel.Syndication 7.0.0"
 
 using Metalsharp;
 using Metalsharp.LiquidTemplates;
 using Metalsharp.SimpleBlog;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.ServiceModel.Syndication;
+using System.IO;
 
 new MetalsharpProject()
 .AddInput("Site", @".\")
@@ -50,8 +53,19 @@ new MetalsharpProject()
 .UseLeveller()
 .Use(project =>
 {
+	var rssItems = new List<SyndicationItem>();
+
 	foreach (var post in project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts") && f.Metadata.TryGetValue("contents", out object isContentsObject) && isContentsObject is bool isContents && isContents))
 	{
+		rssItems.Add(new()
+		{
+			post.Metadata["title"].ToString(),
+			post.Text,
+			new Uri($"https://ian.wold.guru/Posts/{post.Name}.html"),
+			post.Name,
+			DateTime.Parse(post.Metadata["date"]?.ToString() ?? "")
+		});
+
 		var postLines = post.Text.Split('\r', '\n').Where(l => !string.IsNullOrWhiteSpace(l));
 		var postBuilder = new StringBuilder();
 		var sections = new List<object>();
@@ -116,6 +130,23 @@ new MetalsharpProject()
 		post.Text = postBuilder.ToString();
 		post.Metadata.Add("sections", sections);
 	}
+
+	var rssFeedContent = string.Empty;
+	var rssFeed = var feed = new SyndicationFeed(
+		"Ian Wold",
+		"Ian Wold's Blog",
+		new Uri("https://ian.wold.guru/feed.xml"),
+		rssItems
+	);
+
+	using (var stringWriter = new StringWriter())
+	using (var xmlWriter = XmlWriter.Create(stringWriter))
+	{
+		rssFeed.SaveAsRss20(xmlWriter);
+		rssFeedContent = stringWriter.ToString();
+	}
+
+	project.AddOutput(new MetalsharpFile(rssFeedContent, "feed.xml"));
 })
 .UseLiquidTemplates("Templates")
 .AddOutput("Static", @".\")
