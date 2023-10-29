@@ -12,10 +12,11 @@ using System.Text.RegularExpressions;
 new MetalsharpProject()
 .AddInput("Site", @".\")
 .UseFrontmatter()
-.Use(project =>
-{
-	project.RemoveFiles(f => f.Metadata.TryGetValue("draft", out var isDraftObj) && isDraftObj is bool isDraft ? isDraft : false);
-})
+.RemoveFiles(file =>
+	file.Metadata.TryGetValue("draft", out var isDraftObj)
+	&& isDraftObj is bool isDraft
+	&& isDraft
+)
 .Use(project =>
 {
 	foreach (var file in project.InputFiles.Where(f => f.Directory.StartsWith(@".\Posts")))
