@@ -2,7 +2,7 @@
 #r "nuget: Metalsharp, 0.9.0-rc.5"
 #r "nuget: Metalsharp.LiquidTemplates, 0.9.0-rc-3"
 #r "nuget: Metalsharp.SimpleBlog, 0.9.0-rc.2"
-#r "nuget: System.ServiceModel.Syndication 6.0.0"
+#r "nuget: System.ServiceModel.Syndication 7.0.0"
 
 using Metalsharp;
 using Metalsharp.LiquidTemplates;
@@ -57,14 +57,13 @@ new MetalsharpProject()
 
 	foreach (var post in project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts") && f.Metadata.TryGetValue("contents", out object isContentsObject) && isContentsObject is bool isContents && isContents))
 	{
-		rssItems.Add(new()
-		{
+		rssItems.Add(new(
 			post.Metadata["title"].ToString(),
 			post.Text,
 			new Uri($"https://ian.wold.guru/Posts/{post.Name}.html"),
 			post.Name,
 			DateTime.Parse(post.Metadata["date"]?.ToString() ?? "")
-		});
+		));
 
 		var postLines = post.Text.Split('\r', '\n').Where(l => !string.IsNullOrWhiteSpace(l));
 		var postBuilder = new StringBuilder();
