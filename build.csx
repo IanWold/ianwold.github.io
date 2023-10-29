@@ -132,7 +132,7 @@ new MetalsharpProject()
 	}
 
 	var rssFeedContent = string.Empty;
-	var rssFeed = var feed = new SyndicationFeed(
+	var rssFeed = new SyndicationFeed(
 		"Ian Wold",
 		"Ian Wold's Blog",
 		new Uri("https://ian.wold.guru/feed.xml"),
