@@ -2,7 +2,7 @@
 #r "nuget: Metalsharp, 0.9.0-rc.5"
 #r "nuget: Metalsharp.LiquidTemplates, 0.9.0-rc-3"
 #r "nuget: Metalsharp.SimpleBlog, 0.9.0-rc.2"
-#r "nuget: System.ServiceModel.Syndication 6.0.0"
+#r "nuget: System.ServiceModel.Syndication 7.0.0"
 
 using Metalsharp;
 using Metalsharp.LiquidTemplates;
@@ -53,11 +53,11 @@ new MetalsharpProject()
 .UseLeveller()
 .Use(project =>
 {
-	var rssItems = new List<SyndicationItem>();
+	var rssItems = new List<System.ServiceModel.Syndication.SyndicationItem>();
 
 	foreach (var post in project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts") && f.Metadata.TryGetValue("contents", out object isContentsObject) && isContentsObject is bool isContents && isContents))
 	{
-		rssItems.Add(new SyndicationItem(
+		rssItems.Add(new System.ServiceModel.Syndication.SyndicationItem(
 			post.Metadata["title"].ToString(),
 			post.Text,
 			new Uri($"https://ian.wold.guru/Posts/{post.Name}.html"),
@@ -131,7 +131,7 @@ new MetalsharpProject()
 	}
 
 	var rssFeedContent = string.Empty;
-	var rssFeed = new SyndicationFeed(
+	var rssFeed = new System.ServiceModel.Syndication.SyndicationFeed(
 		"Ian Wold",
 		"Ian Wold's Blog",
 		new Uri("https://ian.wold.guru/feed.xml"),
