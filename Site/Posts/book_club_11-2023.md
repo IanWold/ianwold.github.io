@@ -29,9 +29,9 @@ Even if you actually don't prefer Agile - there's aspects of the Agile commandme
 
 Videos
 
-* 
-* 
-* 
+* [War is Peace, Freedom is Slavery, Ignorance is Strength, Scrum is Agile - Allen Holub](https://www.youtube.com/watch?v=WFbvJ0dVlHk)
+* [#NoEstimates - Allen Holub](https://www.youtube.com/watch?v=QVBlnCTu9Ms)
+* [TDD, Where did it all go Wrong - Ian Cooper](https://www.youtube.com/watch?v=EZ05e7EMOLM)
 * 
 * 
 
