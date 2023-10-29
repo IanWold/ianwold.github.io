@@ -14,6 +14,10 @@ new MetalsharpProject()
 .UseFrontmatter()
 .Use(project =>
 {
+	project.RemoveFiles(f => f.Metadata.TryGetValue("draft", out bool isDraft) ? isDraft : false);
+})
+.Use(project =>
+{
 	foreach (var file in project.InputFiles.Where(f => f.Directory.StartsWith(@".\Posts")))
 	{
 		file.Metadata.Add("readingTime", (int)Math.Ceiling(file.Text.Split(' ').Length / 200D));

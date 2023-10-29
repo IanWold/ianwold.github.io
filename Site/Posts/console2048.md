@@ -6,9 +6,8 @@
 	"contents": false,
 	"hero": "photo-1603290989168-0cab99a6e996",
     "related": [
-		{ "title": "An Introduction to Sprache", "description": "Sprache is a parser-combinator library for C# that uses Linq to construct parsers. In this post I describe the fundamentals of understanding grammars and parsing them with Sprache, with several real-world examples.", "fileName": "sprache" },
         { "title": "Meanwhile in the Windows Console ... Minesweeper!", "description": "My tyranny of classic game implementations in the console expands. Knows it no end?", "fileName": "console_minesweeper" },
-        { "title": "The Outrage Engine", "description": "Perhaps an ASCII game in the Windows Console is ridiculous. Something akin to Dwarf Fortress comes to mind, so it's not entirely off the mark. But a game engine devoted to ASCII games in the console? Perhaps that's outrageous. I don't know if it's been done (or is being done) currently, but that's what I'm doing right now, and I've called it the Outrage Engine.", "fileName": "outrage_engine" }
+		{ "title": "An Introduction to Sprache", "description": "Sprache is a parser-combinator library for C# that uses Linq to construct parsers. In this post I describe the fundamentals of understanding grammars and parsing them with Sprache, with several real-world examples.", "fileName": "sprache" }
     ]
 }
 ;;;

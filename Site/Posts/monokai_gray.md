@@ -6,9 +6,9 @@
 	"contents": false,
 	"hero": "photo-1508921108053-9f757ead871c",
     "related": [
-		{ "title": "An Introduction to Sprache", "description": "Sprache is a parser-combinator library for C# that uses Linq to construct parsers. In this post I describe the fundamentals of understanding grammars and parsing them with Sprache, with several real-world examples.", "fileName": "sprache" },
-        { "title": "Meanwhile in the Windows Console ... Minesweeper!", "description": "My tyranny of classic game implementations in the console expands. Knows it no end?", "fileName": "console_minesweeper" },
-        { "title": "The Outrage Engine", "description": "Perhaps an ASCII game in the Windows Console is ridiculous. Something akin to Dwarf Fortress comes to mind, so it's not entirely off the mark. But a game engine devoted to ASCII games in the console? Perhaps that's outrageous. I don't know if it's been done (or is being done) currently, but that's what I'm doing right now, and I've called it the Outrage Engine.", "fileName": "outrage_engine" }
+        { "title": "Console2048", "description": "Jumping on the bandwagon, here's a C# implementation of Console 2048. Of course, 2048 has had a few console implementations, and most better done than this, but here it is anyway.", "fileName": "console2048" },,
+        { "title": "SpracheDown", "description": "I created a Markdown parser with the Sprache library after it was recommended to me at the Iowa Code Camp.", "fileName": "sprachedown" },
+        { "title": "SpracheJSON", "description": "A small library serializing and deserializing JSON using Sprache.", "fileName": "sprachejson" }
     ]
 }
 ;;;
