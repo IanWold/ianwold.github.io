@@ -57,7 +57,7 @@ new MetalsharpProject()
 
 	foreach (var post in project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts") && f.Metadata.TryGetValue("contents", out object isContentsObject) && isContentsObject is bool isContents && isContents))
 	{
-		rssItems.Add(new(
+		rssItems.Add(new SyndicationItem(
 			post.Metadata["title"].ToString(),
 			post.Text,
 			new Uri($"https://ian.wold.guru/Posts/{post.Name}.html"),
