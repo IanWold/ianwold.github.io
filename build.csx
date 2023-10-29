@@ -14,7 +14,7 @@ new MetalsharpProject()
 .UseFrontmatter()
 .Use(project =>
 {
-	project.RemoveFiles(f => f.Metadata.TryGetValue("draft", out bool isDraft) ? isDraft : false);
+	project.RemoveFiles(f => f.Metadata.TryGetValue("draft", out var isDraftObj) && isDraftObj is bool isDraft ? isDraft : false);
 })
 .Use(project =>
 {
