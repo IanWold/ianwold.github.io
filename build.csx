@@ -147,7 +147,7 @@ new MetalsharpProject()
         Encoding = Encoding.UTF8
     };
 	using (var memoryStream = new MemoryStream())
-    using (var xmlWriter = XmlWriter.Create(memoryStream, settings))
+    using (var xmlWriter = XmlWriter.Create(memoryStream, xmlSettings))
     {
         rssFeed.SaveAsAtom10(xmlWriter); // You can use SaveAsRss20() if you prefer RSS 2.0 format
         xmlWriter.Flush();
