@@ -94,14 +94,6 @@ new MetalsharpProject()
 
 	foreach (var post in project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts") && f.Metadata.TryGetValue("contents", out object isContentsObject) && isContentsObject is bool isContents && isContents))
 	{
-		rssItems.Add(new SyndicationItem(
-			post.Metadata["title"].ToString(),
-			post.Text,
-			new Uri($"https://ian.wold.guru/Posts/{post.Name}.html"),
-			post.Name,
-			DateTime.Parse(post.Metadata["date"]?.ToString() ?? "")
-		));
-
 		var postLines = post.Text.Split('\r', '\n').Where(l => !string.IsNullOrWhiteSpace(l));
 		var postBuilder = new StringBuilder();
 		var sections = new List<object>();
