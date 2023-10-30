@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.ServiceModel.Syndication;
 using System.IO;
 using System.Xml;
+using System;
 
 new MetalsharpProject()
 .AddInput("Site", @".\")
