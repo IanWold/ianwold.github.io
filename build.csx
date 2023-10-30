@@ -55,7 +55,7 @@ new MetalsharpProject()
 .UseLeveller()
 .Use(project =>
 {
-	var rssItems = project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts").Select(post => new SyndicationItem(
+	var rssItems = project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts")).Select(post => new SyndicationItem(
 		post.Metadata["title"].ToString(),
 		post.Text,
 		new Uri($"https://ian.wold.guru/Posts/{post.Name}.html"),
