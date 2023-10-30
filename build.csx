@@ -11,6 +11,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.ServiceModel.Syndication;
 using System.IO;
+using System.Xml;
 
 new MetalsharpProject()
 .AddInput("Site", @".\")
@@ -53,11 +54,11 @@ new MetalsharpProject()
 .UseLeveller()
 .Use(project =>
 {
-	var rssItems = new List<System.ServiceModel.Syndication.SyndicationItem>();
+	var rssItems = new List<SyndicationItem>();
 
 	foreach (var post in project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts") && f.Metadata.TryGetValue("contents", out object isContentsObject) && isContentsObject is bool isContents && isContents))
 	{
-		rssItems.Add(new System.ServiceModel.Syndication.SyndicationItem(
+		rssItems.Add(new SyndicationItem(
 			post.Metadata["title"].ToString(),
 			post.Text,
 			new Uri($"https://ian.wold.guru/Posts/{post.Name}.html"),
@@ -131,7 +132,7 @@ new MetalsharpProject()
 	}
 
 	var rssFeedContent = string.Empty;
-	var rssFeed = new System.ServiceModel.Syndication.SyndicationFeed(
+	var rssFeed = new SyndicationFeed(
 		"Ian Wold",
 		"Ian Wold's Blog",
 		new Uri("https://ian.wold.guru/feed.xml"),
