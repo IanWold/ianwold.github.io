@@ -1,15 +1,13 @@
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title type="text">Ian Wold</title>
-  <subtitle type="text">Ian Wold's Blog</subtitle>
-  <id>uuid:2671ed79-2e23-4a27-85d5-9e81a39010e4;id=1</id>
-  <updated>2023-10-30T00:30:45Z</updated>
-  <link rel="alternate" href="https://ian.wold.guru/feed.xml" />
-  <entry>
-    <id>deploying_aspdotnet_7_projects_with_railway</id>
-    <title type="text">Deploying ASP.NET 7 Projects with Railway</title>
-    <updated>2023-09-05T00:00:00Z</updated>
-    <link rel="alternate" href="https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html" />
-    <content type="text">&lt;p&gt;Nevermind that I haven't posted in more than 6 years, &lt;a href="https://www.railway.app"&gt;Railway&lt;/a&gt; is a startup cloud infrastructure provider that has gained a fair amount of traction for being easy to use and very cost effective to get started with. It's pretty barebones right now, but that makes it especially great for hobbyist projects. They have a free introductory tier, but then the next tier is $5/month plus a small resource usage fee. Really, their pricing is fantastic.&lt;/p&gt;
+<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Ian Wold</title>
+    <link>https://ian.wold.guru/feed.xml</link>
+    <description>Ian Wold's Blog</description>
+    <item>
+      <guid isPermaLink="false">deploying_aspdotnet_7_projects_with_railway</guid>
+      <link>https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html</link>
+      <title>Deploying ASP.NET 7 Projects with Railway</title>
+      <description>&lt;p&gt;Nevermind that I haven't posted in more than 6 years, &lt;a href="https://www.railway.app"&gt;Railway&lt;/a&gt; is a startup cloud infrastructure provider that has gained a fair amount of traction for being easy to use and very cost effective to get started with. It's pretty barebones right now, but that makes it especially great for hobbyist projects. They have a free introductory tier, but then the next tier is $5/month plus a small resource usage fee. Really, their pricing is fantastic.&lt;/p&gt;
 &lt;p&gt;When you deploy with Railway, they'll shove your app into a Docker container and handle the management/scaling/etc. behind the scenes. In addition, they have the ability to stand up a database for you - as of the time of this writing, you can choose PostgreSQL, MySQL, Mongo, and Redis. That said, they of course allow you to deploy any docker image or volume, so if you're willing to put in a little more work I imagine you can make any stack work for you. That all means of course that Railway probably isn't the best solution if you need control over container orchestration, but for CRUD projects and startups it seems quite promising to me.&lt;/p&gt;
 &lt;p&gt;What's especially great is their integration with GitHub - it takes just a couple minutes to sign up for Railway, authenticate with GitHub, point it at a repo, and Railway takes care of the deployment from there. It has some magic to sense what kind of project your repo is and attempt to construct a build pipeline for your project right away. This doesn't work too well in .NET, but their interface is very sparse and easy to use to get up and going with it.&lt;/p&gt;
 &lt;p&gt;In the remainder of this article, I'm going to be demonstrating how to get a .NET 7 app deployed with Railway. I'll start with a simple ASP.NET API, and then I'll demonstrate getting Blazor working. I'd encourage you to follow along with me - it's no cost to you (you don't even need to type in a credit card) and I think you'll be impressed with how easy it is to get a little hobby app deployed with Railway.&lt;/p&gt;
@@ -183,14 +181,14 @@ start      │ ./out/RailwayBlazorDemo.Client
 &lt;li&gt;&lt;a href="https://github.com/IanWold/RailwayBlazorDemo"&gt;RailwayBlazorDemo&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href="https://docs.railway.app/"&gt;Railway's documentation&lt;/a&gt; is pretty good, but their &lt;a href="https://discord.com/invite/railway"&gt;Discord server&lt;/a&gt; is an excellent and lively place to get help when you need it.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>sprache</id>
-    <title type="text">An Introduction to Sprache</title>
-    <updated>2016-01-22T00:00:00Z</updated>
-    <link rel="alternate" href="https://ian.wold.guru/Posts/sprache.html" />
-    <content type="text">&lt;p&gt;As my activity on this blog and my GitHub account may attest, I'm quite fond of a C# library called Sprache. Sprache is a parser-combinator that uses LINQ (Language INtegrated Query) to allow for the elegant construction of parsers in C#. I've been using Sprache for three years now, before I started college, and I've used it to implement a number of domain-specific languages (DSLs) both in side projects on my GitHub and on applications I've worked on. It's only natural I would want to share my favorite C# library with my fellow undergraduate classmates, but there are several factors which make it rather unapproachable for the average undergraduate computer science student. Thus, I have written this piece to provide a completely introductory tutorial to using Sprache.&lt;/p&gt;
+</description>
+      <a10:updated>2023-09-05T00:00:00Z</a10:updated>
+    </item>
+    <item>
+      <guid isPermaLink="false">sprache</guid>
+      <link>https://ian.wold.guru/Posts/sprache.html</link>
+      <title>An Introduction to Sprache</title>
+      <description>&lt;p&gt;As my activity on this blog and my GitHub account may attest, I'm quite fond of a C# library called Sprache. Sprache is a parser-combinator that uses LINQ (Language INtegrated Query) to allow for the elegant construction of parsers in C#. I've been using Sprache for three years now, before I started college, and I've used it to implement a number of domain-specific languages (DSLs) both in side projects on my GitHub and on applications I've worked on. It's only natural I would want to share my favorite C# library with my fellow undergraduate classmates, but there are several factors which make it rather unapproachable for the average undergraduate computer science student. Thus, I have written this piece to provide a completely introductory tutorial to using Sprache.&lt;/p&gt;
 &lt;p&gt;I'll explain LINQ and BNF, and then I'll walk you through the implementation of a few simple grammars in Sprache such that I may touch upon all the most important concepts in the Sprache library to allow the reader to immediately begin to implement the grammars which they desire. At the end of this post, I link to several articles which cover the framework and other related readings. In the future, I may also write a short handbook/reference to certain Sprache concepts.&lt;/p&gt;
 &lt;p&gt;One does not necessarily need to have an understanding of C# to begin using Sprache, but a familiarity of a similar language (i.e. Java) would go a long way. I'm going to assume the reader has an understanding of object-oriented programming. I won't be going into an explanation of what a parser-combinator is, nor what a &amp;quot;combinator&amp;quot; is, in general. If you would like to become more involved in the development of Sprache, though, you should definitely familiarize yourself with the concept. I provide some links at the end of this tutorial to that end.&lt;/p&gt;
 &lt;h1&gt;Prerequisites&lt;/h1&gt;
@@ -641,6 +639,8 @@ Parser&amp;lt;JSONValue&amp;gt; JObject =
 &lt;li&gt;The &lt;a href="https://github.com/sprache/Sprache"&gt;Sprache GitHub&lt;/a&gt; links several examples, projects, and other tutorials.&lt;/li&gt;
 &lt;li&gt;The &lt;a href="http://stackoverflow.com/unanswered/tagged/sprache"&gt;StackOverflow tag&lt;/a&gt; receives regular traffic.&lt;/li&gt;
 &lt;/ul&gt;
-</content>
-  </entry>
-</feed>
+</description>
+      <a10:updated>2016-01-22T00:00:00Z</a10:updated>
+    </item>
+  </channel>
+</rss>
