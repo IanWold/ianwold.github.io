@@ -3,6 +3,7 @@
 #r "nuget: Metalsharp.LiquidTemplates, 0.9.0-rc-3"
 #r "nuget: Metalsharp.SimpleBlog, 0.9.0-rc.2"
 #r "nuget: System.ServiceModel.Syndication 7.0.0"
+#r "nuget: System.ServiceModel.Primitives 6.1.0"
 
 using Metalsharp;
 using Metalsharp.LiquidTemplates;
@@ -13,6 +14,7 @@ using System.ServiceModel.Syndication;
 using System.IO;
 using System.Xml;
 using System;
+using System.ServiceModel.Primitives;
 
 new MetalsharpProject()
 .AddInput("Site", @".\")
