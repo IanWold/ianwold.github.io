@@ -55,7 +55,42 @@ new MetalsharpProject()
 .UseLeveller()
 .Use(project =>
 {
-	var rssItems = new List<SyndicationItem>();
+	var rssItems = project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts").Select(post => new SyndicationItem(
+		post.Metadata["title"].ToString(),
+		post.Text,
+		new Uri($"https://ian.wold.guru/Posts/{post.Name}.html"),
+		post.Name,
+		DateTime.Parse(post.Metadata["date"]?.ToString() ?? "")
+	));
+
+	var rssFeedContent = string.Empty;
+	var rssFeed = new SyndicationFeed(
+		"Ian Wold",
+		"Ian Wold's Blog",
+		new Uri("https://ian.wold.guru/feed.xml"),
+		rssItems
+	);
+
+	var xmlSettings = new XmlWriterSettings
+    {
+        Indent = true, // Optional: to format the XML for readability
+        OmitXmlDeclaration = true,
+        Encoding = Encoding.UTF8
+    };
+	using (var memoryStream = new MemoryStream())
+    using (var xmlWriter = XmlWriter.Create(memoryStream, xmlSettings))
+    {
+        rssFeed.SaveAsRss20(xmlWriter); // You can use SaveAsRss20() if you prefer RSS 2.0 format
+        xmlWriter.Flush();
+        memoryStream.Position = 0;
+
+        using (var reader = new StreamReader(memoryStream))
+        {
+            rssFeedContent = reader.ReadToEnd();
+        }
+    }
+
+	project.AddOutput(new MetalsharpFile(rssFeedContent, "feed.xml"));
 
 	foreach (var post in project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts") && f.Metadata.TryGetValue("contents", out object isContentsObject) && isContentsObject is bool isContents && isContents))
 	{
@@ -131,35 +166,6 @@ new MetalsharpProject()
 		post.Text = postBuilder.ToString();
 		post.Metadata.Add("sections", sections);
 	}
-
-	var rssFeedContent = string.Empty;
-	var rssFeed = new SyndicationFeed(
-		"Ian Wold",
-		"Ian Wold's Blog",
-		new Uri("https://ian.wold.guru/feed.xml"),
-		rssItems
-	);
-
-	var xmlSettings = new XmlWriterSettings
-    {
-        Indent = true, // Optional: to format the XML for readability
-        OmitXmlDeclaration = true,
-        Encoding = Encoding.UTF8
-    };
-	using (var memoryStream = new MemoryStream())
-    using (var xmlWriter = XmlWriter.Create(memoryStream, xmlSettings))
-    {
-        rssFeed.SaveAsRss20(xmlWriter); // You can use SaveAsRss20() if you prefer RSS 2.0 format
-        xmlWriter.Flush();
-        memoryStream.Position = 0;
-
-        using (var reader = new StreamReader(memoryStream))
-        {
-            rssFeedContent = reader.ReadToEnd();
-        }
-    }
-
-	project.AddOutput(new MetalsharpFile(rssFeedContent, "feed.xml"));
 })
 .UseLiquidTemplates("Templates")
 .AddOutput("Static", @".\")
