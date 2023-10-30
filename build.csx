@@ -140,12 +140,24 @@ new MetalsharpProject()
 		rssItems
 	);
 
-	using (var stringWriter = new StringWriter())
-	using (var xmlWriter = XmlWriter.Create(stringWriter))
-	{
-		rssFeed.SaveAsRss20(xmlWriter);
-		rssFeedContent = stringWriter.ToString();
-	}
+	var xmlSettings = new XmlWriterSettings
+    {
+        Indent = true, // Optional: to format the XML for readability
+        OmitXmlDeclaration = true,
+        Encoding = Encoding.UTF8
+    };
+	using (var memoryStream = new MemoryStream())
+    using (var xmlWriter = XmlWriter.Create(memoryStream, settings))
+    {
+        rssFeed.SaveAsAtom10(xmlWriter); // You can use SaveAsRss20() if you prefer RSS 2.0 format
+        xmlWriter.Flush();
+        memoryStream.Position = 0;
+
+        using (var reader = new StreamReader(memoryStream))
+        {
+            rssFeedContent = reader.ReadToEnd();
+        }
+    }
 
 	project.AddOutput(new MetalsharpFile(rssFeedContent, "feed.xml"));
 })
