@@ -149,7 +149,7 @@ new MetalsharpProject()
 	using (var memoryStream = new MemoryStream())
     using (var xmlWriter = XmlWriter.Create(memoryStream, xmlSettings))
     {
-        rssFeed.SaveAsAtom10(xmlWriter); // You can use SaveAsRss20() if you prefer RSS 2.0 format
+        rssFeed.SaveAsRss20(xmlWriter); // You can use SaveAsRss20() if you prefer RSS 2.0 format
         xmlWriter.Flush();
         memoryStream.Position = 0;
 
