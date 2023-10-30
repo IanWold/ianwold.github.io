@@ -4,6 +4,200 @@
     <link>https://ian.wold.guru/feed.xml</link>
     <description>Ian Wold's Blog</description>
     <item>
+      <guid isPermaLink="false">a_scrum_odyssey</guid>
+      <link>https://ian.wold.guru/Posts/a_scrum_odyssey.html</link>
+      <title>A Scrum Odyssey</title>
+      <description>&lt;p&gt;I had an unexpected and not entirely unpleasant experience in a recent retrospective meeting: all of the engineers on the team moved to stop having daily standup meetings altogether. Although I'm no stranger to working without standup meetings, and in many ways I prefer that way of working, I don't think it's unreasonable to suggest that the majority of engineers are fine with well-structured daily standups.&lt;/p&gt;
+&lt;p&gt;Even with a team that enjoys standup meetings however, there's value in breaking the norm, becoming more flexible, and trying things out. Maybe such a team would settle back into daily standups, maybe they'd find something else that works for them. Teams which don't enjoy their standups though will almost certaily settle on a new scheme.&lt;/p&gt;
+&lt;p&gt;I sat down to type out a guide on how and why a team might experiment with alternative approaches to the daily standup. But that came out so incredibly dry I weaved those points into a story demonstrating a hypothetical team undergoing that process. That resulted in something which I'm not entirely sure got the point across. But then I remembered that ChatGPT (insert eye roll here) is actually pretty good at generating Shakespearean sonnets (insert double eye roll here). So, I ran my story through the ringer and I present to you &lt;strong&gt;A Scrum Odyssey: A journey away from daily scrum meetings, as a cycle of eight Shakespearean sonnets&lt;/strong&gt;:&lt;/p&gt;
+&lt;h1&gt;The Rite of Dawn's Assembly&lt;/h1&gt;
+&lt;p&gt;In days of yore, where standups held their sway,&lt;br /&gt;
+Religious teams to this rite did cling tight.&lt;br /&gt;
+Believing in its might, they'd all display&lt;br /&gt;
+Their tasks and toils, at morning's first light.&lt;/p&gt;
+&lt;p&gt;“'Tis the only path!” they’d loudly decree,&lt;br /&gt;
+To boost our voice and our work's potency.&lt;br /&gt;
+Yet, in this sea of daily scrutiny,&lt;br /&gt;
+Did they e'er question its necessity?&lt;/p&gt;
+&lt;p&gt;For in their hearts, joy and productivity,&lt;br /&gt;
+Seemed hand in hand with scrum's consistency.&lt;br /&gt;
+But having not trod another pathway,&lt;br /&gt;
+How sure were they, in their daily ballet?&lt;/p&gt;
+&lt;p&gt;To question not is to be but a drone,&lt;br /&gt;
+Yet change may show more ways than they've known.&lt;/p&gt;
+&lt;h1&gt;Whispers 'Midst the Court of Teams&lt;/h1&gt;
+&lt;p&gt;As time doth pass, objections loud do cry,&lt;br /&gt;
+Standups draw long, and patience wears so thin.&lt;br /&gt;
+Some feel the gaze of oversight too nigh,&lt;br /&gt;
+Whilst others sigh at tales they're lost within.&lt;/p&gt;
+&lt;p&gt;The daily rite, once held in high esteem,&lt;br /&gt;
+Now burdens hearts, and feels not quite so lean.&lt;br /&gt;
+&amp;quot;Maintain the stand!&amp;quot; the managers exclaim,&lt;br /&gt;
+&amp;quot;For knowledge's spread, 'tis the only regime.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Another quips, &amp;quot;'Tis how we stay aligned!&amp;quot;&lt;br /&gt;
+Yet in their hearts, a restlessness they find.&lt;br /&gt;
+The status quo, now feels a heavy chain,&lt;br /&gt;
+With every voice, there grows a silent pain.&lt;/p&gt;
+&lt;p&gt;Unease doth spread, as waters dark and deep,&lt;br /&gt;
+The team in hope, for change they might yet reap.&lt;/p&gt;
+&lt;h1&gt;Into Uncharted Councils Steered&lt;/h1&gt;
+&lt;p&gt;In growing dissent, the teams make their stand,&lt;br /&gt;
+To question the rites of daily discourse.&lt;br /&gt;
+With keen eyes they search, across the vast land,&lt;br /&gt;
+For new methods, their spirit to endorse.&lt;/p&gt;
+&lt;p&gt;The captains do doubt, and their concerns voice,&lt;br /&gt;
+Yet vibrant ideas do from teams arise.&lt;br /&gt;
+&amp;quot;Demos!&amp;quot; cries one, &amp;quot;Let our works make their noise!&amp;quot;,&lt;br /&gt;
+Another suggests, one-on-one 'neath the skies.&lt;/p&gt;
+&lt;p&gt;Pair programming, reviews, new tactics bloom,&lt;br /&gt;
+As weary traditions begin to wane.&lt;br /&gt;
+The tides of change, they sweep away the gloom,&lt;br /&gt;
+Old ways dissolve, as new paths become plain.&lt;/p&gt;
+&lt;p&gt;Thus in the dance of time and adaptability,&lt;br /&gt;
+Teams find their stride, and new possibility.&lt;/p&gt;
+&lt;h1&gt;Quests in the Halls of Converse&lt;/h1&gt;
+&lt;p&gt;In search of ways, the teams diverge their path,&lt;br /&gt;
+Asynchronous rites, emails that they pen,&lt;br /&gt;
+Fewer meets they seek, to avoid the wrath,&lt;br /&gt;
+Of daily drudgery, again and again.&lt;/p&gt;
+&lt;p&gt;More intimate chats, one-on-one they hold,&lt;br /&gt;
+In pair programming, they sharpen their skill.&lt;br /&gt;
+Exploring each method, both new and old,&lt;br /&gt;
+They weigh every boon, every bitter pill.&lt;/p&gt;
+&lt;p&gt;Managers, once stern, now their gaze doth shift,&lt;br /&gt;
+Witnessing changes, benefits unfold.&lt;br /&gt;
+Yielding their ground, as sands of time do sift,&lt;br /&gt;
+Embracing the new, releasing the old.&lt;/p&gt;
+&lt;p&gt;In the grand ballet of work's ebb and flow,&lt;br /&gt;
+Teams evolve, and brighter futures they sow.&lt;/p&gt;
+&lt;h1&gt;Where Two Worlds in Concert Meet&lt;/h1&gt;
+&lt;p&gt;From all the trials, some choices do emerge,&lt;br /&gt;
+Asynchronous standups, the globe's teams cheer.&lt;br /&gt;
+For visual minds, digital boards surge,&lt;br /&gt;
+As preferred tools, their thoughts to make clear.&lt;/p&gt;
+&lt;p&gt;Meetings grow few, much to all's delight,&lt;br /&gt;
+Those that remain, are purposeful and keen.&lt;br /&gt;
+Gone are the days of endless oversight,&lt;br /&gt;
+In place, moments of value are seen.&lt;/p&gt;
+&lt;p&gt;&amp;quot;Support!&amp;quot; cry the captains, in newfound glee,&lt;br /&gt;
+Feeling the strength of their teams' tethered core.&lt;br /&gt;
+From the throes of old, they now are set free,&lt;br /&gt;
+Bonded and strong, as never before.&lt;/p&gt;
+&lt;p&gt;From trials and tests, the best paths are clear,&lt;br /&gt;
+Teams and their leaders, in harmony steer.&lt;/p&gt;
+&lt;h1&gt;Musing on Fortune's Fickle Hand&lt;/h1&gt;
+&lt;p&gt;With shifts in tide, come trials unforeseen,&lt;br /&gt;
+Some souls do long for morning meetings past.&lt;br /&gt;
+An anchor lost, in routines once serene,&lt;br /&gt;
+Others claim that commitment's not so vast.&lt;/p&gt;
+&lt;p&gt;Managers note, their gaze oft on boards dwell,&lt;br /&gt;
+More than before, in this changed paradigm.&lt;br /&gt;
+For in each change, some benefits dispel,&lt;br /&gt;
+Replaced by costs, in this evolving time.&lt;/p&gt;
+&lt;p&gt;&amp;quot;No method’s perfect,&amp;quot; the team concedes true,&lt;br /&gt;
+Every path has its toll, its weight to bear.&lt;br /&gt;
+But in pursuit of what’s best, they pursue,&lt;br /&gt;
+Balancing gains, with costs they must wear.&lt;/p&gt;
+&lt;p&gt;In life’s grand dance of loss and of gain,&lt;br /&gt;
+Teams learn to thrive, through pleasure and pain.&lt;/p&gt;
+&lt;h1&gt;Melding Yesteryears with the Morrow&lt;/h1&gt;
+&lt;p&gt;From experiments vast, wisdom teams glean,&lt;br /&gt;
+Blending the best from methods they've tried.&lt;br /&gt;
+A hybrid emerges, both fresh and seen,&lt;br /&gt;
+Balancing old and new, side by side.&lt;/p&gt;
+&lt;p&gt;Asynchronous notes, for days in-between,&lt;br /&gt;
+With face-to-face meets, weekly they decide.&lt;br /&gt;
+Though returning to paths once before seen,&lt;br /&gt;
+They come renewed, with broader stride.&lt;/p&gt;
+&lt;p&gt;Most vital of all, in this new phase,&lt;br /&gt;
+Teams claim their process, its reins they hold.&lt;br /&gt;
+Each member engaged, in collective praise,&lt;br /&gt;
+For a system by them, shaped and molded.&lt;/p&gt;
+&lt;p&gt;From trials diverse, a way they have found,&lt;br /&gt;
+Where every voice in harmony does sound.&lt;/p&gt;
+&lt;h1&gt;Ascendance Beyond Time's Norms&lt;/h1&gt;
+&lt;p&gt;In newfound grace, the teams now flex and bend,&lt;br /&gt;
+Having learnt the worth of norms held askew.&lt;br /&gt;
+Witnessed have they, to what change can tend,&lt;br /&gt;
+The boon of steps, both retraced and anew.&lt;/p&gt;
+&lt;p&gt;The culture's hue, to feedback does incline,&lt;br /&gt;
+Embracing shifts, with open arms and heart.&lt;br /&gt;
+Where once was rigidity, now they entwine&lt;br /&gt;
+Flexibility, as their foremost art.&lt;/p&gt;
+&lt;p&gt;Managers see, that control's grip too tight,&lt;br /&gt;
+Does not always lead to the best of ways.&lt;br /&gt;
+Productivity, in this newfound light,&lt;br /&gt;
+Reaches peaks unseen, to everyone's praise.&lt;/p&gt;
+&lt;p&gt;From challenging norms, to heights unforeseen,&lt;br /&gt;
+They've journeyed forth, with purpose evergreen.&lt;/p&gt;
+</description>
+      <a10:updated>2023-10-20T00:00:00Z</a10:updated>
+    </item>
+    <item>
+      <guid isPermaLink="false">book_club_10-2023</guid>
+      <link>https://ian.wold.guru/Posts/book_club_10-2023.html</link>
+      <title>Book Club 10/2023: Functional Patterns in C#</title>
+      <description>&lt;p&gt;&lt;em&gt;My Book Club is a monthly curated list of things I've been reading or watching, sent out via my newsletter. If you'd like to follow along with me, please &lt;a href="https://buttondown.email/ianwold"&gt;subscribe to my newsletter&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Happy spooky season!&lt;/p&gt;
+&lt;p&gt;This month I've focused on functional domain modeling and related patterns. We're just a few weeks away from the release of the next version of C#, and like each previous version it'll introduce even more functional features. We still aren't getting discriminated unions, but as C# becomes more functional, these patterns are becoming increasingly more attractive. Traditionally, C# is written in OO or procedural styles, and from my perspective there doesn't seem to be a great deal of discussion among C# engineers about incorporating functional patterns. Maybe you run in different circles, but I think there's room for improvement across the board here. Even the result monad, which can be used within an entirely OO context, is infrequently implemented.&lt;/p&gt;
+&lt;p&gt;I think it's important to be discussing functional patterns in C#, for a few practical reasons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Eventually we're getting DU, and that's going to change a lot of things&lt;/li&gt;
+&lt;li&gt;Our F# colleagues are doing great work in this area, we should engage them more&lt;/li&gt;
+&lt;li&gt;Using functional patterns is cool&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;But above all, if C# supports these patterns and they can help us write better code, &lt;em&gt;why would we neglect them&lt;/em&gt;? To explore this topic, I've curated a set of talks by Scott Wlaschin and Mark Seemann who both do a great job explaining functional programming from a conceptual perspective, demonstrating its power in F#, and ultimately demonstrating C# equivalents.&lt;/p&gt;
+&lt;p&gt;I hope these talks make you all as excited for discriminated unions in C# as I am!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=2JB1_e5wZmU"&gt;Domain Modeling Made Functional - Scott Wlaschin (2019)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=srQt1NAHYC0"&gt;Functional Design Patterns - Scott Wlaschin (2017)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=WhEkBCWpDas"&gt;The Power of Composition - Scott Wlaschin (2018)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=IYzDFHx6QPY"&gt;The Lazy Programmer's Guide to Writing Thousands of Tests - Scott Wlaschin (2020)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=US8QG9I1XW0"&gt;Functional Architecture - The Pits of Success - Mark Seemann (2016)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=F9bznonKc64"&gt;Get Value out of Your Monad - Mark Seemann (2018)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=cxs7oLGrxQ4"&gt;From Dependency Injection to Dependency Rejection - Mark Seemann (2017)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=qBYVW4ghMi8"&gt;Dependency Injection Revisited - Mark Seemann (2018)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <a10:updated>2023-10-27T00:00:00Z</a10:updated>
+    </item>
+    <item>
+      <guid isPermaLink="false">book_club_9-2023</guid>
+      <link>https://ian.wold.guru/Posts/book_club_9-2023.html</link>
+      <title>Book Club 9/2023: Papers I Love</title>
+      <description>&lt;p&gt;&lt;em&gt;My Book Club is a monthly curated list of things I've been reading or watching, sent out via my newsletter. If you'd like to follow along with me, please &lt;a href="https://buttondown.email/ianwold"&gt;subscribe to my newsletter&lt;/a&gt;. Note: this first &amp;quot;Book Club&amp;quot; post is not included in the newsletter; I hadn't yet set up the newsletter.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Last week I attended the final &lt;a href="https://thestrangeloop.com/"&gt;Strange Loop Conference&lt;/a&gt;. This conference has been very influential on my career and my academic interests. In fact, this conference began a short time before I started making money in software. Having been able to watch the talks on the YouTubes over the years, I credit it with having a significant impact on how I've approached my career as well as my studies in college, where I got bachelors' in both philosophy and computer science.&lt;/p&gt;
+&lt;p&gt;However, I had never been to a Strange Loop before! It's bitersweet then that I was able to attend the final one. Perhaps unurprisingly, I attended several presentations sponsored by (or should I say &amp;quot;presented by&amp;quot;? unsure) &lt;a href="https://paperswelove.org/"&gt;Papers We Love&lt;/a&gt;. In that spirit, I'm going to share five papers here that cut across my philosophical and computer science inclinations that I have very much enjoyed over the years:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dinhe.net/%7Earedridel/.notmine/PDFs/Parsing/SPIEWAK%2C%20Daniel%20%282010%29%20-%20Generalized%20Parser%20Combinators.pdf"&gt;Generalized Parser Combinators - Daniel Spiewak&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://philpapers.org/archive/FLOSIA-5.pdf"&gt;Semantic Information and the Correctness Theory of Truth - Luciano Floridi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.type-driven.org.uk/edwinb/papers/impldtp.pdf"&gt;Idris, a General Purpose Dependently Typed Programming Language: Design and Implementation - Edwin Brady&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://people.umass.edu/klement/lambda.pdf"&gt;Russell's 1903-1905 Anticiaption of the Lambda Calculus - Kevin C. Klement&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ics.uci.edu/%7Efielding/pubs/dissertation/top.htm"&gt;Architectural Styles and the Design of Network-based Software Architectures - Roy Thomas Fielding&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <a10:updated>2023-09-28T00:00:00Z</a10:updated>
+    </item>
+    <item>
+      <guid isPermaLink="false">console2048</guid>
+      <link>https://ian.wold.guru/Posts/console2048.html</link>
+      <title>Console2048</title>
+      <description>&lt;p&gt;Jumping on the bandwagon, here's a C# implementation of Console 2048. Of course, 2048 has had a few console implementations, and most better done than this, but here it is anyway, because sometimes life is a mixed bag of apples and grapes.&lt;/p&gt;
+&lt;p&gt;I've got it on the GitHub &lt;a href="https://github.com/IanWold/Console2048"&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <a10:updated>2014-04-26T00:00:00Z</a10:updated>
+    </item>
+    <item>
+      <guid isPermaLink="false">daily_grug</guid>
+      <link>https://ian.wold.guru/Posts/daily_grug.html</link>
+      <title>Daily Grug</title>
+      <description>&lt;p&gt;One of favorite article is &lt;a href="https://grugbrain.dev/"&gt;The Grug Brained Developer&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Much wisdom, big article, hard read. Need daily small grug.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://bit.ly/daily-grug"&gt;So made API for daily grug&lt;/a&gt; and made home page.&lt;/p&gt;
+</description>
+      <a10:updated>2023-10-26T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">deploying_aspdotnet_7_projects_with_railway</guid>
       <link>https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html</link>
       <title>Deploying ASP.NET 7 Projects with Railway</title>
@@ -183,6 +377,31 @@ start      │ ./out/RailwayBlazorDemo.Client
 &lt;p&gt;&lt;a href="https://docs.railway.app/"&gt;Railway's documentation&lt;/a&gt; is pretty good, but their &lt;a href="https://discord.com/invite/railway"&gt;Discord server&lt;/a&gt; is an excellent and lively place to get help when you need it.&lt;/p&gt;
 </description>
       <a10:updated>2023-09-05T00:00:00Z</a10:updated>
+    </item>
+    <item>
+      <guid isPermaLink="false">giscus_is_awesome</guid>
+      <link>https://ian.wold.guru/Posts/giscus_is_awesome.html</link>
+      <title>Giscus Is Awesome</title>
+      <description>&lt;p&gt;&lt;a href="https://giscus.app/"&gt;giscus.app&lt;/a&gt; is really awesome!&lt;/p&gt;
+&lt;p&gt;Last week I posted for the first time in six years and I figured I wanted to see about adding comments to this site. A Google search got me to Giscus really quick, and I was able to wire it up in just ten minutes. The thing that's still blowing my mind is that &lt;em&gt;it works&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Behind the scenes, it syncs up with the GitHub Discussions tab on the repo that hosts this website, and it matches a discussion to a page based on the the page's title.&lt;/p&gt;
+&lt;p&gt;When somebody adds the first comment to a page, it creates a corresponding discussion thread for the page. When a page loads, it checks to see if there is a corresponding discussion and it loads the conversations from that discussion thread.&lt;/p&gt;
+&lt;p&gt;I can do comment moderation and whatnot on GitHub discussions, and if somebody stumbles upon my website on GitHub they can see the conversation right there. If the tool stops working, the conversations still exist in GitHub, living right alongside the source for this site.&lt;/p&gt;
+&lt;p&gt;And - I can't emphasis this enough - &lt;em&gt;it just works&lt;/em&gt;. I see so few tools that &lt;em&gt;just work&lt;/em&gt; and this one does.&lt;/p&gt;
+&lt;p&gt;Check it out!&lt;/p&gt;
+</description>
+      <a10:updated>2023-09-14T00:00:00Z</a10:updated>
+    </item>
+    <item>
+      <guid isPermaLink="false">monokai_gray</guid>
+      <link>https://ian.wold.guru/Posts/monokai_gray.html</link>
+      <title>Monokai Gray</title>
+      <description>&lt;p&gt;About a week (?) or so ago I hashed out a quick Sublime Text color scheme called Monokai Gray. I did so because I desperately love Monokai and I love the &lt;a href="https://sublime.wbond.net/packages/Wombat%20Theme"&gt;Wombat Theme&lt;/a&gt; as well. Unfortunately, I couldn't use Monokai with Wombat (without throwing up) because the yellowey hue of Monokai clashed with the classy grays of Wombat. Truthfully, I had been using a similar color scheme in Visual Studio for some time (the yellowey background didn't fly there, either). So I copied many of the colors over and prettied it up a tad, and this was the result.&lt;/p&gt;
+&lt;p&gt;Here's a preview of what it looks like with some code I got &lt;a href="https://wiki.python.org/moin/SimplePrograms"&gt;here&lt;/a&gt; using the aforementioned Wombat Theme:&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://bit.ly/MonokaiGraySample1" alt="Monokai Gray" /&gt;&lt;/p&gt;
+&lt;p&gt;If you think it's neat, you can &lt;a href="https://sublime.wbond.net/packages/Monokai%20Gray"&gt;check it out&lt;/a&gt; on Package Control. I love feedback and pull requests alike!&lt;/p&gt;
+</description>
+      <a10:updated>2013-12-05T00:00:00Z</a10:updated>
     </item>
     <item>
       <guid isPermaLink="false">sprache</guid>
@@ -641,6 +860,50 @@ Parser&amp;lt;JSONValue&amp;gt; JObject =
 &lt;/ul&gt;
 </description>
       <a10:updated>2016-01-22T00:00:00Z</a10:updated>
+    </item>
+    <item>
+      <guid isPermaLink="false">sprachedown</guid>
+      <link>https://ian.wold.guru/Posts/sprachedown.html</link>
+      <title>SpracheDown</title>
+      <description>&lt;p&gt;About a year and a half ago I attended one of the &lt;a href="http://www.twincitiescodecamp.com"&gt;Twin Cities Code Camps&lt;/a&gt;, and there I was shown a nifty library called Sprache. Sprache is, by no means, a novel invention. It's a monadic parser combinator based on years of programming done with similar libraries popular in functional languages. I say it's nifty because it seems to be the cleanest monadic parser combinator made in C#. It's also got a large enough following that keeps it up-to-date well enough, and it's what I was taught at the code camp.&lt;/p&gt;
+&lt;p&gt;Half a year after that, almost a full year ago now, I attended my first &lt;a href="http://www.iowacodecamp.com"&gt;Iowa Code Camp&lt;/a&gt;. One guy I taught about Sprache and monadic parser combinators asked if it was possible to create a markdown parser with it, and my answer was a brief &amp;quot;Well, yeah, you can totally do that.&amp;quot; I've been mulling that over for about a year now, and I decided to look for a Markdown parser implemented with a monadic parser combinator to see what it would look like.&lt;/p&gt;
+&lt;p&gt;I found an excellent &lt;a href="http://www.greghendershott.com/2013/11/markdown-parser-redesign.html"&gt;article&lt;/a&gt; by Greg Hendershott who implemented a MarkDown parser with a variation of Parsec for Racket. I browsed through his &lt;a href="https://github.com/greghendershott/markdown"&gt;parser&lt;/a&gt; on GitHub, and to my alarm it seemed that the parser itself was 1,000 lines long (I could be misreading that, I've no prior experience with Racket, but I'm assuming &amp;quot;parse.rkt&amp;quot; contains the parser). This compelled me to attempt such a parser with Sprache. If nothing else, it would be an interesting comparison.&lt;/p&gt;
+&lt;p&gt;So I began writing this parser in steps, gradually adding features to it. I started out with headers, then lists, then paragraphs, and so forth. As I was writing this parser, I deliberately omitted features from MarkDown, notably reference-style links and inline HTML. I think if you can parse the majority of MarkDown the little bits could be implemented with equal ease, so I don't believe this invalidates the parser. I may go on and add inline HTML (Sprache ships with an XML parser example), but so long as this is a neat little pet project, I don't think I'll go too far beyond that.&lt;/p&gt;
+&lt;p&gt;At first, I parsed the MarkDown text directly into strings representing the HTML output. This was efficient, but of course it wouldn't do for any parser - the user needs to be able to manipulate the output. To save time, I borrowed the syntax tree that Sprache's XML example comes with. I adapted and modified the objects with a couple methods to bend them to my will, so to speak, and from there it only took a minute to plug them into my parser.&lt;/p&gt;
+&lt;p&gt;One problem that Mr. Hendershott faced was parsing MarkDown's nested list feature (this is achieved by inserting spaces before the asterisk in MarkDown). I don't know if this was due to the language he was using or a limitation of the parser,&lt;/p&gt;
+&lt;p&gt;Now, I can't say I actually ran into any major problems when I implemented the parser. Granted, I ignored the MarkDown I didn't like so well, but as I said, I don't believe that invalidates the parser. In fact, my success with this parser speaks to the beauty inherent in parser combinators, specifically Sprache in this case. Over the past two days, I've spent a total of six hours working on this, and it's already relatively well-polished. The code is clear and readable, thoroughly commented, and the syntax tree is easily scalable. In addition, my parser is significantly smaller than Mr. Hendershott's parser (perhaps an advantage of Sprache in C# over Parsack in Racket?), and I don't believe I could top 1000 lines in the parser alone if I were to bring the parser up to speed with all of MarkDown's features.&lt;/p&gt;
+&lt;p&gt;As I've been saying, I wrote this as a proof of concept, and I don't really intend for it to go anywhere, but if you think this is the coolest thing ever and you want it to be something, you're more than welcome to submit pull requests, or you can fork it and do your own thing with it. I believe I've documented everything thoroughly, so it should be easy to find your way around, but if I've missed something don't wait to contact me. Have fun!&lt;/p&gt;
+&lt;p&gt;You can find SpracheDown on GitHub right &lt;a href="https://github.com/IanWold/SpracheDown"&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <a10:updated>2014-09-26T00:00:00Z</a10:updated>
+    </item>
+    <item>
+      <guid isPermaLink="false">sprachejson</guid>
+      <link>https://ian.wold.guru/Posts/sprachejson.html</link>
+      <title>SpracheJSON</title>
+      <description>&lt;p&gt;I've been meaning to write about this for a while now, but college got in the way of that. I wrote a deal I called SpracheJSON to parse JSON text into C# objects with Sprache, and it's kinda neat. I also played with the GitHub pages feature on this project, but that's not really interesting.&lt;/p&gt;
+&lt;p&gt;I got this thing to the point where is parses the JSON just fine, no problem. But I also figured it made sense to serialize between JSON and C# objects. Like the other parsers I've written have ended up, it's got its own AST to throw the JSON into, but I can't imagine I'd ever want to use generic objects to store my data (isn't that the whole point of JSON?) That said, I've never been a fan of ISerializable, so I've got my own custom serializer thing going on. Obviously that makes it kinda imperfect, but that's how the world goes, I suppose.&lt;/p&gt;
+&lt;p&gt;In the future I'm going to use ISerializable to make that part of the project go easier, but until then, I've got a nice half-baked parser here. I'm not going to detail the functionality of the library too much, but it's pretty slick, so you should definitely go check it out &lt;a href="https://github.com/IanWold/SpracheJSON"&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <a10:updated>2015-04-10T00:00:00Z</a10:updated>
+    </item>
+    <item>
+      <guid isPermaLink="false">sprache_comments</guid>
+      <link>https://ian.wold.guru/Posts/sprache_comments.html</link>
+      <title>Parsing Comments with Sprache</title>
+      <description>&lt;p&gt;I recently made a comment parser for the Sprache framework, and I wanted to give a basic run-down on how it works.&lt;/p&gt;
+&lt;p&gt;The CommentParser class gives you the option to define the header styles for comments, and it can parse both single- and multi-line comments. It's rather basic as of right now, but that's (hopefully) subject to change in the future.&lt;/p&gt;
+&lt;p&gt;Using CommentParser is pretty simple, but it's a tad different from the rest of the flow of Sprache as a combinator library. You'll need to make an instance of the CommentParser class, using the comment headers and (optional) newline character you require as arguments:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;static CommentParser comments = new CommentParser(&amp;quot;//&amp;quot;, &amp;quot;/*&amp;quot;, &amp;quot;*/&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;From there, CommentParser gives you a couple parsers you can use to parse single- and multi-line comments:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;static Parser&amp;lt;string&amp;gt; myParser = Parse.String(&amp;quot;foobar&amp;quot;).Text().Or(comments.AnyComment);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;CommentParser.AnyComment will parse either single- or multi-line comments for you, while CommentParser.SingleLineComment and CommentParser.MultiLineComment will parse those individually.&lt;/p&gt;
+&lt;p&gt;A real, working example using the CommentParser class can be found in Sprache's &lt;a href="https://github.com/sprache/Sprache/tree/master/src/XmlExample"&gt;XMLParser&lt;/a&gt; example.&lt;/p&gt;
+&lt;p&gt;In the future, it would be awesome if multiple comment headers could be included, and if whitespace could be defined to include comments. Some work towards this effort has been done on my GitHub &lt;a href="https://github.com/IanWold/Sprache/blob/Comments/src/Sprache/CommentParser.cs"&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <a10:updated>2015-02-06T00:00:00Z</a10:updated>
     </item>
   </channel>
 </rss>
