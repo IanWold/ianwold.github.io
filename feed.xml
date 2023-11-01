@@ -404,6 +404,155 @@ start      │ ./out/RailwayBlazorDemo.Client
       <a10:updated>2013-12-05T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">quick_and_dirty_sequential_ids_in_mongo</guid>
+      <link>https://ian.wold.guru/Posts/quick_and_dirty_sequential_ids_in_mongo.html</link>
+      <title>Quick &amp; Dirty Sequential IDs in MongoDB</title>
+      <description>&lt;p&gt;That Mongo doesn't natively support sequential IDs is one of the many knocks against it. Sure, you &lt;em&gt;should&lt;/em&gt; be using GUID IDs in Mongo, but suppose you're working on a microservices conversion and you have a legacy mainframe that needs to be able to know what your objects are? If you're content just using Atlas, you can create a counter collection and add a trigger for auto-incrementing IDs &lt;a href="https://www.mongodb.com/basics/mongodb-auto-increment"&gt;fairly easily&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Suppose however that you can't use a pure Atlas solution - you'll need to implement this logic yourself in your own code. If you happen to be working in a microservices environment you have concurrency concerns - there might be multiple shards of your database and/or multiple replicas of your microservice.&lt;/p&gt;
+&lt;p&gt;I had to implement this, so I'll write it down in case it might help you. I'll provide a solution in Go, which should be able to translate fairly well to any other language you might be using.&lt;/p&gt;
+&lt;h2&gt;Updating a counter collection&lt;/h2&gt;
+&lt;p&gt;As a prerequisite, ensure you have the Mongo driver:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;go get go.mongodb.org/mongo-driver/mongo
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Just as Mongo's tutorial for Atlas recommends, we'll implement a counter collection. This collection will contain one document per &amp;quot;kind&amp;quot; of ID we need to generate. If you have just one object that needs sequential IDs, then you'll only have one document in this collection. We'll represent this collection document with a struct. It only needs one field, &lt;code&gt;sequence&lt;/code&gt;, which will represent the latest ID generated:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-go"&gt;type MongoCounterDocument struct {
+    sequence int `bson:&amp;quot;sequence&amp;quot;`
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The ID of each document in the collection should be a string you hardcode or keep in a settings file (such as &lt;code&gt;&amp;quot;personIdCounter&amp;quot;&lt;/code&gt;), and doesn't need to be in the document struct. Instead, we'll encapsulate that in a generator struct along with a reference to the collection:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-go"&gt;type MongoIdGenerator struct {
+    counterCollection *mongo.Collection
+    counterDocumentId string
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To implement the functionality to generate the next ID, we'll use the &lt;code&gt;FindOneAndUpdate&lt;/code&gt; operation to increment &lt;code&gt;sequence&lt;/code&gt; and return the new ID to us. We can specify a couple options here: we can upsert the document so that it will be created automatically if one isn't there for us (useful for integration tests), and we can specify that we want the operation to read and return us a copy of the document &lt;em&gt;after&lt;/em&gt; the update has taken place.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-go"&gt;func (generator *MongoIdGenerator) GetNextId() (int, error) {
+    filter := bson.M{&amp;quot;_id&amp;quot;: m.counterDocumentId}
+    update := bson.M{&amp;quot;$inc&amp;quot;: bson.M(&amp;quot;sequence&amp;quot;: 1)}
+    options := options.FindOneAndUpdate().SetUpsert(true).SetReturnDocument(options.After)
+
+    var updatedDocument MongoIdCounter
+
+	err := m.counterCollection.FindOneAndUpdate(context.TODO(), filter, update, options).Decode(&amp;amp;updatedDocument)
+	if err != nil {
+		return 0, errors.New(&amp;quot;Unable to update Mongo id counter collection.&amp;quot;)
+	}
+
+	return updatedDocument.sequence, nil
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;FindOneAndUpdate&lt;/code&gt; is atomic and shouldn't have any concurrency concerns so long as you &lt;strong&gt;do not shard the counter collection&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2&gt;But I don't want to have to hit Mongo every time I want a new id&lt;/h2&gt;
+&lt;p&gt;Wow, you and I think alike, I didn't either. To get around this, we can have our app generate multiple IDs each time it hits Mongo and use these IDs until it runs out locally.&lt;/p&gt;
+&lt;p&gt;With this approach you have the concern that if your app is spinning up and tearing down too frequently, you'll start losing IDs in the mix. There are various strategies to mitigate this, such as retrieving a small number of IDs from Mongo each time or persisting the cache of IDs, but I'm not going to get into those here.&lt;/p&gt;
+&lt;p&gt;We'll add &lt;code&gt;nextId&lt;/code&gt; and &lt;code&gt;maxId&lt;/code&gt; properties to the generator object, as well as an increment field to specify how many IDs we should generate each time:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-go"&gt;type MongoIdGenerator struct {
+    counterCollection *mongo.Collection
+    counterDocumentId string
+    incrementBy       int
+    nextId            int
+    maxId             int
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We'll add a func to instantiate this at startup. It'll be important that your app only has one of these objects:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-go"&gt;func SetupMongoIdGenerator(collection *mongo.Collection, documentId string) *MongoIdGenerator {
+    return $MongoIdGenerator{
+		counterCollection   : collection,
+		counterDocumentId   : documentId,
+		idSequenceIncrement : 25,
+        nextId              : 0,
+        maxId               : 0
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And we can update our &lt;code&gt;GetNextId&lt;/code&gt; function to consult Mongo or not if &lt;code&gt;nextId&lt;/code&gt; equals &lt;code&gt;maxId&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-go"&gt;func (generator *MongoIdGenerator) GetNextId() (int, error) {
+    if generator.nextId == generator.maxId {
+        filter := bson.M{&amp;quot;_id&amp;quot;: m.counterDocumentId}
+        update := bson.M{&amp;quot;$inc&amp;quot;: bson.M(&amp;quot;sequence&amp;quot;: generator.incrementBy)}
+        options := options.FindOneAndUpdate().SetUpsert(true).SetReturnDocument(options.After)
+
+        var updatedDocument MongoIdCounter
+
+        err := m.counterCollection.FindOneAndUpdate(context.TODO(), filter, update, options).Decode(&amp;amp;updatedDocument)
+        if err != nil {
+            return 0, errors.New(&amp;quot;Unable to update Mongo id counter collection.&amp;quot;)
+        }
+
+        generator.nextId = updatedDocument.sequence - incrementBy
+        generator.maxId = updatedDocument.sequence
+    }
+
+    generator.nextId += 1
+	return generator.nextId, nil
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We do have a concurrency concern here though - we want to ensure &lt;code&gt;nextId&lt;/code&gt; and &lt;code&gt;maxId&lt;/code&gt; are only being accessed one at a time. We can use a mutex in the generator for this. Update the generator:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-go"&gt;type MongoIdGenerator struct {
+    counterCollection *mongo.Collection
+    counterDocumentId string
+    incrementBy       int
+    nextId            int
+    maxId             int
+    mutex             sync.Mutex
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And add the following two to the beginning of &lt;code&gt;GetNextId&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-go"&gt;generator.mutex.Lock()
+defer generator.mutex.Unlock()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That should be that! Here's the final code all together:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-go"&gt;type MongoCounterDocument struct {
+    sequence int `bson:&amp;quot;sequence&amp;quot;`
+}
+
+type MongoIdGenerator struct {
+    counterCollection *mongo.Collection
+    counterDocumentId string
+    incrementBy       int
+    nextId            int
+    maxId             int
+    mutex             sync.Mutex
+}
+
+func SetupMongoIdGenerator(collection *mongo.Collection, documentId string) *MongoIdGenerator {
+    return $MongoIdGenerator{
+		counterCollection   : collection,
+		counterDocumentId   : documentId,
+		idSequenceIncrement : 25,
+        nextId              : 0,
+        maxId               : 0
+    }
+}
+
+func (generator *MongoIdGenerator) GetNextId() (int, error) {
+    generator.mutex.Lock()
+    defer generator.mutex.Unlock()
+
+    if generator.nextId == generator.maxId {
+        filter := bson.M{&amp;quot;_id&amp;quot;: m.counterDocumentId}
+        update := bson.M{&amp;quot;$inc&amp;quot;: bson.M(&amp;quot;sequence&amp;quot;: generator.incrementBy)}
+        options := options.FindOneAndUpdate().SetUpsert(true).SetReturnDocument(options.After)
+
+        var updatedDocument MongoIdCounter
+
+        err := m.counterCollection.FindOneAndUpdate(context.TODO(), filter, update, options).Decode(&amp;amp;updatedDocument)
+        if err != nil {
+            return 0, errors.New(&amp;quot;Unable to update Mongo id counter collection.&amp;quot;)
+        }
+
+        generator.nextId = updatedDocument.sequence - incrementBy
+        generator.maxId = updatedDocument.sequence
+    }
+
+    generator.nextId += 1
+	return generator.nextId, nil
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+      <a10:updated>2023-11-01T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">sprache</guid>
       <link>https://ian.wold.guru/Posts/sprache.html</link>
       <title>An Introduction to Sprache</title>

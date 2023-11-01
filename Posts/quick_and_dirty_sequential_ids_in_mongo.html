@@ -1,0 +1,317 @@
+
+
+	
+
+
+<html>
+	<head>
+		<link rel="stylesheet" href="../reset.css" />
+		<link rel="stylesheet" href="../highlight/styles/monokai-sublime.min.css" />
+		<link rel="stylesheet" href="../site.css" />
+		
+		<script src="https://unpkg.com/feather-icons"></script>
+
+		<title>
+			Ian Wold | Quick & Dirty Sequential IDs in MongoDB 
+		</title>
+	</head>
+	<body>
+		<button id="dark-mode-toggle"><i data-feather="sun"></i></button>
+
+		<nav class="content">
+			<div class="headshot">
+				<img src="../images/hero1.svg" />
+			</div>
+			<div class="title">
+				<a href="../index.html">Ian Wold</a>
+			</div>
+			<ul>
+				<li><a href="../about.html">About</a></li>
+				<li><a href="https://buttondown.email/ianwold" target="_blank">Newsletter</a></li>
+			</ul>
+		</nav>
+		
+		
+
+
+
+
+<header class="content">
+	<h1>Quick & Dirty Sequential IDs in MongoDB</h1>
+	<small>
+		<span class="date">
+			<i data-feather="calendar"></i> 1 November 2023
+		</span>
+		<span class="time">
+			<i data-feather="clock"></i> 7  Minutes 
+		</span>
+	</small>
+	<p>Mongo doesn't natively support generating sequential IDs. Here's a quick & dirty solution to get you up and going if you need sequential IDs.</p>
+</header>
+
+<div class="content hero">
+	<img src="https://images.unsplash.com/photo-1534078362425-387ae9668c17?w=1000&h=525&fit=crop&crop=entropy" />
+</div>
+
+<div class="content">
+	
+	<div class="post">
+		<p>That Mongo doesn't natively support sequential IDs is one of the many knocks against it. Sure, you <em>should</em> be using GUID IDs in Mongo, but suppose you're working on a microservices conversion and you have a legacy mainframe that needs to be able to know what your objects are? If you're content just using Atlas, you can create a counter collection and add a trigger for auto-incrementing IDs <a href="https://www.mongodb.com/basics/mongodb-auto-increment">fairly easily</a>.</p>
+<p>Suppose however that you can't use a pure Atlas solution - you'll need to implement this logic yourself in your own code. If you happen to be working in a microservices environment you have concurrency concerns - there might be multiple shards of your database and/or multiple replicas of your microservice.</p>
+<p>I had to implement this, so I'll write it down in case it might help you. I'll provide a solution in Go, which should be able to translate fairly well to any other language you might be using.</p>
+<h2>Updating a counter collection</h2>
+<p>As a prerequisite, ensure you have the Mongo driver:</p>
+<pre><code>go get go.mongodb.org/mongo-driver/mongo
+</code></pre>
+<p>Just as Mongo's tutorial for Atlas recommends, we'll implement a counter collection. This collection will contain one document per &quot;kind&quot; of ID we need to generate. If you have just one object that needs sequential IDs, then you'll only have one document in this collection. We'll represent this collection document with a struct. It only needs one field, <code>sequence</code>, which will represent the latest ID generated:</p>
+<pre><code class="language-go">type MongoCounterDocument struct {
+    sequence int `bson:&quot;sequence&quot;`
+}
+</code></pre>
+<p>The ID of each document in the collection should be a string you hardcode or keep in a settings file (such as <code>&quot;personIdCounter&quot;</code>), and doesn't need to be in the document struct. Instead, we'll encapsulate that in a generator struct along with a reference to the collection:</p>
+<pre><code class="language-go">type MongoIdGenerator struct {
+    counterCollection *mongo.Collection
+    counterDocumentId string
+}
+</code></pre>
+<p>To implement the functionality to generate the next ID, we'll use the <code>FindOneAndUpdate</code> operation to increment <code>sequence</code> and return the new ID to us. We can specify a couple options here: we can upsert the document so that it will be created automatically if one isn't there for us (useful for integration tests), and we can specify that we want the operation to read and return us a copy of the document <em>after</em> the update has taken place.</p>
+<pre><code class="language-go">func (generator *MongoIdGenerator) GetNextId() (int, error) {
+    filter := bson.M{&quot;_id&quot;: m.counterDocumentId}
+    update := bson.M{&quot;$inc&quot;: bson.M(&quot;sequence&quot;: 1)}
+    options := options.FindOneAndUpdate().SetUpsert(true).SetReturnDocument(options.After)
+
+    var updatedDocument MongoIdCounter
+
+	err := m.counterCollection.FindOneAndUpdate(context.TODO(), filter, update, options).Decode(&amp;updatedDocument)
+	if err != nil {
+		return 0, errors.New(&quot;Unable to update Mongo id counter collection.&quot;)
+	}
+
+	return updatedDocument.sequence, nil
+}
+</code></pre>
+<p><code>FindOneAndUpdate</code> is atomic and shouldn't have any concurrency concerns so long as you <strong>do not shard the counter collection</strong>.</p>
+<h2>But I don't want to have to hit Mongo every time I want a new id</h2>
+<p>Wow, you and I think alike, I didn't either. To get around this, we can have our app generate multiple IDs each time it hits Mongo and use these IDs until it runs out locally.</p>
+<p>With this approach you have the concern that if your app is spinning up and tearing down too frequently, you'll start losing IDs in the mix. There are various strategies to mitigate this, such as retrieving a small number of IDs from Mongo each time or persisting the cache of IDs, but I'm not going to get into those here.</p>
+<p>We'll add <code>nextId</code> and <code>maxId</code> properties to the generator object, as well as an increment field to specify how many IDs we should generate each time:</p>
+<pre><code class="language-go">type MongoIdGenerator struct {
+    counterCollection *mongo.Collection
+    counterDocumentId string
+    incrementBy       int
+    nextId            int
+    maxId             int
+}
+</code></pre>
+<p>We'll add a func to instantiate this at startup. It'll be important that your app only has one of these objects:</p>
+<pre><code class="language-go">func SetupMongoIdGenerator(collection *mongo.Collection, documentId string) *MongoIdGenerator {
+    return $MongoIdGenerator{
+		counterCollection   : collection,
+		counterDocumentId   : documentId,
+		idSequenceIncrement : 25,
+        nextId              : 0,
+        maxId               : 0
+    }
+}
+</code></pre>
+<p>And we can update our <code>GetNextId</code> function to consult Mongo or not if <code>nextId</code> equals <code>maxId</code>:</p>
+<pre><code class="language-go">func (generator *MongoIdGenerator) GetNextId() (int, error) {
+    if generator.nextId == generator.maxId {
+        filter := bson.M{&quot;_id&quot;: m.counterDocumentId}
+        update := bson.M{&quot;$inc&quot;: bson.M(&quot;sequence&quot;: generator.incrementBy)}
+        options := options.FindOneAndUpdate().SetUpsert(true).SetReturnDocument(options.After)
+
+        var updatedDocument MongoIdCounter
+
+        err := m.counterCollection.FindOneAndUpdate(context.TODO(), filter, update, options).Decode(&amp;updatedDocument)
+        if err != nil {
+            return 0, errors.New(&quot;Unable to update Mongo id counter collection.&quot;)
+        }
+
+        generator.nextId = updatedDocument.sequence - incrementBy
+        generator.maxId = updatedDocument.sequence
+    }
+
+    generator.nextId += 1
+	return generator.nextId, nil
+}
+</code></pre>
+<p>We do have a concurrency concern here though - we want to ensure <code>nextId</code> and <code>maxId</code> are only being accessed one at a time. We can use a mutex in the generator for this. Update the generator:</p>
+<pre><code class="language-go">type MongoIdGenerator struct {
+    counterCollection *mongo.Collection
+    counterDocumentId string
+    incrementBy       int
+    nextId            int
+    maxId             int
+    mutex             sync.Mutex
+}
+</code></pre>
+<p>And add the following two to the beginning of <code>GetNextId</code>:</p>
+<pre><code class="language-go">generator.mutex.Lock()
+defer generator.mutex.Unlock()
+</code></pre>
+<p>That should be that! Here's the final code all together:</p>
+<pre><code class="language-go">type MongoCounterDocument struct {
+    sequence int `bson:&quot;sequence&quot;`
+}
+
+type MongoIdGenerator struct {
+    counterCollection *mongo.Collection
+    counterDocumentId string
+    incrementBy       int
+    nextId            int
+    maxId             int
+    mutex             sync.Mutex
+}
+
+func SetupMongoIdGenerator(collection *mongo.Collection, documentId string) *MongoIdGenerator {
+    return $MongoIdGenerator{
+		counterCollection   : collection,
+		counterDocumentId   : documentId,
+		idSequenceIncrement : 25,
+        nextId              : 0,
+        maxId               : 0
+    }
+}
+
+func (generator *MongoIdGenerator) GetNextId() (int, error) {
+    generator.mutex.Lock()
+    defer generator.mutex.Unlock()
+
+    if generator.nextId == generator.maxId {
+        filter := bson.M{&quot;_id&quot;: m.counterDocumentId}
+        update := bson.M{&quot;$inc&quot;: bson.M(&quot;sequence&quot;: generator.incrementBy)}
+        options := options.FindOneAndUpdate().SetUpsert(true).SetReturnDocument(options.After)
+
+        var updatedDocument MongoIdCounter
+
+        err := m.counterCollection.FindOneAndUpdate(context.TODO(), filter, update, options).Decode(&amp;updatedDocument)
+        if err != nil {
+            return 0, errors.New(&quot;Unable to update Mongo id counter collection.&quot;)
+        }
+
+        generator.nextId = updatedDocument.sequence - incrementBy
+        generator.maxId = updatedDocument.sequence
+    }
+
+    generator.nextId += 1
+	return generator.nextId, nil
+}
+</code></pre>
+
+	</div>
+	<div class="comments">
+		<script src="https://giscus.app/client.js"
+			data-repo="IanWold/ianwold.github.io"
+			data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk1NDkyNzI="
+			data-category="Posts"
+			data-category-id="DIC_kwDOCYKHWM4CZH2Y"
+			data-mapping="title"
+			data-strict="0"
+			data-reactions-enabled="0"
+			data-emit-metadata="0"
+			data-input-position="top"
+			data-theme="light"
+			data-lang="en"
+			data-loading="lazy"
+			crossorigin="anonymous"
+			async>
+		</script>
+	</div>
+</div>
+
+<div class="section-gray">
+	<div class="content post-end">
+		<img src="../images/hero1.svg" />
+		<div class="bio">
+			<h1>Hi, I'm Ian</h1>
+			<p>
+				I'm a software engineer, architect, and team leader in Minneapolis. My career has largely focused on .NET and web technologies, spread across several industries. Currently I'm working for Crate &amp; Barrel on their ecommerce solutions. You can find me on this blog, contributing to open source repositories, and at conferences around the Midwest.
+			</p>
+			<hr/>
+			<p>
+				Thank you for reading this post, I hope you found it valuable. If you'd like to keep up to date with my extremely consistent blog, please subscribe to my <a href="https://buttondown.email/ianwold" target="_blank">newsletter</a> or <a href="https://ian.wold.guru/feed.xml" target="_blank">RSS feed</a>.
+			</p>
+			<hr/>
+			<p>
+				Some other posts you might be interested in:
+			</p>
+			<div class="archive">
+				<ul>
+					
+						<li>
+							<a href="../Posts/deploying_aspdotnet_7_projects_with_railway.html">
+								Deploying ASP.NET 7 Projects with Railway<small>Railway is a startup cloud infrastructure provider that has gained traction for being easy to use and cheap for hobbyists. Let's get a .NET 7 Blazor WASM app up and running with it!</small>
+							</a>
+						</li>
+					
+						<li>
+							<a href="../Posts/giscus_is_awesome.html">
+								Giscus is Awesome<small>I can add comments to my statically generated blog? Using GitHub Discussions?? For Free??? And it works????</small>
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+		<footer>
+			<div class="content content-footer">
+				<span>
+					Copyright &copy; Ian Wold. Site generated by <a href="https://www.github.com/IanWold/Metalsharp">Metalsharp</a> and hosted by <a href="https://www.github.com/IanWold/ianwold.github.io">GitHub Pages</a>.
+				</span>
+				<div class="icon-links">
+					<a href="https://github.com/ianwold"><i data-feather="github"></i></a>
+					<!--<a href="#"><i data-feather="rss"></i></a>-->
+				</div>
+			</div>
+		</footer>
+
+		<script src="../highlight/highlight.min.js"></script>
+		<script>
+			feather.replace();
+			hljs.highlightAll();
+
+			window.addEventListener('DOMContentLoaded', () => {
+				const observer = new IntersectionObserver(entries => {
+					entries.forEach(entry => {
+						const id = entry.target.getAttribute('id');
+						let classList = document.querySelector(`.pane li a[href="#${id}"]`).parentElement.classList;
+
+						if (entry.intersectionRatio > 0) {
+							classList.add('active');
+						} else {
+							classList.remove('active');
+						}
+					});
+				});
+
+				document.querySelectorAll('section[id]').forEach((section) => {
+					observer.observe(section);
+				});
+			});
+
+			const darkModeToggle = document.getElementById("dark-mode-toggle");
+			const body = document.body;
+
+			function toggleDarkMode() {
+				body.classList.toggle("dark");
+
+				if (localStorage.getItem("dark") === "enabled") {
+					localStorage.setItem("dark", "disabled");
+				} else {
+					localStorage.setItem("dark", "enabled");
+				}
+			}
+
+			darkModeToggle.addEventListener("click", toggleDarkMode);
+
+			if (localStorage.getItem("dark") === "enabled") {
+				body.classList.toggle("dark");
+			}
+		</script>
+	</body>
+</html>
