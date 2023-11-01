@@ -1,13 +1,13 @@
 ;;;
 {
-	"title": "Quick & Dirty Sequential IDs in MongoDB",
-	"description": "Mongo doesn't natively support generating sequential IDs. Here's a quick & dirty solution to get you up and going if you need sequential IDs.",
-	"date": "1 November 2023",
-	"contents": false,
-	"hero": "photo-1534078362425-387ae9668c17",
+    "title": "Quick & Dirty Sequential IDs in MongoDB",
+    "description": "Mongo doesn't natively support generating sequential IDs. Here's a quick & dirty solution to get you up and going if you need sequential IDs.",
+    "date": "1 November 2023",
+    "contents": false,
+    "hero": "photo-1534078362425-387ae9668c17",
     "related": [
         { "title": "Deploying ASP.NET 7 Projects with Railway", "description": "Railway is a startup cloud infrastructure provider that has gained traction for being easy to use and cheap for hobbyists. Let's get a .NET 7 Blazor WASM app up and running with it!", "fileName": "deploying_aspdotnet_7_projects_with_railway" },
-		{ "title": "Giscus is Awesome", "description": "I can add comments to my statically generated blog? Using GitHub Discussions?? For Free??? And it works????", "fileName": "giscus_is_awesome" }
+        { "title": "Giscus is Awesome", "description": "I can add comments to my statically generated blog? Using GitHub Discussions?? For Free??? And it works????", "fileName": "giscus_is_awesome" }
     ]
 }
 ;;;
@@ -22,7 +22,7 @@ I had to implement this, so I'll write it down in case it might help you. I'll p
 
 As a prerequisite, ensure you have the Mongo driver:
 
-```
+```plaintext
 go get go.mongodb.org/mongo-driver/mongo
 ```
 
@@ -53,12 +53,12 @@ func (generator *MongoIdGenerator) GetNextId() (int, error) {
 
     var updatedDocument MongoIdCounter
 
-	err := m.counterCollection.FindOneAndUpdate(context.TODO(), filter, update, options).Decode(&updatedDocument)
-	if err != nil {
-		return 0, errors.New("Unable to update Mongo id counter collection.")
-	}
+    err := m.counterCollection.FindOneAndUpdate(context.TODO(), filter, update, options).Decode(&updatedDocument)
+    if err != nil {
+        return 0, errors.New("Unable to update Mongo id counter collection.")
+    }
 
-	return updatedDocument.sequence, nil
+    return updatedDocument.sequence, nil
 }
 ```
 
@@ -87,9 +87,9 @@ We'll add a func to instantiate this at startup. It'll be important that your ap
 ```go
 func SetupMongoIdGenerator(collection *mongo.Collection, documentId string) *MongoIdGenerator {
     return $MongoIdGenerator{
-		counterCollection   : collection,
-		counterDocumentId   : documentId,
-		idSequenceIncrement : 25,
+        counterCollection   : collection,
+        counterDocumentId   : documentId,
+        idSequenceIncrement : 25,
         nextId              : 0,
         maxId               : 0
     }
@@ -117,7 +117,7 @@ func (generator *MongoIdGenerator) GetNextId() (int, error) {
     }
 
     generator.nextId += 1
-	return generator.nextId, nil
+    return generator.nextId, nil
 }
 ```
 
@@ -159,9 +159,9 @@ type MongoIdGenerator struct {
 
 func SetupMongoIdGenerator(collection *mongo.Collection, documentId string) *MongoIdGenerator {
     return $MongoIdGenerator{
-		counterCollection   : collection,
-		counterDocumentId   : documentId,
-		idSequenceIncrement : 25,
+        counterCollection   : collection,
+        counterDocumentId   : documentId,
+        idSequenceIncrement : 25,
         nextId              : 0,
         maxId               : 0
     }
@@ -188,6 +188,6 @@ func (generator *MongoIdGenerator) GetNextId() (int, error) {
     }
 
     generator.nextId += 1
-	return generator.nextId, nil
+    return generator.nextId, nil
 }
 ```
