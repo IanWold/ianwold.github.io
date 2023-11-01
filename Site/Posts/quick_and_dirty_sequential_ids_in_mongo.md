@@ -18,7 +18,7 @@ Suppose however that you can't use a pure Atlas solution - you'll need to implem
 
 I had to implement this, so I'll write it down in case it might help you. I'll provide a solution in Go, which should be able to translate fairly well to any other language you might be using.
 
-## Updating a counter collection
+# Updating a counter collection
 
 As a prerequisite, ensure you have the Mongo driver:
 
@@ -64,7 +64,7 @@ func (generator *MongoIdGenerator) GetNextId() (int, error) {
 
 `FindOneAndUpdate` is atomic and shouldn't have any concurrency concerns so long as you **do not shard the counter collection**.
 
-## But I don't want to have to hit Mongo every time I want a new id
+# But I don't want to have to hit Mongo every time I want a new id
 
 Wow, you and I think alike, I didn't either. To get around this, we can have our app generate multiple IDs each time it hits Mongo and use these IDs until it runs out locally.
 
@@ -82,7 +82,7 @@ type MongoIdGenerator struct {
 }
 ```
 
-We'll add a func to instantiate this at startup. It'll be important that your app only has one of these objects:
+We'll add a func to instantiate this at startup. It'll be important that your app only has one of these objects per "kind" of ID you need to generate:
 
 ```go
 func SetupMongoIdGenerator(collection *mongo.Collection, documentId string) *MongoIdGenerator {
