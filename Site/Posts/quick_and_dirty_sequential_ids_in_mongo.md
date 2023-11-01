@@ -89,7 +89,8 @@ func SetupMongoIdGenerator(collection *mongo.Collection, documentId string) *Mon
     return $MongoIdGenerator{
         counterCollection   : collection,
         counterDocumentId   : documentId,
-        idSequenceIncrement : 25,
+        // Adjust this up or down depending on how many IDs you want to generate at once:
+        incrementBy         : 25,
         nextId              : 0,
         maxId               : 0
     }
@@ -161,7 +162,7 @@ func SetupMongoIdGenerator(collection *mongo.Collection, documentId string) *Mon
     return $MongoIdGenerator{
         counterCollection   : collection,
         counterDocumentId   : documentId,
-        idSequenceIncrement : 25,
+        incrementBy         : 25,
         nextId              : 0,
         maxId               : 0
     }
