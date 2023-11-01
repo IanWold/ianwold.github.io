@@ -43,7 +43,7 @@
 			<i data-feather="calendar"></i> 1 November 2023
 		</span>
 		<span class="time">
-			<i data-feather="clock"></i> 7  Minutes 
+			<i data-feather="clock"></i> 8  Minutes 
 		</span>
 	</small>
 	<p>Mongo doesn't natively support generating sequential IDs. Here's a quick & dirty solution to get you up and going if you need sequential IDs.</p>
@@ -61,7 +61,7 @@
 <p>I had to implement this, so I'll write it down in case it might help you. I'll provide a solution in Go, which should be able to translate fairly well to any other language you might be using.</p>
 <h2>Updating a counter collection</h2>
 <p>As a prerequisite, ensure you have the Mongo driver:</p>
-<pre><code>go get go.mongodb.org/mongo-driver/mongo
+<pre><code class="language-plaintext">go get go.mongodb.org/mongo-driver/mongo
 </code></pre>
 <p>Just as Mongo's tutorial for Atlas recommends, we'll implement a counter collection. This collection will contain one document per &quot;kind&quot; of ID we need to generate. If you have just one object that needs sequential IDs, then you'll only have one document in this collection. We'll represent this collection document with a struct. It only needs one field, <code>sequence</code>, which will represent the latest ID generated:</p>
 <pre><code class="language-go">type MongoCounterDocument struct {
@@ -82,12 +82,12 @@
 
     var updatedDocument MongoIdCounter
 
-	err := m.counterCollection.FindOneAndUpdate(context.TODO(), filter, update, options).Decode(&amp;updatedDocument)
-	if err != nil {
-		return 0, errors.New(&quot;Unable to update Mongo id counter collection.&quot;)
-	}
+    err := m.counterCollection.FindOneAndUpdate(context.TODO(), filter, update, options).Decode(&amp;updatedDocument)
+    if err != nil {
+        return 0, errors.New(&quot;Unable to update Mongo id counter collection.&quot;)
+    }
 
-	return updatedDocument.sequence, nil
+    return updatedDocument.sequence, nil
 }
 </code></pre>
 <p><code>FindOneAndUpdate</code> is atomic and shouldn't have any concurrency concerns so long as you <strong>do not shard the counter collection</strong>.</p>
@@ -106,9 +106,9 @@
 <p>We'll add a func to instantiate this at startup. It'll be important that your app only has one of these objects:</p>
 <pre><code class="language-go">func SetupMongoIdGenerator(collection *mongo.Collection, documentId string) *MongoIdGenerator {
     return $MongoIdGenerator{
-		counterCollection   : collection,
-		counterDocumentId   : documentId,
-		idSequenceIncrement : 25,
+        counterCollection   : collection,
+        counterDocumentId   : documentId,
+        idSequenceIncrement : 25,
         nextId              : 0,
         maxId               : 0
     }
@@ -133,7 +133,7 @@
     }
 
     generator.nextId += 1
-	return generator.nextId, nil
+    return generator.nextId, nil
 }
 </code></pre>
 <p>We do have a concurrency concern here though - we want to ensure <code>nextId</code> and <code>maxId</code> are only being accessed one at a time. We can use a mutex in the generator for this. Update the generator:</p>
@@ -166,9 +166,9 @@ type MongoIdGenerator struct {
 
 func SetupMongoIdGenerator(collection *mongo.Collection, documentId string) *MongoIdGenerator {
     return $MongoIdGenerator{
-		counterCollection   : collection,
-		counterDocumentId   : documentId,
-		idSequenceIncrement : 25,
+        counterCollection   : collection,
+        counterDocumentId   : documentId,
+        idSequenceIncrement : 25,
         nextId              : 0,
         maxId               : 0
     }
@@ -195,7 +195,7 @@ func (generator *MongoIdGenerator) GetNextId() (int, error) {
     }
 
     generator.nextId += 1
-	return generator.nextId, nil
+    return generator.nextId, nil
 }
 </code></pre>
 
