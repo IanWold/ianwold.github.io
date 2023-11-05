@@ -20,6 +20,6 @@ I maintain or help maintain, somewhat sporadically, the following:
 
 # Connect
 
-If you enjoy what I post here, I'd encourage you to [subscribe to my newsletter](https://buttondown.email/ianwold) where I share what I'm reading and what I've written. Otherwise, my [RSS feed](https://ian.wold.guru/feed.xml) has just my posts here.
+Please do email me at [mailto:ian@wold.guru?subject=Hello](ian@wold.guru) to get in contact!
 
-If you'd like to get in contact directly, I'm working on setting up ian@wold.guru. Check back soon to see when that's ready!
+If you enjoy what I post here, I'd encourage you to [subscribe to my newsletter](https://buttondown.email/ianwold) where I share what I'm reading and what I've written. Otherwise, my [RSS feed](https://ian.wold.guru/feed.xml) has just my posts here.
