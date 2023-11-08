@@ -4,6 +4,39 @@
     <link>https://ian.wold.guru/feed.xml</link>
     <description>Ian Wold's Blog</description>
     <item>
+      <guid isPermaLink="false">adding_a_database_to_our_railway_app</guid>
+      <link>https://ian.wold.guru/Posts/adding_a_database_to_our_railway_app.html</link>
+      <title>Adding a Database to our Railway App</title>
+      <description>&lt;p&gt;&lt;a href="https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html"&gt;Last time I looked at Railway&lt;/a&gt;, I got it up and running with a Blazor WASM app. Now, I'll look at adding a PostgreSQL database to it. As with the app I got working, Railway's interface will make it incredibly simple to provision the database, and we'll need to do minimal work to get the connection info to our app.&lt;/p&gt;
+&lt;h1&gt;Provisioning the Database&lt;/h1&gt;
+&lt;p&gt;From the Railway dashboard, you can click into your project, and there should be a New button at the top (as in a buttno that says &amp;quot;New&amp;quot;, not a button whose appearance would not heretofore be expected):&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/railway-database-new.png" alt="New Project button in Railway" /&gt;&lt;/p&gt;
+&lt;p&gt;This brings up the familiar dialog to provision resources, from which we'll select Database:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/railway-database-new-project.png" alt="New Project button in Railway" /&gt;&lt;/p&gt;
+&lt;p&gt;And then I'm going to choose PostgreSQL here. Note that if Railway doesn't have an option here for the database you want, you can always create a plain Docker image from an image of your preferred database.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/railway-database-new-database.png" alt="New Project button in Railway" /&gt;&lt;/p&gt;
+&lt;p&gt;And look at that, it deploys a new PostgreSQL database! This is one of the things I love about Railway - their interface to set up resources has eliminated &lt;em&gt;all&lt;/em&gt; of the steps to setup that aren't 100% necessary, and the default settings they choose are logical and easily overwritten later if we need.&lt;/p&gt;
+&lt;p&gt;Notice also the attached &lt;code&gt;pgdata&lt;/code&gt; volume. As discussed before, Railway just stores all of your resources in Docker images. This doesn't require that you create a &lt;code&gt;dockerfile&lt;/code&gt; for each of your projects and resources, they can do that for you if you don't want to. It is to say that they give you all the tools you might want to use to be able to manage your resources as docker containers and volumes, so you can more or less choose the level of control you need over your resources.&lt;/p&gt;
+&lt;p&gt;The way I use Railway, I let it manage all my resources for me, and I don't bog myself down in the weeds of Docker as much. I've got plenty of time in my day job to get frustrated with Docker!&lt;/p&gt;
+&lt;h1&gt;Connecting to our Database&lt;/h1&gt;
+&lt;p&gt;If you click on your new database resource and then the &lt;code&gt;Variables&lt;/code&gt; tab, you should see a bunch of variables:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/railway-database-variables.png" alt="New Project button in Railway" /&gt;&lt;/p&gt;
+&lt;p&gt;This contains all the information that our app will need to connect to it. Railway allows the resources within a project to reference each others' variables, so we just need to know which ones to reference to build a connection string.&lt;/p&gt;
+&lt;p&gt;Now, they've all got incredibly obvious names so you can certainly accomplish this by guessing in as much time as it takes you to read this article, but for thoroughness' sake I've got a connection string here:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-plaintext"&gt;User Id=${{Postgres.PGUSER}};Password=${{Postgres.PGPASSWORD}};Host=${{Postgres.PGHOST}};Port=${{Postgres.PGPORT}};Database=${{Postgres.PGDATABASE}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you copy that as the value of a new variable in your application, it will fill in each of the references with the values from your database's variables, and that should be a sufficient connectino string to test that it works:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/railway-database-connection-string.png" alt="New Project button in Railway" /&gt;&lt;/p&gt;
+&lt;p&gt;Note that I'm using the variable name &lt;code&gt;ConnectionStrings__Database&lt;/code&gt;, with two underscores, which behaves as though I'm inserting the following into my &lt;code&gt;appsettings&lt;/code&gt; (in a .NET context):&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;&amp;quot;ConnectionStrings&amp;quot;: {
+    &amp;quot;Database&amp;quot;: &amp;quot;...&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And that's all the configuration needed for your app to be able to consume your new database!&lt;/p&gt;
+</description>
+      <a10:updated>2023-11-08T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">a_scrum_odyssey</guid>
       <link>https://ian.wold.guru/Posts/a_scrum_odyssey.html</link>
       <title>A Scrum Odyssey</title>

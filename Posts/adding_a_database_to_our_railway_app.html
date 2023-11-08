@@ -1,0 +1,207 @@
+
+
+	
+
+
+<html>
+	<head>
+		<link rel="stylesheet" href="../reset.css" />
+		<link rel="stylesheet" href="../highlight/styles/monokai-sublime.min.css" />
+		<link rel="stylesheet" href="../site.css" />
+		
+		<script src="https://unpkg.com/feather-icons"></script>
+
+		<title>
+			Ian Wold | Adding a Database to our Railway App 
+		</title>
+	</head>
+	<body>
+		<button id="dark-mode-toggle"><i data-feather="sun"></i></button>
+
+		<nav class="content">
+			<div class="headshot">
+				<img src="../images/hero1.svg" />
+			</div>
+			<div class="title">
+				<a href="../index.html">Ian Wold</a>
+			</div>
+			<ul>
+				<li><a href="../about.html">About</a></li>
+				<li><a href="https://buttondown.email/ianwold" target="_blank">Newsletter</a></li>
+			</ul>
+		</nav>
+		
+		
+
+
+
+
+<header class="content">
+	<h1>Adding a Database to our Railway App</h1>
+	<small>
+		<span class="date">
+			<i data-feather="calendar"></i> 8 November 2023
+		</span>
+		<span class="time">
+			<i data-feather="clock"></i> 3  Minutes 
+		</span>
+	</small>
+	<p>Last time I looked at Railway, I got it up and running with a Blazor WASM app. Now, I'll look at adding a PostgreSQL database to it.</p>
+</header>
+
+<div class="content hero">
+	<img src="https://images.unsplash.com/photo-1552966722-678bbeb9d89a?w=1000&h=525&fit=crop&crop=entropy" />
+</div>
+
+<div class="content">
+	
+	<div class="post">
+		<p><a href="https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html">Last time I looked at Railway</a>, I got it up and running with a Blazor WASM app. Now, I'll look at adding a PostgreSQL database to it. As with the app I got working, Railway's interface will make it incredibly simple to provision the database, and we'll need to do minimal work to get the connection info to our app.</p>
+<h1>Provisioning the Database</h1>
+<p>From the Railway dashboard, you can click into your project, and there should be a New button at the top (as in a buttno that says &quot;New&quot;, not a button whose appearance would not heretofore be expected):</p>
+<p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/railway-database-new.png" alt="New Project button in Railway" /></p>
+<p>This brings up the familiar dialog to provision resources, from which we'll select Database:</p>
+<p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/railway-database-new-project.png" alt="New Project button in Railway" /></p>
+<p>And then I'm going to choose PostgreSQL here. Note that if Railway doesn't have an option here for the database you want, you can always create a plain Docker image from an image of your preferred database.</p>
+<p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/railway-database-new-database.png" alt="New Project button in Railway" /></p>
+<p>And look at that, it deploys a new PostgreSQL database! This is one of the things I love about Railway - their interface to set up resources has eliminated <em>all</em> of the steps to setup that aren't 100% necessary, and the default settings they choose are logical and easily overwritten later if we need.</p>
+<p>Notice also the attached <code>pgdata</code> volume. As discussed before, Railway just stores all of your resources in Docker images. This doesn't require that you create a <code>dockerfile</code> for each of your projects and resources, they can do that for you if you don't want to. It is to say that they give you all the tools you might want to use to be able to manage your resources as docker containers and volumes, so you can more or less choose the level of control you need over your resources.</p>
+<p>The way I use Railway, I let it manage all my resources for me, and I don't bog myself down in the weeds of Docker as much. I've got plenty of time in my day job to get frustrated with Docker!</p>
+<h1>Connecting to our Database</h1>
+<p>If you click on your new database resource and then the <code>Variables</code> tab, you should see a bunch of variables:</p>
+<p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/railway-database-variables.png" alt="New Project button in Railway" /></p>
+<p>This contains all the information that our app will need to connect to it. Railway allows the resources within a project to reference each others' variables, so we just need to know which ones to reference to build a connection string.</p>
+<p>Now, they've all got incredibly obvious names so you can certainly accomplish this by guessing in as much time as it takes you to read this article, but for thoroughness' sake I've got a connection string here:</p>
+<pre><code class="language-plaintext">User Id=${{Postgres.PGUSER}};Password=${{Postgres.PGPASSWORD}};Host=${{Postgres.PGHOST}};Port=${{Postgres.PGPORT}};Database=${{Postgres.PGDATABASE}}
+</code></pre>
+<p>If you copy that as the value of a new variable in your application, it will fill in each of the references with the values from your database's variables, and that should be a sufficient connectino string to test that it works:</p>
+<p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/railway-database-connection-string.png" alt="New Project button in Railway" /></p>
+<p>Note that I'm using the variable name <code>ConnectionStrings__Database</code>, with two underscores, which behaves as though I'm inserting the following into my <code>appsettings</code> (in a .NET context):</p>
+<pre><code class="language-json">&quot;ConnectionStrings&quot;: {
+    &quot;Database&quot;: &quot;...&quot;
+}
+</code></pre>
+<p>And that's all the configuration needed for your app to be able to consume your new database!</p>
+
+	</div>
+	<div class="comments">
+		<script src="https://giscus.app/client.js"
+			data-repo="IanWold/ianwold.github.io"
+			data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk1NDkyNzI="
+			data-category="Posts"
+			data-category-id="DIC_kwDOCYKHWM4CZH2Y"
+			data-mapping="title"
+			data-strict="0"
+			data-reactions-enabled="0"
+			data-emit-metadata="0"
+			data-input-position="top"
+			data-theme="light"
+			data-lang="en"
+			data-loading="lazy"
+			crossorigin="anonymous"
+			async>
+		</script>
+	</div>
+</div>
+
+<div class="section-gray">
+	<div class="content post-end">
+		<img src="../images/hero1.svg" />
+		<div class="bio">
+			<h1>Hi, I'm Ian</h1>
+			<p>
+				I'm a software engineer, architect, and team leader in Minneapolis. My career has largely focused on .NET and web technologies, spread across several industries. Currently I'm working for Crate &amp; Barrel on their ecommerce solutions. You can find me on this blog, contributing to open source repositories, and at conferences around the Midwest.
+			</p>
+			<hr/>
+			<p>
+				Thank you for reading this post, I hope you found it valuable. If you'd like to keep up to date with my extremely consistent blog, please subscribe to my <a href="https://buttondown.email/ianwold" target="_blank">newsletter</a> or <a href="https://ian.wold.guru/feed.xml" target="_blank">RSS feed</a>.
+			</p>
+			<hr/>
+			<p>
+				Some other posts you might be interested in:
+			</p>
+			<div class="archive">
+				<ul>
+					
+						<li>
+							<a href="../Posts/deploying_aspnet_7_projects_with_railway.html">
+								Deploying ASP.NET 7 Projects with Railway<small>Railway is a startup cloud infrastructure provider that has gained traction for being easy to use and cheap for hobbyists. Let's get a .NET 7 Blazor WASM app up and running with it!</small>
+							</a>
+						</li>
+					
+						<li>
+							<a href="../Posts/.html">
+								Book Club 10/2023: Functional Patterns in C#<small>This month I've focused on functional domain modeling and related patterns. We're just a few weeks away from the release of the next version of C#, and like each previous version it'll introduce even more functional features.</small>
+							</a>
+						</li>
+					
+						<li>
+							<a href="../Posts/sprache.html">
+								An Introduction to Sprache<small>Sprache is a parser-combinator library for C# that uses Linq to construct parsers. In this post I describe the fundamentals of understanding grammars and parsing them with Sprache, with several real-world examples.</small>
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+		<footer>
+			<div class="content content-footer">
+				<span>
+					Copyright &copy; Ian Wold. Site generated by <a href="https://www.github.com/IanWold/Metalsharp">Metalsharp</a> and hosted by <a href="https://www.github.com/IanWold/ianwold.github.io">GitHub Pages</a>.
+				</span>
+				<div class="icon-links">
+					<a href="https://github.com/ianwold"><i data-feather="github"></i></a>
+					<!--<a href="#"><i data-feather="rss"></i></a>-->
+				</div>
+			</div>
+		</footer>
+
+		<script src="../highlight/highlight.min.js"></script>
+		<script>
+			feather.replace();
+			hljs.highlightAll();
+
+			window.addEventListener('DOMContentLoaded', () => {
+				const observer = new IntersectionObserver(entries => {
+					entries.forEach(entry => {
+						const id = entry.target.getAttribute('id');
+						let classList = document.querySelector(`.pane li a[href="#${id}"]`).parentElement.classList;
+
+						if (entry.intersectionRatio > 0) {
+							classList.add('active');
+						} else {
+							classList.remove('active');
+						}
+					});
+				});
+
+				document.querySelectorAll('section[id]').forEach((section) => {
+					observer.observe(section);
+				});
+			});
+
+			const darkModeToggle = document.getElementById("dark-mode-toggle");
+			const body = document.body;
+
+			function toggleDarkMode() {
+				body.classList.toggle("dark");
+
+				if (localStorage.getItem("dark") === "enabled") {
+					localStorage.setItem("dark", "disabled");
+				} else {
+					localStorage.setItem("dark", "enabled");
+				}
+			}
+
+			darkModeToggle.addEventListener("click", toggleDarkMode);
+
+			if (localStorage.getItem("dark") === "enabled") {
+				body.classList.toggle("dark");
+			}
+		</script>
+	</body>
+</html>
