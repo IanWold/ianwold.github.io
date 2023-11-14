@@ -2,7 +2,7 @@
 {
 	"title": "\"Should I Learn (Insert Tech Here)?\"",
 	"description": "One of the most common questions - would it be good to learn this or that language, framework, paradigm, etc? Taking even a small amount of time to learn something new is good all around, but is it really worth making an investment in yourself to grow personally and professionally? Let's take a deep dive into this topic.",
-	"date": "27 October 2023",
+	"date": "14 November 2023",
 	"contents": false,
 	"hero": "photo-1522435229388-6f7a422cd95b",
     "related": [
