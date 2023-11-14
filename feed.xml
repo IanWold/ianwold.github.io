@@ -587,14 +587,6 @@ func (generator *MongoIdGenerator) GetNextId() (int, error) {
       <a10:updated>2023-11-01T00:00:00Z</a10:updated>
     </item>
     <item>
-      <guid isPermaLink="false">should_i_learn_insert_tech_here</guid>
-      <link>https://ian.wold.guru/Posts/should_i_learn_insert_tech_here.html</link>
-      <title>"Should I Learn (Insert Tech Here)?"</title>
-      <description>&lt;p&gt;Yes.&lt;/p&gt;
-</description>
-      <a10:updated>2023-11-14T00:00:00Z</a10:updated>
-    </item>
-    <item>
       <guid isPermaLink="false">sprache</guid>
       <link>https://ian.wold.guru/Posts/sprache.html</link>
       <title>An Introduction to Sprache</title>
@@ -1095,6 +1087,14 @@ Parser&amp;lt;JSONValue&amp;gt; JObject =
 &lt;p&gt;In the future, it would be awesome if multiple comment headers could be included, and if whitespace could be defined to include comments. Some work towards this effort has been done on my GitHub &lt;a href="https://github.com/IanWold/Sprache/blob/Comments/src/Sprache/CommentParser.cs"&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
       <a10:updated>2015-02-06T00:00:00Z</a10:updated>
+    </item>
+    <item>
+      <guid isPermaLink="false">would_it_be_good_to_learn_insert_tech_here</guid>
+      <link>https://ian.wold.guru/Posts/would_it_be_good_to_learn_insert_tech_here.html</link>
+      <title>"Would it be good to Learn (Insert Tech Here)?"</title>
+      <description>&lt;p&gt;Yes.&lt;/p&gt;
+</description>
+      <a10:updated>2023-11-14T00:00:00Z</a10:updated>
     </item>
   </channel>
 </rss>
