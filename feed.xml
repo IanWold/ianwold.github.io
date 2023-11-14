@@ -587,6 +587,14 @@ func (generator *MongoIdGenerator) GetNextId() (int, error) {
       <a10:updated>2023-11-01T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">should_i_learn_insert_tech_here</guid>
+      <link>https://ian.wold.guru/Posts/should_i_learn_insert_tech_here.html</link>
+      <title>"Should I Learn (Insert Tech Here)?"</title>
+      <description>&lt;p&gt;Yes.&lt;/p&gt;
+</description>
+      <a10:updated>2023-10-27T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">sprache</guid>
       <link>https://ian.wold.guru/Posts/sprache.html</link>
       <title>An Introduction to Sprache</title>
