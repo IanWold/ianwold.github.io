@@ -16,7 +16,7 @@ That Mongo doesn't natively support sequential IDs is one of the many knocks aga
 
 Suppose however that you can't use a pure Atlas solution - you'll need to implement this logic yourself in your own code. If you happen to be working in a microservices environment you have concurrency concerns - there might be multiple shards of your database and/or multiple replicas of your microservice.
 
-I had to implement this, so I'll write it down in case it might help you. I'll provide a solution in Go, which should be able to translate fairly well to any other language you might be using.
+Is a primary key generator really the sort of thing you want "quick and dirty"? Probably not. Am I doing it in prod? Yes.
 
 # Updating a counter collection
 
@@ -66,7 +66,7 @@ func (generator *MongoIdGenerator) GetNextId() (int, error) {
 
 # But I don't want to have to hit Mongo every time I want a new id
 
-Wow, you and I think alike, I didn't either. To get around this, we can have our app generate multiple IDs each time it hits Mongo and use these IDs until it runs out locally.
+Huh, you and I think alike, I didn't either! To get around this, we can have our app generate multiple IDs each time it hits Mongo and use these IDs until it runs out locally.
 
 With this approach you have the concern that if your app is spinning up and tearing down too frequently, you'll start losing IDs in the mix. There are various strategies to mitigate this, such as retrieving a small number of IDs from Mongo each time or persisting the cache of IDs, but I'm not going to get into those here.
 
