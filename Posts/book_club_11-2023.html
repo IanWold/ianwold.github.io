@@ -1,0 +1,205 @@
+
+
+	
+
+
+<html>
+	<head>
+		<link rel="stylesheet" href="../reset.css" />
+		<link rel="stylesheet" href="../highlight/styles/monokai-sublime.min.css" />
+		<link rel="stylesheet" href="../site.css" />
+		
+		<script src="https://unpkg.com/feather-icons"></script>
+
+		<title>
+			Ian Wold | Book Club 11/2023: New .NET, New C# 
+		</title>
+	</head>
+	<body>
+		<button id="dark-mode-toggle"><i data-feather="sun"></i></button>
+
+		<nav class="content">
+			<div class="headshot">
+				<img src="../images/hero1.svg" />
+			</div>
+			<div class="title">
+				<a href="../index.html">Ian Wold</a>
+			</div>
+			<ul>
+				<li><a href="../about.html">About</a></li>
+				<li><a href="https://buttondown.email/ianwold" target="_blank">Newsletter</a></li>
+			</ul>
+		</nav>
+		
+		
+
+
+
+
+<header class="content">
+	<h1>Book Club 11/2023: New .NET, New C#</h1>
+	<small>
+		<span class="date">
+			<i data-feather="calendar"></i> 22 November 2023
+		</span>
+		<span class="time">
+			<i data-feather="clock"></i> 4  Minutes 
+		</span>
+	</small>
+	<p>The release of .NET 8 brings a lot of features I'm excited for!</p>
+</header>
+
+<div class="content hero">
+	<img src="https://images.unsplash.com/photo-1625314517201-dd442445cf42?w=1000&h=525&fit=crop&crop=entropy" />
+</div>
+
+<div class="content">
+	
+	<div class="post">
+		<p><em>My Book Club is a monthly curated list of things I've been reading or watching, sent out via my newsletter. If you'd like to follow along with me, please <a href="https://buttondown.email/ianwold">subscribe to my newsletter</a>.</em></p>
+<p>I'm looking forward to turkey day tomorrow gobble gobble! This year I'm thankful that I work in ecommerce so I get to have a peaceful extended weekend because nobody visits ecommerce sites on Thanksgiving weekend. At least that's what they told me in the interview before they hired me. <em>Insert joke about how it's better to be working in ecommerce than at OpenAI this weekend regardless...</em></p>
+<p>Anyway, last week we got the new release of .NET, which brings langauge and tooling updates across the board, so I want to focus on some of those fun things.</p>
+<p>First, Blazor has taken the third (or is it fourth now) of the 1,000 steps it needs to take to become a viable platform for SAAS, with hybrid client/server rendering. I don't have a lot to say there, but I use Blazor for a number of personal projects when I need to quickly draw up a UI to look into some .NET backend scenario or another.</p>
+<p>Since Microsoft started down the path of .NET Core, the whole ecosystem has been embracing OSS and free software in a way that's completely rewritten the whole modus operandi of Microsoft under Nadela. Indeed, it seems like at this point in time, you can use .NET without a single worry about vendor lock-in. Well, Microsoft is here to save you from that horrible wasteland of unrestricted freedom with <a href="https://devblogs.microsoft.com/dotnet/introducing-dotnet-aspire-simplifying-cloud-native-development-with-dotnet-8/">.NET Aspire</a>. Nevermind that <a href="https://www.fearofoblivion.com/build-a-modular-monolith-first">you probably don't need a distributed system</a>, and even if you did <a href="https://renegadeotter.com/2023/09/10/death-by-a-thousand-microservices.html">you almost certainly don't need microservices</a>, they have cloud computes to sell you! Aspire makes it easy to avoid footgunning yourself as you begin your next project distributed from the start by skipping you right to the step where you blow your foot off with a bazooka - all hail the mighty Azure! Or, you know, if like 99.99% of all apps out there you'd be fine with it deployed in a Docker container with a couple of related services, <a href="https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html">you could just use Railway</a>. <em>Note that I'm definitely queuing up an article on using Aspire with Railway despite my skepticism that Aspire is a good idea.</em></p>
+<p><a href="https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12">C# hasn't gotten too many updates</a>, but we have two syntactical updates that are essential and should have been included much earlier: collection expressions and primary constructors for classes.</p>
+<p>Collection expressions, or perhaps &quot;enumerable literals&quot;, should have been a part of the language from the start, and you should convert all of your code over to using these.</p>
+<pre><code class="language-csharp">var list = [1, 2, 3, 4, 5];
+</code></pre>
+<p>Records have had primary constructors since they were introduced, and I think that was largely related to the desire to have tuple interop (is interop the right word here?), but now classes have them too <em>except quite different</em>. The parameters in a primary constructor for a class are, more logically than records, private members of that class, significantly reducing the amount of boilerplate <a href="https://ian.wold.guru/Posts/book_club_10-2023.html">if you're still using dependency injection</a>. It's been how many years since Scala came out, but now we can be one of the cool kids on the block too! Right?</p>
+<p>Anyway, I'll just leave you with a few talks from the .NET conference with some of the other tidbits that should be used in .NET going forward:</p>
+<ul>
+<li><a href="https://youtu.be/BnjHArsYGLM?si=NsnqXLMKwcmirGZM">Improving your application telemetry using .NET 8 and Open Telemetry</a></li>
+<li><a href="https://youtu.be/FpQXyFoZ9aY?si=qhDqySjMAOrxa_9x">Tiny, fast ASP.NET Core APIs with native AOT</a></li>
+<li><a href="https://youtu.be/qXsRz0YWvu4?si=p9oaPMq8h4an1Fq5">From IL Weaving to Source Generators, the Realm story</a></li>
+<li><a href="https://youtu.be/Yf8t7GqA6zA?si=WoidTSJRaUe4be-0">All About C# Source Generators</a></li>
+</ul>
+<p>And then a couple of talks from the lead designers of C# and F# regarding the history and direction of each language:</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=v8bqAm4aUFM">Where's C# Headed? - Mads Torgersen (2022)</a></li>
+<li><a href="https://www.youtube.com/watch?v=CLKZ7ZgVido">The Functional Journey of C# - Mads Torgersen (2022)</a></li>
+<li><a href="https://www.youtube.com/watch?v=sC0HUq2KkFc">The F# Path to Relaxation - Don Syme (2021)</a></li>
+<li><a href="https://www.youtube.com/watch?v=MXKM5dSk_8o">What's new in F# 5 &amp; 6 - Don Syme (2021)</a></li>
+</ul>
+
+	</div>
+	<div class="comments">
+		<script src="https://giscus.app/client.js"
+			data-repo="IanWold/ianwold.github.io"
+			data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk1NDkyNzI="
+			data-category="Posts"
+			data-category-id="DIC_kwDOCYKHWM4CZH2Y"
+			data-mapping="title"
+			data-strict="0"
+			data-reactions-enabled="0"
+			data-emit-metadata="0"
+			data-input-position="top"
+			data-theme="light"
+			data-lang="en"
+			data-loading="lazy"
+			crossorigin="anonymous"
+			async>
+		</script>
+	</div>
+</div>
+
+<div class="section-gray">
+	<div class="content post-end">
+		<img src="../images/hero1.svg" />
+		<div class="bio">
+			<h1>Hi, I'm Ian</h1>
+			<p>
+				I'm a software engineer, architect, and team leader in Minneapolis. My career has largely focused on .NET and web technologies, spread across several industries. Currently I'm working for Crate &amp; Barrel on their ecommerce solutions. You can find me on this blog, contributing to open source repositories, and at conferences around the Midwest.
+			</p>
+			<hr/>
+			<p>
+				Thank you for reading this post, I hope you found it valuable. If you'd like to keep up to date with my extremely consistent blog, please subscribe to my <a href="https://buttondown.email/ianwold" target="_blank">newsletter</a> or <a href="https://ian.wold.guru/feed.xml" target="_blank">RSS feed</a>.
+			</p>
+			<hr/>
+			<p>
+				Some other posts you might be interested in:
+			</p>
+			<div class="archive">
+				<ul>
+					
+						<li>
+							<a href="../Posts/a_scrum_odyssey.html">
+								A Scrum Odyssey<small>A journey away from daily scrum meetings, as a cycle of eight Shakespearean sonnets.</small>
+							</a>
+						</li>
+					
+						<li>
+							<a href="../Posts/book_club_9-2023.html">
+								Book Club 9/2023: Papers I Love<small>Reflecting on the final Strange Loop conference, having attended several 'Papers We Love' talks, I'm motivated to share five papers I love.</small>
+							</a>
+						</li>
+					
+						<li>
+							<a href="../Posts/book_club_10-2023.html">
+								Book Club 10/2023: Functional Patterns in C#<small>This month I've focused on functional domain modeling and related patterns. We're just a few weeks away from the release of the next version of C#, and like each previous version it'll introduce even more functional features.</small>
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+		<footer>
+			<div class="content content-footer">
+				<span>
+					Copyright &copy; Ian Wold. Site generated by <a href="https://www.github.com/IanWold/Metalsharp">Metalsharp</a> and hosted by <a href="https://www.github.com/IanWold/ianwold.github.io">GitHub Pages</a>.
+				</span>
+				<div class="icon-links">
+					<a href="https://github.com/ianwold"><i data-feather="github"></i></a>
+					<!--<a href="#"><i data-feather="rss"></i></a>-->
+				</div>
+			</div>
+		</footer>
+
+		<script src="../highlight/highlight.min.js"></script>
+		<script>
+			feather.replace();
+			hljs.highlightAll();
+
+			window.addEventListener('DOMContentLoaded', () => {
+				const observer = new IntersectionObserver(entries => {
+					entries.forEach(entry => {
+						const id = entry.target.getAttribute('id');
+						let classList = document.querySelector(`.pane li a[href="#${id}"]`).parentElement.classList;
+
+						if (entry.intersectionRatio > 0) {
+							classList.add('active');
+						} else {
+							classList.remove('active');
+						}
+					});
+				});
+
+				document.querySelectorAll('section[id]').forEach((section) => {
+					observer.observe(section);
+				});
+			});
+
+			const darkModeToggle = document.getElementById("dark-mode-toggle");
+			const body = document.body;
+
+			function toggleDarkMode() {
+				body.classList.toggle("dark");
+
+				if (localStorage.getItem("dark") === "enabled") {
+					localStorage.setItem("dark", "disabled");
+				} else {
+					localStorage.setItem("dark", "enabled");
+				}
+			}
+
+			darkModeToggle.addEventListener("click", toggleDarkMode);
+
+			if (localStorage.getItem("dark") === "enabled") {
+				body.classList.toggle("dark");
+			}
+		</script>
+	</body>
+</html>
