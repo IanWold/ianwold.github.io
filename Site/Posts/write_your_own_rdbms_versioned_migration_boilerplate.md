@@ -39,7 +39,7 @@ You will need some way to assign a version to each script. I prefer adding the v
 
 The other aspect of this migrations strategy is that we will need to maintain a table containing the migration history of the database. I prefer a simple table myself:
 
-```plpgsql
+```sql
 CREATE TABLE migration_history(
     "version" bigint primary key,
     "migrated" timestamp default NOW()
