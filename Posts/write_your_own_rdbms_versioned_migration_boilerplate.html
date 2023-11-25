@@ -1,0 +1,323 @@
+
+
+	
+
+
+<html>
+	<head>
+		<link rel="stylesheet" href="../reset.css" />
+		<link rel="stylesheet" href="../highlight/styles/monokai-sublime.min.css" />
+		<link rel="stylesheet" href="../site.css" />
+		
+		<script src="https://unpkg.com/feather-icons"></script>
+
+		<title>
+			Ian Wold | Write Your Own RDBMS Versioned Migration Boilerplate 
+		</title>
+	</head>
+	<body>
+		<button id="dark-mode-toggle"><i data-feather="sun"></i></button>
+
+		<nav class="content">
+			<div class="headshot">
+				<img src="../images/hero1.svg" />
+			</div>
+			<div class="title">
+				<a href="../index.html">Ian Wold</a>
+			</div>
+			<ul>
+				<li><a href="../about.html">About</a></li>
+				<li><a href="https://buttondown.email/ianwold" target="_blank">Newsletter</a></li>
+			</ul>
+		</nav>
+		
+		
+
+
+
+
+<header class="content">
+	<h1>Write Your Own RDBMS Versioned Migration Boilerplate</h1>
+	<small>
+		<span class="date">
+			<i data-feather="calendar"></i> 25 November 2023
+		</span>
+		<span class="time">
+			<i data-feather="clock"></i> 9  Minutes 
+		</span>
+	</small>
+	<p>Versioned migrations are an essential tool for systems using an RDBMS, and it's no work at all to start your applications the right way with this pattern.</p>
+</header>
+
+<div class="content hero">
+	<img src="https://images.unsplash.com/photo-1596563910641-86f6aebaab9a?w=1000&h=525&fit=crop&crop=entropy" />
+</div>
+
+<div class="content">
+	
+	<div class="post">
+		<p>If you're using a relational database, even perhaps for a small personal project, you've almost certainly had to have a serious think about migrations. Some databases require very heavily-engineered migration systems to be able to handle large, complex, and/or frequently-changing data. Other databases are very small and might do just fine with a single migrations file, or maybe even manual migrations computed off a shared schema script, if updates are few and far between.</p>
+<p>There's many different migration strategies, and there's no one-size-fits-all approach - different databases and applications can require vastly different strategies. One of the best and most ubiquitous strategies is the versioned migration, where individual updates are stored in SQL scripts that have an incremental version. I like a setup where, on startup, my application consults a migration history table in my database to see what the latest migration is, and to run any new migration scripts in sequential order.</p>
+<p>In my experience this setup works very well, and it can scale to a large size of project, database, or team. I start almost all of my projects - big or small, personal or professional - with this strategy, and I think you should consider making this strategy (or some variation of it) your default as well.</p>
+<p>One holdup though - isn't that a lot of overhead for a small, personal project? Should I really be investing the time to set up <a href="https://flywaydb.org/">Flyway</a> for every little API I want to set up? I contend no and no. I keep a snippet of boilerplate code to handle these migrations that I copy for every new project. It's a small amount of code, and I can modify it as needed per-project if it requires anything special. Best of all, my entire database from the start is migration-versioned, making it easy in future to switch to another system or onto Flyway if needed.</p>
+<h1>Versioned Migrations</h1>
+<p>As I described, this strategy involves breaking your migrations down into individual scripts for each discrete migration, and assigning them a version. What belongs in an individual file is up to you. You can restrict each file to only containing a single update on a table or column, or you could say that each feature card should have a single migration script. I prefer an in-between where each script contains a logically coupled, discrete set of changes, such that the database is valid at any migration version.</p>
+<p>However you split these up, you might have several migration scripts:</p>
+<pre><code class="language-plaintext">/ Migrations
+  |- 01_CreateUsersTable.sql
+  |- 02_CreateItemsTable.sql
+  |- 03_CreateListsTable.sql
+  |- 04_AddListIdToItemsTable.sql
+  |- 05_AddUserIdToListsTable.sql
+</code></pre>
+<p>You will need some way to assign a version to each script. I prefer adding the version to each file name (as Flyway does, if I recall correctly) so that it's easy to see, and is aligned by version in my file system. If you prefer otherwise, you could maintain a separate map in your code or a config file from a file name to a version number, or no doubt any number of other strategies.</p>
+<p>The other aspect of this migrations strategy is that we will need to maintain a table containing the migration history of the database. I prefer a simple table myself:</p>
+<pre><code class="language-plpgsql">CREATE TABLE migration_history(
+    &quot;version&quot; bigint primary key,
+    &quot;migrated&quot; timestamp default NOW()
+)
+</code></pre>
+<p>In this way, I can keep track of where each database is at and apply migrations accordingly. When my app starts up, I'll look at this table to see what the latest version is. If the app sees that there are migration files exceeding this version, then I can run those migration scripts in the order they're intended.</p>
+<h1>Run the Migrations</h1>
+<p>Our migration-running code needs to do the following:</p>
+<ol>
+<li>Check the latest migration version, or create the <code>migration_history</code> table if it's a new database,</li>
+<li>Find all the migration scripts after the latest version</li>
+<li>Execute these scripts in order, updating the <code>migration_history</code> as it goes</li>
+<li>Commit the changes (important)</li>
+</ol>
+<p>I'll be demonstrating this with C# and PostgreSQL (via Npgsql), but this approach will work in any language with any RDBMS. The code should be straightforward enough for you to translate to whatever your case is.</p>
+<pre><code class="language-csharp">public static class DatabaseMigrator
+{
+    static int GetLatestVersion(NpgsqlConnection connection, NpgsqlTransaction transaction) // TODO
+    static IEnumerable&lt;(int, string)&gt; GetNewMigrationFiles(int latestVersion) // TODO
+    static void RunMigrationFile((int version, string name) file, NpgsqlConnection connection, NpgsqlTransaction transaction) // TODO
+
+    public static void Migrate(string connectionString)
+    {
+        using var connection = new NpgsqlConnection(connectionString);
+        using var transaction = connection.BeginTransaction();
+
+        var latestVersion = GetLatestVersion(connection, transaction);
+        var newMigrationFiles = GetNewMigrationFiles(latestVersion);
+
+        foreach (var file in newMigrationFiles)
+        {
+            RunMigrationFile(file, connection, transaction);
+        }
+
+        transaction.Commit();
+        connection.Close();
+    }
+}
+</code></pre>
+<p>Then call <code>DatabaseMigrator.Migrate(connectionString);</code> from your startup logic, and it's all wired up! We can focus then on implementing each of the TODOs here.</p>
+<p><code>GetLatestVersion</code> is probably the most complicated of these, because we'll want to check whether <code>migration_history</code> exists before we try to consult it, and create it if not. Before we get started implementing that method though, we'll want to write a little boilerplate to excute some queries on the database.</p>
+<pre><code class="language-csharp">static NpgsqlCommand GetCommand(string query, NpgsqlConnection cnonnection, NpgsqlTransaction? transaction)
+{
+    var command = connection.CreateCommand();
+
+    command.Connection = connection;
+    command.CommandText = query;
+
+    if (transaction is not null)
+    {
+        command.Transaction = transaction;
+    }
+
+    return command;
+}
+
+static void Command(NpgsqlConnection cnonnection, NpgsqlTransaction transaction, string query)
+{
+    var command = GetCommand(query, connection, transaction);
+    command.ExecuteNonQuery();
+}
+
+static T Query&lt;T&gt;(NpgsqlConnection cnonnection, string query)
+{
+    var command = GetCommand(query, connection);
+    return (T)command.ExecuteScalar();
+}
+</code></pre>
+<p>If you wanted to implement all the logic here to check that the result actually is a <code>T</code> and handle that in a special flow, you can do. However, this is good enough for me - this code is running in a way where it's unlikely for me to encounter an exceptional scenario but in an <em>exceptional</em> scenario, and if this code fails I want to let it throw anyway so that my app crashes and its health endpoint responds with a failure. Your scenario may well differ though.</p>
+<p>With that, I can outline <code>GetLatestVersion</code>:</p>
+<pre><code class="language-csharp">static int GetLatestVersion(NpgsqlConnection connection, NpgsqlTransaction transaction)
+{
+    var migrationHistoryExists = Query&lt;bool&gt;(
+        connection,
+        &quot;SELECT EXISTS(SELECT 1 FROM pg_tables WHERE tablename = 'migration_history')&quot;
+    );
+
+    if (migrationHistoryExists)
+    {
+        return Query&lt;int&gt;(
+            connection,
+            &quot;SELECT MAX(version) FROM migration_history&quot;
+        );
+    }
+    else
+    {
+        Command(connection, transaction,
+            &quot;&quot;&quot;
+            DROP SCHEMA public CASCADE;
+            CREATE SCHEMA public;
+            GRANT ALL ON SCHEMA public TO postgres;
+            GRANT ALL ON SCHEMA public TO public;
+            COMMENT ON SCHEMA public IS 'standard public schema';
+
+            CREATE TABLE migration_history(
+                &quot;version&quot; bigint primary key,
+                &quot;migrated&quot; timestamp default NOW()
+            )
+            &quot;&quot;&quot;
+        );
+
+        return -1;
+    }
+}
+</code></pre>
+<p>Given that, it's quite easy to implement <code>GetMigrationFiles</code>. The only peculiarity of that method is that it will return a tuple containing the version and file name for each file, so that it's easy for the other code to reference. Here I'm assuming all the migrations are in the &quot;/Migrations&quot; directory.</p>
+<pre><code class="language-csharp">static IEnumerable&lt;(int, string)&gt; GetNewMigrationFiles(int latestVersion) =&gt;
+    new DirectoryInfo(&quot;/Migrations&quot;).GetFiles()
+    .Where(f =&gt; f.Extension == &quot;.sql&quot;)
+    .Select(f =&gt; (version: Convert.ToInt32(f.Name.Split('_')[0]), file: f.FullName))
+    .Where(f =&gt; f.version &gt; latestVersion)
+    .OrderBy(f =&gt; f.version);
+</code></pre>
+<p>This can probably be more concise using query syntax and defining the version with <code>let</code> but I'll leave that as an exercise for the reader.</p>
+<p>The only thing left then is to run these scripts and update the migration history:</p>
+<pre><code class="language-csharp">static void RunMigrationFile((int version, string name) file, NpgsqlConnection connection, NpgsqlTransaction transaction)
+{
+    var query = &quot;&quot;;
+    using (var reader = new StreamReader(file.name))
+    {
+        query = reader.ReadToEnd();
+    }
+
+    conn.Command(connection, transaction, query);
+    conn.Command(connection, transaction, $&quot;INSERT INTO migration_history (version) VALUES ({file.version})&quot;);
+}
+</code></pre>
+<p>That's it! With just a 100-line C# file we've got fully-versioned migrations!</p>
+<h1>Conclusion</h1>
+<p>You can find all the code together on <a href="https://gist.github.com/IanWold/d466f0e7e983da7b09e5ecc6bf719341">this GitHub Gist</a>. I copy this for every project I start, and I start each database out with versioned migrations.</p>
+<p>You don't need to start your project off with a dependency on a third party migration library, you don't need to jump through any hoops - technical or conceptual - in order to get versioned migrations, and starting out with this puts you on the most solid path from the start. In future as your project evolves, if you end up in the rare situation of needing more features in your migrations, the code is right here for you to add it! If you end up needing so many migration features that a library like Flyway makes more sense, your story for switching to Flyway will be very easy. indeed.</p>
+<p>Happy migrating!</p>
+
+	</div>
+	<div class="comments">
+		<script src="https://giscus.app/client.js"
+			data-repo="IanWold/ianwold.github.io"
+			data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk1NDkyNzI="
+			data-category="Posts"
+			data-category-id="DIC_kwDOCYKHWM4CZH2Y"
+			data-mapping="title"
+			data-strict="0"
+			data-reactions-enabled="0"
+			data-emit-metadata="0"
+			data-input-position="top"
+			data-theme="light"
+			data-lang="en"
+			data-loading="lazy"
+			crossorigin="anonymous"
+			async>
+		</script>
+	</div>
+</div>
+
+<div class="section-gray">
+	<div class="content post-end">
+		<img src="../images/hero1.svg" />
+		<div class="bio">
+			<h1>Hi, I'm Ian</h1>
+			<p>
+				I'm a software engineer, architect, and team leader in Minneapolis. My career has largely focused on .NET and web technologies, spread across several industries. Currently I'm working for Crate &amp; Barrel on their ecommerce solutions. You can find me on this blog, contributing to open source repositories, and at conferences around the Midwest.
+			</p>
+			<hr/>
+			<p>
+				Thank you for reading this post, I hope you found it valuable. If you'd like to keep up to date with my extremely consistent blog, please subscribe to my <a href="https://buttondown.email/ianwold" target="_blank">newsletter</a> or <a href="https://ian.wold.guru/feed.xml" target="_blank">RSS feed</a>.
+			</p>
+			<hr/>
+			<p>
+				Some other posts you might be interested in:
+			</p>
+			<div class="archive">
+				<ul>
+					
+						<li>
+							<a href="../Posts/adding_a_database_to_our_railway_app.html">
+								Adding a Database to our Railway App<small>Last time I looked at Railway, I got it up and running with a Blazor WASM app. Now, I'll look at adding a PostgreSQL database to it.</small>
+							</a>
+						</li>
+					
+						<li>
+							<a href="../Posts/quick_and_dirty_sequential_ids_in_mongo.html">
+								Quick & Dirty Sequential IDs in MongoDB<small>Mongo doesn't natively support generating sequential IDs. Here's a quick & dirty solution to get you up and going if you need sequential IDs.</small>
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+		<footer>
+			<div class="content content-footer">
+				<span>
+					Copyright &copy; Ian Wold. Site generated by <a href="https://www.github.com/IanWold/Metalsharp">Metalsharp</a> and hosted by <a href="https://www.github.com/IanWold/ianwold.github.io">GitHub Pages</a>.
+				</span>
+				<div class="icon-links">
+					<a href="https://github.com/ianwold"><i data-feather="github"></i></a>
+					<!--<a href="#"><i data-feather="rss"></i></a>-->
+				</div>
+			</div>
+		</footer>
+
+		<script src="../highlight/highlight.min.js"></script>
+		<script>
+			feather.replace();
+			hljs.highlightAll();
+
+			window.addEventListener('DOMContentLoaded', () => {
+				const observer = new IntersectionObserver(entries => {
+					entries.forEach(entry => {
+						const id = entry.target.getAttribute('id');
+						let classList = document.querySelector(`.pane li a[href="#${id}"]`).parentElement.classList;
+
+						if (entry.intersectionRatio > 0) {
+							classList.add('active');
+						} else {
+							classList.remove('active');
+						}
+					});
+				});
+
+				document.querySelectorAll('section[id]').forEach((section) => {
+					observer.observe(section);
+				});
+			});
+
+			const darkModeToggle = document.getElementById("dark-mode-toggle");
+			const body = document.body;
+
+			function toggleDarkMode() {
+				body.classList.toggle("dark");
+
+				if (localStorage.getItem("dark") === "enabled") {
+					localStorage.setItem("dark", "disabled");
+				} else {
+					localStorage.setItem("dark", "enabled");
+				}
+			}
+
+			darkModeToggle.addEventListener("click", toggleDarkMode);
+
+			if (localStorage.getItem("dark") === "enabled") {
+				body.classList.toggle("dark");
+			}
+		</script>
+	</body>
+</html>
