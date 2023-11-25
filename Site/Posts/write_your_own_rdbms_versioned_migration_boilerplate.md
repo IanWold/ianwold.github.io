@@ -105,13 +105,13 @@ static NpgsqlCommand GetCommand(string query, NpgsqlConnection cnonnection, Npgs
     return command;
 }
 
-static void Command(NpgsqlConnection cnonnection, NpgsqlTransaction transaction, string query)
+static void Command(NpgsqlConnection connection, NpgsqlTransaction transaction, string query)
 {
     var command = GetCommand(query, connection, transaction);
     command.ExecuteNonQuery();
 }
 
-static T Query<T>(NpgsqlConnection cnonnection, string query)
+static T Query<T>(NpgsqlConnection connection, string query)
 {
     var command = GetCommand(query, connection);
     return (T)command.ExecuteScalar();
