@@ -1147,7 +1147,7 @@ Parser&amp;lt;JSONValue&amp;gt; JObject =
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You will need some way to assign a version to each script. I prefer adding the version to each file name (as Flyway does, if I recall correctly) so that it's easy to see, and is aligned by version in my file system. If you prefer otherwise, you could maintain a separate map in your code or a config file from a file name to a version number, or no doubt any number of other strategies.&lt;/p&gt;
 &lt;p&gt;The other aspect of this migrations strategy is that we will need to maintain a table containing the migration history of the database. I prefer a simple table myself:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-plpgsql"&gt;CREATE TABLE migration_history(
+&lt;pre&gt;&lt;code class="language-sql"&gt;CREATE TABLE migration_history(
     &amp;quot;version&amp;quot; bigint primary key,
     &amp;quot;migrated&amp;quot; timestamp default NOW()
 )
