@@ -260,7 +260,9 @@ They've journeyed forth, with purpose evergreen.&lt;/p&gt;
 &lt;p&gt;❌ Do not neglect this step! Don't neglect the others but especially this!&lt;/p&gt;
 &lt;p&gt;❌ Do not assume all participants understand or agree with the &lt;strong&gt;purpose&lt;/strong&gt; and &lt;strong&gt;outcome&lt;/strong&gt;&lt;/p&gt;
 &lt;h2&gt;Agenda&lt;/h2&gt;
-&lt;p&gt;Simply put, an agenda is a set of topics to discuss at the meeting. This can be as simple as a single bullet point &lt;code&gt;* Brainstorm a name for the new microservice&lt;/code&gt; or a detailed breakdown of gaps in technical knowledge. Some agendas are written, some aren't, but each meeting &lt;em&gt;has an agenda&lt;/em&gt;. There are few absolute truths in the world, but I can tell you that meetings which follow the agenda are good, meeting that don't aren't.&lt;/p&gt;
+&lt;p&gt;Simply put, an agenda is a set of topics to discuss at the meeting. This can be as simple as a single bullet point &lt;code&gt;* Brainstorm a name for the new microservice&lt;/code&gt; or a detailed breakdown of gaps in technical knowledge.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Side note: if your agenda is &amp;quot;Brainstorm a name for the new microservice that's just a Slack thread. I've been in that exact meeting too many times and I'm here to tell you - your microservice will be replaced by 5 others and deleted in 2 years anyway, just call it &amp;quot;Craig&amp;quot; or something.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Some agendas are written, some aren't, but each meeting &lt;em&gt;has an agenda&lt;/em&gt;. There are few absolute truths in the world, but I can tell you that meetings which follow the agenda are good, meeting that don't aren't.&lt;/p&gt;
 &lt;p&gt;Another often-overlooked point is that the agenda needs to be agreed on by all participants. It is not the job of the individual calling the meeting to carve the agenda in stone, it's their responsibility to make sure the agenda fulfils the purposes intended by the participants and the outcomes desired by them. Are these intents and desires contradictory? Sounds like multiple meetings.&lt;/p&gt;
 &lt;p&gt;✔️ Do be specific about the purpose and outcome in the agenda&lt;/p&gt;
 &lt;p&gt;✔️ Do communicate the agenda to participants ahead of time&lt;/p&gt;
@@ -377,7 +379,7 @@ They've journeyed forth, with purpose evergreen.&lt;/p&gt;
 &lt;p&gt;Yeah that's a lot of bullet points, but I have a lot of ideas on this topic. I feel strongly that meetings are very productive tools, but there's a lot of awkwardness in our industry around how any why we have meetings. Be considerate and hold your meetings with intention and purpose, drive towards your outcome, and your meetings will work for you and all of your colleagues.&lt;/p&gt;
 &lt;p&gt;Above all, remember: &lt;em&gt;you probably don't need a meeting for it.&lt;/em&gt;&lt;/p&gt;
 </description>
-      <a10:updated>2023-11-08T00:00:00Z</a10:updated>
+      <a10:updated>2023-12-03T00:00:00Z</a10:updated>
     </item>
     <item>
       <guid isPermaLink="false">console2048</guid>
