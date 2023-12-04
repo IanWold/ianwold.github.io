@@ -161,6 +161,30 @@ new MetalsharpProject()
 
 		post.Text = postBuilder.ToString();
 		post.Metadata.Add("sections", sections);
+
+		post.Metadata.Add("structuredData", $$"""
+			{
+				"@context": "https://schema.org",
+				"@type": "Article",
+				"author": [{
+					"@type": "Person",
+					"name": "Ian Wold"
+				}],
+				"datePublished": ""{{DateTime.Parse(post.Metadata["date"]?.ToString() ?? "")}},
+				"image": "https://images.unsplash.com/{{ post.Metadata["hero"]!.ToString()}}",
+				"headline": "{{post.Metadata["title"]!.ToString()}}",
+				"description": "{{post.Metadata["description"]!.ToString()}}",
+				"publisher": {
+					"@type": "Person",
+					"name": "Ian Wold",
+					"logo": {
+						"@type": "ImageObject",
+						"url": "https://ian.wold.guru/images/hero1.svg"
+					}
+				},
+			}
+			"""
+		);
 	}
 })
 .UseLiquidTemplates("Templates")
