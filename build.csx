@@ -170,7 +170,7 @@ new MetalsharpProject()
 					"@type": "Person",
 					"name": "Ian Wold"
 				}],
-				"datePublished": ""{{DateTime.Parse(post.Metadata["date"]?.ToString() ?? "")}},
+				"datePublished": "{{DateTime.Parse(post.Metadata["date"]?.ToString() ?? "")}}",
 				"image": "https://images.unsplash.com/{{ post.Metadata["hero"]!.ToString()}}",
 				"headline": "{{post.Metadata["title"]!.ToString()}}",
 				"description": "{{post.Metadata["description"]!.ToString()}}",
