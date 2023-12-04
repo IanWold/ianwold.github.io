@@ -34,6 +34,7 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;And that's all the configuration needed for your app to be able to consume your new database!&lt;/p&gt;
 </description>
+      <pubDate>Wed, 08 Nov 2023 00:00:00 Z</pubDate>
       <a10:updated>2023-11-08T00:00:00Z</a10:updated>
     </item>
     <item>
@@ -164,6 +165,7 @@ Reaches peaks unseen, to everyone's praise.&lt;/p&gt;
 &lt;p&gt;From challenging norms, to heights unforeseen,&lt;br /&gt;
 They've journeyed forth, with purpose evergreen.&lt;/p&gt;
 </description>
+      <pubDate>Fri, 20 Oct 2023 00:00:00 Z</pubDate>
       <a10:updated>2023-10-20T00:00:00Z</a10:updated>
     </item>
     <item>
@@ -192,6 +194,7 @@ They've journeyed forth, with purpose evergreen.&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=qBYVW4ghMi8"&gt;Dependency Injection Revisited - Mark Seemann (2018)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
+      <pubDate>Fri, 27 Oct 2023 00:00:00 Z</pubDate>
       <a10:updated>2023-10-27T00:00:00Z</a10:updated>
     </item>
     <item>
@@ -223,6 +226,7 @@ They've journeyed forth, with purpose evergreen.&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=MXKM5dSk_8o"&gt;What's new in F# 5 &amp;amp; 6 - Don Syme (2021)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
+      <pubDate>Wed, 22 Nov 2023 00:00:00 Z</pubDate>
       <a10:updated>2023-11-22T00:00:00Z</a10:updated>
     </item>
     <item>
@@ -240,6 +244,7 @@ They've journeyed forth, with purpose evergreen.&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://ics.uci.edu/%7Efielding/pubs/dissertation/top.htm"&gt;Architectural Styles and the Design of Network-based Software Architectures - Roy Thomas Fielding&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
+      <pubDate>Thu, 28 Sep 2023 00:00:00 Z</pubDate>
       <a10:updated>2023-09-28T00:00:00Z</a10:updated>
     </item>
     <item>
@@ -379,6 +384,7 @@ They've journeyed forth, with purpose evergreen.&lt;/p&gt;
 &lt;p&gt;Yeah that's a lot of bullet points, but I have a lot of ideas on this topic. I feel strongly that meetings are very productive tools, but there's a lot of awkwardness in our industry around how any why we have meetings. Be considerate and hold your meetings with intention and purpose, drive towards your outcome, and your meetings will work for you and all of your colleagues.&lt;/p&gt;
 &lt;p&gt;Above all, remember: &lt;em&gt;you probably don't need a meeting for it.&lt;/em&gt;&lt;/p&gt;
 </description>
+      <pubDate>Sun, 03 Dec 2023 00:00:00 Z</pubDate>
       <a10:updated>2023-12-03T00:00:00Z</a10:updated>
     </item>
     <item>
@@ -388,6 +394,7 @@ They've journeyed forth, with purpose evergreen.&lt;/p&gt;
       <description>&lt;p&gt;Jumping on the bandwagon, here's a C# implementation of Console 2048. Of course, 2048 has had a few console implementations, and most better done than this, but here it is anyway, because sometimes life is a mixed bag of apples and grapes.&lt;/p&gt;
 &lt;p&gt;I've got it on the GitHub &lt;a href="https://github.com/IanWold/Console2048"&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
+      <pubDate>Sat, 26 Apr 2014 00:00:00 Z</pubDate>
       <a10:updated>2014-04-26T00:00:00Z</a10:updated>
     </item>
     <item>
@@ -398,6 +405,7 @@ They've journeyed forth, with purpose evergreen.&lt;/p&gt;
 &lt;p&gt;Much wisdom, big article, hard read. Need daily small grug.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://bit.ly/daily-grug"&gt;So made API for daily grug&lt;/a&gt; and made home page.&lt;/p&gt;
 </description>
+      <pubDate>Thu, 26 Oct 2023 00:00:00 Z</pubDate>
       <a10:updated>2023-10-26T00:00:00Z</a10:updated>
     </item>
     <item>
@@ -579,6 +587,7 @@ start      │ ./out/RailwayBlazorDemo.Client
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href="https://docs.railway.app/"&gt;Railway's documentation&lt;/a&gt; is pretty good, but their &lt;a href="https://discord.com/invite/railway"&gt;Discord server&lt;/a&gt; is an excellent and lively place to get help when you need it.&lt;/p&gt;
 </description>
+      <pubDate>Tue, 05 Sep 2023 00:00:00 Z</pubDate>
       <a10:updated>2023-09-05T00:00:00Z</a10:updated>
     </item>
     <item>
@@ -593,6 +602,7 @@ start      │ ./out/RailwayBlazorDemo.Client
 &lt;p&gt;And - I can't emphasis this enough - &lt;em&gt;it just works&lt;/em&gt;. I see so few tools that &lt;em&gt;just work&lt;/em&gt; and this one does.&lt;/p&gt;
 &lt;p&gt;Check it out!&lt;/p&gt;
 </description>
+      <pubDate>Thu, 14 Sep 2023 00:00:00 Z</pubDate>
       <a10:updated>2023-09-14T00:00:00Z</a10:updated>
     </item>
     <item>
@@ -604,6 +614,7 @@ start      │ ./out/RailwayBlazorDemo.Client
 &lt;p&gt;&lt;img src="http://bit.ly/MonokaiGraySample1" alt="Monokai Gray" /&gt;&lt;/p&gt;
 &lt;p&gt;If you think it's neat, you can &lt;a href="https://sublime.wbond.net/packages/Monokai%20Gray"&gt;check it out&lt;/a&gt; on Package Control. I love feedback and pull requests alike!&lt;/p&gt;
 </description>
+      <pubDate>Thu, 05 Dec 2013 00:00:00 Z</pubDate>
       <a10:updated>2013-12-05T00:00:00Z</a10:updated>
     </item>
     <item>
@@ -754,6 +765,7 @@ func (generator *MongoIdGenerator) GetNextId() (int, error) {
 }
 &lt;/code&gt;&lt;/pre&gt;
 </description>
+      <pubDate>Wed, 01 Nov 2023 00:00:00 Z</pubDate>
       <a10:updated>2023-11-01T00:00:00Z</a10:updated>
     </item>
     <item>
@@ -762,6 +774,7 @@ func (generator *MongoIdGenerator) GetNextId() (int, error) {
       <title>"Should I Learn (Insert Some Tech Here)?"</title>
       <description>&lt;p&gt;Yes.&lt;/p&gt;
 </description>
+      <pubDate>Tue, 14 Nov 2023 00:00:00 Z</pubDate>
       <a10:updated>2023-11-14T00:00:00Z</a10:updated>
     </item>
     <item>
@@ -1220,6 +1233,7 @@ Parser&amp;lt;JSONValue&amp;gt; JObject =
 &lt;li&gt;The &lt;a href="http://stackoverflow.com/unanswered/tagged/sprache"&gt;StackOverflow tag&lt;/a&gt; receives regular traffic.&lt;/li&gt;
 &lt;/ul&gt;
 </description>
+      <pubDate>Fri, 22 Jan 2016 00:00:00 Z</pubDate>
       <a10:updated>2016-01-22T00:00:00Z</a10:updated>
     </item>
     <item>
@@ -1236,6 +1250,7 @@ Parser&amp;lt;JSONValue&amp;gt; JObject =
 &lt;p&gt;As I've been saying, I wrote this as a proof of concept, and I don't really intend for it to go anywhere, but if you think this is the coolest thing ever and you want it to be something, you're more than welcome to submit pull requests, or you can fork it and do your own thing with it. I believe I've documented everything thoroughly, so it should be easy to find your way around, but if I've missed something don't wait to contact me. Have fun!&lt;/p&gt;
 &lt;p&gt;You can find SpracheDown on GitHub right &lt;a href="https://github.com/IanWold/SpracheDown"&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
+      <pubDate>Fri, 26 Sep 2014 00:00:00 Z</pubDate>
       <a10:updated>2014-09-26T00:00:00Z</a10:updated>
     </item>
     <item>
@@ -1246,6 +1261,7 @@ Parser&amp;lt;JSONValue&amp;gt; JObject =
 &lt;p&gt;I got this thing to the point where is parses the JSON just fine, no problem. But I also figured it made sense to serialize between JSON and C# objects. Like the other parsers I've written have ended up, it's got its own AST to throw the JSON into, but I can't imagine I'd ever want to use generic objects to store my data (isn't that the whole point of JSON?) That said, I've never been a fan of ISerializable, so I've got my own custom serializer thing going on. Obviously that makes it kinda imperfect, but that's how the world goes, I suppose.&lt;/p&gt;
 &lt;p&gt;In the future I'm going to use ISerializable to make that part of the project go easier, but until then, I've got a nice half-baked parser here. I'm not going to detail the functionality of the library too much, but it's pretty slick, so you should definitely go check it out &lt;a href="https://github.com/IanWold/SpracheJSON"&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
+      <pubDate>Fri, 10 Apr 2015 00:00:00 Z</pubDate>
       <a10:updated>2015-04-10T00:00:00Z</a10:updated>
     </item>
     <item>
@@ -1264,6 +1280,7 @@ Parser&amp;lt;JSONValue&amp;gt; JObject =
 &lt;p&gt;A real, working example using the CommentParser class can be found in Sprache's &lt;a href="https://github.com/sprache/Sprache/tree/master/src/XmlExample"&gt;XMLParser&lt;/a&gt; example.&lt;/p&gt;
 &lt;p&gt;In the future, it would be awesome if multiple comment headers could be included, and if whitespace could be defined to include comments. Some work towards this effort has been done on my GitHub &lt;a href="https://github.com/IanWold/Sprache/blob/Comments/src/Sprache/CommentParser.cs"&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
+      <pubDate>Fri, 06 Feb 2015 00:00:00 Z</pubDate>
       <a10:updated>2015-02-06T00:00:00Z</a10:updated>
     </item>
     <item>
@@ -1419,6 +1436,7 @@ static T Query&amp;lt;T&amp;gt;(NpgsqlConnection connection, string query)
 &lt;p&gt;You don't need to start your project off with a dependency on a third party migration library, you don't need to jump through any hoops - technical or conceptual - in order to get versioned migrations, and starting out with this puts you on the most solid path from the start. In future as your project evolves, if you end up in the rare situation of needing more features in your migrations, the code is right here for you to add it! If you end up needing so many migration features that a library like Flyway makes more sense, your story for switching to Flyway will be very easy. indeed.&lt;/p&gt;
 &lt;p&gt;Happy migrating!&lt;/p&gt;
 </description>
+      <pubDate>Sat, 25 Nov 2023 00:00:00 Z</pubDate>
       <a10:updated>2023-11-25T00:00:00Z</a10:updated>
     </item>
   </channel>
