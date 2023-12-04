@@ -41,7 +41,11 @@ A meeting is scheduled with a specific set of participants agreen on a **purpose
 
 ## Agenda
 
-Simply put, an agenda is a set of topics to discuss at the meeting. This can be as simple as a single bullet point `* Brainstorm a name for the new microservice` or a detailed breakdown of gaps in technical knowledge. Some agendas are written, some aren't, but each meeting _has an agenda_. There are few absolute truths in the world, but I can tell you that meetings which follow the agenda are good, meeting that don't aren't.
+Simply put, an agenda is a set of topics to discuss at the meeting. This can be as simple as a single bullet point `* Brainstorm a name for the new microservice` or a detailed breakdown of gaps in technical knowledge.
+
+_Side note: if your agenda is "Brainstorm a name for the new microservice that's just a Slack thread. I've been in that exact meeting too many times and I'm here to tell you - your microservice will be replaced by 5 others and deleted in 2 years anyway, just call it "Craig" or something._
+
+Some agendas are written, some aren't, but each meeting _has an agenda_. There are few absolute truths in the world, but I can tell you that meetings which follow the agenda are good, meeting that don't aren't.
 
 Another often-overlooked point is that the agenda needs to be agreed on by all participants. It is not the job of the individual calling the meeting to carve the agenda in stone, it's their responsibility to make sure the agenda fulfils the purposes intended by the participants and the outcomes desired by them. Are these intents and desires contradictory? Sounds like multiple meetings.
 
