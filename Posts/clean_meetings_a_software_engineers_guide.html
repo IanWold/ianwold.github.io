@@ -1,0 +1,529 @@
+
+
+	
+
+
+<html>
+	<head>
+		<link rel="stylesheet" href="../reset.css" />
+		<link rel="stylesheet" href="../highlight/styles/monokai-sublime.min.css" />
+		<link rel="stylesheet" href="../site.css" />
+		
+		<script src="https://unpkg.com/feather-icons"></script>
+
+		<title>
+			Ian Wold | Clean Meetings: A Software Engineer's Guide 
+		</title>
+	</head>
+	<body>
+		<button id="dark-mode-toggle"><i data-feather="sun"></i></button>
+
+		<nav class="content">
+			<div class="headshot">
+				<img src="../images/hero1.svg" />
+			</div>
+			<div class="title">
+				<a href="../index.html">Ian Wold</a>
+			</div>
+			<ul>
+				<li><a href="../about.html">About</a></li>
+				<li><a href="https://buttondown.email/ianwold" target="_blank">Newsletter</a></li>
+			</ul>
+		</nav>
+		
+		
+
+
+
+
+<header class="content">
+	<h1>Clean Meetings: A Software Engineer's Guide</h1>
+	<small>
+		<span class="date">
+			<i data-feather="calendar"></i> 8 November 2023
+		</span>
+		<span class="time">
+			<i data-feather="clock"></i> 15  Minutes 
+		</span>
+	</small>
+	<p>If being in meetings all day isn't bad enough, spending more time thinking about them seems horrible. Here's a simple guide on making sure you're getting the most out of your meetings.</p>
+</header>
+
+<div class="content hero">
+	<img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=1000&h=525&fit=crop&crop=entropy" />
+</div>
+
+<div class="content">
+	
+		<div class="pane">
+			<ul>
+				
+				<li>
+					<a href="#meeting-structure">
+						
+							<b>Meeting Structure</b>
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#purpose-and-outcome">
+						
+							Purpose and Outcome
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#agenda">
+						
+							Agenda
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#roles">
+						
+							Roles
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#before-the-meeting">
+						
+							<b>Before the Meeting</b>
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#prepare-the-agenda">
+						
+							Prepare the Agenda
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#pre-meeting-preparation">
+						
+							Pre-Meeting Preparation
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#during-the-meeting">
+						
+							<b>During the Meeting</b>
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#adhrere-to-the-agenda">
+						
+							Adhrere to the Agenda
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#time-management">
+						
+							Time Management
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#take-notes">
+						
+							Take Notes
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#everyone-must-participate">
+						
+							Everyone Must Participate
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#engage-difficult-conversations">
+						
+							Engage Difficult Conversations
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#after-the-meeting">
+						
+							<b>After the Meeting</b>
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#finalize-the-minutes">
+						
+							Finalize the Minutes
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#follow-up-actions">
+						
+							Follow-Up Actions
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#keep-in-mind-always">
+						
+							<b>Keep in Mind Always</b>
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#meeting-etiquette">
+						
+							Meeting Etiquette
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#regular-review">
+						
+							Regular Review
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#diverse-perspectives">
+						
+							Diverse Perspectives
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#conclusion">
+						
+							<b>Conclusion</b>
+						
+					</a>
+				</li>
+				
+			</ul>
+		</div>
+	
+	<div class="post">
+		<p>If being in meetings all day isn't bad enough, spending more time thinking about them seems horrible. However, meetings are going to continue to be inflicted upon us, and there will come a time (perhaps more than a few) that we'll need to inflict meetings upon our colleagues in turn. Meetings should be short, concise, and mutually beneficial to everyone involved, and in order to ensure their utility it's necessary to be mindful and considerate when facilitating or participating in a meeting.</p>
+<p>I've had to hold a lot of meetings in my time. I've spent many years in the roles of engineer, team leader, and architect, and I have to conduct meetings outside of work besides. If you want to go full-on meeting nerd I recommend that you pick up a copy of Robert's Rules, but I wanted to distill my experience and thinking on the matter into an easy-to-follow checklist for the 99.99% of us that don't want to have to spend more time than necessary on one of the admittedly more onerous parts of our profession. So, here's a simple guide on making sure you're getting the most out of your meetings.</p>
+<p>Before we get started though, I want to give the single most important advice regarding meetings. If you read no further, take this away: <strong>Meetings are an unfortunate tool of last resort.</strong> Do you actually need to have this meeting? Would an email chain suffice? How about a Slack message, thread, or channel? Uncle Bob says (paraphrasing) that we should strive to write as few comments in our code as we can, and when we do we should acknowledge it as a failure. Take a similar approach to meetings: While maybe not a failure, we should rarely be having meetings and should, let's say, acknowledge that there might be a potential for a better way of working here. (Is that appropriately diplomatic?)</p>
+<p><em>Note that meetings can take any level of formality between ad-hoc meetings between junior engineers and a senior-level presentation to the CEO. Some meetings require you to write some or all of these down, such as formulating and distributing an agenda, but some do not. Irrespective the level of formality and preparation, it's good to keep these points at least in mind as you conduct meetings at different levels.</em></p>
+<section id="meeting-structure">
+<h1>Meeting Structure</h1>
+<p>The most often overlooked aspect to keeping meetings clean is the meeting structure. Meetings have a <strong>purpose</strong> and an <strong>outcome</strong> that should be specified in an <strong>agenda</strong> (whether it is explicitly written or not) that is understood and agreed to by all participants. Some participants play different <strong>roles</strong> in the meeting, and they will take different <strong>actions</strong> (what Robert would call &quot;motions&quot; but I'm not going to use that language lest I might confuse those of you who use Vim BTW) during the meeting. This might seem low-level, but it's often the details that can keep a meeting productive.</p>
+<section id="purpose-and-outcome">
+<h2>Purpose and Outcome</h2>
+<p>A meeting is scheduled with a specific set of participants agreen on a <strong>purpose</strong> and <strong>outcome</strong>: Why is it necessary to gather this group of people and what do they need to achieve? You might need a brainstorming session, you might need to reach a decision or consensus, or you might need to share information. Either way, <em>be clear about each of these</em>.</p>
+<p>✔️ Do define a <strong>purpose</strong></p>
+<p>✔️ Do specify an <strong>outcome</strong></p>
+<p>✔️ Do ensure all participants understand the <strong>purpose</strong> and <strong>outcome</strong></p>
+<p>❌ Do not neglect this step! Don't neglect the others but especially this!</p>
+<p>❌ Do not assume all participants understand or agree with the <strong>purpose</strong> and <strong>outcome</strong></p>
+</section>
+<section id="agenda">
+<h2>Agenda</h2>
+<p>Simply put, an agenda is a set of topics to discuss at the meeting. This can be as simple as a single bullet point <code>* Brainstorm a name for the new microservice</code> or a detailed breakdown of gaps in technical knowledge. Some agendas are written, some aren't, but each meeting <em>has an agenda</em>. There are few absolute truths in the world, but I can tell you that meetings which follow the agenda are good, meeting that don't aren't.</p>
+<p>Another often-overlooked point is that the agenda needs to be agreed on by all participants. It is not the job of the individual calling the meeting to carve the agenda in stone, it's their responsibility to make sure the agenda fulfils the purposes intended by the participants and the outcomes desired by them. Are these intents and desires contradictory? Sounds like multiple meetings.</p>
+<p>✔️ Do be specific about the purpose and outcome in the agenda</p>
+<p>✔️ Do communicate the agenda to participants ahead of time</p>
+<p>✔️ Do ask participants to contribute to the agenda, both before and at the beginning of each meeting</p>
+<p>❌ Do not require all potential participants to attend even if they feel they aren't interested in the agenda</p>
+<p>❌ Do not try to write a perfect, final agenda. Instead, write a &quot;first pass&quot; and then give ownership to the other participants</p>
+</section>
+<section id="roles">
+<h2>Roles</h2>
+<p>Each meeting has roles. At the least, you need to acknowledge:</p>
+<ul>
+<li><strong>Facilitator</strong> leads the meeting, ensures the agenda is followed, and facilitates discussion,</li>
+<li><strong>Secretary</strong> records the minutes and important decisions,</li>
+<li><strong>Participants</strong> engage in the discussion, provide input, and carry out assigned action items post-meeting.</li>
+</ul>
+<p>✔️ Do be clear about which role is fulfilled by which participant</p>
+<p>❌ Do not assign multiple roles to a single person in important meetings</p>
+</section>
+</section>
+<section id="before-the-meeting">
+<h1>Before the Meeting</h1>
+<p>There are a few steps to take before holding a meeting, and they can greatly help to set the meeting up for success. The most important thing before the meeting is to remember the most important advice: Is this meeting actually necessary? Abort if not.</p>
+<section id="prepare-the-agenda">
+<h2>Prepare the Agenda</h2>
+<p>I covered all the dos and don'ts in the previous section, but this is the most important step before the meeitng. Write the agenda down and distribute it as early as you can. Some meetings are regular rituals, and it still helps to write the agenda for these down and distribute them. Sometimes there is requisite technical or business information for the meeting - provide these as resources for participants. If they suggest suggest changes, make them!</p>
+<p>✔️ Do include knowledge perrequisite for the meeting in the agenda (links and short descriptions, please)</p>
+<p>✔️ Do take feedback - if necessary, send a revised agenda to participants</p>
+<p>✔️ Do include any necessary discription or goal for points needing clarification</p>
+<p>❌ Do not write a novel as the agenda - stick to bullet points</p>
+<p>Sometimes the objective of the meeting is reached while distributing the agenda. If it is - abort the meeting. Your objective is reached. As Sun Tzu says in The Art of War - &quot;The wisest general is the general who never fights.&quot;</p>
+</section>
+<section id="pre-meeting-preparation">
+<h2>Pre-Meeting Preparation</h2>
+<p>While the facilitator has the most work to understand the agenda and work towards the objective, participants need to prepare as well. Read the agenda, suggest feedback if needed, and study the prerequisite information.</p>
+<p>✔️ Do review the agenda beforehand</p>
+<p>✔️ Do suggest agenda changes. If you think you might have solved the problem or resolved the outcome of the meeting, even if only minutes before, say so and <em>abort the meeting</em>.</p>
+<p>❌ Do not attend the meeting if you feel you don't have to. Best to ask the facilitator to drop, explaining why.</p>
+</section>
+</section>
+<section id="during-the-meeting">
+<h1>During the Meeting</h1>
+<p>In a meeting, everyone should be engaged and it should be kept as short as possible. If you're not engaged, drop. I've worked at places where I was told explicitly to not do this, but I would drop anyway and never heard any complaints. Your mileage might vary. If you're facilitating a meeting, let your participants drop.</p>
+<section id="adhrere-to-the-agenda">
+<h2>Adhrere to the Agenda</h2>
+<p>The agenda specifies the purpose and outcome of the meeting, and the topics worthy of consideration in furtherance of the objective. At the start of the meeting, the first order of business is to approve the agenda: make any last-minute changes needed by the participants. Once everyone agrees on the agenda, <em>stick to it</em>. Topics not on the agenda are to be tabled, either for another meeting or preferrably for a Slack thread.</p>
+<p>✔️ Do ensure everyone agrees to and understands the agenda</p>
+<p>✔️ Do be clear when moving from one agenda item to the next</p>
+<p>✔️ Do cut participants or yourself off if non-agenda topics start being discussed: &quot;Let's table that thought&quot;</p>
+<p>✔️ Do allow for a brief period at the end of the meeting for any additional topics if it's a wide-ranging meeting, but be eager to move individual conversations to later meetings</p>
+<p>❌ Do not amend the agenda mid-meeting. It was agreed to, and if it's not right now that signifies that we can <em>abort the meeting</em>. It's not too late.</p>
+<p>❌ Do not &quot;afterparty&quot; - these are separate conversations and either separate meetings (or Slack threads better yet).</p>
+</section>
+<section id="time-management">
+<h2>Time Management</h2>
+<p>The meeting should have a specific amount of time. My favorite, and I am very serious when I say favorite - historical fact is that Winston Churchill would limit all meetings <em>during the war</em> to 20 minutes. <strong>YOUR MICROSERVICE'S RAM CONSUMPTION IS NOT MORE IMPORTANT THAN THE ALLIES WINNING THE SECOND WORLD WAR</strong>.</p>
+<p>I don't know how accurate that fact is but I quote it more than once a week on average and in my experience nobody ever checks me on it so it's either true or you can also use it to keep your meetings below 20 minutes. Whatever the historical accuracy, my experience has taught me that 20 minutes is enough for almost all meetings I've had to attend or conduct. Meetings that have gone over 20 minutes deliver exponentially less value to participants per minute of runtime. The ideal length of a meeting is the amount time it takes to compose a Slack message. Oh look at that, your meeting can be a Slack message!</p>
+<p>✔️ Do adhere to a strict time limit. Some objectives need to be reached and the meeting extended if not, but the vast majority don't. Set the expectation with everyone that you'll hold them to a timeframe and, as if by magic, the meeting will resolve in the right amount of time.</p>
+<p>✔️ Do keep conversation flexible but insert yourself when it needs to move along.</p>
+<p>✔️ Do set approximate time limits for top-level items.</p>
+<p>❌ Do not tell participants about those time limits - just convey how long the meeting will be.</p>
+<p>❌ Don't harp on participants about time, they're doing their best to navigate the meeting. It's always OK to politely interrupt with a brief reminder about time when necessary.</p>
+</section>
+<section id="take-notes">
+<h2>Take Notes</h2>
+<p>Take notes. This is why I enumerated &quot;secretary&quot; as one of the roles in the meeting. Someone other than the facilitator should be writing down notes. &quot;Even for daily standup meetings?&quot; you might ask. Well, you should consider whether those are necessary, but yeah you probably should be taking notes if you're having that meeting.</p>
+<p>Notes will serve as important documentation after the fact for participants about what's been discussed and agreed to. What's more is that not everyone in your company can be in every meeting, but you need to make sure that information is available to everyone in your organization. Keep minutes to allow everyone to revisit them when necessary.</p>
+<p>✔️ Do appoint a &quot;secretary&quot; to take notes</p>
+<p>✔️ Do share the notes with everyone during the meeting</p>
+<p>✔️ Do take note of important questions, information, and decisions</p>
+<p>❌ Do not record every word of every participant</p>
+<p>❌ In fact, do not record the actions of specific participants unless it's absolutely necessary</p>
+<p>❌ Do not let everyone amend the minutes during the meeting - have one person dedicated to this task (brainstorming sessions maybe aside)</p>
+</section>
+<section id="everyone-must-participate">
+<h2>Everyone Must Participate</h2>
+<p>If you have a participant who isn't participating, then you don't have a &quot;participant&quot; - you have a voyeur. I'm creeped out by voyeurs, and you probably are too. Excuse them.</p>
+<p>Everyone in a meeting should be participating, either actively listening or contributing to the present conversation. If you're facilitating and notice someone isn't participating, ask their opinion. Create an atmosphere where they're welcome to share their opinion, no matter their seniority (either rank-wise or domain-wise). Participants asking clarifying questions, no matter how basic they may be, must be encouraged.</p>
+<p><em>Side note on the topic of conversations: if a participant gives a hostile answer to a question, call them out on it. This is difficult but it's a win-win - the participant at the receiving end of the hostility knows you have their back, and the hostile participant (and everyone else) knows that behavior isn't acceptable.</em></p>
+<p>✔️ Do encourage a diversity in opinions and voices</p>
+<p>✔️ Do ask everyone their thoughts regularly</p>
+<p>✔️ Do actively engage in the conduct of the meeting and encourage a positive atmosphere</p>
+<p>❌ Do not let participants be passive in a meeting</p>
+<p>❌ Do not overlook non-verbal cues in virtual meetings; they can be indicators of agreement, confusion, or the desire to speak</p>
+<p>❌ Do not avoid tough conversations. About that...</p>
+</section>
+<section id="engage-difficult-conversations">
+<h2>Engage Difficult Conversations</h2>
+<p>Meetings are called for specific purposes - sometimes to reach decisions, sometimes to explore new ideas, or any multitude of reasons that might touch on the passions of several participants. Meetings can bring up difficult, complicated, or heated conversations or even arguments. Make no mistake - this is good, and it's a good sign that a meeting was needed if this happens. A team that is passionately engaged is infinitely more preferrable than a team that always agrees with itself. There will always be a difference in opinion, and the best thing for the team(s) involved is to engage these points head-on.</p>
+<p>✔️ Do allow heated conversations and respectful arguments</p>
+<p>✔️ Do ensure the topic is stuck to during these moments, and ensure everyone maintains the overall focus of the meeting</p>
+<p>✔️ Do act to keep participants in-line when necessary</p>
+<p>✔️ Do suggest a breather if necessary. Do reprimand participants if they cross a line</p>
+<p>✔️ Do create a safe space for dissent and disagreement. DO emphasize the focus on ideas and not individuals</p>
+<p>❌ Do not shut down difficult conversations or honest arguments</p>
+<p>❌ Do not disengage if an argument comes up</p>
+</section>
+</section>
+<section id="after-the-meeting">
+<h1>After the Meeting</h1>
+<p>There's still a bit more work to do after the meeting - you're not done yet! All the more reason to respect the time of the meeting, or to try to avoid it altogether. Remember that what was discussed needs to be appropriately documented and easy to reference for participants. Remember also that not everyone in your organization was able to attend this meeting, but goodness knows when the topics discussed will impact them.</p>
+<p>I recommend keeping your meeting minutes in a single place that's easy to reference for everyone in your organization. Products like Notion, Monday, or Confluence allow you to add tags and @ members as necessary, making them searchable too.</p>
+<section id="finalize-the-minutes">
+<h2>Finalize the Minutes</h2>
+<p>After the meeting, ask all participants to spend a minute or two to add anything to the minutes that might have been missed. You asked them to refrain from adding anything to the minutes during the meeting so they could stay focused on the conversation, now that the conversation is over they can add any extra context they need.</p>
+<p>✔️ Do leave the minutes editable, at least for a period of time. Preferrably store them in a system with history tracking.</p>
+<p>✔️ Do follow up and ensure everyone agrees on the final minutes</p>
+<p>✔️ Do broadcast to your organization that your meeting is done and the minutes are available</p>
+<p>✔️ Do set a deadline for when minutes must be finalized and shared post-meeting</p>
+<p>❌ Do not fail to publish the minutes</p>
+<p>❌ Do not allow a &quot;he said, she said&quot; fight in the minutes after the meeting</p>
+</section>
+<section id="follow-up-actions">
+<h2>Follow-Up Actions</h2>
+<p>A lot of meetings will result in participants being assigned specific tasks. You should either follow up with them in the appropriate timeframe, or ensure their managers do, that they've completed these tasks. It's good to update the minutes at this time to reflect that this was done, and if possible link to the result.</p>
+<p>✔️ Do ensure all participants are clear on follow-up items</p>
+<p>✔️ Do record follow-up work in the minutes</p>
+<p>❌ Do not assign follow up work after the meeting</p>
+</section>
+</section>
+<section id="keep-in-mind-always">
+<h1>Keep in Mind Always</h1>
+<section id="meeting-etiquette">
+<h2>Meeting Etiquette</h2>
+<p>✔️ Do be mindful of your role, participation, and conduct during meetings</p>
+<p>✔️ Do respect everyone's time</p>
+<p>✔️ Do respect everyone's individual contributions</p>
+<p>✔️ Do adhere to virtual meeting norms, such as muting when not speaking</p>
+<p>✔️ Do leave, not attend, or <em>abort</em> the meeting if you can</p>
+<p>❌ Do not dominate a meeting, either as a participant or a facilitator</p>
+<p>❌ Do not underestimate the impact of your physical environment in virtual meetings (e.g., background, lighting)</p>
+</section>
+<section id="regular-review">
+<h2>Regular Review</h2>
+<p>✔️ Do regularly assess the necessity and effectiveness of meetings, especially regular rituals</p>
+<p>✔️ Do be open to feedback and make adjustments as needed</p>
+<p>✔️ Do make adjustments or <em>abort the meeting</em> if and when necessary</p>
+<p>✔️ Do periodically ask if the frequency of regular meetings is still appropriate or if adjustments are needed</p>
+<p>❌ Do not ignore patterns of unproductive meetings. If certain meetings consistently fail to achieve their objectives, it's a sign that they need to be reevaluated</p>
+<p>❌ Do not continue meetings just because they are a routine</p>
+</section>
+<section id="diverse-perspectives">
+<h2>Diverse Perspectives</h2>
+<p>✔️ Do value and seek a range of opinions and ideas, and encourage participation from everyone</p>
+<p>✔️ Be mindful of inclusive participation, especially in diverse teams</p>
+<p>❌ Do not allow the same individuals to dominate the conversation in every meeting</p>
+<p>❌ Do not dismiss ideas without proper consideration, and do not create an environment where only certain opinions are valued over others</p>
+</section>
+</section>
+<section id="conclusion">
+<h1>Conclusion</h1>
+<p>Yeah that's a lot of bullet points, but I have a lot of ideas on this topic. I feel strongly that meetings are very productive tools, but there's a lot of awkwardness in our industry around how any why we have meetings. Be considerate and hold your meetings with intention and purpose, drive towards your outcome, and your meetings will work for you and all of your colleagues.</p>
+<p>Above all, remember: <em>you probably don't need a meeting for it.</em></p>
+</section>
+
+	</div>
+	<div class="comments">
+		<script src="https://giscus.app/client.js"
+			data-repo="IanWold/ianwold.github.io"
+			data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk1NDkyNzI="
+			data-category="Posts"
+			data-category-id="DIC_kwDOCYKHWM4CZH2Y"
+			data-mapping="title"
+			data-strict="0"
+			data-reactions-enabled="0"
+			data-emit-metadata="0"
+			data-input-position="top"
+			data-theme="light"
+			data-lang="en"
+			data-loading="lazy"
+			crossorigin="anonymous"
+			async>
+		</script>
+	</div>
+</div>
+
+<div class="section-gray">
+	<div class="content post-end">
+		<img src="../images/hero1.svg" />
+		<div class="bio">
+			<h1>Hi, I'm Ian</h1>
+			<p>
+				I'm a software engineer, architect, and team leader in Minneapolis. My career has largely focused on .NET and web technologies, spread across several industries. Currently I'm working for Crate &amp; Barrel on their ecommerce solutions. You can find me on this blog, contributing to open source repositories, and at conferences around the Midwest.
+			</p>
+			<hr/>
+			<p>
+				Thank you for reading this post, I hope you found it valuable. If you'd like to keep up to date with my extremely consistent blog, please subscribe to my <a href="https://buttondown.email/ianwold" target="_blank">newsletter</a> or <a href="https://ian.wold.guru/feed.xml" target="_blank">RSS feed</a>.
+			</p>
+			<hr/>
+			<p>
+				Some other posts you might be interested in:
+			</p>
+			<div class="archive">
+				<ul>
+					
+						<li>
+							<a href="../Posts/deploying_aspnet_7_projects_with_railway.html">
+								Deploying ASP.NET 7 Projects with Railway<small>Railway is a startup cloud infrastructure provider that has gained traction for being easy to use and cheap for hobbyists. Let's get a .NET 7 Blazor WASM app up and running with it!</small>
+							</a>
+						</li>
+					
+						<li>
+							<a href="../Posts/.html">
+								Book Club 10/2023: Functional Patterns in C#<small>This month I've focused on functional domain modeling and related patterns. We're just a few weeks away from the release of the next version of C#, and like each previous version it'll introduce even more functional features.</small>
+							</a>
+						</li>
+					
+						<li>
+							<a href="../Posts/sprache.html">
+								An Introduction to Sprache<small>Sprache is a parser-combinator library for C# that uses Linq to construct parsers. In this post I describe the fundamentals of understanding grammars and parsing them with Sprache, with several real-world examples.</small>
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+		<footer>
+			<div class="content content-footer">
+				<span>
+					Copyright &copy; Ian Wold. Site generated by <a href="https://www.github.com/IanWold/Metalsharp">Metalsharp</a> and hosted by <a href="https://www.github.com/IanWold/ianwold.github.io">GitHub Pages</a>.
+				</span>
+				<div class="icon-links">
+					<a href="https://github.com/ianwold"><i data-feather="github"></i></a>
+					<a href="mailto:ian@wold.guru?subject=Hello"><i data-feather="mail"></i></a>
+					<a href="https://buttondown.email/ianwold" target="_blank"><i data-feather="book"></i></a>
+					<a href="https://ian.wold.guru/feed.xml" target="_blank"><i data-feather="rss"></i></a>
+				</div>
+			</div>
+		</footer>
+
+		<script src="../highlight/highlight.min.js"></script>
+		<script>
+			feather.replace();
+			hljs.highlightAll();
+
+			window.addEventListener('DOMContentLoaded', () => {
+				const observer = new IntersectionObserver(entries => {
+					entries.forEach(entry => {
+						const id = entry.target.getAttribute('id');
+						let classList = document.querySelector(`.pane li a[href="#${id}"]`).parentElement.classList;
+
+						if (entry.intersectionRatio > 0) {
+							classList.add('active');
+						} else {
+							classList.remove('active');
+						}
+					});
+				});
+
+				document.querySelectorAll('section[id]').forEach((section) => {
+					observer.observe(section);
+				});
+			});
+
+			const darkModeToggle = document.getElementById("dark-mode-toggle");
+			const body = document.body;
+
+			function toggleDarkMode() {
+				body.classList.toggle("dark");
+
+				if (localStorage.getItem("dark") === "enabled") {
+					localStorage.setItem("dark", "disabled");
+				} else {
+					localStorage.setItem("dark", "enabled");
+				}
+			}
+
+			darkModeToggle.addEventListener("click", toggleDarkMode);
+
+			if (localStorage.getItem("dark") === "enabled") {
+				body.classList.toggle("dark");
+			}
+		</script>
+	</body>
+</html>
