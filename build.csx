@@ -72,7 +72,7 @@ new MetalsharpProject()
 		{
 			i.PublishDate = i.LastUpdatedTime;
 			return i;
-		});
+		})
 	);
 
 	var xmlSettings = new XmlWriterSettings
