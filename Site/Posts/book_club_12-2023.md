@@ -55,4 +55,4 @@ And to close out, I wrote a few articles recently that are on-topic:
 * [Clean Meetings: A Software Engineer's Guide](https://ian.wold.guru/Posts/clean_meetings_a_software_engineers_guide.html)
 * [A Scrum Odyssey](https://ian.wold.guru/Posts/a_scrum_odyssey.html) (Okay that one's a lot of GPT but it was translating my writing)
 
-Happy holidays and happy new year to you all, I'll be back in 2024!
+Happy holidays and happy new year, I'll be back in 2024!
