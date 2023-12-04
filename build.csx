@@ -49,7 +49,8 @@ new MetalsharpProject()
 	BlogMetadata = new()
 	{
 		["title"] = "",
-		["template"] = "archive"
+		["template"] = "archive",
+		["removeHighlight"] = true
 	},
 })
 .UseLeveller()
@@ -96,7 +97,7 @@ new MetalsharpProject()
 
 	project.AddOutput(new MetalsharpFile(rssFeedContent, "feed.xml"));
 
-	
+
 
 	foreach (var post in project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts") && f.Metadata.TryGetValue("contents", out object isContentsObject) && isContentsObject is bool isContents && isContents))
 	{

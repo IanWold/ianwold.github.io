@@ -53,10 +53,14 @@
 			</div>
 		</footer>
 
-		<script src="{{ directoryPrefix }}highlight/highlight.min.js"></script>
+		{% if removeHighlight != true %}
+			<script src="{{ directoryPrefix }}highlight/highlight.min.js"></script>
+		{% endif %}
 		<script>
 			feather.replace();
-			hljs.highlightAll();
+			{% if removeHighlight != true %}
+				hljs.highlightAll();
+			{% endif %}
 
 			window.addEventListener('DOMContentLoaded', () => {
 				const observer = new IntersectionObserver(entries => {
