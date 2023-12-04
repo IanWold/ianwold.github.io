@@ -77,7 +77,7 @@ There are a few steps to take before holding a meeting, and they can greatly hel
 
 ## Prepare the Agenda
 
-I covered all the dos and don'ts in the previous section, but this is the most important step before the meeitng. Write the agenda down and distribute it as early as you can. Some meetings are regular rituals, and it still helps to write the agenda for these down and distribute them. Sometimes there is requisite technical or business information for the meeting - provide these as resources for participants. If they suggest suggest changes, make them!
+I covered all the dos and don'ts in the previous section, but this is the most important step before the meeting. Write the agenda down and distribute it as early as you can. Some meetings are regular rituals, and it still helps to write the agenda for these down and distribute them. Sometimes there is requisite technical or business information for the meeting - provide these as resources for participants. If they suggest suggest changes, make them!
 
 ✔️ Do include knowledge perrequisite for the meeting in the agenda (links and short descriptions, please)
 
