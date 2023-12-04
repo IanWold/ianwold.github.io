@@ -2,7 +2,7 @@
 {
 	"title": "Clean Meetings: A Software Engineer's Guide",
 	"description": "If being in meetings all day isn't bad enough, spending more time thinking about them seems horrible. Here's a simple guide on making sure you're getting the most out of your meetings.",
-	"date": "8 November 2023",
+	"date": "3 December 2023",
 	"contents": true,
 	"hero": "photo-1568992687947-868a62a9f521",
     "related": [
