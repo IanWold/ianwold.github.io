@@ -27,7 +27,7 @@ The most often overlooked aspect to keeping meetings clean is the meeting struct
 
 ## Purpose and Outcome
 
-A meeting is scheduled with a specific set of participants agreen on a **purpose** and **outcome**: Why is it necessary to gather this group of people and what do they need to achieve? You might need a brainstorming session, you might need to reach a decision or consensus, or you might need to share information. Either way, _be clear about each of these_.
+A meeting is scheduled with a specific set of participants agreed on a **purpose** and **outcome**: Why is it necessary to gather this group of people and what do they need to achieve? You might need a brainstorming session, you might need to reach a decision or consensus, or you might need to share information. Whatever the case, _be clear about each of these_.
 
 ✔️ Do define a **purpose**
 
@@ -35,19 +35,19 @@ A meeting is scheduled with a specific set of participants agreen on a **purpose
 
 ✔️ Do ensure all participants understand the **purpose** and **outcome**
 
-❌ Do not neglect this step! Don't neglect the others but especially this!
+❌ Do not neglect this step! Don't neglect the other steps but especially not this one!
 
-❌ Do not assume all participants understand or agree with the **purpose** and **outcome**
+❌ Do not assume all participants understand or agree with the **purpose** and **outcome** - reach out and be sure
 
 ## Agenda
 
-Simply put, an agenda is a set of topics to discuss at the meeting. This can be as simple as a single bullet point `* Brainstorm a name for the new microservice` or a detailed breakdown of gaps in technical knowledge.
+Simply put, an agenda is a set of topics to discuss at the meeting. This can be as simple as a single bullet point (i.e. `* Brainstorm a name for the new microservice`) or a detailed breakdown of gaps in technical knowledge.
 
-_Side note: if your agenda is "Brainstorm a name for the new microservice that's just a Slack thread. I've been in that exact meeting too many times and I'm here to tell you - your microservice will be replaced by 5 others and deleted in 2 years anyway, just call it "Craig" or something._
+_Side note: if your agenda is "Brainstorm a name for the new microservice" that's just a Slack thread. I've been in that exact meeting too many times and I'm here to tell you - your microservice will be replaced by 5 others and deleted in 2 years anyway, just call it "Craig" or something._
 
-Some agendas are written, some aren't, but each meeting _has an agenda_. There are few absolute truths in the world, but I can tell you that meetings which follow the agenda are good, meeting that don't aren't.
+Some agendas are written, some aren't, but each meeting _has an agenda_. There are few absolute truths in the world, but I can tell you that meetings which follow the agenda are good, and meetings that don't aren't.
 
-Another often-overlooked point is that the agenda needs to be agreed on by all participants. It is not the job of the individual calling the meeting to carve the agenda in stone, it's their responsibility to make sure the agenda fulfils the purposes intended by the participants and the outcomes desired by them. Are these intents and desires contradictory? Sounds like multiple meetings.
+Another often-overlooked point is that the agenda needs to be agreed on by all participants. It is not the job of the individual calling the meeting to carve the agenda in stone, it's their responsibility to make sure the agenda fulfils the purposes intended by the participants and the outcomes desired by them. Are the intents and desires of one participant contradictory with another? Sounds like multiple meetings. Maybe multiple Slack threads, but what do I know?
 
 ✔️ Do be specific about the purpose and outcome in the agenda
 
@@ -55,21 +55,21 @@ Another often-overlooked point is that the agenda needs to be agreed on by all p
 
 ✔️ Do ask participants to contribute to the agenda, both before and at the beginning of each meeting
 
-❌ Do not require all potential participants to attend even if they feel they aren't interested in the agenda
+❌ Do not require all potential participants to attend, especially if they feel they aren't interested in the agenda
 
-❌ Do not try to write a perfect, final agenda. Instead, write a "first pass" and then give ownership to the other participants
+❌ Do not write the agenda in one pass. Instead, write a first pass and give ownership to the team
 
 ## Roles
 
 Each meeting has roles. At the least, you need to acknowledge:
 
-* **Facilitator** leads the meeting, ensures the agenda is followed, and facilitates discussion,
-* **Secretary** records the minutes and important decisions,
-* **Participants** engage in the discussion, provide input, and carry out assigned action items post-meeting.
+* The **facilitator** leads the meeting, ensures the agenda is followed, and facilitates discussion,
+* The **secretary** records the minutes and important decisions, and 
+* The **participants** engage in the discussion, provide input, and carry out assigned action items post-meeting.
 
 ✔️ Do be clear about which role is fulfilled by which participant
 
-❌ Do not assign multiple roles to a single person in important meetings
+❌ Do not assign multiple roles to a single person in larger meetings
 
 # Before the Meeting
 
@@ -77,17 +77,17 @@ There are a few steps to take before holding a meeting, and they can greatly hel
 
 ## Prepare the Agenda
 
-I covered all the dos and don'ts in the previous section, but this is the most important step before the meeting. Write the agenda down and distribute it as early as you can. Some meetings are regular rituals, and it still helps to write the agenda for these down and distribute them. Sometimes there is requisite technical or business information for the meeting - provide these as resources for participants. If they suggest suggest changes, make them!
+I covered all the dos and don'ts in the previous section, but this is the most important step before the meeting. Write the agenda down and distribute it as early as you can. Some meetings are regular rituals, and it still helps to write the agenda for these down and distribute them. Sometimes there is requisite technical or business information for the meeting - provide these as resources for participants. If they suggest changes, make them!
 
 ✔️ Do include knowledge perrequisite for the meeting in the agenda (links and short descriptions, please)
 
 ✔️ Do take feedback - if necessary, send a revised agenda to participants
 
-✔️ Do include any necessary discription or goal for points needing clarification
+✔️ Do include any necessary discription or goals for points needing clarification
 
-❌ Do not write a novel as the agenda - stick to bullet points
+❌ Do not write a novel for the agenda - stick to bullet points
 
-Sometimes the objective of the meeting is reached while distributing the agenda. If it is - abort the meeting. Your objective is reached. As Sun Tzu says in The Art of War - "The wisest general is the general who never fights."
+Sometimes the objective of the meeting is reached while distributing the agenda. If it is: abort the meeting. Your objective is reached. As Sun Tzu says in The Art of War, "The wisest general is the general who never fights."
 
 ## Pre-Meeting Preparation
 
@@ -95,9 +95,9 @@ While the facilitator has the most work to understand the agenda and work toward
 
 ✔️ Do review the agenda beforehand
 
-✔️ Do suggest agenda changes. If you think you might have solved the problem or resolved the outcome of the meeting, even if only minutes before, say so and _abort the meeting_.
+✔️ Do suggest agenda changes. If you think you might have solved the problem or resolved the outcome of the meeting, even if only minutes before, say so and _abort the meeting_
 
-❌ Do not attend the meeting if you feel you don't have to. Best to ask the facilitator to drop, explaining why.
+❌ Do not attend the meeting if you feel you don't have to. Best to ask the facilitator to drop, explaining why
 
 # During the Meeting
 
@@ -105,7 +105,7 @@ In a meeting, everyone should be engaged and it should be kept as short as possi
 
 ## Adhrere to the Agenda
 
-The agenda specifies the purpose and outcome of the meeting, and the topics worthy of consideration in furtherance of the objective. At the start of the meeting, the first order of business is to approve the agenda: make any last-minute changes needed by the participants. Once everyone agrees on the agenda, _stick to it_. Topics not on the agenda are to be tabled, either for another meeting or preferrably for a Slack thread.
+The agenda specifies the purpose and outcome of the meeting, and the topics worthy of consideration in furtherance of the objective. At the start of the meeting, the first order of business is to approve the agenda and make any last-minute changes needed by the participants. Once everyone agrees on the agenda, _stick to it_. Topics not on the agenda are to be tabled, either for another meeting or preferrably for a Slack thread.
 
 ✔️ Do ensure everyone agrees to and understands the agenda
 
@@ -115,29 +115,29 @@ The agenda specifies the purpose and outcome of the meeting, and the topics wort
 
 ✔️ Do allow for a brief period at the end of the meeting for any additional topics if it's a wide-ranging meeting, but be eager to move individual conversations to later meetings
 
-❌ Do not amend the agenda mid-meeting. It was agreed to, and if it's not right now that signifies that we can _abort the meeting_. It's not too late.
+❌ Do not amend the agenda mid-meeting. It was agreed to, and if we find we're not focused that signifies that we can _abort the meeting_ - it's not too late
 
-❌ Do not "afterparty" - these are separate conversations and either separate meetings (or Slack threads better yet).
+❌ Do not "afterparty" - these are either separate conversations or separate meetings (or better yet, Slack threads)
 
 ## Time Management
 
 The meeting should have a specific amount of time. My favorite, and I am very serious when I say favorite - historical fact is that Winston Churchill would limit all meetings _during the war_ to 20 minutes. **YOUR MICROSERVICE'S RAM CONSUMPTION IS NOT MORE IMPORTANT THAN THE ALLIES WINNING THE SECOND WORLD WAR**.
 
-I don't know how accurate that fact is but I quote it more than once a week on average and in my experience nobody ever checks me on it so it's either true or you can also use it to keep your meetings below 20 minutes. Whatever the historical accuracy, my experience has taught me that 20 minutes is enough for almost all meetings I've had to attend or conduct. Meetings that have gone over 20 minutes deliver exponentially less value to participants per minute of runtime. The ideal length of a meeting is the amount time it takes to compose a Slack message. Oh look at that, your meeting can be a Slack message!
+I don't know how accurate that fact is but I quote it more than once a week on average and in my experience nobody ever checks me on it, so either it's true _or_ you can also use it to keep your meetings below 20 minutes. Whatever the historical accuracy, my experience has taught me that 20 minutes is enough for almost all meetings I've had to attend or conduct. Meetings that go over 20 minutes deliver exponentially less value to participants per minute of runtime. The ideal length of a meeting is the amount time it takes to compose a Slack message. Oh look at that, your meeting can be a Slack message!
 
-✔️ Do adhere to a strict time limit. Some objectives need to be reached and the meeting extended if not, but the vast majority don't. Set the expectation with everyone that you'll hold them to a timeframe and, as if by magic, the meeting will resolve in the right amount of time.
+✔️ Do adhere to a strict time limit. Some objectives need to be reached and the meeting extended if not, but the vast majority don't. Set the expectation with everyone that you'll hold them to a timeframe and, as if by magic, the meeting will resolve in the right amount of time
 
-✔️ Do keep conversation flexible but insert yourself when it needs to move along.
+✔️ Do keep conversation flexible but insert yourself when it needs to move along
 
-✔️ Do set approximate time limits for top-level items.
+✔️ Do set approximate time limits for top-level items
 
-❌ Do not tell participants about those time limits - just convey how long the meeting will be.
+❌ Do not tell participants about those time limits - just convey how long the meeting will be
 
-❌ Don't harp on participants about time, they're doing their best to navigate the meeting. It's always OK to politely interrupt with a brief reminder about time when necessary.
+❌ Don't harp on participants about time, they're doing their best to navigate the meeting; it's always OK to politely interrupt with a brief reminder about time when necessary
 
 ## Take Notes
 
-Take notes. This is why I enumerated "secretary" as one of the roles in the meeting. Someone other than the facilitator should be writing down notes. "Even for daily standup meetings?" you might ask. Well, you should consider whether those are necessary, but yeah you probably should be taking notes if you're having that meeting.
+Liek the heading says, take notes. This is why I enumerated "secretary" as one of the roles in the meeting. Someone other than the facilitator should be writing down notes. "Even for daily standup meetings?" you might ask. Well, you should consider whether those are necessary, but yeah you probably should be taking notes if you're having that meeting. If you counter that nobody cares about those daily standup meetings enough to take notes, _then you might consider a second time whether those meetings really are necessary!_
 
 Notes will serve as important documentation after the fact for participants about what's been discussed and agreed to. What's more is that not everyone in your company can be in every meeting, but you need to make sure that information is available to everyone in your organization. Keep minutes to allow everyone to revisit them when necessary.
 
@@ -159,7 +159,7 @@ If you have a participant who isn't participating, then you don't have a "partic
 
 Everyone in a meeting should be participating, either actively listening or contributing to the present conversation. If you're facilitating and notice someone isn't participating, ask their opinion. Create an atmosphere where they're welcome to share their opinion, no matter their seniority (either rank-wise or domain-wise). Participants asking clarifying questions, no matter how basic they may be, must be encouraged.
 
-_Side note on the topic of conversations: if a participant gives a hostile answer to a question, call them out on it. This is difficult but it's a win-win - the participant at the receiving end of the hostility knows you have their back, and the hostile participant (and everyone else) knows that behavior isn't acceptable._
+_Side note on the topic of conversations: if a participant gives a hostile answer to a question, call them out on it. This is difficult but it's a win-win - the participant at the receiving end of the hostility knows you have their back, and the hostile participant (and everyone else) knows this behavior isn't acceptable._
 
 ✔️ Do encourage a diversity in opinions and voices
 
@@ -185,7 +185,7 @@ Meetings are called for specific purposes - sometimes to reach decisions, someti
 
 ✔️ Do suggest a breather if necessary. Do reprimand participants if they cross a line
 
-✔️ Do create a safe space for dissent and disagreement. DO emphasize the focus on ideas and not individuals
+✔️ Do create a safe space for dissent and disagreement. Do emphasize the focus on ideas and not individuals
 
 ❌ Do not shut down difficult conversations or honest arguments
 
