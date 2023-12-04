@@ -68,7 +68,11 @@ new MetalsharpProject()
 		"Ian Wold",
 		"Ian Wold's Blog",
 		new Uri("https://ian.wold.guru/feed.xml"),
-		rssItems
+		rssItems.Select(i =>
+		{
+			i.PublishDate = i.LastUpdatedTime;
+			return i;
+		});
 	);
 
 	var xmlSettings = new XmlWriterSettings
