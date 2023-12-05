@@ -3,7 +3,7 @@
 	"title": "About",
 	"highlight": "about",
 	"template": "page",
-	"removeHighlight": true,
+	"removeScrollspy": true,
 	"fontRequirement": "page"
 }
 ;;;

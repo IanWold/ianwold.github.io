@@ -6,11 +6,8 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="{{ directoryPrefix }}bundle.min.css" />
-		{% if removeHighlight != true %}
-			<!--<link rel="stylesheet" href="{{ directoryPrefix }}highlight/styles/monokai-sublime.min.css" />-->
-		{% endif %}
 
+		<link rel="stylesheet" href="{{ directoryPrefix }}bundle.min.css" />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		{% if fontRequirement == "index" %}
@@ -67,13 +64,8 @@
 			</div>
 		</footer>
 
-		{% if removeHighlight != true %}
-			<!--<script src="{{ directoryPrefix }}highlight/highlight.min.js"></script>-->
-		{% endif %}
 		<script>
-			{% if removeHighlight != true %}
-				//hljs.highlightAll();
-
+			{% if removeScrollspy != true %}
 				window.addEventListener('DOMContentLoaded', () => {
 					const observer = new IntersectionObserver(entries => {
 						entries.forEach(entry => {

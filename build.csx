@@ -50,7 +50,7 @@ new MetalsharpProject()
 	{
 		["title"] = "",
 		["template"] = "archive",
-		["removeHighlight"] = true,
+		["removeScrollspy"] = true,
 		["fontRequirement"] = "index"
 	},
 })
