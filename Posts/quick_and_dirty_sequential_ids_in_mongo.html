@@ -8,7 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="../bundle.min.css" />
 		
-			<link rel="stylesheet" href="../highlight/styles/monokai-sublime.min.css" />
+			<!--<link rel="stylesheet" href="../highlight/styles/monokai-sublime.min.css" />-->
 		
 
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,50 +74,50 @@
 <p>Is a primary key generator really the sort of thing you want &quot;quick and dirty&quot;? Probably not. Am I doing it in prod? Yes.</p>
 <h1>Updating a counter collection</h1>
 <p>As a prerequisite, ensure you have the Mongo driver:</p>
-<pre><code class="language-plaintext">go get go.mongodb.org/mongo-driver/mongo
-</code></pre>
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-plaintext"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">go get go.mongodb.org/mongo-driver/mongo</span></div><textarea data-torchlight-original="true" style="display: none !important;">go get go.mongodb.org/mongo-driver/mongo
+</textarea></code></pre>
 <p>Just as Mongo's tutorial for Atlas recommends, we'll implement a counter collection. This collection will contain one document per &quot;kind&quot; of ID we need to generate. If you have just one object that needs sequential IDs, then you'll only have one document in this collection. We'll represent this collection document with a struct. It only needs one field, <code>sequence</code>, which will represent the latest ID generated:</p>
-<pre><code class="language-go">type MongoCounterDocument struct {
-    sequence int `bson:&quot;sequence&quot;`
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-go"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F92672;">type</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">MongoCounterDocument</span><span style="color: #F8F8F2;"> </span><span style="color: #F92672;">struct</span><span style="color: #F8F8F2;"> {</span></div><div class='line'><span style="color: #F8F8F2;">    sequence </span><span style="color: #66D9EF;">int</span><span style="color: #F8F8F2;"> </span><span style="color: #E6DB74;">`bson:&quot;sequence&quot;`</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><textarea data-torchlight-original="true" style="display: none !important;">type MongoCounterDocument struct {
+    sequence int `bson:"sequence"`
 }
-</code></pre>
+</textarea></code></pre>
 <p>The ID of each document in the collection should be a string you hardcode or keep in a settings file (such as <code>&quot;personIdCounter&quot;</code>), and doesn't need to be in the document struct. Instead, we'll encapsulate that in a generator struct along with a reference to the collection:</p>
-<pre><code class="language-go">type MongoIdGenerator struct {
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-go"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F92672;">type</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">MongoIdGenerator</span><span style="color: #F8F8F2;"> </span><span style="color: #F92672;">struct</span><span style="color: #F8F8F2;"> {</span></div><div class='line'><span style="color: #F8F8F2;">    counterCollection </span><span style="color: #F92672;">*</span><span style="color: #F8F8F2;">mongo.Collection</span></div><div class='line'><span style="color: #F8F8F2;">    counterDocumentId </span><span style="color: #66D9EF;">string</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><textarea data-torchlight-original="true" style="display: none !important;">type MongoIdGenerator struct {
     counterCollection *mongo.Collection
     counterDocumentId string
 }
-</code></pre>
+</textarea></code></pre>
 <p>To implement the functionality to generate the next ID, we'll use the <code>FindOneAndUpdate</code> operation to increment <code>sequence</code> and return the new ID to us. We can specify a couple options here: we can upsert the document so that it will be created automatically if one isn't there for us (useful for integration tests), and we can specify that we want the operation to read and return us a copy of the document <em>after</em> the update has taken place.</p>
-<pre><code class="language-go">func (generator *MongoIdGenerator) GetNextId() (int, error) {
-    filter := bson.M{&quot;_id&quot;: m.counterDocumentId}
-    update := bson.M{&quot;$inc&quot;: bson.M(&quot;sequence&quot;: 1)}
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-go"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F92672;">func</span><span style="color: #F8F8F2;"> (generator </span><span style="color: #F92672;">*</span><span style="color: #F8F8F2;">MongoIdGenerator) </span><span style="color: #A6E22E;">GetNextId</span><span style="color: #F8F8F2;">() (</span><span style="color: #66D9EF;">int</span><span style="color: #F8F8F2;">, </span><span style="color: #66D9EF;">error</span><span style="color: #F8F8F2;">) {</span></div><div class='line'><span style="color: #F8F8F2;">    filter </span><span style="color: #F92672;">:=</span><span style="color: #F8F8F2;"> bson.M{</span><span style="color: #E6DB74;">&quot;_id&quot;</span><span style="color: #F8F8F2;">: m.counterDocumentId}</span></div><div class='line'><span style="color: #F8F8F2;">    update </span><span style="color: #F92672;">:=</span><span style="color: #F8F8F2;"> bson.M{</span><span style="color: #E6DB74;">&quot;$inc&quot;</span><span style="color: #F8F8F2;">: bson.</span><span style="color: #66D9EF;">M</span><span style="color: #F8F8F2;">(</span><span style="color: #E6DB74;">&quot;sequence&quot;</span><span style="color: #F8F8F2;">: </span><span style="color: #AE81FF;">1</span><span style="color: #F8F8F2;">)}</span></div><div class='line'><span style="color: #F8F8F2;">    options </span><span style="color: #F92672;">:=</span><span style="color: #F8F8F2;"> options.</span><span style="color: #66D9EF;">FindOneAndUpdate</span><span style="color: #F8F8F2;">().</span><span style="color: #66D9EF;">SetUpsert</span><span style="color: #F8F8F2;">(</span><span style="color: #AE81FF;">true</span><span style="color: #F8F8F2;">).</span><span style="color: #66D9EF;">SetReturnDocument</span><span style="color: #F8F8F2;">(options.After)</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #F92672;">var</span><span style="color: #F8F8F2;"> updatedDocument MongoIdCounter</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">    err </span><span style="color: #F92672;">:=</span><span style="color: #F8F8F2;"> m.counterCollection.</span><span style="color: #66D9EF;">FindOneAndUpdate</span><span style="color: #F8F8F2;">(context.</span><span style="color: #66D9EF;">TODO</span><span style="color: #F8F8F2;">(), filter, update, options).</span><span style="color: #66D9EF;">Decode</span><span style="color: #F8F8F2;">(</span><span style="color: #F92672;">&amp;</span><span style="color: #F8F8F2;">updatedDocument)</span></div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #F92672;">if</span><span style="color: #F8F8F2;"> err </span><span style="color: #F92672;">!=</span><span style="color: #F8F8F2;"> </span><span style="color: #AE81FF;">nil</span><span style="color: #F8F8F2;"> {</span></div><div class='line'><span style="color: #F8F8F2;">        </span><span style="color: #F92672;">return</span><span style="color: #F8F8F2;"> </span><span style="color: #AE81FF;">0</span><span style="color: #F8F8F2;">, errors.</span><span style="color: #66D9EF;">New</span><span style="color: #F8F8F2;">(</span><span style="color: #E6DB74;">&quot;Unable to update Mongo id counter collection.&quot;</span><span style="color: #F8F8F2;">)</span></div><div class='line'><span style="color: #F8F8F2;">    }</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #F92672;">return</span><span style="color: #F8F8F2;"> updatedDocument.sequence, </span><span style="color: #AE81FF;">nil</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><textarea data-torchlight-original="true" style="display: none !important;">func (generator *MongoIdGenerator) GetNextId() (int, error) {
+    filter := bson.M{"_id": m.counterDocumentId}
+    update := bson.M{"$inc": bson.M("sequence": 1)}
     options := options.FindOneAndUpdate().SetUpsert(true).SetReturnDocument(options.After)
 
     var updatedDocument MongoIdCounter
 
     err := m.counterCollection.FindOneAndUpdate(context.TODO(), filter, update, options).Decode(&amp;updatedDocument)
     if err != nil {
-        return 0, errors.New(&quot;Unable to update Mongo id counter collection.&quot;)
+        return 0, errors.New("Unable to update Mongo id counter collection.")
     }
 
     return updatedDocument.sequence, nil
 }
-</code></pre>
+</textarea></code></pre>
 <p><code>FindOneAndUpdate</code> is atomic and shouldn't have any concurrency concerns so long as you <strong>do not shard the counter collection</strong>.</p>
 <h1>But I don't want to have to hit Mongo every time I want a new id</h1>
 <p>Huh, you and I think alike, I didn't either! To get around this, we can have our app generate multiple IDs each time it hits Mongo and use these IDs until it runs out locally.</p>
 <p>With this approach you have the concern that if your app is spinning up and tearing down too frequently, you'll start losing IDs in the mix. There are various strategies to mitigate this, such as retrieving a small number of IDs from Mongo each time or persisting the cache of IDs, but I'm not going to get into those here.</p>
 <p>We'll add <code>nextId</code> and <code>maxId</code> properties to the generator object, as well as an increment field to specify how many IDs we should generate each time:</p>
-<pre><code class="language-go">type MongoIdGenerator struct {
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-go"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F92672;">type</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">MongoIdGenerator</span><span style="color: #F8F8F2;"> </span><span style="color: #F92672;">struct</span><span style="color: #F8F8F2;"> {</span></div><div class='line'><span style="color: #F8F8F2;">    counterCollection </span><span style="color: #F92672;">*</span><span style="color: #F8F8F2;">mongo.Collection</span></div><div class='line'><span style="color: #F8F8F2;">    counterDocumentId </span><span style="color: #66D9EF;">string</span></div><div class='line'><span style="color: #F8F8F2;">    incrementBy       </span><span style="color: #66D9EF;">int</span></div><div class='line'><span style="color: #F8F8F2;">    nextId            </span><span style="color: #66D9EF;">int</span></div><div class='line'><span style="color: #F8F8F2;">    maxId             </span><span style="color: #66D9EF;">int</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><textarea data-torchlight-original="true" style="display: none !important;">type MongoIdGenerator struct {
     counterCollection *mongo.Collection
     counterDocumentId string
     incrementBy       int
     nextId            int
     maxId             int
 }
-</code></pre>
+</textarea></code></pre>
 <p>We'll add a func to instantiate this at startup. It'll be important that your app only has one of these objects per &quot;kind&quot; of ID you need to generate:</p>
-<pre><code class="language-go">func SetupMongoIdGenerator(collection *mongo.Collection, documentId string) *MongoIdGenerator {
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-go"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F92672;">func</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">SetupMongoIdGenerator</span><span style="color: #F8F8F2;">(collection </span><span style="color: #F92672;">*</span><span style="color: #F8F8F2;">mongo.Collection, documentId </span><span style="color: #66D9EF;">string</span><span style="color: #F8F8F2;">) </span><span style="color: #F92672;">*</span><span style="color: #F8F8F2;">MongoIdGenerator {</span></div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #F92672;">return</span><span style="color: #F8F8F2;"> $MongoIdGenerator{</span></div><div class='line'><span style="color: #F8F8F2;">        counterCollection   : collection,</span></div><div class='line'><span style="color: #F8F8F2;">        counterDocumentId   : documentId,</span></div><div class='line'><span style="color: #F8F8F2;">        </span><span style="color: #88846F;">// Adjust this up or down depending on how many IDs you want to generate at once:</span></div><div class='line'><span style="color: #F8F8F2;">        incrementBy         : </span><span style="color: #AE81FF;">25</span><span style="color: #F8F8F2;">,</span></div><div class='line'><span style="color: #F8F8F2;">        nextId              : </span><span style="color: #AE81FF;">0</span><span style="color: #F8F8F2;">,</span></div><div class='line'><span style="color: #F8F8F2;">        maxId               : </span><span style="color: #AE81FF;">0</span></div><div class='line'><span style="color: #F8F8F2;">    }</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><textarea data-torchlight-original="true" style="display: none !important;">func SetupMongoIdGenerator(collection *mongo.Collection, documentId string) *MongoIdGenerator {
     return $MongoIdGenerator{
         counterCollection   : collection,
         counterDocumentId   : documentId,
@@ -127,19 +127,19 @@
         maxId               : 0
     }
 }
-</code></pre>
+</textarea></code></pre>
 <p>And we can update our <code>GetNextId</code> function to consult Mongo or not if <code>nextId</code> equals <code>maxId</code>:</p>
-<pre><code class="language-go">func (generator *MongoIdGenerator) GetNextId() (int, error) {
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-go"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F92672;">func</span><span style="color: #F8F8F2;"> (generator </span><span style="color: #F92672;">*</span><span style="color: #F8F8F2;">MongoIdGenerator) </span><span style="color: #A6E22E;">GetNextId</span><span style="color: #F8F8F2;">() (</span><span style="color: #66D9EF;">int</span><span style="color: #F8F8F2;">, </span><span style="color: #66D9EF;">error</span><span style="color: #F8F8F2;">) {</span></div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #F92672;">if</span><span style="color: #F8F8F2;"> generator.nextId </span><span style="color: #F92672;">==</span><span style="color: #F8F8F2;"> generator.maxId {</span></div><div class='line'><span style="color: #F8F8F2;">        filter </span><span style="color: #F92672;">:=</span><span style="color: #F8F8F2;"> bson.M{</span><span style="color: #E6DB74;">&quot;_id&quot;</span><span style="color: #F8F8F2;">: m.counterDocumentId}</span></div><div class='line'><span style="color: #F8F8F2;">        update </span><span style="color: #F92672;">:=</span><span style="color: #F8F8F2;"> bson.M{</span><span style="color: #E6DB74;">&quot;$inc&quot;</span><span style="color: #F8F8F2;">: bson.</span><span style="color: #66D9EF;">M</span><span style="color: #F8F8F2;">(</span><span style="color: #E6DB74;">&quot;sequence&quot;</span><span style="color: #F8F8F2;">: generator.incrementBy)}</span></div><div class='line'><span style="color: #F8F8F2;">        options </span><span style="color: #F92672;">:=</span><span style="color: #F8F8F2;"> options.</span><span style="color: #66D9EF;">FindOneAndUpdate</span><span style="color: #F8F8F2;">().</span><span style="color: #66D9EF;">SetUpsert</span><span style="color: #F8F8F2;">(</span><span style="color: #AE81FF;">true</span><span style="color: #F8F8F2;">).</span><span style="color: #66D9EF;">SetReturnDocument</span><span style="color: #F8F8F2;">(options.After)</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">        </span><span style="color: #F92672;">var</span><span style="color: #F8F8F2;"> updatedDocument MongoIdCounter</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">        err </span><span style="color: #F92672;">:=</span><span style="color: #F8F8F2;"> m.counterCollection.</span><span style="color: #66D9EF;">FindOneAndUpdate</span><span style="color: #F8F8F2;">(context.</span><span style="color: #66D9EF;">TODO</span><span style="color: #F8F8F2;">(), filter, update, options).</span><span style="color: #66D9EF;">Decode</span><span style="color: #F8F8F2;">(</span><span style="color: #F92672;">&amp;</span><span style="color: #F8F8F2;">updatedDocument)</span></div><div class='line'><span style="color: #F8F8F2;">        </span><span style="color: #F92672;">if</span><span style="color: #F8F8F2;"> err </span><span style="color: #F92672;">!=</span><span style="color: #F8F8F2;"> </span><span style="color: #AE81FF;">nil</span><span style="color: #F8F8F2;"> {</span></div><div class='line'><span style="color: #F8F8F2;">            </span><span style="color: #F92672;">return</span><span style="color: #F8F8F2;"> </span><span style="color: #AE81FF;">0</span><span style="color: #F8F8F2;">, errors.</span><span style="color: #66D9EF;">New</span><span style="color: #F8F8F2;">(</span><span style="color: #E6DB74;">&quot;Unable to update Mongo id counter collection.&quot;</span><span style="color: #F8F8F2;">)</span></div><div class='line'><span style="color: #F8F8F2;">        }</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">        generator.nextId </span><span style="color: #F92672;">=</span><span style="color: #F8F8F2;"> updatedDocument.sequence </span><span style="color: #F92672;">-</span><span style="color: #F8F8F2;"> incrementBy</span></div><div class='line'><span style="color: #F8F8F2;">        generator.maxId </span><span style="color: #F92672;">=</span><span style="color: #F8F8F2;"> updatedDocument.sequence</span></div><div class='line'><span style="color: #F8F8F2;">    }</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">    generator.nextId </span><span style="color: #F92672;">+=</span><span style="color: #F8F8F2;"> </span><span style="color: #AE81FF;">1</span></div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #F92672;">return</span><span style="color: #F8F8F2;"> generator.nextId, </span><span style="color: #AE81FF;">nil</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><textarea data-torchlight-original="true" style="display: none !important;">func (generator *MongoIdGenerator) GetNextId() (int, error) {
     if generator.nextId == generator.maxId {
-        filter := bson.M{&quot;_id&quot;: m.counterDocumentId}
-        update := bson.M{&quot;$inc&quot;: bson.M(&quot;sequence&quot;: generator.incrementBy)}
+        filter := bson.M{"_id": m.counterDocumentId}
+        update := bson.M{"$inc": bson.M("sequence": generator.incrementBy)}
         options := options.FindOneAndUpdate().SetUpsert(true).SetReturnDocument(options.After)
 
         var updatedDocument MongoIdCounter
 
         err := m.counterCollection.FindOneAndUpdate(context.TODO(), filter, update, options).Decode(&amp;updatedDocument)
         if err != nil {
-            return 0, errors.New(&quot;Unable to update Mongo id counter collection.&quot;)
+            return 0, errors.New("Unable to update Mongo id counter collection.")
         }
 
         generator.nextId = updatedDocument.sequence - incrementBy
@@ -149,9 +149,9 @@
     generator.nextId += 1
     return generator.nextId, nil
 }
-</code></pre>
+</textarea></code></pre>
 <p>We do have a concurrency concern here though - we want to ensure <code>nextId</code> and <code>maxId</code> are only being accessed one at a time. We can use a mutex in the generator for this. Update the generator:</p>
-<pre><code class="language-go">type MongoIdGenerator struct {
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-go"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F92672;">type</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">MongoIdGenerator</span><span style="color: #F8F8F2;"> </span><span style="color: #F92672;">struct</span><span style="color: #F8F8F2;"> {</span></div><div class='line'><span style="color: #F8F8F2;">    counterCollection </span><span style="color: #F92672;">*</span><span style="color: #F8F8F2;">mongo.Collection</span></div><div class='line'><span style="color: #F8F8F2;">    counterDocumentId </span><span style="color: #66D9EF;">string</span></div><div class='line'><span style="color: #F8F8F2;">    incrementBy       </span><span style="color: #66D9EF;">int</span></div><div class='line'><span style="color: #F8F8F2;">    nextId            </span><span style="color: #66D9EF;">int</span></div><div class='line'><span style="color: #F8F8F2;">    maxId             </span><span style="color: #66D9EF;">int</span></div><div class='line'><span style="color: #F8F8F2;">    mutex             sync.Mutex</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><textarea data-torchlight-original="true" style="display: none !important;">type MongoIdGenerator struct {
     counterCollection *mongo.Collection
     counterDocumentId string
     incrementBy       int
@@ -159,14 +159,14 @@
     maxId             int
     mutex             sync.Mutex
 }
-</code></pre>
+</textarea></code></pre>
 <p>And add the following two to the beginning of <code>GetNextId</code>:</p>
-<pre><code class="language-go">generator.mutex.Lock()
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-go"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">generator.mutex.</span><span style="color: #66D9EF;">Lock</span><span style="color: #F8F8F2;">()</span></div><div class='line'><span style="color: #F92672;">defer</span><span style="color: #F8F8F2;"> generator.mutex.</span><span style="color: #66D9EF;">Unlock</span><span style="color: #F8F8F2;">()</span></div><textarea data-torchlight-original="true" style="display: none !important;">generator.mutex.Lock()
 defer generator.mutex.Unlock()
-</code></pre>
+</textarea></code></pre>
 <p>That should be that! Here's the final code all together:</p>
-<pre><code class="language-go">type MongoCounterDocument struct {
-    sequence int `bson:&quot;sequence&quot;`
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-go"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F92672;">type</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">MongoCounterDocument</span><span style="color: #F8F8F2;"> </span><span style="color: #F92672;">struct</span><span style="color: #F8F8F2;"> {</span></div><div class='line'><span style="color: #F8F8F2;">    sequence </span><span style="color: #66D9EF;">int</span><span style="color: #F8F8F2;"> </span><span style="color: #E6DB74;">`bson:&quot;sequence&quot;`</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F92672;">type</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">MongoIdGenerator</span><span style="color: #F8F8F2;"> </span><span style="color: #F92672;">struct</span><span style="color: #F8F8F2;"> {</span></div><div class='line'><span style="color: #F8F8F2;">    counterCollection </span><span style="color: #F92672;">*</span><span style="color: #F8F8F2;">mongo.Collection</span></div><div class='line'><span style="color: #F8F8F2;">    counterDocumentId </span><span style="color: #66D9EF;">string</span></div><div class='line'><span style="color: #F8F8F2;">    incrementBy       </span><span style="color: #66D9EF;">int</span></div><div class='line'><span style="color: #F8F8F2;">    nextId            </span><span style="color: #66D9EF;">int</span></div><div class='line'><span style="color: #F8F8F2;">    maxId             </span><span style="color: #66D9EF;">int</span></div><div class='line'><span style="color: #F8F8F2;">    mutex             sync.Mutex</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F92672;">func</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">SetupMongoIdGenerator</span><span style="color: #F8F8F2;">(collection </span><span style="color: #F92672;">*</span><span style="color: #F8F8F2;">mongo.Collection, documentId </span><span style="color: #66D9EF;">string</span><span style="color: #F8F8F2;">) </span><span style="color: #F92672;">*</span><span style="color: #F8F8F2;">MongoIdGenerator {</span></div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #F92672;">return</span><span style="color: #F8F8F2;"> $MongoIdGenerator{</span></div><div class='line'><span style="color: #F8F8F2;">        counterCollection   : collection,</span></div><div class='line'><span style="color: #F8F8F2;">        counterDocumentId   : documentId,</span></div><div class='line'><span style="color: #F8F8F2;">        incrementBy         : </span><span style="color: #AE81FF;">25</span><span style="color: #F8F8F2;">,</span></div><div class='line'><span style="color: #F8F8F2;">        nextId              : </span><span style="color: #AE81FF;">0</span><span style="color: #F8F8F2;">,</span></div><div class='line'><span style="color: #F8F8F2;">        maxId               : </span><span style="color: #AE81FF;">0</span></div><div class='line'><span style="color: #F8F8F2;">    }</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F92672;">func</span><span style="color: #F8F8F2;"> (generator </span><span style="color: #F92672;">*</span><span style="color: #F8F8F2;">MongoIdGenerator) </span><span style="color: #A6E22E;">GetNextId</span><span style="color: #F8F8F2;">() (</span><span style="color: #66D9EF;">int</span><span style="color: #F8F8F2;">, </span><span style="color: #66D9EF;">error</span><span style="color: #F8F8F2;">) {</span></div><div class='line'><span style="color: #F8F8F2;">    generator.mutex.</span><span style="color: #66D9EF;">Lock</span><span style="color: #F8F8F2;">()</span></div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #F92672;">defer</span><span style="color: #F8F8F2;"> generator.mutex.</span><span style="color: #66D9EF;">Unlock</span><span style="color: #F8F8F2;">()</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #F92672;">if</span><span style="color: #F8F8F2;"> generator.nextId </span><span style="color: #F92672;">==</span><span style="color: #F8F8F2;"> generator.maxId {</span></div><div class='line'><span style="color: #F8F8F2;">        filter </span><span style="color: #F92672;">:=</span><span style="color: #F8F8F2;"> bson.M{</span><span style="color: #E6DB74;">&quot;_id&quot;</span><span style="color: #F8F8F2;">: m.counterDocumentId}</span></div><div class='line'><span style="color: #F8F8F2;">        update </span><span style="color: #F92672;">:=</span><span style="color: #F8F8F2;"> bson.M{</span><span style="color: #E6DB74;">&quot;$inc&quot;</span><span style="color: #F8F8F2;">: bson.</span><span style="color: #66D9EF;">M</span><span style="color: #F8F8F2;">(</span><span style="color: #E6DB74;">&quot;sequence&quot;</span><span style="color: #F8F8F2;">: generator.incrementBy)}</span></div><div class='line'><span style="color: #F8F8F2;">        options </span><span style="color: #F92672;">:=</span><span style="color: #F8F8F2;"> options.</span><span style="color: #66D9EF;">FindOneAndUpdate</span><span style="color: #F8F8F2;">().</span><span style="color: #66D9EF;">SetUpsert</span><span style="color: #F8F8F2;">(</span><span style="color: #AE81FF;">true</span><span style="color: #F8F8F2;">).</span><span style="color: #66D9EF;">SetReturnDocument</span><span style="color: #F8F8F2;">(options.After)</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">        </span><span style="color: #F92672;">var</span><span style="color: #F8F8F2;"> updatedDocument MongoIdCounter</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">        err </span><span style="color: #F92672;">:=</span><span style="color: #F8F8F2;"> m.counterCollection.</span><span style="color: #66D9EF;">FindOneAndUpdate</span><span style="color: #F8F8F2;">(context.</span><span style="color: #66D9EF;">TODO</span><span style="color: #F8F8F2;">(), filter, update, options).</span><span style="color: #66D9EF;">Decode</span><span style="color: #F8F8F2;">(</span><span style="color: #F92672;">&amp;</span><span style="color: #F8F8F2;">updatedDocument)</span></div><div class='line'><span style="color: #F8F8F2;">        </span><span style="color: #F92672;">if</span><span style="color: #F8F8F2;"> err </span><span style="color: #F92672;">!=</span><span style="color: #F8F8F2;"> </span><span style="color: #AE81FF;">nil</span><span style="color: #F8F8F2;"> {</span></div><div class='line'><span style="color: #F8F8F2;">            </span><span style="color: #F92672;">return</span><span style="color: #F8F8F2;"> </span><span style="color: #AE81FF;">0</span><span style="color: #F8F8F2;">, errors.</span><span style="color: #66D9EF;">New</span><span style="color: #F8F8F2;">(</span><span style="color: #E6DB74;">&quot;Unable to update Mongo id counter collection.&quot;</span><span style="color: #F8F8F2;">)</span></div><div class='line'><span style="color: #F8F8F2;">        }</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">        generator.nextId </span><span style="color: #F92672;">=</span><span style="color: #F8F8F2;"> updatedDocument.sequence </span><span style="color: #F92672;">-</span><span style="color: #F8F8F2;"> incrementBy</span></div><div class='line'><span style="color: #F8F8F2;">        generator.maxId </span><span style="color: #F92672;">=</span><span style="color: #F8F8F2;"> updatedDocument.sequence</span></div><div class='line'><span style="color: #F8F8F2;">    }</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">    generator.nextId </span><span style="color: #F92672;">+=</span><span style="color: #F8F8F2;"> </span><span style="color: #AE81FF;">1</span></div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #F92672;">return</span><span style="color: #F8F8F2;"> generator.nextId, </span><span style="color: #AE81FF;">nil</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><textarea data-torchlight-original="true" style="display: none !important;">type MongoCounterDocument struct {
+    sequence int `bson:"sequence"`
 }
 
 type MongoIdGenerator struct {
@@ -193,15 +193,15 @@ func (generator *MongoIdGenerator) GetNextId() (int, error) {
     defer generator.mutex.Unlock()
 
     if generator.nextId == generator.maxId {
-        filter := bson.M{&quot;_id&quot;: m.counterDocumentId}
-        update := bson.M{&quot;$inc&quot;: bson.M(&quot;sequence&quot;: generator.incrementBy)}
+        filter := bson.M{"_id": m.counterDocumentId}
+        update := bson.M{"$inc": bson.M("sequence": generator.incrementBy)}
         options := options.FindOneAndUpdate().SetUpsert(true).SetReturnDocument(options.After)
 
         var updatedDocument MongoIdCounter
 
         err := m.counterCollection.FindOneAndUpdate(context.TODO(), filter, update, options).Decode(&amp;updatedDocument)
         if err != nil {
-            return 0, errors.New(&quot;Unable to update Mongo id counter collection.&quot;)
+            return 0, errors.New("Unable to update Mongo id counter collection.")
         }
 
         generator.nextId = updatedDocument.sequence - incrementBy
@@ -211,7 +211,7 @@ func (generator *MongoIdGenerator) GetNextId() (int, error) {
     generator.nextId += 1
     return generator.nextId, nil
 }
-</code></pre>
+</textarea></code></pre>
 
 	</div>
 	<div class="comments">
@@ -287,11 +287,11 @@ func (generator *MongoIdGenerator) GetNextId() (int, error) {
 		</footer>
 
 		
-			<script src="../highlight/highlight.min.js"></script>
+			<!--<script src="../highlight/highlight.min.js"></script>-->
 		
 		<script>
 			
-				hljs.highlightAll();
+				//hljs.highlightAll();
 
 				window.addEventListener('DOMContentLoaded', () => {
 					const observer = new IntersectionObserver(entries => {
