@@ -6,13 +6,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="bundle.min.css" />
 		
-			<link rel="stylesheet" href="highlight/styles/monokai-sublime.min.css" />
-		
 
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		
-			<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Rubik:wght@300;400;500&family=Source+Code+Pro&family=Vollkorn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;500&display=swap&text=AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789%21%40%23%24%25%5E%26%2A%28%29%22%3B%3A%2C.%2F%3F%2B-%3D" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap&text=IAN%20WOLD" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap&text=.0123456789" rel="stylesheet">
 		
 
 		<title>
@@ -73,30 +73,7 @@
 		</footer>
 
 		
-			<script src="highlight/highlight.min.js"></script>
-		
 		<script>
-			
-				hljs.highlightAll();
-
-				window.addEventListener('DOMContentLoaded', () => {
-					const observer = new IntersectionObserver(entries => {
-						entries.forEach(entry => {
-							const id = entry.target.getAttribute('id');
-							let classList = document.querySelector(`.pane li a[href="#${id}"]`).parentElement.classList;
-
-							if (entry.intersectionRatio > 0) {
-								classList.add('active');
-							} else {
-								classList.remove('active');
-							}
-						});
-					});
-
-					document.querySelectorAll('section[id]').forEach((section) => {
-						observer.observe(section);
-					});
-				});
 			
 
 			const darkModeToggle = document.getElementById("dark-mode-toggle");
