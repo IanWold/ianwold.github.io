@@ -10,14 +10,22 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-    - name: Setup (dotnet)
+    - name: Setup dotnet
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
-    - name: Setup (dotnet script)
+    - name: Setup dotnet-script
       run: dotnet tool install -g dotnet-script
+    - name: Setup node
+      uses: actions/setup-node@v2
+    - name: Setup torchlight
+      run: npm i @torchlight-api/torchlight-cli
     - name: Build
       run: dotnet script build.csx
+    - name: Highlight
+      env:
+        TORCHLIGHT_TOKEN: ${{ secrets.TORCHLIGHT_TOKEN }}
+      run: npx torchlight
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
