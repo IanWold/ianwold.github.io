@@ -429,13 +429,13 @@ header {
 			min-width: -webkit-max-content;
 			min-width: -moz-max-content;
 			min-width: max-content;
-			padding-top: 6px;
+			padding-top: 5px;
 			padding-bottom: 6px;
 		}
 
 		.post pre code .line {
-			padding-left: 6px;
-			padding-right: 6px;
+			padding-left: 10px;
+			padding-right: 10px;
 		}
 
 		.post pre code .line-number,
@@ -444,6 +444,9 @@ header {
 		}
 
 		.post p code {
+			font-size: 15px;
+			letter-spacing: 0.75;
+			font-family: "Source Code Pro";
 			background-color: whitesmoke !important;
 			border: 1px solid gainsboro;
 			padding-left: 6px;
