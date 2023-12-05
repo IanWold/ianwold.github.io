@@ -375,9 +375,7 @@ header {
 			letter-spacing: 0.75;
 			font-family: "Source Code Pro";
 			background-color: #323232 !important;
-		}
 
-		.post pre code.torchlight {
 			display: block;
 			min-width: -webkit-max-content;
 			min-width: -moz-max-content;
@@ -386,13 +384,13 @@ header {
 			padding-bottom: 6px;
 		}
 
-		.post pre code.torchlight .line {
+		.post pre code .line {
 			padding-left: 6px;
 			padding-right: 6px;
 		}
 
-		.post pre code.torchlight .line-number,
-		.post pre code.torchlight .summary-caret {
+		.post pre code .line-number,
+		.post pre code .summary-caret {
 			margin-right: 6px;
 		}
 
