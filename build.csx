@@ -51,7 +51,7 @@ new MetalsharpProject()
 		["title"] = "",
 		["template"] = "archive",
 		["removeHighlight"] = true,
-		["removeArticleFonts"] = true
+		["fontRequirement"] = "index"
 	},
 })
 .UseLeveller()

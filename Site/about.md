@@ -4,8 +4,7 @@
 	"highlight": "about",
 	"template": "page",
 	"removeHighlight": true,
-	"removeArticleFonts": true,
-	"removeMonospaceFonts": true
+	"fontRequirement": "page"
 }
 ;;;
 
