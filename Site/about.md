@@ -2,7 +2,9 @@
 {
 	"title": "About",
 	"highlight": "about",
-	"template": "page"
+	"template": "page",
+	"removeHighlight": true,
+	"removeArticleFonts": true
 }
 ;;;
 

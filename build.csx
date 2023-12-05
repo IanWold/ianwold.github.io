@@ -98,8 +98,6 @@ new MetalsharpProject()
 
 	project.AddOutput(new MetalsharpFile(rssFeedContent, "feed.xml"));
 
-
-
 	foreach (var post in project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts") && f.Metadata.TryGetValue("contents", out object isContentsObject) && isContentsObject is bool isContents && isContents))
 	{
 		var postLines = post.Text.Split('\r', '\n').Where(l => !string.IsNullOrWhiteSpace(l));
