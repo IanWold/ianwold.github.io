@@ -364,13 +364,36 @@ header {
 			font-weight: 600;
 		}
 
-		.post code {
+		.post pre {
+			border-radius: 3px;
+			overflow-x: auto;
+		}
+
+		.post pre code {
 			font-size: 15px;
 			line-height: 1.2;
 			letter-spacing: 0.75;
 			font-family: "Source Code Pro";
 			background-color: #323232 !important;
-			border-radius: 3px;
+		}
+
+		.post pre code.torchlight {
+			display: block;
+			min-width: -webkit-max-content;
+			min-width: -moz-max-content;
+			min-width: max-content;
+			padding-top: 6px;
+			padding-bottom: 6px;
+		}
+
+		.post pre code.torchlight .line {
+			padding-left: 6px;
+			padding-right: 6px;
+		}
+
+		.post pre code.torchlight .line-number,
+		.post pre code.torchlight .summary-caret {
+			margin-right: 6px;
 		}
 
 		.post p code {
