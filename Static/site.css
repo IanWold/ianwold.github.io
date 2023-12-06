@@ -364,16 +364,41 @@ header {
 			font-weight: 600;
 		}
 
-		.post code {
+		.post pre {
+			border-radius: 3px;
+			overflow-x: auto;
+		}
+
+		.post pre code {
 			font-size: 15px;
 			line-height: 1.2;
 			letter-spacing: 0.75;
 			font-family: "Source Code Pro";
 			background-color: #323232 !important;
-			border-radius: 3px;
+
+			display: block;
+			min-width: -webkit-max-content;
+			min-width: -moz-max-content;
+			min-width: max-content;
+			padding-top: 9px;
+			padding-bottom: 12px;
+		}
+
+		.post pre code .line {
+			padding-left: 14px;
+			padding-right: 12px;
+		}
+
+		.post pre code .line-number,
+		.post pre code .summary-caret {
+			margin-right: 6px;
 		}
 
 		.post p code {
+			border-radius: 3px;
+			font-size: 15px;
+			letter-spacing: 0.75;
+			font-family: "Source Code Pro";
 			background-color: whitesmoke !important;
 			border: 1px solid gainsboro;
 			padding-left: 6px;
