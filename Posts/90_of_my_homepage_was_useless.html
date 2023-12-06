@@ -1,0 +1,220 @@
+
+
+	
+
+
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="../bundle.min.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		
+			<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap&text=ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&family=Source+Code+Pro:wght@400&family=Vollkorn:wght@700&display=swap" rel="stylesheet">
+		
+
+		<title>
+			Ian Wold | 90% of my Homepage was Useless 
+		</title>
+
+		
+			<script type="application/ld+json">
+				
+			</script>
+		
+	</head>
+	<body>
+		<button id="dark-mode-toggle"><i data-feather="sun"></i></button>
+
+		<nav class="content">
+			<div class="headshot">
+				<img src="../images/hero1.svg" width="150" height="154.41" />
+			</div>
+			<div class="title">
+				<a href="../index.html">Ian Wold</a>
+			</div>
+			<ul>
+				<li><a href="../about.html">About</a></li>
+				<li><a href="https://buttondown.email/ianwold" target="_blank">Newsletter</a></li>
+			</ul>
+		</nav>
+		
+		
+
+
+
+
+<header class="content">
+	<h1>90% of my Homepage was Useless</h1>
+	<small>
+		<span class="date">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 6 December 2023
+		</span>
+		<span class="time">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 4  Minutes 
+		</span>
+	</small>
+	<p>In a few days, I reduced the size of my homepage to 10% of what it had been, and sped it up by 50-66%.</p>
+</header>
+
+<div class="content hero">
+	<img src="https://images.unsplash.com/photo-1686061593213-98dad7c599b9?w=1000&h=525&fit=crop&crop=entropy" />
+</div>
+
+<div class="content">
+	
+	<div class="post">
+		<p>One week ago, my homepage was around 550k uncompressed and took about as many ms to load. I thought this was light, though I'd have liked it to be faster - I just attributed this to a side-effect of hosting with GitHub pages.</p>
+<p>This weekend I discovered the <a href="https://512kb.club">512kb Club</a> which ranks websites by how big they are, the catch being that you need to be below 512k uncompressed. I looked at some of the sites on the high end of that list, and I felt pretty disappointed. There were sites that had much more content, some with many large images, while staying below 512k. I have an SVG and a bunch of black-and-white text.</p>
+<p>Well, I made some small optimizations and got it below the threshold, but then I caught the bug and <em>presto changeo</em> before I knew it I had eliminated 90% of my website <em>and it is pixel-perfect to how it was before</em>. I'm now at 62.8k, a member of the &quot;green team&quot; on the 512kb Club site, and equally important I reduced the load time of the site (by any time metric you like) by around 50% just with the size optimizations.</p>
+<h1>Check Your Fonts</h1>
+<p>The single most impactful thing I did was I checked my fonts. I use Google WebFonts, and their API gives you a few opportunities for improvement. First, make sure you're not loading any fonts you're not using.</p>
+<p>Then eliminate any weights you're not using. I use <code>Rubik</code> for my text, and the homepage only uses weights 300 and 500, but I had been loading everything from 100 to 900:</p>
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-html"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">&lt;</span><span style="color: #F92672;">link</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">href</span><span style="color: #F8F8F2;">=</span><span style="color: #E6DB74;">&quot;https://fonts.googleapis.com/css2?family=Rubik:wght@100;200;300;400;500;600;700;800;900&amp;display=swap&quot;</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">rel</span><span style="color: #F8F8F2;">=</span><span style="color: #E6DB74;">&quot;stylesheet&quot;</span><span style="color: #F8F8F2;">&gt;</span></div><div class='line'><span style="color: #F8F8F2;">&lt;</span><span style="color: #F92672;">link</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">href</span><span style="color: #F8F8F2;">=</span><span style="color: #E6DB74;">&quot;https://fonts.googleapis.com/css2?family=Rubik:wght@300;500&amp;display=swap&quot;</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">rel</span><span style="color: #F8F8F2;">=</span><span style="color: #E6DB74;">&quot;stylesheet&quot;</span><span style="color: #F8F8F2;">&gt;</span></div><textarea data-torchlight-original="true" style="display: none !important;">&lt;link href="https://fonts.googleapis.com/css2?family=Rubik:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;500&amp;display=swap" rel="stylesheet"&gt;
+</textarea></code></pre>
+<p>I use <code>Montserrat</code> for my name at the top and nothing else, and Google provides an API for you to specify the exact text you need to load in a font. This took <code>Montserrat</code> from 30k to 2k or so:</p>
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-html"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">&lt;</span><span style="color: #F92672;">link</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">href</span><span style="color: #F8F8F2;">=</span><span style="color: #E6DB74;">&quot;https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&amp;display=swap&quot;</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">rel</span><span style="color: #F8F8F2;">=</span><span style="color: #E6DB74;">&quot;stylesheet&quot;</span><span style="color: #F8F8F2;">&gt;</span></div><div class='line'><span style="color: #F8F8F2;">&lt;</span><span style="color: #F92672;">link</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">href</span><span style="color: #F8F8F2;">=</span><span style="color: #E6DB74;">&quot;https://fonts.googleapis.com/css2?family=Montserrat:wght@700&amp;display=swap&amp;text=IAN%20WOLD&quot;</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">rel</span><span style="color: #F8F8F2;">=</span><span style="color: #E6DB74;">&quot;stylesheet&quot;</span><span style="color: #F8F8F2;">&gt;</span></div><textarea data-torchlight-original="true" style="display: none !important;">&lt;link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&amp;display=swap&amp;text=IAN%20WOLD" rel="stylesheet"&gt;
+</textarea></code></pre>
+<h1>Optimize Your SVGs</h1>
+<p><a href="https://svgomg.net/">SVGOMG</a> is a great tool for this. The SVG at the top of my page was 64k, now it's about 8k. <em>That's huge!</em></p>
+<p>I had also previously been using <a href="https://feathericons.com/">Feather Icon</a>'s JS client to swap out <code>i</code> tags for their icon SVGs. However, by directly embedding the SVGs (which is easy and maintainable because they've got a great site) I was able to eliminate 30k and several ms from my page load time.</p>
+<h1>Torchlight is Pretty Cool</h1>
+<p>I had been using <a href="https://highlightjs.org/">Highlight.js</a> for syntax highlighting, and it was easy enough to set up (I <em>highly</em> recommend it if you need to get up and going fast) but I wasn't too much a fan of the highlighting for my cases, <em>and</em> it was putting a 30k dependency on my site. Yes, I was able to take it off my homepage - no code there - but I figured I could also help my post pages out.</p>
+<p><a href="https://torchlight.dev">Torchlight</a> is absolutely awesome. They run a server with the same language servers that VSCode uses with an API that will perform syntax highlighting for your snippets. Best part is they've got a Node package that you can run on a local directory to detect any <code>&lt;pre&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</code> blocks in your HTML, post the code to their server, and swap out your code blocks with their highlighted blocks. It's free for non-revenue-generating sites, works like charm in the build step, and generates the best syntax highlighting with the most features.</p>
+<h1>Maybe Minify Your Pages</h1>
+<p>I only saved a few kb doing this. What's most important I think is to consider bundling assets that can be bundled to save on the chore of loading them from a server. If your files are sufficiently small (as they tend to be on a statically-generated site) you're not going to save too much by minifying. However, if it's easy to add, then go for it.</p>
+<h1>Next Optimizations</h1>
+<ul>
+<li>SEO</li>
+<li>Accessibility</li>
+<li>Performance</li>
+<li>The SVG at the top of the page still doesn't turn white in dark mode</li>
+</ul>
+
+	</div>
+	<div class="comments">
+		<script src="https://giscus.app/client.js"
+			data-repo="IanWold/ianwold.github.io"
+			data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk1NDkyNzI="
+			data-category="Posts"
+			data-category-id="DIC_kwDOCYKHWM4CZH2Y"
+			data-mapping="title"
+			data-strict="0"
+			data-reactions-enabled="0"
+			data-emit-metadata="0"
+			data-input-position="top"
+			data-theme="light"
+			data-lang="en"
+			data-loading="lazy"
+			crossorigin="anonymous"
+			async>
+		</script>
+	</div>
+</div>
+
+<div class="section-gray">
+	<div class="content post-end">
+		<img src="../images/hero1.svg" />
+		<div class="bio">
+			<h1>Hi, I'm Ian</h1>
+			<p>
+				I'm a software engineer, architect, and team leader in Minneapolis. My career has largely focused on .NET and web technologies, spread across several industries. Currently I'm working for Crate &amp; Barrel on their ecommerce solutions. You can find me on this blog, contributing to open source repositories, and at conferences around the Midwest.
+			</p>
+			<hr/>
+			<p>
+				If you'd like to keep up with me, please subscribe to my <a href="https://buttondown.email/ianwold" target="_blank">newsletter</a> or <a href="https://ian.wold.guru/feed.xml" target="_blank">RSS feed</a>. If you'd like to help me out with server costs, I would be forever grateful if you <a href="https://ko-fi.com/ianwold">bought me a coffee</a>!
+			</p>
+			<hr/>
+			<p>
+				Some other posts you might be interested in:
+			</p>
+			<div class="archive">
+				<ul>
+					
+						<li>
+							<a href="../Posts/giscus_is_awesome.html">
+								Giscus Is Awesome<small>I can add comments to my statically generated blog? Using GitHub Discussions?? For Free??? And it works????</small>
+							</a>
+						</li>
+					
+						<li>
+							<a href="../Posts/daily_grug.html">
+								Daily Grug<small>Need inspiration start day, made API.</small>
+							</a>
+						</li>
+					
+						<li>
+							<a href="../Posts/book_club_11-2023.html">
+								Book Club 11/2023: New .NET, New C#<small>The release of .NET 8 brings a lot of features I'm excited for!</small>
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+		<footer>
+			<div class="content content-footer">
+				<span>
+					Copyright &copy; Ian Wold. Built with <a href="https://www.github.com/IanWold/Metalsharp">Metalsharp</a>, <a href="https://torchlight.dev">Torchlight</a>, and <a href="https://feathericons.com/">Feather</a>. Hosted with <a href="https://www.github.com/IanWold/ianwold.github.io">GitHub Pages</a>.
+				</span>
+				<div class="icon-links">
+					<a href="https://github.com/ianwold"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+					<a href="mailto:ian@wold.guru?subject=Hello"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+					<a href="https://ko-fi.com/ianwold" target="_blank"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-coffee"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg></a>
+					<a href="https://buttondown.email/ianwold" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></a>
+					<a href="https://ian.wold.guru/feed.xml" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+				</div>
+			</div>
+		</footer>
+
+		<script>
+			
+				window.addEventListener('DOMContentLoaded', () => {
+					const observer = new IntersectionObserver(entries => {
+						entries.forEach(entry => {
+							const id = entry.target.getAttribute('id');
+							let classList = document.querySelector(`.pane li a[href="#${id}"]`).parentElement.classList;
+
+							if (entry.intersectionRatio > 0) {
+								classList.add('active');
+							} else {
+								classList.remove('active');
+							}
+						});
+					});
+
+					document.querySelectorAll('section[id]').forEach((section) => {
+						observer.observe(section);
+					});
+				});
+			
+
+			const darkModeToggle = document.getElementById("dark-mode-toggle");
+			const body = document.body;
+
+			function toggleDarkMode() {
+				body.classList.toggle("dark");
+
+				if (localStorage.getItem("dark") === "enabled") {
+					localStorage.setItem("dark", "disabled");
+				} else {
+					localStorage.setItem("dark", "enabled");
+				}
+			}
+
+			darkModeToggle.addEventListener("click", toggleDarkMode);
+
+			if (localStorage.getItem("dark") === "enabled") {
+				body.classList.toggle("dark");
+			}
+		</script>
+	</body>
+</html>

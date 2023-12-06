@@ -4,6 +4,42 @@
     <link>https://ian.wold.guru/feed.xml</link>
     <description>Ian Wold's Blog</description>
     <item>
+      <guid isPermaLink="false">90_of_my_homepage_was_useless</guid>
+      <link>https://ian.wold.guru/Posts/90_of_my_homepage_was_useless.html</link>
+      <title>90% of my Homepage was Useless</title>
+      <description>&lt;p&gt;One week ago, my homepage was around 550k uncompressed and took about as many ms to load. I thought this was light, though I'd have liked it to be faster - I just attributed this to a side-effect of hosting with GitHub pages.&lt;/p&gt;
+&lt;p&gt;This weekend I discovered the &lt;a href="https://512kb.club"&gt;512kb Club&lt;/a&gt; which ranks websites by how big they are, the catch being that you need to be below 512k uncompressed. I looked at some of the sites on the high end of that list, and I felt pretty disappointed. There were sites that had much more content, some with many large images, while staying below 512k. I have an SVG and a bunch of black-and-white text.&lt;/p&gt;
+&lt;p&gt;Well, I made some small optimizations and got it below the threshold, but then I caught the bug and &lt;em&gt;presto changeo&lt;/em&gt; before I knew it I had eliminated 90% of my website &lt;em&gt;and it is pixel-perfect to how it was before&lt;/em&gt;. I'm now at 62.8k, a member of the &amp;quot;green team&amp;quot; on the 512kb Club site, and equally important I reduced the load time of the site (by any time metric you like) by around 50% just with the size optimizations.&lt;/p&gt;
+&lt;h1&gt;Check Your Fonts&lt;/h1&gt;
+&lt;p&gt;The single most impactful thing I did was I checked my fonts. I use Google WebFonts, and their API gives you a few opportunities for improvement. First, make sure you're not loading any fonts you're not using.&lt;/p&gt;
+&lt;p&gt;Then eliminate any weights you're not using. I use &lt;code&gt;Rubik&lt;/code&gt; for my text, and the homepage only uses weights 300 and 500, but I had been loading everything from 100 to 900:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt;&amp;lt;link href=&amp;quot;https://fonts.googleapis.com/css2?family=Rubik:wght@100;200;300;400;500;600;700;800;900&amp;amp;display=swap&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+&amp;lt;link href=&amp;quot;https://fonts.googleapis.com/css2?family=Rubik:wght@300;500&amp;amp;display=swap&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I use &lt;code&gt;Montserrat&lt;/code&gt; for my name at the top and nothing else, and Google provides an API for you to specify the exact text you need to load in a font. This took &lt;code&gt;Montserrat&lt;/code&gt; from 30k to 2k or so:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt;&amp;lt;link href=&amp;quot;https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&amp;amp;display=swap&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+&amp;lt;link href=&amp;quot;https://fonts.googleapis.com/css2?family=Montserrat:wght@700&amp;amp;display=swap&amp;amp;text=IAN%20WOLD&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;Optimize Your SVGs&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://svgomg.net/"&gt;SVGOMG&lt;/a&gt; is a great tool for this. The SVG at the top of my page was 64k, now it's about 8k. &lt;em&gt;That's huge!&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I had also previously been using &lt;a href="https://feathericons.com/"&gt;Feather Icon&lt;/a&gt;'s JS client to swap out &lt;code&gt;i&lt;/code&gt; tags for their icon SVGs. However, by directly embedding the SVGs (which is easy and maintainable because they've got a great site) I was able to eliminate 30k and several ms from my page load time.&lt;/p&gt;
+&lt;h1&gt;Torchlight is Pretty Cool&lt;/h1&gt;
+&lt;p&gt;I had been using &lt;a href="https://highlightjs.org/"&gt;Highlight.js&lt;/a&gt; for syntax highlighting, and it was easy enough to set up (I &lt;em&gt;highly&lt;/em&gt; recommend it if you need to get up and going fast) but I wasn't too much a fan of the highlighting for my cases, &lt;em&gt;and&lt;/em&gt; it was putting a 30k dependency on my site. Yes, I was able to take it off my homepage - no code there - but I figured I could also help my post pages out.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://torchlight.dev"&gt;Torchlight&lt;/a&gt; is absolutely awesome. They run a server with the same language servers that VSCode uses with an API that will perform syntax highlighting for your snippets. Best part is they've got a Node package that you can run on a local directory to detect any &lt;code&gt;&amp;lt;pre&amp;gt;&amp;lt;code&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&lt;/code&gt; blocks in your HTML, post the code to their server, and swap out your code blocks with their highlighted blocks. It's free for non-revenue-generating sites, works like charm in the build step, and generates the best syntax highlighting with the most features.&lt;/p&gt;
+&lt;h1&gt;Maybe Minify Your Pages&lt;/h1&gt;
+&lt;p&gt;I only saved a few kb doing this. What's most important I think is to consider bundling assets that can be bundled to save on the chore of loading them from a server. If your files are sufficiently small (as they tend to be on a statically-generated site) you're not going to save too much by minifying. However, if it's easy to add, then go for it.&lt;/p&gt;
+&lt;h1&gt;Next Optimizations&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;SEO&lt;/li&gt;
+&lt;li&gt;Accessibility&lt;/li&gt;
+&lt;li&gt;Performance&lt;/li&gt;
+&lt;li&gt;The SVG at the top of the page still doesn't turn white in dark mode&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Wed, 06 Dec 2023 00:00:00 Z</pubDate>
+      <a10:updated>2023-12-06T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">adding_a_database_to_our_railway_app</guid>
       <link>https://ian.wold.guru/Posts/adding_a_database_to_our_railway_app.html</link>
       <title>Adding a Database to our Railway App</title>
