@@ -4,7 +4,7 @@
 	"description": "The release of .NET 8 brings a lot of features I'm excited for!",
 	"date": "22 November 2023",
 	"contents": false,
-	"hero": "photo-1625314517201-dd442445cf42",
+	"hero": "photo-1672309558498-cfcc89afff25",
     "related": [
 		{ "title": "A Scrum Odyssey", "description": "A journey away from daily scrum meetings, as a cycle of eight Shakespearean sonnets.", "fileName": "a_scrum_odyssey" },
 		{ "title": "Book Club 9/2023: Papers I Love", "description": "Reflecting on the final Strange Loop conference, having attended several 'Papers We Love' talks, I'm motivated to share five papers I love.", "fileName": "book_club_9-2023" },
