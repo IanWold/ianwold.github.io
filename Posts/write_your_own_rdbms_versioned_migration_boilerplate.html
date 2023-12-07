@@ -312,13 +312,11 @@ static T Query&lt;T&gt;(NpgsqlConnection connection, string query)
 			
 
 			const darkModeToggle = document.getElementById("dark-mode-toggle");
-			const hero = document.getElementById("hero");
 			const body = document.body;
 
 
 			function toggleDarkMode() {
 				body.classList.toggle("dark");
-				hero.style.fill = hero.style.fill === "black" ? "white" : "black";
 
 				if (localStorage.getItem("dark") === "enabled") {
 					localStorage.setItem("dark", "disabled");
@@ -331,7 +329,6 @@ static T Query&lt;T&gt;(NpgsqlConnection connection, string query)
 
 			if (localStorage.getItem("dark") === "enabled") {
 				body.classList.toggle("dark");
-				hero.style.fill = hero.style.fill === "black" ? "white" : "black";
 			}
 		</script>
 	</body>

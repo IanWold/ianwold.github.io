@@ -287,13 +287,11 @@ They've journeyed forth, with purpose evergreen.</p>
 			
 
 			const darkModeToggle = document.getElementById("dark-mode-toggle");
-			const hero = document.getElementById("hero");
 			const body = document.body;
 
 
 			function toggleDarkMode() {
 				body.classList.toggle("dark");
-				hero.style.fill = hero.style.fill === "black" ? "white" : "black";
 
 				if (localStorage.getItem("dark") === "enabled") {
 					localStorage.setItem("dark", "disabled");
@@ -306,7 +304,6 @@ They've journeyed forth, with purpose evergreen.</p>
 
 			if (localStorage.getItem("dark") === "enabled") {
 				body.classList.toggle("dark");
-				hero.style.fill = hero.style.fill === "black" ? "white" : "black";
 			}
 		</script>
 	</body>
