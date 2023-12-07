@@ -109,9 +109,12 @@ nav {
 		font-size: 13.1pt;
 	}
 
-	nav .headshot img {
-		width: 150px;
-		padding-bottom: 11px;
+	nav .headshot svg {
+		fill: black;
+	}
+
+	.dark nav .headshot svg {
+		fill: white;
 	}
 
 
