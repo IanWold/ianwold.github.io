@@ -39,4 +39,4 @@ Yes, yes I did. And I have pretty icons for my workspaces. And once you give an 
 
 Like a frog in boiling water, this has all happened to me gradually and I barely registered this transformation. I would come across an extension like [Background](https://marketplace.visualstudio.com/items?itemName=Katsute.code-background]) for VS Code and install it, not thinking twice that now all of my code has pretty space images behind it. But I need to acknowledge it now, lest you too might fall into this trap.
 
-I've gone mad and I see no end in sight. At what point I'll start using Arch or take a job writing Haskell whitepapers I do not know.
+I've gone mad and I see no end in sight. Will I start using Arch? Will I switch to Neovim? Will I take a job writing Haskell whitepapers? I do not know.
