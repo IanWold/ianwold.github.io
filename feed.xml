@@ -721,9 +721,9 @@ start      │ ./out/RailwayBlazorDemo.Client
 &lt;pre&gt;&lt;code class="language-go"&gt;type MongoIdGenerator struct {
     counterCollection *mongo.Collection
     counterDocumentId string
-    incrementBy       int
-    nextId            int
-    maxId             int
+    incrementBy       int // [tl! ++]
+    nextId            int // [tl! ++]
+    maxId             int // [tl! ++]
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We'll add a func to instantiate this at startup. It'll be important that your app only has one of these objects per &amp;quot;kind&amp;quot; of ID you need to generate:&lt;/p&gt;
@@ -740,6 +740,42 @@ start      │ ./out/RailwayBlazorDemo.Client
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;And we can update our &lt;code&gt;GetNextId&lt;/code&gt; function to consult Mongo or not if &lt;code&gt;nextId&lt;/code&gt; equals &lt;code&gt;maxId&lt;/code&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-go"&gt;func (generator *MongoIdGenerator) GetNextId() (int, error) {
+    if generator.nextId == generator.maxId { // [tl! ++]
+        filter := bson.M{&amp;quot;_id&amp;quot;: m.counterDocumentId}
+        update := bson.M{&amp;quot;$inc&amp;quot;: bson.M(&amp;quot;sequence&amp;quot;: generator.incrementBy)}
+        options := options.FindOneAndUpdate().SetUpsert(true).SetReturnDocument(options.After)
+
+        var updatedDocument MongoIdCounter
+
+        err := m.counterCollection.FindOneAndUpdate(context.TODO(), filter, update, options).Decode(&amp;amp;updatedDocument)
+        if err != nil {
+            return 0, errors.New(&amp;quot;Unable to update Mongo id counter collection.&amp;quot;)
+        }
+
+        generator.nextId = updatedDocument.sequence - incrementBy // [tl! ++]
+        generator.maxId = updatedDocument.sequence // [tl! ++]
+    } // [tl! ++]
+
+    return updatedDocument.sequence, nil // [tl! --]
+    generator.nextId += 1 // [tl! ++]
+    return generator.nextId, nil // [tl! ++]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We do have a concurrency concern here though - we want to ensure &lt;code&gt;nextId&lt;/code&gt; and &lt;code&gt;maxId&lt;/code&gt; are only being accessed one at a time. We can use a mutex in the generator for this. Update the generator:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-go"&gt;type MongoIdGenerator struct {
+    counterCollection *mongo.Collection
+    counterDocumentId string
+    incrementBy       int
+    nextId            int
+    maxId             int
+    mutex             sync.Mutex // [tl! ++]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And add the following two to the beginning of &lt;code&gt;GetNextId&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-go"&gt;func (generator *MongoIdGenerator) GetNextId() (int, error) {
+    generator.mutex.Lock() // [tl! ++ **]
+    defer generator.mutex.Unlock() // [tl! ++ **]
+
     if generator.nextId == generator.maxId {
         filter := bson.M{&amp;quot;_id&amp;quot;: m.counterDocumentId}
         update := bson.M{&amp;quot;$inc&amp;quot;: bson.M(&amp;quot;sequence&amp;quot;: generator.incrementBy)}
@@ -754,25 +790,11 @@ start      │ ./out/RailwayBlazorDemo.Client
 
         generator.nextId = updatedDocument.sequence - incrementBy
         generator.maxId = updatedDocument.sequence
-    }
+    } // [tl! ++]
 
     generator.nextId += 1
     return generator.nextId, nil
 }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We do have a concurrency concern here though - we want to ensure &lt;code&gt;nextId&lt;/code&gt; and &lt;code&gt;maxId&lt;/code&gt; are only being accessed one at a time. We can use a mutex in the generator for this. Update the generator:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-go"&gt;type MongoIdGenerator struct {
-    counterCollection *mongo.Collection
-    counterDocumentId string
-    incrementBy       int
-    nextId            int
-    maxId             int
-    mutex             sync.Mutex
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;And add the following two to the beginning of &lt;code&gt;GetNextId&lt;/code&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-go"&gt;generator.mutex.Lock()
-defer generator.mutex.Unlock()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;That should be that! Here's the final code all together:&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-go"&gt;type MongoCounterDocument struct {
