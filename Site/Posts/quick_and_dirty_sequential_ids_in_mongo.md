@@ -157,7 +157,7 @@ func (generator *MongoIdGenerator) GetNextId() (int, error) {
 
         generator.nextId = updatedDocument.sequence - incrementBy
         generator.maxId = updatedDocument.sequence
-    } // [tl! ++]
+    }
 
     generator.nextId += 1
     return generator.nextId, nil
