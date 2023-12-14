@@ -76,9 +76,9 @@ We'll add `nextId` and `maxId` properties to the generator object, as well as an
 type MongoIdGenerator struct {
     counterCollection *mongo.Collection
     counterDocumentId string
-    incrementBy       int
-    nextId            int
-    maxId             int
+    incrementBy       int // [tl! ++]
+    nextId            int // [tl! ++]
+    maxId             int // [tl! ++]
 }
 ```
 
@@ -101,6 +101,48 @@ And we can update our `GetNextId` function to consult Mongo or not if `nextId` e
 
 ```go
 func (generator *MongoIdGenerator) GetNextId() (int, error) {
+    if generator.nextId == generator.maxId { // [tl! ++]
+        filter := bson.M{"_id": m.counterDocumentId}
+        update := bson.M{"$inc": bson.M("sequence": generator.incrementBy)}
+        options := options.FindOneAndUpdate().SetUpsert(true).SetReturnDocument(options.After)
+
+        var updatedDocument MongoIdCounter
+
+        err := m.counterCollection.FindOneAndUpdate(context.TODO(), filter, update, options).Decode(&updatedDocument)
+        if err != nil {
+            return 0, errors.New("Unable to update Mongo id counter collection.")
+        }
+
+        generator.nextId = updatedDocument.sequence - incrementBy // [tl! ++]
+        generator.maxId = updatedDocument.sequence // [tl! ++]
+    } // [tl! ++]
+
+    return updatedDocument.sequence, nil // [tl! --]
+    generator.nextId += 1 // [tl! ++]
+    return generator.nextId, nil // [tl! ++]
+}
+```
+
+We do have a concurrency concern here though - we want to ensure `nextId` and `maxId` are only being accessed one at a time. We can use a mutex in the generator for this. Update the generator:
+
+```go
+type MongoIdGenerator struct {
+    counterCollection *mongo.Collection
+    counterDocumentId string
+    incrementBy       int
+    nextId            int
+    maxId             int
+    mutex             sync.Mutex // [tl! ++]
+}
+```
+
+And add the following two to the beginning of `GetNextId`:
+
+```go
+func (generator *MongoIdGenerator) GetNextId() (int, error) {
+    generator.mutex.Lock() // [tl! ++ **]
+    defer generator.mutex.Unlock() // [tl! ++ **]
+
     if generator.nextId == generator.maxId {
         filter := bson.M{"_id": m.counterDocumentId}
         update := bson.M{"$inc": bson.M("sequence": generator.incrementBy)}
@@ -120,26 +162,6 @@ func (generator *MongoIdGenerator) GetNextId() (int, error) {
     generator.nextId += 1
     return generator.nextId, nil
 }
-```
-
-We do have a concurrency concern here though - we want to ensure `nextId` and `maxId` are only being accessed one at a time. We can use a mutex in the generator for this. Update the generator:
-
-```go
-type MongoIdGenerator struct {
-    counterCollection *mongo.Collection
-    counterDocumentId string
-    incrementBy       int
-    nextId            int
-    maxId             int
-    mutex             sync.Mutex
-}
-```
-
-And add the following two to the beginning of `GetNextId`:
-
-```go
-generator.mutex.Lock()
-defer generator.mutex.Unlock()
 ```
 
 That should be that! Here's the final code all together:
