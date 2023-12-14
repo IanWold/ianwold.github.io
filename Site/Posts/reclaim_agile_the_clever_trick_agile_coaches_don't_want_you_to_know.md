@@ -5,9 +5,9 @@
 	"contents": true,
 	"hero": "photo-1526232761682-d26e03ac148e",
     "related": [
-        { "title": "Clean Meetings: A Software Engineer's Guide", "description": "If being in meetings all day isn't bad enough, spending more time thinking about them seems horrible. Here's a simple guide on making sure you're getting the most out of your meetings.", "fileName": "clean_meetings_a_software_engineers_guide" },
-        { "title": "A Scrum Odyssey", "description": "A journey away from daily scrum meetings, as a cycle of eight Shakespearean sonnets.", "filename": "a_scrum_odyssey" },
-		{ "title": "Daily Grug", "description": "Need inspiration start day, made API.", "fileName": "daily_grug" }
+        { "title": "Deploying ASP.NET 7 Projects with Railway", "description": "Railway is a startup cloud infrastructure provider that has gained traction for being easy to use and cheap for hobbyists. Let's get a .NET 7 Blazor WASM app up and running with it!", "fileName": "deploying_aspnet_7_projects_with_railway" },
+        { "title": "Book Club 10/2023: Functional Patterns in C#", "description": "This month I've focused on functional domain modeling and related patterns. We're just a few weeks away from the release of the next version of C#, and like each previous version it'll introduce even more functional features.", "filename": "book_club_10-2023" },
+		{ "title": "An Introduction to Sprache", "description": "Sprache is a parser-combinator library for C# that uses Linq to construct parsers. In this post I describe the fundamentals of understanding grammars and parsing them with Sprache, with several real-world examples.", "fileName": "sprache" }
     ]
 ;;;
 
