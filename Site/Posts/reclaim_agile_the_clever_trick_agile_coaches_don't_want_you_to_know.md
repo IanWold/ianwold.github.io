@@ -1,5 +1,5 @@
 ;;;
-	"title": "Reclaim Agile: The Clever Trick Agile Coaches Don't Want You to Know",
+	"title": "Reclaim Your Agile: The One Clever Trick Agile Coaches Don't Want You to Know",
 	"description": "What if I told you there's one trick to being able to reshape your team's development process without your company knowing it? What if I told you that you can achieve actual Agile even though you work in a Scrum firm?",
 	"date": "13 December 2023",
 	"contents": true,
@@ -17,13 +17,11 @@ I've heard a lot of my colleagues say that they are skeptical of, or even dislik
 
 I do think that the Agile principles are the best set of principles we've come up with so far to try to understand how to best develop software, and I want to tell you about this way I've found that's helped a team or two become more truly Agile.
 
-It started by accident actually, many years ago. I had just been hired by a firm for the first time (I was an independent consultant before that). The firm was only 5 people, and we had a meeting in Minneapolis the week I was hired to chart the future course - they wanted to invest in developing new products (that's why I was brought on).
+It started by accident actually, many years ago. I had just been hired by Dalex Livestock Solutions, a small agricultural firm, to my first properly employed position (I was an independent consultant before that). They were a full 5 people strong, and we had a meeting in Minneapolis the week I was hired to chart the future course - they wanted to invest in developing new products (that's why I was brought on). Being a 4-person company up to that point, they had never thought of their development process. However, it was clear to them that if they wanted to scale, they'd need some process. They said they wanted Scrum, and I obliged them and went along with it. There was one hiccup though - none of the non-engineers there understood a single thing that the engineers were saying about scrum. The vocabulary was a stumbling block - terms like "scrum meeting" and "sprint" were more puzzling than helpful. And funnily enough, having a former rugby captain on the team didn’t make translating these terms any easier!
 
-Being a 4-person company up to that point, they had never thought of their development process. However, it was clear to them that if they wanted to scale, they'd need some process. They said they wanted Scrum, and I obliged them and went along with it. There was one hiccup though - none of the non-engineers there understood a single thing that the engineers were saying about scrum. The vocabulary was a stumbling block - terms like "scrum meeting" and "sprint" were more puzzling than helpful. And funnily enough, having a former rugby captain on the team didn’t make translating these terms any easier!
+In a stroke of creativity (though I can't recall exactly whose), we decided to give a fresh spin to these scrum terms. Being in the agriculture domain, we thought of using old rancher terms to describe the concepts. This caught their attention, and we ended up using these words the entire five years I was there. We didn't have "sprints", we had "cattle drives". No "sprint planning", that was a "saddle up"; "retrospectives" were "circling the herd"; instead of a "backlog" we had a "haystack"; and so on. Not one of the words we used are in the scrum guide. Over the years, when we felt we needed to make a change, we would never be bogged down with questions like "What does the Scrum guide recommend?", but instead we'd ask "Well, what actually _is_ a 'Cattle Drive'?". After just a couple of years we had drifted away from Scrum entirely and into something of our own - something actually _Agile_.
 
-In a stroke of creativity (though I can't recall exactly whose), we decided to give a fresh spin to these scrum terms. This was an agricultural firm, so we thought of using old rancher terms to describe the concepts. This caught their attention, and we ended up using these words the entire five years I was there. We didn't have "sprints", we had "cattle drives". No "sprint planning", that was a "saddle up"; "retrospectives" were "circling the herd"; instead of a "backlog" we had a "haystack"; and so on. Not one of the words we used are in the scrum guide. Over the years, when we felt we needed to make a change, we would never be bogged down with questions like "What does the Scrum guide recommend?", but instead we'd ask "Well, what actually _is_ a 'Cattle Drive'?". After just a couple of years we had drifted away from Scrum entirely and into something of our own - something actually _Agile_.
-
-Maybe this approach will work for you, maybe it won't, but it seems to me like it's a chance for many teams to be able to fight against their Scrums and make it something actually Agile, so I want to share some ideas for how you can actually do this.
+My takeaway was that by redefining and taking control over our _language_, we were able to expand on that to take control of our _process_, and I think this works - in different ways - for teams of any size. Maybe this approach will work for you, maybe it won't, but it seems to me like it's a chance for many teams to be able to fight against their Scrums and make it something actually Agile, so I want to share some ideas for how you can actually do this.
 
 # Just Start With Words
 
@@ -39,13 +37,13 @@ Don't jump right in trying to redefine everything, and don't show up at retro on
 
 You want to create an environment where everyone is looking forward to discussing words. When your team, probably jokingly, chooses a new word for a process - stick to it. Use it everywhere and, when appropriate, correct coworkers when they use the "wrong" word. This isn't something rigid I'm trying to prescribe, and in practice it's a natural way to have a bit of a laugh among colleagues.
 
-You might have coworkers who wouldn't want a change in name - they might be too uptight, too set in their ways, or too anything else. Go slow, keep it light, and emphasize the benefit of team cohesion. You'll win over even the most ardent colleagues.
+You might have coworkers who wouldn't want a change in name - they might be too uptight, too set in their ways, or too anything else. More likely than anything, they might just not understand you or the idea. Go slow, keep it light, and emphasize the benefit of team cohesion. You'll win over even the most ardent colleagues.
 
 ## Press the Advantage
 
 Expand that to other parts of the process, and engage everyone on your team. At the end of a retrospective, suggest a new thing to rename. Can your team take five minutes to brainstorm a new name for this or that meeting? Sure they can!
 
-Engender a lively and friendly debate - which word is the more "agricultural" or "Star Trek" or whatever word for this concept? Which one does the whole team like? Remember that _you don't need to like the words_. That's not what this is about, we have a long-term agenda. The point here is that _your team is on board_. Keep them happy.
+Engender a lively and friendly debate - which word is the more "agricultural" or "Star Trek" or whatever word for this concept? Which one does the whole team like? Remember that _you_ don't need to like the words, the team does. Keep them happy.
 
 Before too long, you'll have your own words for everything. Your team will own its own language, and language is everything. Anybody who will want to redirect your team and change its processes will need to understand your lingo now.
 
@@ -65,13 +63,13 @@ At first, your teammates will be confused - there's no longer a Scrum guide to f
 
 The hope at this point is that by having divorced your team from the language of Scrum, you can change the process by talking about your new words instead of talking about process. This is another area that can't be rushed, and you might be surprised by what the first candidate is. Before too long, you'll surely have a sprint (or, perhaps a _cattle drive_) where everyone on the team has been impeded by a particular process. Motivate a conversation here about this process, but use your new word and avoid talking about process.
 
-Keeping your team entrenched in the new language keeps the team away from considering "what does the Scrum Guide say about this process?" because the Scrum Guide says nothing about _cattle drives_. Make the first process change on a process that everyone agrees needs to be changed when they are all agreeing that it needs to be. After the first change, others will be easier. 
+Keeping your team entrenched in the new language keeps the team away from considering "what does the Scrum Guide say about this process?" because the Scrum Guide says nothing about _haystacks_ or _saddle ups_. Make the first process change on a process that everyone agrees needs to be changed when they are all agreeing that it needs to be. After the first change, others will be easier.
 
 ## Incorporate Ideas
 
-There will be a lot of ideas suggested. "Cattle Drives should be _X_" or "The Haystack should be _Y_". Create a framework for trying ideas: agree to try ideas for a time, hold rigidly to them, then after that period of time reevaluate. Did the idea work? Keep it. Did it fail? Discard it. Something in-between? Adapt. Again: _you_ don't need to like the ideas here. Rather, _someone_ does, and that's the indicator of success.
+There will be a lot of ideas suggested. "'Circling the herd' should be _X_" or "A 'stampede' should be _Y_". Create a framework for trying ideas: agree to try ideas for a time, hold rigidly to them, then after that period of time reevaluate. Did the idea work? Keep it. Did it fail? Discard it. Something in-between? Adapt. Again: _you_ don't need to like the ideas here. Rather, _someone_ does, and that's the indicator of success.
 
-When new ideas are incorporated, your process changes. Don't bill this as a process change. Instead, it's an update to a word that others don't fully understand anyway. After all, other teams are talking about your team in terms of "cattle drives" or whatever. They don't know what that is - you can tell them, and you can tell them different things months apart. Don't worry here, just own your process. Whatever your words are, they're your team's words.
+When new ideas are incorporated, your process changes. Don't bill this as a process change. Instead, it's an update to a word that others don't fully understand anyway. After all, other teams are talking about your team in terms of "cattle drives" or whatever. They don't know what that is - you can tell them, and you can tell them different things months apart, just make sure you're approachable - you'll be surprised how far you can stretch your process, and somehow others will be able to work with you _because humans tend to be rather adaptable_. Don't worry here, just own your process. Whatever your words are, they're your team's words.
 
 Some might yet object to new ideas because the almighty Scrum Guide doesn't contain it. You can jokingly assert that the Scrum Guide says nothing about your new word(s), but your team should be sufficiently motivated to make changes when they're considering them. If you lose a battle that's okay, you're in it for the long haul to win the war. Consensus and buying in is crucial to making fundamental changes.
 
