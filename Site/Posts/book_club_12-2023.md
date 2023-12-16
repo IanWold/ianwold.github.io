@@ -5,6 +5,7 @@
 	"date": "16 December 2023",
 	"contents": false,
 	"hero": "photo-1672309558498-cfcc89afff25",
+	"series": "bookclub",
     "related": [
 		{ "title": "Book Club 11/2023: New .NET, New C#", "description": "The release of .NET 8 brings a lot of features I'm excited for!", "fileName": "book_club_11-2023" },
 		{ "title": "Book Club 10/2023: Functional Patterns in C#", "description": "This month I've focused on functional domain modeling and related patterns. We're just a few weeks away from the release of the next version of C#, and like each previous version it'll introduce even more functional features.", "fileName": "book_club_10-2023" },
@@ -12,8 +13,6 @@
 	]
 }
 ;;;
-
-_My Book Club is a monthly curated list of things I've been reading or watching, sent out via my newsletter. If you'd like to follow along with me, please [subscribe to my newsletter](https://buttondown.email/ianwold)._
 
 Ho ho ho merry book club day - I'm sending this one out a bit early; tomorrow I'm headed on vacation and won't be back until the new year. Preemptively thinking about the new year and resolutions, I'm thinking about changes in workflow and process. How can we develop software on our own, on our teams, and in our organizations?
 

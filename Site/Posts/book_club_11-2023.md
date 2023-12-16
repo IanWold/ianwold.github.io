@@ -5,6 +5,7 @@
 	"date": "22 November 2023",
 	"contents": false,
 	"hero": "photo-1672309558498-cfcc89afff25",
+	"series": "bookclub",
     "related": [
 		{ "title": "A Scrum Odyssey", "description": "A journey away from daily scrum meetings, as a cycle of eight Shakespearean sonnets.", "fileName": "a_scrum_odyssey" },
 		{ "title": "Book Club 9/2023: Papers I Love", "description": "Reflecting on the final Strange Loop conference, having attended several 'Papers We Love' talks, I'm motivated to share five papers I love.", "fileName": "book_club_9-2023" },
@@ -12,8 +13,6 @@
     ]
 }
 ;;;
-
-_My Book Club is a monthly curated list of things I've been reading or watching, sent out via my newsletter. If you'd like to follow along with me, please [subscribe to my newsletter](https://buttondown.email/ianwold)._
 
 I'm looking forward to turkey day tomorrow gobble gobble! This year I'm thankful that I work in ecommerce so I get to have a peaceful extended weekend because nobody visits ecommerce sites on Thanksgiving weekend. At least that's what they told me in the interview before they hired me. _Insert joke about how it's better to be working in ecommerce than at OpenAI this weekend regardless..._
 

@@ -5,6 +5,7 @@
 	"date": "27 October 2023",
 	"contents": false,
 	"hero": "photo-1672309558498-cfcc89afff25",
+	"series": "bookclub",
     "related": [
 		{ "title": "Book Club 9/2023: Papers I Love", "description": "Reflecting on the final Strange Loop conference, having attended several 'Papers We Love' talks, I'm motivated to share five papers I love.", "fileName": "book_club_9-2023" },
 		{ "title": "A Scrum Odyssey", "description": "A journey away from daily scrum meetings, as a cycle of eight Shakespearean sonnets.", "fileName": "a_scrum_odyssey" },
@@ -12,8 +13,6 @@
     ]
 }
 ;;;
-
-_My Book Club is a monthly curated list of things I've been reading or watching, sent out via my newsletter. If you'd like to follow along with me, please [subscribe to my newsletter](https://buttondown.email/ianwold)._
 
 Happy spooky season!
 
