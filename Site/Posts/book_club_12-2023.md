@@ -5,7 +5,7 @@
 	"date": "16 December 2023",
 	"contents": false,
 	"hero": "photo-1672309558498-cfcc89afff25",
-	"series": "bookclub",
+	"series": "Book Club",
     "related": [
 		{ "title": "Book Club 11/2023: New .NET, New C#", "description": "The release of .NET 8 brings a lot of features I'm excited for!", "fileName": "book_club_11-2023" },
 		{ "title": "Book Club 10/2023: Functional Patterns in C#", "description": "This month I've focused on functional domain modeling and related patterns. We're just a few weeks away from the release of the next version of C#, and like each previous version it'll introduce even more functional features.", "fileName": "book_club_10-2023" },

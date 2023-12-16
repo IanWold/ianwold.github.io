@@ -14,6 +14,11 @@ using System.IO;
 using System.Xml;
 using System;
 
+var seriesMap = new Dictionary<string, string>
+{
+	["Book Club"] = "book_club"
+};
+
 new MetalsharpProject()
 .AddInput("Site", @".\")
 .UseFrontmatter()
@@ -97,6 +102,8 @@ new MetalsharpProject()
     }
 
 	project.AddOutput(new MetalsharpFile(rssFeedContent, "feed.xml"));
+
+	var seriesPosts = new Dictionary<string, IEnumerable<Dictionary<string, object>>>();
 
 	foreach (var post in project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts") && f.Metadata.TryGetValue("contents", out object isContentsObject) && isContentsObject is bool isContents && isContents))
 	{
@@ -187,6 +194,33 @@ new MetalsharpProject()
 			}
 			"""
 		);
+
+		if (post.Metadata.TryGetValue("series", out var seriesObject) && seriesObject is string seriesName)
+		{
+			if (seriesPosts.TryGetValue(seriesName, out var seriesPostsList))
+			{
+				seriesPosts[seriesName] = seriesPostsList.Append([ post.Metadata ]);
+			}
+			else
+			{
+				series.Add(seriesName, [ post.Metadata ]);
+			}
+		}
+	}
+
+	foreach (var series in seriesPosts)
+	{
+		var seriesSlug = seriesMap[series.Key];
+		var seriesFile = new MetalsharpFile(string.Empty, $"./Series/{seriesSlug}.html");
+		seriesFile.Metadata = new Dictionary<string, object>()
+		{
+			["title"] = series.Key,
+			["template"] = "archive",
+			["removeScrollspy"] = true,
+			["posts"] = series.Value
+		};
+
+		project.AddOutput(seriesFile);
 	}
 })
 .UseLiquidTemplates("Templates")

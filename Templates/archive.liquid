@@ -1,6 +1,14 @@
 {% assign years = posts | map: "year" | uniq | sort | reverse %}
 
 <div class="content archive">
+	{% if series %}
+		<div class="series">
+			<h1>Series Archive</h1>
+			<h1 class="title">{{ series }}</h1>
+			<div class="description">{{ seriesDescription }}</div>
+		</div>
+	{% endif %}
+
 	{% for year in years %}
 		<section id="{{ year }}">
 			<h1>{{ year }}</h1>
