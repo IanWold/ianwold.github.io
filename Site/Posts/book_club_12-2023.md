@@ -1,15 +1,15 @@
 ;;;
 {
 	"title": "Book Club 12/2023: Workflow, Process, and Agile",
-	"description": "I've been taking in a lot of ideas about agile, development process, and the SDLC, and I think I now have a mathematical proof that every day is opposite day.",
+	"description": "Some thoughts on how to organize software development and teams, and how non-technical factors help (or hinder) us developing better software.",
 	"date": "16 December 2023",
 	"contents": false,
 	"hero": "photo-1672309558498-cfcc89afff25",
     "related": [
-		{ "title": "A Scrum Odyssey", "description": "A journey away from daily scrum meetings, as a cycle of eight Shakespearean sonnets.", "fileName": "a_scrum_odyssey" },
-		{ "title": "Book Club 9/2023: Papers I Love", "description": "Reflecting on the final Strange Loop conference, having attended several 'Papers We Love' talks, I'm motivated to share five papers I love.", "fileName": "book_club_9-2023" },
-		{ "title": "Book Club 10/2023: Functional Patterns in C#", "description": "This month I've focused on functional domain modeling and related patterns. We're just a few weeks away from the release of the next version of C#, and like each previous version it'll introduce even more functional features.", "fileName": "book_club_10-2023" }
-    ]
+		{ "title": "Book Club 11/2023: New .NET, New C#", "description": "The release of .NET 8 brings a lot of features I'm excited for!", "fileName": "book_club_11-2023" },
+		{ "title": "Book Club 10/2023: Functional Patterns in C#", "description": "This month I've focused on functional domain modeling and related patterns. We're just a few weeks away from the release of the next version of C#, and like each previous version it'll introduce even more functional features.", "fileName": "book_club_10-2023" },
+		{ "title": "Book Club 9/2023: Papers I Love", "description": "Reflecting on the final Strange Loop conference, having attended several 'Papers We Love' talks, I'm motivated to share five papers I love.", "fileName": "book_club_9-2023" }
+	]
 }
 ;;;
 
@@ -51,8 +51,7 @@ Things you can do Today
 
 And to close out, I wrote a few articles recently that are on-topic:
 
-* [Reclaim Agile: The Clever Trick Agile Coaches Don't Want You to Know]()
+* [Reclaim Your Agile: The One Clever Trick Agile Coaches Don't Want You to Know](https://ian.wold.guru/Posts/reclaim_your_agile.html)
 * [Clean Meetings: A Software Engineer's Guide](https://ian.wold.guru/Posts/clean_meetings_a_software_engineers_guide.html)
+* [My (Continuing) Descent Into Madness](https://ian.wold.guru/Posts/my_continuing_descent_into_madness.html)
 * [A Scrum Odyssey](https://ian.wold.guru/Posts/a_scrum_odyssey.html) (Okay that one's a lot of GPT but it was translating my writing)
-
-Happy holidays and happy new year, I'll be back in 2024!
