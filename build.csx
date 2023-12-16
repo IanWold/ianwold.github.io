@@ -13,6 +13,7 @@ using System.ServiceModel.Syndication;
 using System.IO;
 using System.Xml;
 using System;
+using System.Text.Json;
 
 IEnumerable<SeriesInfo> seriesInfo = [];
 
