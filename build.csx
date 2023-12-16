@@ -1,4 +1,4 @@
-﻿#! "net6.0"
+﻿#! "net8.0"
 #r "nuget: Metalsharp, 0.9.0-rc.5"
 #r "nuget: Metalsharp.LiquidTemplates, 0.9.0-rc-3"
 #r "nuget: Metalsharp.SimpleBlog, 0.9.0-rc.2"
@@ -199,11 +199,11 @@ new MetalsharpProject()
 		{
 			if (seriesPosts.TryGetValue(seriesName, out var seriesPostsList))
 			{
-				seriesPosts[seriesName] = seriesPostsList.Append([ post.Metadata ]);
+				seriesPosts[seriesName] = [ ..seriesPostsList, post.Metadata ];
 			}
 			else
 			{
-				series.Add(seriesName, [ post.Metadata ]);
+				seriesPosts.Add(seriesName, [ post.Metadata ]);
 			}
 		}
 	}
@@ -211,7 +211,7 @@ new MetalsharpProject()
 	foreach (var series in seriesPosts)
 	{
 		var seriesSlug = seriesMap[series.Key];
-		var seriesFile = new MetalsharpFile(string.Empty, $"./Series/{seriesSlug}.html");
+		var seriesFile = new MetalsharpFile(string.Empty, $".\\Series\\{seriesSlug}.html");
 		seriesFile.Metadata = new Dictionary<string, object>()
 		{
 			["title"] = series.Key,
