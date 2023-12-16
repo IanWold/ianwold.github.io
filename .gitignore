@@ -55,6 +55,9 @@ nunit-*.xml
 [Rr]eleasePS/
 dlldata.c
 
+# Build Results of a Metalsharp Project
+[Oo]utput/
+
 # Benchmark Results
 BenchmarkDotNet.Artifacts/
 

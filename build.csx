@@ -2,7 +2,7 @@
 #r "nuget: Metalsharp, 0.9.0-rc.5"
 #r "nuget: Metalsharp.LiquidTemplates, 0.9.0-rc-3"
 #r "nuget: Metalsharp.SimpleBlog, 0.9.0-rc.2"
-#r "nuget: System.ServiceModel.Syndication, 7.0.0"
+#r "nuget: System.ServiceModel.Syndication, 8.0.0"
 
 using Metalsharp;
 using Metalsharp.LiquidTemplates;
@@ -14,10 +14,12 @@ using System.IO;
 using System.Xml;
 using System;
 
-var seriesMap = new Dictionary<string, string>
+IEnumerable<SeriesInfo> seriesInfo = [];
+
+using (var reader = new StreamReader("Config/series.json"))
 {
-	["Book Club"] = "book_club"
-};
+	seriesInfo = JsonSerializer.Deserialize<IEnumerable<SeriesInfo>>(reader.ReadToEnd());
+}
 
 new MetalsharpProject()
 .AddInput("Site", @".\")
@@ -59,7 +61,6 @@ new MetalsharpProject()
 		["fontRequirement"] = "index"
 	},
 })
-.UseLeveller()
 .Use(project =>
 {
 	var rssItems = project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts")).Select(post => new SyndicationItem(
@@ -105,7 +106,62 @@ new MetalsharpProject()
 
 	var seriesPosts = new Dictionary<string, IEnumerable<Dictionary<string, object>>>();
 
-	foreach (var post in project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts") && f.Metadata.TryGetValue("contents", out object isContentsObject) && isContentsObject is bool isContents && isContents))
+	var allPosts = project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts"));
+
+	foreach (var post in allPosts)
+	{
+		post.Metadata.Add("structuredData", $$"""
+			{
+				"@context": "https://schema.org",
+				"@type": "Article",
+				"author": [{
+					"@type": "Person",
+					"name": "Ian Wold"
+				}],
+				"datePublished": "{{DateTime.Parse(post.Metadata["date"]?.ToString() ?? "")}}",
+				"image": "https://images.unsplash.com/{{ post.Metadata["hero"]!.ToString()}}",
+				"headline": "{{post.Metadata["title"]!.ToString()}}",
+				"description": "{{post.Metadata["description"]!.ToString()}}",
+				"publisher": {
+					"@type": "Person",
+					"name": "Ian Wold",
+					"logo": {
+						"@type": "ImageObject",
+						"url": "https://ian.wold.guru/images/hero1.svg"
+					}
+				},
+			}
+			"""
+		);
+
+		if (post.Metadata.TryGetValue("series", out var seriesObject) && seriesObject is string seriesName)
+		{
+			if (seriesPosts.TryGetValue(seriesName, out var seriesPostsList))
+			{
+				seriesPosts[seriesName] = [ ..seriesPostsList, post.Metadata ];
+			}
+			else
+			{
+				seriesPosts.Add(seriesName, [ post.Metadata ]);
+			}
+		}
+	}
+
+	foreach (var series in seriesPosts)
+	{
+		project.AddOutput(new MetalsharpFile(string.Empty, $".\\Series\\{seriesInfo.Single(s => s.Title == series.Key).Slug}.html", new Dictionary<string, object>()
+		{
+			["title"] = series.Key,
+			["series"] = series.Key,
+			["template"] = "archive",
+			["removeScrollspy"] = true,
+			["posts"] = series.Value.OrderByDescending(p => DateTime.Parse(p["date"].ToString()))
+		}));
+	}
+
+	var postsWithContents = allPosts.Where(f => f.Metadata.TryGetValue("contents", out object isContentsObject) && isContentsObject is bool isContents && isContents);
+
+	foreach (var post in postsWithContents)
 	{
 		var postLines = post.Text.Split('\r', '\n').Where(l => !string.IsNullOrWhiteSpace(l));
 		var postBuilder = new StringBuilder();
@@ -170,59 +226,32 @@ new MetalsharpProject()
 
 		post.Text = postBuilder.ToString();
 		post.Metadata.Add("sections", sections);
-
-		post.Metadata.Add("structuredData", $$"""
-			{
-				"@context": "https://schema.org",
-				"@type": "Article",
-				"author": [{
-					"@type": "Person",
-					"name": "Ian Wold"
-				}],
-				"datePublished": "{{DateTime.Parse(post.Metadata["date"]?.ToString() ?? "")}}",
-				"image": "https://images.unsplash.com/{{ post.Metadata["hero"]!.ToString()}}",
-				"headline": "{{post.Metadata["title"]!.ToString()}}",
-				"description": "{{post.Metadata["description"]!.ToString()}}",
-				"publisher": {
-					"@type": "Person",
-					"name": "Ian Wold",
-					"logo": {
-						"@type": "ImageObject",
-						"url": "https://ian.wold.guru/images/hero1.svg"
-					}
-				},
-			}
-			"""
-		);
-
-		if (post.Metadata.TryGetValue("series", out var seriesObject) && seriesObject is string seriesName)
+	}
+})
+.Use(project =>
+{
+	foreach (var file in project.InputFiles.Concat(project.OutputFiles))
+	{
+		if (file.Metadata.ContainsKey("seriesDescription"))
 		{
-			if (seriesPosts.TryGetValue(seriesName, out var seriesPostsList))
+			continue;
+		}
+
+		if (file.Metadata.TryGetValue("series", out var seriesNameObj) && seriesNameObj is string seriesName)
+		{
+			if (!file.Metadata.ContainsKey("seriesDescription"))
 			{
-				seriesPosts[seriesName] = [ ..seriesPostsList, post.Metadata ];
+				file.Metadata.Add("seriesDescription", seriesInfo.Single(s => s.Title == seriesName).Description.Split("\n").Select(d => $"<p>{d}</p>"));
 			}
-			else
+			
+			if (!file.Metadata.ContainsKey("seriesSlug"))
 			{
-				seriesPosts.Add(seriesName, [ post.Metadata ]);
+				file.Metadata.Add("seriesSlug", seriesInfo.Single(s => s.Title == seriesName).Slug);
 			}
 		}
 	}
-
-	foreach (var series in seriesPosts)
-	{
-		var seriesSlug = seriesMap[series.Key];
-		var seriesFile = new MetalsharpFile(string.Empty, $".\\Series\\{seriesSlug}.html");
-		seriesFile.Metadata = new Dictionary<string, object>()
-		{
-			["title"] = series.Key,
-			["template"] = "archive",
-			["removeScrollspy"] = true,
-			["posts"] = series.Value
-		};
-
-		project.AddOutput(seriesFile);
-	}
 })
+.UseLeveller()
 .UseLiquidTemplates("Templates")
 .AddOutput("Static", @".\")
 .Build(new BuildOptions()
@@ -230,3 +259,5 @@ new MetalsharpProject()
 	OutputDirectory = "output",
 	ClearOutputDirectory = true
 });
+
+record SeriesInfo(string Title, string Slug, string Description);

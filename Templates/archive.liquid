@@ -1,11 +1,16 @@
+{% assign directoryPrefix = "" %}
+{% for i in (1..level) %}
+	{% assign directoryPrefix = directoryPrefix | append: "../" %}
+{% endfor %}
+
 {% assign years = posts | map: "year" | uniq | sort | reverse %}
 
 <div class="content archive">
 	{% if series %}
 		<div class="series">
-			<h1>Series Archive</h1>
 			<h1 class="title">{{ series }}</h1>
-			<div class="description">{{ seriesDescription }}</div>
+			<h1>Series Archive</h1>
+			<div class="description">{{ seriesDescription | raw }}</div>
 		</div>
 	{% endif %}
 
@@ -17,7 +22,7 @@
 				{% for post in postsForYear %}
 					<li>
 						<em>{{ post.month }}.{{ post.day }}</em>
-						<a href="Posts/{{ post.fileName }}.html">
+						<a href="{{ directoryPrefix }}Posts/{{ post.fileName }}.html">
 							{{ post.title }}<small>{{ post.description }}</small>
 						</a>
 					</li>
