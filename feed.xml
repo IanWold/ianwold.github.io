@@ -266,6 +266,50 @@ They've journeyed forth, with purpose evergreen.&lt;/p&gt;
       <a10:updated>2023-11-22T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">book_club_12-2023</guid>
+      <link>https://ian.wold.guru/Posts/book_club_12-2023.html</link>
+      <title>Book Club 12/2023: Workflow, Process, and Agile</title>
+      <description>&lt;p&gt;&lt;em&gt;My Book Club is a monthly curated list of things I've been reading or watching, sent out via my newsletter. If you'd like to follow along with me, please &lt;a href="https://buttondown.email/ianwold"&gt;subscribe to my newsletter&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Ho ho ho merry book club day - I'm sending this one out a bit early; tomorrow I'm headed on vacation and won't be back until the new year. Preemptively thinking about the new year and resolutions, I'm thinking about changes in workflow and process. How can we develop software on our own, on our teams, and in our organizations?&lt;/p&gt;
+&lt;p&gt;Several years ago a group of smart engineers drafted the &lt;a href="https://agilemanifesto.org/"&gt;Agile Manifesto&lt;/a&gt; to take a stab at figuring out the best way to develop software. I've yet to see a better summation of best practices than the &lt;a href="https://agilemanifesto.org/principles.html"&gt;12 Agile Principles&lt;/a&gt;, however they end up being kind of vague and non-clear, almost like a fortune cookie or today's horoscope.&lt;/p&gt;
+&lt;p&gt;A lot of folks since have tried to come up with more concrete principles built on top of Agile. The most famous (or perhaps infamous) one is Scrum. That one is so common that today &amp;quot;Agile&amp;quot; is used interchangeably with &amp;quot;Scrum&amp;quot;. However, I challenge you to read the Agile manifesto and principles and the &lt;a href="https://scrumguides.org/scrum-guide.html"&gt;Scrum guide&lt;/a&gt; and tell me that these look like they're actually trying to do the same thing. They're not. Scrum, at it's best, is a horrible corruption of Agile to try to shoehorn a better quality of life for software engineers into big corporate environments. At it's worst Scrum is a malicious attempt to keep a whole cadre of &amp;quot;scrum masters&amp;quot;, &amp;quot;agile coaches&amp;quot;, and other similar folks employed in cushy corporate jobs.&lt;/p&gt;
+&lt;p&gt;Agile, in spite of its generality, is the best starting point I know of to try to solve how to develop software, and Scrum ain't it. At the core, what I've always tried to stick to from the Agile thinking is to deliver value early and often, change the actual process itself as the team and product evolve, and eliminate any blockers to being able to do those two. While I think highest of Agile, I have several other bits and pieces in my toolbelt here. I like a lot of things about the &lt;a href="https://en.wikipedia.org/wiki/Kanban_(development)"&gt;Kanban process&lt;/a&gt;, and I &lt;a href="https://ian.wold.guru/Posts/daily_grug.html"&gt;start my day with a Grug quote&lt;/a&gt;, among other smaller bullet points I've picked up in my days.&lt;/p&gt;
+&lt;p&gt;What I've taken away from my readings this month are two new tools I'm going to add to my belt: #NoEstimates and &amp;quot;hypothesis over requirements&amp;quot;, two concepts explained in the Allen Holub videos I share. Individually, either might be fine, but I think the real value of these are when used together. I doubt that these practices could just be adopted willy nilly by a regular scrum team tomorrow - these describe a way for business to work, as much as they describe a way for engineering teams to work. If all the stakeholders can be aligned on this though, and if the constraints on the project allow it, there's a potential for a huge benefit here.&lt;/p&gt;
+&lt;p&gt;But what is there for those of us stuck in regular Scrum teams that might not be able to adopt these right away, or ever? I've become very interested in this question, and I think I've found a few practices that could meaningfully help any engineering team. I'm certainly going to be bringing these practices up at my day job, and in future I may write on their success.&lt;/p&gt;
+&lt;p&gt;Videos&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=WFbvJ0dVlHk"&gt;War is Peace, Freedom is Slavery, Ignorance is Strength, Scrum is Agile - Allen Holub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=QVBlnCTu9Ms"&gt;#NoEstimates - Allen Holub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=sz_LgBAGYyo"&gt;How to Build Products Users Love - Kevin Hale&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=3YCIw3gewFE"&gt;Agile Software Architecture - Ian Cooper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=EZ05e7EMOLM"&gt;TDD, Where did it all go Wrong - Ian Cooper&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Articles to Ponder&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://medium.com/@antweiss/the-true-capacity-of-your-engineering-team-38da00bd83e8"&gt;The True Capacity of Your Engineering Team - Ant Weiss&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://lucasfcosta.com/2021/09/20/monte-carlo-forecasts.html"&gt;How to replace estimations and guesses with a Monte Carlo simulation - Lucas F Costa&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Actually, read just about anything from Lucas F Costa: &lt;a href="https://lucasfcosta.com/"&gt;lucasfcosta.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.davefarley.net/?p=278"&gt;Science and Software Development - Dave Farley&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Things you can do Today&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.hackerearth.com/community-hackathons/resources/e-books/guide-to-organize-hackathon/"&gt;The Complete Guide to Organizing a Successful Hackathon - Hackerearth&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.dylanpaulus.com/posts/start-with-no"&gt;Start With No - Dylan Paulus&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://taylor.town/friday-demos"&gt;Share Demos Every Friday - taylor.town&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://bobbiechen.com/blog/2022/7/20/being-on-call-sucks"&gt;Being On-Call Sucks - Bobbie Chen&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And to close out, I wrote a few articles recently that are on-topic:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://ian.wold.guru/Posts/reclaim_your_agile.html"&gt;Reclaim Your Agile: The One Clever Trick Agile Coaches Don't Want You to Know&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ian.wold.guru/Posts/clean_meetings_a_software_engineers_guide.html"&gt;Clean Meetings: A Software Engineer's Guide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ian.wold.guru/Posts/my_continuing_descent_into_madness.html"&gt;My (Continuing) Descent Into Madness&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ian.wold.guru/Posts/a_scrum_odyssey.html"&gt;A Scrum Odyssey&lt;/a&gt; (Okay that one's a lot of GPT but it was translating my writing)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Sat, 16 Dec 2023 00:00:00 Z</pubDate>
+      <a10:updated>2023-12-16T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">book_club_9-2023</guid>
       <link>https://ian.wold.guru/Posts/book_club_9-2023.html</link>
       <title>Book Club 9/2023: Papers I Love</title>
