@@ -42,6 +42,7 @@ new MetalsharpProject()
 			["template"] = "article",
 			["year"] = postDate.Year.ToString(),
 			["month"] = postDate.Month.ToString("D2"),
+			["monthWord"] = postDate.Month.ToString("MMMM"),
 			["day"] = postDate.Day.ToString("D2")
 		};
 	},
