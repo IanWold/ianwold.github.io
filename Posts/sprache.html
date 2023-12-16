@@ -170,7 +170,10 @@
 			</ul>
 		</div>
 	
+
 	<div class="post">
+		
+
 		<p>As my activity on this blog and my GitHub account may attest, I'm quite fond of a C# library called Sprache. Sprache is a parser-combinator that uses LINQ (Language INtegrated Query) to allow for the elegant construction of parsers in C#. I've been using Sprache for three years now, before I started college, and I've used it to implement a number of domain-specific languages (DSLs) both in side projects on my GitHub and on applications I've worked on. It's only natural I would want to share my favorite C# library with my fellow undergraduate classmates, but there are several factors which make it rather unapproachable for the average undergraduate computer science student. Thus, I have written this piece to provide a completely introductory tutorial to using Sprache.</p>
 <p>I'll explain LINQ and BNF, and then I'll walk you through the implementation of a few simple grammars in Sprache such that I may touch upon all the most important concepts in the Sprache library to allow the reader to immediately begin to implement the grammars which they desire. At the end of this post, I link to several articles which cover the framework and other related readings. In the future, I may also write a short handbook/reference to certain Sprache concepts.</p>
 <p>One does not necessarily need to have an understanding of C# to begin using Sprache, but a familiarity of a similar language (i.e. Java) would go a long way. I'm going to assume the reader has an understanding of object-oriented programming. I won't be going into an explanation of what a parser-combinator is, nor what a &quot;combinator&quot; is, in general. If you would like to become more involved in the development of Sprache, though, you should definitely familiarize yourself with the concept. I provide some links at the end of this tutorial to that end.</p>
@@ -609,6 +612,7 @@ Parser&lt;JSONValue&gt; JObject =
 </section>
 
 	</div>
+
 	<div class="comments">
 		<script src="https://giscus.app/client.js"
 			data-repo="IanWold/ianwold.github.io"

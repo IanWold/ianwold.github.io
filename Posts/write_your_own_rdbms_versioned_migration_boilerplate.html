@@ -65,7 +65,10 @@
 
 <div class="content">
 	
+
 	<div class="post">
+		
+
 		<p>If you're using a relational database, even perhaps for a small personal project, you've almost certainly had to have a serious think about migrations. Some databases require very heavily-engineered migration systems to be able to handle large, complex, and/or frequently-changing data. Other databases are very small and might do just fine with a single migrations file, or maybe even manual migrations computed off a shared schema script, if updates are few and far between.</p>
 <p>There's many different migration strategies, and there's no one-size-fits-all approach - different databases and applications can require vastly different strategies. One of the best and most ubiquitous strategies is the versioned migration, where individual updates are stored in SQL scripts that have an incremental version. I like a setup where, on startup, my application consults a migration history table in my database to see what the latest migration is, and to run any new migration scripts in sequential order.</p>
 <p>In my experience this setup works very well, and it can scale to a large size of project, database, or team. I start almost all of my projects - big or small, personal or professional - with this strategy, and I think you should consider making this strategy (or some variation of it) your default as well.</p>
@@ -216,6 +219,7 @@ static T Query&lt;T&gt;(NpgsqlConnection connection, string query)
 <p>Happy migrating!</p>
 
 	</div>
+
 	<div class="comments">
 		<script src="https://giscus.app/client.js"
 			data-repo="IanWold/ianwold.github.io"

@@ -170,7 +170,10 @@
 			</ul>
 		</div>
 	
+
 	<div class="post">
+		
+
 		<p>Nevermind that I haven't posted in more than 6 years, <a href="https://www.railway.app">Railway</a> is a startup cloud infrastructure provider that has gained a fair amount of traction for being easy to use and very cost effective to get started with. It's pretty barebones right now, but that makes it especially great for hobbyist projects. They have a free introductory tier, but then the next tier is $5/month plus a small resource usage fee. Really, their pricing is fantastic.</p>
 <p>When you deploy with Railway, they'll shove your app into a Docker container and handle the management/scaling/etc. behind the scenes. In addition, they have the ability to stand up a database for you - as of the time of this writing, you can choose PostgreSQL, MySQL, Mongo, and Redis. That said, they of course allow you to deploy any docker image or volume, so if you're willing to put in a little more work I imagine you can make any stack work for you. That all means of course that Railway probably isn't the best solution if you need control over container orchestration, but for CRUD projects and startups it seems quite promising to me.</p>
 <p>What's especially great is their integration with GitHub - it takes just a couple minutes to sign up for Railway, authenticate with GitHub, point it at a repo, and Railway takes care of the deployment from there. It has some magic to sense what kind of project your repo is and attempt to construct a build pipeline for your project right away. This doesn't work too well in .NET, but their interface is very sparse and easy to use to get up and going with it.</p>
@@ -361,6 +364,7 @@ start      │ ./out/RailwayBlazorDemo.Client
 </section>
 
 	</div>
+
 	<div class="comments">
 		<script src="https://giscus.app/client.js"
 			data-repo="IanWold/ianwold.github.io"

@@ -65,7 +65,10 @@
 
 <div class="content">
 	
+
 	<div class="post">
+		
+
 		<p>That Mongo doesn't natively support sequential IDs is one of the many knocks against it. Sure, you <em>should</em> be using GUID IDs in Mongo, but suppose you're working on a microservices conversion and you have a legacy mainframe that needs to be able to know what your objects are? If you're content just using Atlas, you can create a counter collection and add a trigger for auto-incrementing IDs <a href="https://www.mongodb.com/basics/mongodb-auto-increment">fairly easily</a>.</p>
 <p>Suppose however that you can't use a pure Atlas solution - you'll need to implement this logic yourself in your own code. If you happen to be working in a microservices environment you have concurrency concerns - there might be multiple shards of your database and/or multiple replicas of your microservice.</p>
 <p>Is a primary key generator really the sort of thing you want &quot;quick and dirty&quot;? Probably not. Am I doing it in prod? Yes.</p>
@@ -233,6 +236,7 @@ func (generator *MongoIdGenerator) GetNextId() (int, error) {
 </textarea></code></pre>
 
 	</div>
+
 	<div class="comments">
 		<script src="https://giscus.app/client.js"
 			data-repo="IanWold/ianwold.github.io"
