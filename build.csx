@@ -30,7 +30,7 @@ new MetalsharpProject()
 	&& isDraftObj is bool isDraft
 	&& isDraft
 )
-.Use(project =>
+.Use(project => // Add reading time to posts
 {
 	foreach (var file in project.InputFiles.Where(f => f.Directory.StartsWith(@".\Posts")))
 	{
@@ -62,7 +62,7 @@ new MetalsharpProject()
 		["fontRequirement"] = "index"
 	},
 })
-.Use(project =>
+.Use(project => // Generate RSS feed
 {
 	var rssItems = project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts")).Select(post => new SyndicationItem(
 		post.Metadata["title"].ToString(),
@@ -86,14 +86,14 @@ new MetalsharpProject()
 
 	var xmlSettings = new XmlWriterSettings
     {
-        Indent = true, // Optional: to format the XML for readability
+        Indent = true,
         OmitXmlDeclaration = true,
         Encoding = Encoding.UTF8
     };
 	using (var memoryStream = new MemoryStream())
     using (var xmlWriter = XmlWriter.Create(memoryStream, xmlSettings))
     {
-        rssFeed.SaveAsRss20(xmlWriter); // You can use SaveAsRss20() if you prefer RSS 2.0 format
+        rssFeed.SaveAsRss20(xmlWriter);
         xmlWriter.Flush();
         memoryStream.Position = 0;
 
@@ -104,12 +104,13 @@ new MetalsharpProject()
     }
 
 	project.AddOutput(new MetalsharpFile(rssFeedContent, "feed.xml"));
-
+})
+.Use(project => // Add SEO and "series" metadata to posts
+{
 	var seriesPosts = new Dictionary<string, IEnumerable<Dictionary<string, object>>>();
 
-	var allPosts = project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts"));
-
-	foreach (var post in allPosts)
+	var posts = project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts"));
+	foreach (var post in posts)
 	{
 		post.Metadata.Add("structuredData", $$"""
 			{
@@ -159,10 +160,12 @@ new MetalsharpProject()
 			["posts"] = series.Value.OrderByDescending(p => DateTime.Parse(p["date"].ToString()))
 		}));
 	}
+})
+.Use(project => // Add table of contents to posts
+{
+	var posts = project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts") && f.Metadata.TryGetValue("contents", out object isContentsObject) && isContentsObject is bool isContents && isContents);
 
-	var postsWithContents = allPosts.Where(f => f.Metadata.TryGetValue("contents", out object isContentsObject) && isContentsObject is bool isContents && isContents);
-
-	foreach (var post in postsWithContents)
+	foreach (var post in posts)
 	{
 		var postLines = post.Text.Split('\r', '\n').Where(l => !string.IsNullOrWhiteSpace(l));
 		var postBuilder = new StringBuilder();
@@ -229,15 +232,10 @@ new MetalsharpProject()
 		post.Metadata.Add("sections", sections);
 	}
 })
-.Use(project =>
+.Use(project => // Add slug and description for "series" files
 {
 	foreach (var file in project.InputFiles.Concat(project.OutputFiles))
 	{
-		if (file.Metadata.ContainsKey("seriesDescription"))
-		{
-			continue;
-		}
-
 		if (file.Metadata.TryGetValue("series", out var seriesNameObj) && seriesNameObj is string seriesName)
 		{
 			if (!file.Metadata.ContainsKey("seriesDescription"))
