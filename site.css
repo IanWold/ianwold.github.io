@@ -76,7 +76,7 @@ nav {
 			color: #f0f0f0;
 		}
 
-			nav .title a:hover {
+			nav .title a:hover, .dark nav .title a:hover {
 				color: orangered;
 			}
 
