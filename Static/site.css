@@ -125,6 +125,8 @@ nav {
 	max-width: 1000px;
 	margin-left: auto;
 	margin-right: auto;
+	padding-left: 12px;
+	padding-right: 12px;
 	color: #121212;
 }
 .dark .content {
@@ -223,6 +225,10 @@ nav {
 		font-weight: 400;
 		letter-spacing: 0.75;
 		word-spacing: 1;
+	}
+
+	.archive .series .description {
+		background-color: #323232;
 	}
 
 
@@ -370,6 +376,10 @@ header {
 		flex-direction: column;
 		justify-content: space-between;
 		gap: 18px;
+	}
+
+	.dark .post .series {
+		background-color: #323232;
 	}
 
 		.post h1, h2, h3, h4, h5, h6 {
