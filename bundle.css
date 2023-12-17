@@ -131,10 +131,6 @@ nav {
 				color: orangered;
 			}
 
-			nav.title a.active {
-				color: orangered;
-			}
-
 	nav .subtitle {
 		font-family: 'Rubik';
 		font-size: 12pt;
