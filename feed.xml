@@ -668,6 +668,22 @@ start      │ ./out/RailwayBlazorDemo.Client
       <a10:updated>2023-09-05T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">eight_maxims</guid>
+      <link>https://ian.wold.guru/Posts/eight_maxims.html</link>
+      <title>Eight Maxims</title>
+      <description>&lt;p&gt;&lt;strong&gt;Less is More&lt;/strong&gt; Write less code, use fewer abstractions, be simple and concise. Complexity is easy, simplicity is hard.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Diff Your Commits&lt;/strong&gt; Read your own code before you commit it, before you PR it, and after you merge it. Keep your code tidy and clear.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Document Why, not How&lt;/strong&gt; I can (usually) figure out how to use your code. I can (usually) never figure out why you wrote it that way.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Collaborating over Coding&lt;/strong&gt; Software Engineering is 9 parts collaboration and 1 part coding. Be approachable and helpful, reach out to others often.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Respect Legacy Code&lt;/strong&gt; There is much wisdom in legacy code. Understand before judging, embrace before extinguishing.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Continuous Learning/Continuous Improvement&lt;/strong&gt; Always learn, always try new things, always be open-minded.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Embrace Change&lt;/strong&gt; Change is the only constant. Expect it, embrace it, and code for it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Lift Everyone Up&lt;/strong&gt; Share knowledge openly, celebrate accomplishments, support and mentor freely. You grow the most when you help others grow.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 17 Jan 2023 00:00:00 Z</pubDate>
+      <a10:updated>2023-01-17T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">giscus_is_awesome</guid>
       <link>https://ian.wold.guru/Posts/giscus_is_awesome.html</link>
       <title>Giscus Is Awesome</title>
