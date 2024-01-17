@@ -2,7 +2,7 @@
 {
 	"title": "Eight Maxims",
 	"description": "A few principles for thoughtful software engineering.",
-	"date": "17 January 2023",
+	"date": "17 January 2024",
 	"contents": false,
 	"hero": "photo-1553736277-055142d018f0",
     "related": [
