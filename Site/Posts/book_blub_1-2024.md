@@ -1,7 +1,7 @@
 ;;;
 {
 	"title": "Book Club 1/2024: What is a Software Architect?",
-	"description": "Just a few thoughts on the title \"Software Architect\"",
+	"description": "A few meandering and maybe unhelpful thoughts on the title \"Software Architect\"",
 	"date": "24 January 2024",
 	"contents": false,
 	"hero": "photo-1672309558498-cfcc89afff25",
