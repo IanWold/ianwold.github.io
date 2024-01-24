@@ -26,17 +26,15 @@ Having both had the title of "architect" and having been an engineer at firms wh
 
 To try to pin some universals down, I think I could say a few definitive things about architects. Architects should be coding, and actively involved in the engineering process. Architects should primarily focus on assisting all of the members of a development team - helping to ensure alignment and stimulating everyone to think architecturally. Architects shouldn't be dictators or cudgels which make demands - a somewhat common perception which is unfortunately sometimes earned. Architects should strive to be the most approachable and collaborative members of a team.
 
-While architects should be very technically knowledgeable, I don't know that they should have all the answers when it comes to architecture itself - curiously, I think the best architects are ones which are very creative and can help brainstorm architectural ideas, the idea being that they act as an enabler of a team to define a good architecture, rather than dictating an architecture from the start. In a difficult twist, this does mean that sometimes teh architect will need to furnish a specific recommndation upon request, for example for a team in a tight bind which requires a quick resolution to a difficult problem.
+While architects should be very technically knowledgeable, I don't know that they should have all the answers when it comes to architecture itself - curiously, I think the best architects are ones which are very creative and can help brainstorm architectural ideas, the idea being that they act as an enabler of a team to define a good architecture, rather than dictating an architecture from the start. In a difficult twist, this does mean that sometimes the architect will need to furnish a specific recommendation upon request, for example for a team in a tight bind which requires a quick resolution to a difficult problem.
 
-I can hear a colleague of mine saying now: "This answer is so nonspecific as to be only slightly more helpful than a software architect theirself!"; unkind but not unfounded. I put it to you though that the composition of any software team is a jigsaw puzzle balancing who can do what with which areas of expertise are required of the technology and domain, and from team to team the jigsaw piece labeled "architect" will be a very different shape and in a very different place in the overal puzzle.
-
-
+I can hear a colleague of mine saying now: "This answer is so nonspecific as to be only slightly more helpful than a software architect theirself!"; unkind but not unfounded. I put it to you though that the composition of any software team is a jigsaw puzzle balancing who can do what with which areas of expertise are required of the technology and domain, and from team to team the jigsaw piece labeled "architect" will be a very different shape and in a very different place in the overall puzzle.
 
 **Links**
 
 * [How to Become a Great Software Architect - Eberhard Wolff (2019)](https://www.youtube.com/watch?v=v_nhv6aY1Kg)
 * [How we do Architecture at Okta - Monica Bajaj and Mark Voelker (2023)](https://www.youtube.com/watch?v=asoVNjGoFOM)
-* [Democratising Software Architecture - Eoin Woods (2023)](https://www.youtube.com/watch?v=nchRmYvUf2Y&list=PLEx5khR4g7PJELLTYwXZHcimWAwTUaWGA)
+* [Democratizing Software Architecture - Eoin Woods (2023)](https://www.youtube.com/watch?v=nchRmYvUf2Y&list=PLEx5khR4g7PJELLTYwXZHcimWAwTUaWGA)
 * [How to "think" (and design) like a Software Architect - Ron Kleinman (2019)](https://www.youtube.com/watch?v=mCM6QVHD08c)
 * [How I became a software architect... (or not) - CodeOpinion (2023)](https://www.youtube.com/watch?v=6j-PyJ1tFn8)
 
