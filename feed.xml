@@ -205,6 +205,37 @@ They've journeyed forth, with purpose evergreen.&lt;/p&gt;
       <a10:updated>2023-10-20T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">book_blub_1-2024</guid>
+      <link>https://ian.wold.guru/Posts/book_blub_1-2024.html</link>
+      <title>Book Club 1/2024: What is a Software Architect?</title>
+      <description>&lt;p&gt;This question - what is a software architect? - is a bit of an expansive one; I wouldn't think that I could ever answer it thoroughly, much less succinctly in a few article links. I do however think it's worth some time considering some of the different perspectives we encounter. I'd venture that a poll of 10 software architects would yield 11 answers to this question.&lt;/p&gt;
+&lt;p&gt;Is software architecture decidedly different from software engineering? The analogy with which these titles are made - that of architects, engineers, and builders collaborating over the construction of a building - would seem to suggest so. However, a software project is decidedly different (in almost every single aspect) from a construction project. This is my opinion, but I would put it to you that while &amp;quot;software architecture&amp;quot; is probably a definable thing, a software architect is not really so different from an engineer. Indeed, I would also assert that a proper software engineer must be engaging with and actively doing software architecture as a part of their job.&lt;/p&gt;
+&lt;p&gt;Should a software architect be doing anything different from an engineer? Well, perhaps not on the surface. I'd expect that an architect would be writing code about as much as someone with an engineer title, and I'd expect that an engineer would be as engaged with diagrams and ephemeral conversations about the nature of software as someone with an architect title. The separate titles then are probably most useful as a way to distinguish the primary focus that one has within a software team, and an architect would be working differently from an engineer insofar as the architecture would be their primary focus, or area of responsibility.&lt;/p&gt;
+&lt;p&gt;So is it useful then to separate ourselves out with titles of &amp;quot;engineer&amp;quot; and &amp;quot;architect&amp;quot;? There are advantages to having the separate architecture title though: to motivate the team to keep architecture as a primary consideration, to be a figure of wisdom or authority with respect to the architecture, or to be the &amp;quot;point person&amp;quot; to communicate architectural concerns to other teams or other departments within a company. Perhaps it's not a useful title to have, but a separate role or &amp;quot;hat&amp;quot; which a member of a software team wears; in fact this was the way I was introduced to the concept of architecture.&lt;/p&gt;
+&lt;p&gt;Having both had the title of &amp;quot;architect&amp;quot; and having been an engineer at firms which had this title, I can see its utility. To caution though: just as every piece of software, every product, and every team is different - sometimes radically different - so to are the roles of those we call architects. This is perhaps why there are so many different ideas of what architecture is, and what a proper software architect ought be. Perhaps there can't be a single, specific definition to encapsulate the idea, as the types of architecture and architectural concerns are necessarily so varied between software efforts, domains, and technologies?&lt;/p&gt;
+&lt;p&gt;To try to pin some universals down, I think I could say a few definitive things about architects. Architects should be coding, and actively involved in the engineering process. Architects should primarily focus on assisting all of the members of a development team - helping to ensure alignment and stimulating everyone to think architecturally. Architects shouldn't be dictators or cudgels which make demands - a somewhat common perception which is unfortunately sometimes earned. Architects should strive to be the most approachable and collaborative members of a team.&lt;/p&gt;
+&lt;p&gt;While architects should be very technically knowledgeable, I don't know that they should have all the answers when it comes to architecture itself - curiously, I think the best architects are ones which are very creative and can help brainstorm architectural ideas, the idea being that they act as an enabler of a team to define a good architecture, rather than dictating an architecture from the start. In a difficult twist, this does mean that sometimes teh architect will need to furnish a specific recommndation upon request, for example for a team in a tight bind which requires a quick resolution to a difficult problem.&lt;/p&gt;
+&lt;p&gt;I can hear a colleague of mine saying now: &amp;quot;This answer is so nonspecific as to be only slightly more helpful than a software architect theirself!&amp;quot;; unkind but not unfounded. I put it to you though that the composition of any software team is a jigsaw puzzle balancing who can do what with which areas of expertise are required of the technology and domain, and from team to team the jigsaw piece labeled &amp;quot;architect&amp;quot; will be a very different shape and in a very different place in the overal puzzle.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Links&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=v_nhv6aY1Kg"&gt;How to Become a Great Software Architect - Eberhard Wolff (2019)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=asoVNjGoFOM"&gt;How we do Architecture at Okta - Monica Bajaj and Mark Voelker (2023)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=nchRmYvUf2Y&amp;amp;list=PLEx5khR4g7PJELLTYwXZHcimWAwTUaWGA"&gt;Democratising Software Architecture - Eoin Woods (2023)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=mCM6QVHD08c"&gt;How to &amp;quot;think&amp;quot; (and design) like a Software Architect - Ron Kleinman (2019)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=6j-PyJ1tFn8"&gt;How I became a software architect... (or not) - CodeOpinion (2023)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I was recently recommended Mark Richard's series &amp;quot;Software Architecture Monday&amp;quot;, which is a part of &lt;a href="https://developertoarchitect.com/"&gt;his site dedicated to &lt;em&gt;developing&lt;/em&gt; more architects&lt;/a&gt;. This series is well-thought-out, and contain a few excellent articles/videos which contain insights directly related to this topic:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://developertoarchitect.com/lessons/lesson108.html"&gt;The Role of a Software Architect&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://developertoarchitect.com/lessons/lesson100.html"&gt;My Architecture Journey: Lessons Learned &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://developertoarchitect.com/lessons/lesson54.html"&gt;The Software Architect's Bookshelf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://developertoarchitect.com/lessons/lesson30.html"&gt;Agile and Software Architecture&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Wed, 24 Jan 2024 00:00:00 Z</pubDate>
+      <a10:updated>2024-01-24T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">book_club_10-2023</guid>
       <link>https://ian.wold.guru/Posts/book_club_10-2023.html</link>
       <title>Book Club 10/2023: Functional Patterns in C#</title>
