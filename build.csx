@@ -50,7 +50,8 @@ new MetalsharpProject()
 			["template"] = "article",
 			["year"] = postDate.Year.ToString(),
 			["month"] = postDate.Month.ToString("D2"),
-			["day"] = postDate.Day.ToString("D2")
+			["day"] = postDate.Day.ToString("D2"),
+			["slug"] = post.Name
 		};
 	},
 	BlogFilePath = @".\index.html",
