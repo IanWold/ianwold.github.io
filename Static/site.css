@@ -269,8 +269,8 @@ header {
 			margin-right: 2px;
 		}
 
-		header small .time {
-			margin-left: 36px;
+		header small span {
+			margin-right: 36px;
 		}
 
 	header p {
