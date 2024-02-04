@@ -262,8 +262,12 @@ header {
 		margin-bottom: 12px;
 	}
 
-	header small a {
+	header>small>span>a {
 		color: darkgray !important;
+	}
+
+	header>small>span>a:hover {
+		color: orangered !important;
 	}
 
 		header small .feather {
@@ -273,7 +277,7 @@ header {
 			margin-right: 2px;
 		}
 
-		header small span {
+		header>small>span {
 			margin-right: 36px;
 		}
 
