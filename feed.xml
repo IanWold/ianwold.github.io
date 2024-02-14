@@ -735,28 +735,38 @@ start      │ ./out/RailwayBlazorDemo.Client
 &lt;h1&gt;Focus on &amp;quot;Why&amp;quot;&lt;/h1&gt;
 &lt;p&gt;Prescribing rules for coding is generally useless. They are annoying and can get out of date quickly, so they end up ignored in the long run. They get overlooked on review because they fade into the background when the document is in active use.&lt;/p&gt;
 &lt;p&gt;What's more important - 1000 times more important - is to document why your team feels a certain way. Suppose your team prefers having a strong emphasis on being able to read your code more vertically than horizontally. You might want one rule to limit the width of the document, one rule to format ternaries on multiple lines, one rule to break conjunctions in conditionals on multiple lines, etc. Rather than stating each of these individually, they can be examples in the broader context of verticality.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;h2&gt;Prefer Verticality&lt;/h2&gt;
-&lt;p&gt;This team prefers writing code in a way that makes it more &lt;em&gt;vertical&lt;/em&gt; than &lt;em&gt;horizontal&lt;/em&gt;. Run-on lines tend to be more difficult to read given our domain and architecture. As a consequence, the team is able to read code faster when it's consistently formatted vertically. We like to limit the horizonal width to 80 characters, and break code into multiple lines in logical places. For example:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Use multi-line ternaries&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Do not prefer:&lt;/p&gt;
-&lt;p&gt;var myThing = first &amp;gt;= 50 ? first : second;&lt;/p&gt;
-&lt;p&gt;Do prefer:&lt;/p&gt;
-&lt;p&gt;var myThing =
-first &amp;gt;= 50
-? first
-: second;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Break long conditions into multiple lines&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Do not prefer:&lt;/p&gt;
-&lt;p&gt;if (thingToCheck is SomeThing someThingToCheck &amp;amp;&amp;amp; service.CheckSomeThing(someThingToCheck) &amp;amp;&amp;amp; businessConditionForNextLogic &amp;amp;&amp;amp; featureFlagConditionForNextLogic)&lt;/p&gt;
-&lt;p&gt;Do prefer:&lt;/p&gt;
-&lt;p&gt;if (
-thingToCheck is SomeThing someThingToCheck
-&amp;amp;&amp;amp; service.CheckSomeThing(someThingToCheck)
-&amp;amp;&amp;amp; businessConditionForNextLogic
-&amp;amp;&amp;amp; featureFlagConditionForNextLogic
-)&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class="language-plaintext"&gt;## Prefer Verticality
+
+This team prefers writing code in a way that makes it more _vertical_ than _horizontal_. Run-on lines tend to be more difficult to read given our domain and architecture. As a consequence, the team is able to read code faster when it's consistently formatted vertically. We like to limit the horizonal width to 80 characters, and break code into multiple lines in logical places. For example:
+
+**Use multi-line ternaries**
+
+Do not prefer:
+
+var myThing = first &amp;gt;= 50 ? first : second;
+
+Do prefer:
+
+var myThing = 
+    first &amp;gt;= 50
+    ? first
+    : second;
+
+**Break long conditions into multiple lines**
+
+Do not prefer:
+
+if (thingToCheck is SomeThing someThingToCheck &amp;amp;&amp;amp; service.CheckSomeThing(someThingToCheck) &amp;amp;&amp;amp; businessConditionForNextLogic &amp;amp;&amp;amp; featureFlagConditionForNextLogic)
+
+Do prefer:
+
+if (
+    thingToCheck is SomeThing someThingToCheck
+    &amp;amp;&amp;amp; service.CheckSomeThing(someThingToCheck)
+    &amp;amp;&amp;amp; businessConditionForNextLogic
+    &amp;amp;&amp;amp; featureFlagConditionForNextLogic
+)
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;By explaining why, you're giving everyone an insight as to what the team feels, not just the result of their feelings. You don't need to enumerate every single rule that follows from that feeling since you've (hopefully) articulated the &lt;em&gt;why&lt;/em&gt;. It's easier to refactor these statements as your team's feelings shift since you've written &lt;em&gt;those feelings&lt;/em&gt; down - the consequences might be harder to grasp.&lt;/p&gt;
 &lt;h1&gt;Continuous Learning, Continuous Improvement&lt;/h1&gt;
 &lt;p&gt;I hope that you and your teammates are learning constantly, and always becoming better engineers. As your team changes, its opinions on how code should be developed will change too. This should be reflected by continuous reviews of the coding standards. First though, you need some way to capture &lt;em&gt;that&lt;/em&gt; you're learning and &lt;em&gt;what&lt;/em&gt; you've learned.&lt;/p&gt;
