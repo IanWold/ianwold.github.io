@@ -31,37 +31,39 @@ Prescribing rules for coding is generally useless. They are annoying and can get
 
 What's more important - 1000 times more important - is to document why your team feels a certain way. Suppose your team prefers having a strong emphasis on being able to read your code more vertically than horizontally. You might want one rule to limit the width of the document, one rule to format ternaries on multiple lines, one rule to break conjunctions in conditionals on multiple lines, etc. Rather than stating each of these individually, they can be examples in the broader context of verticality.
 
-> ## Prefer Verticality
-> 
-> This team prefers writing code in a way that makes it more _vertical_ than _horizontal_. Run-on lines tend to be more difficult to read given our domain and architecture. As a consequence, the team is able to read code faster when it's consistently formatted vertically. We like to limit the horizonal width to 80 characters, and break code into multiple lines in logical places. For example:
-> 
-> **Use multi-line ternaries**
-> 
-> Do not prefer:
-> 
-> var myThing = first >= 50 ? first : second;
-> 
-> Do prefer:
-> 
-> var myThing = 
->     first >= 50
->     ? first
->     : second;
-> 
-> **Break long conditions into multiple lines**
-> 
-> Do not prefer:
-> 
-> if (thingToCheck is SomeThing someThingToCheck && service.CheckSomeThing(someThingToCheck) && businessConditionForNextLogic && featureFlagConditionForNextLogic)
-> 
-> Do prefer:
-> 
-> if (
->     thingToCheck is SomeThing someThingToCheck
->     && service.CheckSomeThing(someThingToCheck)
->     && businessConditionForNextLogic
->     && featureFlagConditionForNextLogic
-> )
+```plaintext
+## Prefer Verticality
+
+This team prefers writing code in a way that makes it more _vertical_ than _horizontal_. Run-on lines tend to be more difficult to read given our domain and architecture. As a consequence, the team is able to read code faster when it's consistently formatted vertically. We like to limit the horizonal width to 80 characters, and break code into multiple lines in logical places. For example:
+
+**Use multi-line ternaries**
+
+Do not prefer:
+
+var myThing = first >= 50 ? first : second;
+
+Do prefer:
+
+var myThing = 
+    first >= 50
+    ? first
+    : second;
+
+**Break long conditions into multiple lines**
+
+Do not prefer:
+
+if (thingToCheck is SomeThing someThingToCheck && service.CheckSomeThing(someThingToCheck) && businessConditionForNextLogic && featureFlagConditionForNextLogic)
+
+Do prefer:
+
+if (
+    thingToCheck is SomeThing someThingToCheck
+    && service.CheckSomeThing(someThingToCheck)
+    && businessConditionForNextLogic
+    && featureFlagConditionForNextLogic
+)
+```
 
 By explaining why, you're giving everyone an insight as to what the team feels, not just the result of their feelings. You don't need to enumerate every single rule that follows from that feeling since you've (hopefully) articulated the _why_. It's easier to refactor these statements as your team's feelings shift since you've written _those feelings_ down - the consequences might be harder to grasp.
 
