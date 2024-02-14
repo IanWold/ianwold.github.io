@@ -100,38 +100,28 @@
 <h1>Focus on &quot;Why&quot;</h1>
 <p>Prescribing rules for coding is generally useless. They are annoying and can get out of date quickly, so they end up ignored in the long run. They get overlooked on review because they fade into the background when the document is in active use.</p>
 <p>What's more important - 1000 times more important - is to document why your team feels a certain way. Suppose your team prefers having a strong emphasis on being able to read your code more vertically than horizontally. You might want one rule to limit the width of the document, one rule to format ternaries on multiple lines, one rule to break conjunctions in conditionals on multiple lines, etc. Rather than stating each of these individually, they can be examples in the broader context of verticality.</p>
-<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-plaintext"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">## Prefer Verticality</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">This team prefers writing code in a way that makes it more _vertical_ than _horizontal_. Run-on lines tend to be more difficult to read given our domain and architecture. As a consequence, the team is able to read code faster when it&#39;s consistently formatted vertically. We like to limit the horizonal width to 80 characters, and break code into multiple lines in logical places. For example:</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">**Use multi-line ternaries**</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">Do not prefer:</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">var myThing = first &gt;= 50 ? first : second;</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">Do prefer:</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">var myThing = </span></div><div class='line'><span style="color: #F8F8F2;">    first &gt;= 50</span></div><div class='line'><span style="color: #F8F8F2;">    ? first</span></div><div class='line'><span style="color: #F8F8F2;">    : second;</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">**Break long conditions into multiple lines**</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">Do not prefer:</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">if (thingToCheck is SomeThing someThingToCheck &amp;&amp; service.CheckSomeThing(someThingToCheck) &amp;&amp; businessConditionForNextLogic &amp;&amp; featureFlagConditionForNextLogic)</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">Do prefer:</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">if (</span></div><div class='line'><span style="color: #F8F8F2;">    thingToCheck is SomeThing someThingToCheck</span></div><div class='line'><span style="color: #F8F8F2;">    &amp;&amp; service.CheckSomeThing(someThingToCheck)</span></div><div class='line'><span style="color: #F8F8F2;">    &amp;&amp; businessConditionForNextLogic</span></div><div class='line'><span style="color: #F8F8F2;">    &amp;&amp; featureFlagConditionForNextLogic</span></div><div class='line'><span style="color: #F8F8F2;">)</span></div><textarea data-torchlight-original="true" style="display: none !important;">## Prefer Verticality
-
-This team prefers writing code in a way that makes it more _vertical_ than _horizontal_. Run-on lines tend to be more difficult to read given our domain and architecture. As a consequence, the team is able to read code faster when it's consistently formatted vertically. We like to limit the horizonal width to 80 characters, and break code into multiple lines in logical places. For example:
-
-**Use multi-line ternaries**
-
-Do not prefer:
-
-var myThing = first &gt;= 50 ? first : second;
-
-Do prefer:
-
-var myThing = 
-    first &gt;= 50
-    ? first
-    : second;
-
-**Break long conditions into multiple lines**
-
-Do not prefer:
-
-if (thingToCheck is SomeThing someThingToCheck &amp;&amp; service.CheckSomeThing(someThingToCheck) &amp;&amp; businessConditionForNextLogic &amp;&amp; featureFlagConditionForNextLogic)
-
-Do prefer:
-
-if (
-    thingToCheck is SomeThing someThingToCheck
-    &amp;&amp; service.CheckSomeThing(someThingToCheck)
-    &amp;&amp; businessConditionForNextLogic
-    &amp;&amp; featureFlagConditionForNextLogic
-)
-</textarea></code></pre>
+<blockquote>
+<h2>Prefer Verticality</h2>
+<p>This team prefers writing code in a way that makes it more <em>vertical</em> than <em>horizontal</em>. Run-on lines tend to be more difficult to read given our domain and architecture. As a consequence, the team is able to read code faster when it's consistently formatted vertically. We like to limit the horizonal width to 80 characters, and break code into multiple lines in logical places. For example:</p>
+<p><strong>Use multi-line ternaries</strong></p>
+<p>Do not prefer:</p>
+<p>var myThing = first &gt;= 50 ? first : second;</p>
+<p>Do prefer:</p>
+<p>var myThing =
+first &gt;= 50
+? first
+: second;</p>
+<p><strong>Break long conditions into multiple lines</strong></p>
+<p>Do not prefer:</p>
+<p>if (thingToCheck is SomeThing someThingToCheck &amp;&amp; service.CheckSomeThing(someThingToCheck) &amp;&amp; businessConditionForNextLogic &amp;&amp; featureFlagConditionForNextLogic)</p>
+<p>Do prefer:</p>
+<p>if (
+thingToCheck is SomeThing someThingToCheck
+&amp;&amp; service.CheckSomeThing(someThingToCheck)
+&amp;&amp; businessConditionForNextLogic
+&amp;&amp; featureFlagConditionForNextLogic
+)</p>
+</blockquote>
 <p>By explaining why, you're giving everyone an insight as to what the team feels, not just the result of their feelings. You don't need to enumerate every single rule that follows from that feeling since you've (hopefully) articulated the <em>why</em>. It's easier to refactor these statements as your team's feelings shift since you've written <em>those feelings</em> down - the consequences might be harder to grasp.</p>
 <h1>Continuous Learning, Continuous Improvement</h1>
 <p>I hope that you and your teammates are learning constantly, and always becoming better engineers. As your team changes, its opinions on how code should be developed will change too. This should be reflected by continuous reviews of the coding standards. First though, you need some way to capture <em>that</em> you're learning and <em>what</em> you've learned.</p>
