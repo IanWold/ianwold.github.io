@@ -76,15 +76,27 @@ Store-Forward-Forget must be considered best practice for redundancy
 
 ## Outbox
 
-Problem: Even in sending notifications as we do with asynchronous communication, I still need to wrap logic around the requests to ensure they're delivered to the MQ. This eats up runtime, particularly in the case where there's a failure and I need to retry. But my API's hot path is very hot, and I don't want to eat up all the time. Besides, I still need the resiliency to replay the message if my API goes down so I need persistence on the client anyway.
-Solution: Outbox pattern. Store the notification message in the same database, as part of the same transaction, as the data changes the operation is making. Have a background process on a separate thread listen for updates here and have _that_ process send the message.
-Explain pros cons, and when to use this pattern.
+One common point raised is that as more logic is added around outbound requests, the slower it is to handle those requests. In cases where my hot path is very hot and still needs to produce a fair number of outbound requests (as you might need to if you're notifying on all data change operations), I'll want to optimize my logic as much as I can. Perhaps it will seem attractive to not provide adequate robustness around my requests to make them faster.
+
+The obvious pattern to use here would be to shuffle your message off to a queue running in a background process that will eventually publish the message, just outside the thread the hotpath is on. This works in a lot of scenarios, but there are robustness concerns yet with this. A helpful pattern here is the [Outbox Pattern](https://microservices.io/patterns/data/transactional-outbox.html). The core concept is the same - we maintain a background process in a separate thread which handles sending messgaes with proper resiliency against the faulty network, however the enqueueing mechanism is the clever bit.
+
+This pattern suggests that your database should have a table, or tables, containing the messages which you want to enqueue - this is the "outbox" table. When your application makes the update to the business objects in the database, in the same transaction it would add the messgae to be sent to the outbox table. The background message sending process then listens to this table (either by polling or by having the database raise events) to perform the sends. This is clever because, while you do need to write the logic to insert the message into the table, you don't specifically need to call the message publishing service to enqueue the message. On top of this, that you're using your database as the queue gets you a persisted queue for free.
+
+DIAGRAM outbox pattern
+
+This pattern is worthwhile if you've got a _hot_ hot path, need the extra resiliency in your queue, and the extra cost of running the background process is worth it to you.
 
 ## Event Sourcing
 
-One solution for all of the above: Eentually consistent event sourced systems
-    Pros, cons. When to employ and not.
-DIAGRAM?
+Some applications have a high need to preserve message ordering, usually because the state of the system is dependent on the temporal changes over the course of several events. These systems are good candidates for [event sourcing](https://www.eventstore.com/blog/what-is-event-sourcing), and this pattern can help us alleviate some of the pain of hardening our system against a faulty network.
+
+This pattern imposes (very broadly) that you should save all of the events which alter your state, and that the state should subsequently be _derived_ from these events. This is opposed to our traditional way of persisting data, where we process an event, update the state to reflect the changes specified by that event, and then forget the event. Event sourcing allows a number of benefits like being able to replay state, but what's interesting to us is that it allows inserting an event _in the middle_ of a set of events which have already been processed.
+
+DIAGRAM event sourcing
+
+This is beneficial to us if message ordering is high on our considerations list. If we're implementing proper resiliency when messages are dropped on the wire, we're going to be retrying messages, and there's a fair chance we're going to be sending some messages out of order in this scenario. As long as our events are properly dated, they can be ordered appropriately (and change the state appropriately) in our eventually-consistent system. This pattern also has the power to transform some non-idempotent operations into idempotent ones - instead of changing the state directly in a non-idempotent way, we'd be inserting/upserting/updating the single event in an idempotent way.
+
+One word of warning though - event sourcing is a huge pain to implement and maintain. This pattern can very quickly get very complicated, and if you're careless then you can mangle data over time. Systems like [EventStoreDB](https://www.eventstore.com/) or the [postgresql-event-sourcing plugin](https://github.com/eugene-khyst/postgresql-event-sourcing) can help to make this easier, but that of course requires an investment in those systems. This is a pattern to study carefully and only use if it's appropriate for your use case.
 
 # Chosing the Right Solution
 
