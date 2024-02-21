@@ -6,7 +6,7 @@
     },
     {
         "Title": "Fallacies of Distributed Computing",
-        "SLug": "fallacies_distributed_computing",
+        "Slug": "fallacies_distributed_computing",
         "Description": "I'm taking a look at the classic list of common, errant assumptions about distributed computing: How do the fallacies express themselves today, and how do they continue to help us develop modern distributed systems?"
     }
 ]
