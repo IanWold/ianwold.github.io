@@ -1,16 +1,18 @@
+;;;
 {
-    "title": "The Network is Unreliable and Reliability is Scary",
-    "description": "Indeed the network is unreliable, and this is especially concerning for modern, distributed system. The catch though is that it never can be 100% reliable, and we can't create systems that perfectly compensate for this.",
-    "date": "21 February 2024",
-    "contents": false,
-    "hero": "photo-1451187580459-43490279c0fa",
-    "series": "Fallacies of Distributed Computing",
+	"title": "The Network is Unreliable and Reliability is Scary",
+	"description": "Indeed the network is unreliable, and this is especially concerning for modern, distributed system. The catch though is that it never can be 100% reliable, and we can't create systems that perfectly compensate for this.",
+	"date": "21 February 2024",
+	"contents": false,
+	"hero": "photo-1451187580459-43490279c0fa",
+	"series": "Fallacies of Distributed Computing",
     "related": [
-        { "title": "Book Club 9/2023: Papers I Love", "description": "Reflecting on the final Strange Loop conference, having attended several 'Papers We Love' talks, I'm motivated to share five papers I love.", "fileName": "book_club_9-2023" },
-        { "title": "Deploying ASP.NET 7 Projects with Railway", "description": "Railway is a startup cloud infrastructure provider that has gained traction for being easy to use and cheap for hobbyists. Let's get a .NET 7 Blazor WASM app up and running with it!", "fileName": "deploying_aspdotnet_7_projects_with_railway" },
-        { "title": "Daily Grug", "description": "Need inspiration start day, made API.", "fileName": "daily_grug" }
-    ]
+		{ "title": "Book Club 9/2023: Papers I Love", "description": "Reflecting on the final Strange Loop conference, having attended several 'Papers We Love' talks, I'm motivated to share five papers I love.", "fileName": "book_club_9-2023" },
+		{ "title": "Deploying ASP.NET 7 Projects with Railway", "description": "Railway is a startup cloud infrastructure provider that has gained traction for being easy to use and cheap for hobbyists. Let's get a .NET 7 Blazor WASM app up and running with it!", "fileName": "deploying_aspdotnet_7_projects_with_railway" },
+		{ "title": "Daily Grug", "description": "Need inspiration start day, made API.", "fileName": "daily_grug" }
+	]
 }
+;;;
 
 When the [Fallacies of Distributed Computing](https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing) were first written in the 90s, networks were unreliable. The internet was unreliable, intranets were unreliable, even radio was sometimes spotty back then. In the last thirty years, we as an industry have taken this unreliable infrastructure and ... left it there. Packet failures, client timeouts, and the occasional solar flare continue to be a problem not because of any inadequacy on our part but because it's a flaw which is inherent in the system; no network can ever guarantee reliability. Radio is still sometimes spotty because, just like the internet, sending any information over large physical distances is always going to have interruptions and loss. The first Fallacy of Distributed Computing is to assume the opposite of this - _the network is reliable_ - and it's first for a good reason: it really matters.
 
