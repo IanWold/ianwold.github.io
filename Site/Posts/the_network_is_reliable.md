@@ -5,7 +5,6 @@
 	"date": "21 February 2024",
 	"contents": true,
 	"hero": "photo-1451187580459-43490279c0fa",
-	"series": "Fallacies of Distributed Computing",
     "related": [
 		{ "title": "Book Club 9/2023: Papers I Love", "description": "Reflecting on the final Strange Loop conference, having attended several 'Papers We Love' talks, I'm motivated to share five papers I love.", "fileName": "book_club_9-2023" },
 		{ "title": "Deploying ASP.NET 7 Projects with Railway", "description": "Railway is a startup cloud infrastructure provider that has gained traction for being easy to use and cheap for hobbyists. Let's get a .NET 7 Blazor WASM app up and running with it!", "fileName": "deploying_aspdotnet_7_projects_with_railway" },
@@ -117,4 +116,3 @@ Using this data to feed back to know if you've over- or under-engineered your sy
 The network is unreliable and it won't ever be reliable. I've presented some of the general patterns to consider here, but there's a wealth of ideas on this topic. The job of creating properly resilient systems is about balancing tradeoffs as your requirements demand. There are dozens of patterns out there for dealing with this problem in different domains, trading off one bit of reliability for performance or one style of communication for redundancy, or any other tradeoff you might make.
 
 Like the approach to the other fallacies, the right approach to this one (insofar as there is any "right" approach) is one of mindset more than code. The fallacies are so-named not because they're actual logical fallacies but because the point is to remind us it's a mindset problem. If we engineer our systems from the mindset that _the network is reliable_, then we'll end up with a deficient system because it's not true. If we adopt the proper mindset that not only is the network unreliable but also that it's a difficult and domain-specific problem to solve, we'll end up engineering thoughtful and considered systems.
-
