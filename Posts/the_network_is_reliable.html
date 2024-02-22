@@ -184,6 +184,11 @@
 
 	<div class="post">
 		
+			<div class="series">
+				<p style="font-weight: bold;">This is a post in my <a href="../Series/fallacies_distributed_computing.html">Fallacies of Distributed Computing Series</a>.</p>
+				<p>I'm taking a look at the classic list of common, errant assumptions about distributed computing: How do the fallacies express themselves today, and how do they continue to help us develop modern distributed systems?</p>
+			</div>
+		
 
 		<p>When the <a href="https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing">Fallacies of Distributed Computing</a> were first written in the 90s, networks were unreliable. The internet was unreliable, intranets were unreliable, even radio was sometimes spotty back then. In the last thirty years, we as an industry have taken this unreliable infrastructure and ... left it there. Packet failures, client timeouts, and the occasional solar flare continue to be a problem not because of any inadequacy on our part but because it's a flaw which is inherent in the system; no network can ever guarantee reliability. Radio is still sometimes spotty because, just like the internet, sending any information over large physical distances is always going to have interruptions and loss. The first Fallacy of Distributed Computing is to assume the opposite of this - <em>the network is reliable</em> - and it's first for a good reason: it really matters.</p>
 <p>Now, I wonder if in the last thirty years we haven't actually made this problem worse. In the 90s there weren't a lot of microservice systems making exorbitant use of load balancers, firewalls, gateway APIs, and the like. These are useful tools, but each new component in the distributed stack adds a point of failure. These systems can and do fail in their own right, but the incidence rate of network failures specifically will increase as more of these components are included.</p>
