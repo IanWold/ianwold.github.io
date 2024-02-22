@@ -4,6 +4,7 @@
 	"description": "Indeed the network is unreliable, and this is especially concerning for modern, distributed system. The catch though is that it never can be 100% reliable, and we can't create systems that perfectly compensate for this.",
 	"date": "21 February 2024",
 	"contents": true,
+ 	"series": "Fallacies of Distributed Computing",
 	"hero": "photo-1451187580459-43490279c0fa",
 	"related": [
 		{ "title": "Book Club 9/2023: Papers I Love", "description": "Reflecting on the final Strange Loop conference, having attended several 'Papers We Love' talks, I'm motivated to share five papers I love.", "fileName": "book_club_9-2023" },
