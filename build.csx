@@ -188,6 +188,8 @@ new MetalsharpProject()
 
 		foreach (var line in postLines.Select(l => l.Trim()))
 		{
+			var lineToAdd = line;
+
 			if (Regex.Match(line, @"(?:<h1>)([^<]*)(?:<\/h1>)$") is Match matchContainingHeader && matchContainingHeader.Success)
 			{
 				if (isInInnerSection)
@@ -205,7 +207,7 @@ new MetalsharpProject()
 				var sectionSlug = getSectionSlug(sectionName);
 
 				addSection(sectionName, sectionSlug, 1);
-				line = getHeaderWithSectionLink(sectionSlug, line);
+				lineToAdd = getHeaderWithSectionLink(sectionSlug, lineToAdd);
 
 				isInContainingSection = true;
 			}
@@ -220,12 +222,12 @@ new MetalsharpProject()
 				var sectionSlug = getSectionSlug(sectionName);
 
 				addSection(sectionName, sectionSlug, 2);
-				line = getHeaderWithSectionLink(sectionSlug, line);
+				lineToAdd = getHeaderWithSectionLink(sectionSlug, lineToAdd);
 
 				isInInnerSection = true;
 			}
 
-			postBuilder.AppendLine(line);
+			postBuilder.AppendLine(lineToAdd);
 		}
 
 		if (isInInnerSection)
