@@ -696,3 +696,7 @@ footer {
     filter: blur(0px);
     opacity: 1;
 }
+
+.section-link {
+	display: none;
+}

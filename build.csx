@@ -166,6 +166,9 @@ new MetalsharpProject()
 {
 	var posts = project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts"));// && f.Metadata.TryGetValue("contents", out object isContentsObject) && isContentsObject is bool isContents && isContents);
 
+	static string getSectionSlug(string sectionName) =>
+		string.Join('-', sectionName.Split(' ')).ToLower();
+
 	foreach (var post in posts)
 	{
 		var postLines = post.Text.Split('\r', '\n').Where(l => !string.IsNullOrWhiteSpace(l));
@@ -174,18 +177,18 @@ new MetalsharpProject()
 		var isInContainingSection = false;
 		var isInInnerSection = false;
 
-		void addSection(Match headerMatch, int level)
+		void addSection(string sectionName, string sectionSlug, int level)
 		{
-			var sectionName = headerMatch.Groups[1].Captures[0].Value;
-			var sectionId = string.Join('-', sectionName.Split(' ')).ToLower();
-
-			sections.Add(new { name = sectionName, id = sectionId, level = level });
-			postBuilder.AppendLine($"<section id=\"{sectionId}\">");
+			sections.Add(new { name = sectionName, id = sectionSlug, level = level });
+			postBuilder.AppendLine($"<section id=\"{sectionSlug}\">");
 		}
 
-		foreach (var line in postLines)
+		string getHeaderWithSectionLink(string sectionSlug, string line) =>
+			$"{line.Substring(0, toModify.Length - 5)} <a class=\"section-link\" href=\"https://ian.wold.guru/Posts/{post.Name}.html#{sectionSlug}\">#</a>{toModify.Substring(line.Length - 5, 5)}";
+
+		foreach (var line in postLines.Select(l => l.Trim()))
 		{
-			if (Regex.Match(line.Trim(), @"(?:<h1>)([^<]*)(?:<\/h1>)$") is Match matchContainingHeader && matchContainingHeader.Success)
+			if (Regex.Match(line, @"(?:<h1>)([^<]*)(?:<\/h1>)$") is Match matchContainingHeader && matchContainingHeader.Success)
 			{
 				if (isInInnerSection)
 				{
@@ -198,18 +201,26 @@ new MetalsharpProject()
 					postBuilder.AppendLine("</section>");
 				}
 
-				addSection(matchContainingHeader, 1);
+				var sectionName = matchContainingHeader.Groups[1].Captures[0].Value;
+				var sectionSlug = getSectionSlug(sectionName);
+
+				addSection(sectionName, sectionSlug, 1);
+				line = getHeaderWithSectionLink(sectionSlug, line);
 
 				isInContainingSection = true;
 			}
-			else if (Regex.Match(line.Trim(), @"(?:<h2>)([^<]*)(?:<\/h2>)$") is Match matchInnerHeader && matchInnerHeader.Success)
+			else if (Regex.Match(line, @"(?:<h2>)([^<]*)(?:<\/h2>)$") is Match matchInnerHeader && matchInnerHeader.Success)
 			{
 				if (isInInnerSection)
 				{
 					postBuilder.AppendLine("</section>");
 				}
 
-				addSection(matchInnerHeader, 2);
+				var sectionName = matchContainingHeader.Groups[1].Captures[0].Value;
+				var sectionSlug = getSectionSlug(sectionName);
+
+				addSection(sectionName, sectionSlug, 2);
+				line = getHeaderWithSectionLink(sectionSlug, line);
 
 				isInInnerSection = true;
 			}
