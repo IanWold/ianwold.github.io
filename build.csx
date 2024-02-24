@@ -184,7 +184,7 @@ new MetalsharpProject()
 		}
 
 		string getHeaderWithSectionLink(string sectionSlug, string line) =>
-			$"{line.Substring(0, toModify.Length - 5)} <a class=\"section-link\" href=\"https://ian.wold.guru/Posts/{post.Name}.html#{sectionSlug}\">#</a>{toModify.Substring(line.Length - 5, 5)}";
+			$"{line.Substring(0, line.Length - 5)} <a class=\"section-link\" href=\"https://ian.wold.guru/Posts/{post.Name}.html#{sectionSlug}\">#</a>{line.Substring(line.Length - 5, 5)}";
 
 		foreach (var line in postLines.Select(l => l.Trim()))
 		{
