@@ -16,7 +16,7 @@
 		
 
 		<title>
-			Ian Wold | Book Club 1/2024: What is a Software Architect? 
+			Ian Wold | Book Club 2/2024: Recovering from TDD and Unit Tests 
 		</title>
 
 		
@@ -28,10 +28,10 @@
 		"@type": "Person",
 		"name": "Ian Wold"
 	}],
-	"datePublished": "1/24/2024 12:00:00 AM",
+	"datePublished": "2/24/2024 12:00:00 AM",
 	"image": "https://images.unsplash.com/photo-1672309558498-cfcc89afff25",
-	"headline": "Book Club 1/2024: What is a Software Architect?",
-	"description": "A few meandering and maybe unhelpful thoughts on the title "Software Architect"",
+	"headline": "Book Club 2/2024: Recovering from TDD and Unit Tests",
+	"description": "TDD with unit tests is the equivalent of Waterfall to software testing. ",
 	"publisher": {
 		"@type": "Person",
 		"name": "Ian Wold",
@@ -66,19 +66,19 @@
 
 
 <header class="content">
-	<h1>Book Club 1/2024: What is a Software Architect?</h1>
+	<h1>Book Club 2/2024: Recovering from TDD and Unit Tests</h1>
 	<small>
 		<span class="date">
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 24 January 2024
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 24 February 2024
 		</span>
 		<span class="time">
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 5  Minutes 
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 6  Minutes 
 		</span>
 		<span class="history">
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-commit"><circle cx="12" cy="12" r="4"></circle><line x1="1.05" y1="12" x2="7" y2="12"></line><line x1="17.01" y1="12" x2="22.96" y2="12"></line></svg> <a href="https://github.com/IanWold/ianwold.github.io/commits/master/Site/Posts/book_blub_1-2024.md">History</a>
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-commit"><circle cx="12" cy="12" r="4"></circle><line x1="1.05" y1="12" x2="7" y2="12"></line><line x1="17.01" y1="12" x2="22.96" y2="12"></line></svg> <a href="https://github.com/IanWold/ianwold.github.io/commits/master/Site/Posts/book_club-2-2024.md">History</a>
 		</span>
 	</small>
-	<p>A few meandering and maybe unhelpful thoughts on the title "Software Architect"</p>
+	<p>TDD with unit tests is the equivalent of Waterfall to software testing. </p>
 </header>
 
 <div class="content hero">
@@ -96,29 +96,32 @@
 			</div>
 		
 
-		<p>This question - what is a software architect? - is a bit of an expansive one; I wouldn't think that I could ever answer it thoroughly, much less succinctly in a few article links. I do however think it's worth some time considering some of the different perspectives we encounter. I'd venture that a poll of 10 software architects would yield 11 answers to this question.</p>
-<p>Is software architecture decidedly different from software engineering? The analogy with which these titles are made - that of architects, engineers, and builders collaborating over the construction of a building - would seem to suggest so. However, a software project is decidedly different (in almost every single aspect) from a construction project. This is my opinion, but I would put it to you that while &quot;software architecture&quot; is probably a definable thing, a software architect is not really so different from an engineer. Indeed, I would also assert that a proper software engineer must be engaging with and actively doing software architecture as a part of their job.</p>
-<p>Should a software architect be doing anything different from an engineer? Well, perhaps not on the surface. I'd expect that an architect would be writing code about as much as someone with an engineer title, and I'd expect that an engineer would be as engaged with diagrams and ephemeral conversations about the nature of software as someone with an architect title. The separate titles then are probably most useful as a way to distinguish the primary focus that one has within a software team, and an architect would be working differently from an engineer insofar as the architecture would be their primary focus, or area of responsibility.</p>
-<p>So is it useful then to separate ourselves out with titles of &quot;engineer&quot; and &quot;architect&quot;? There are advantages to having the separate architecture title though: to motivate the team to keep architecture as a primary consideration, to be a figure of wisdom or authority with respect to the architecture, or to be the &quot;point person&quot; to communicate architectural concerns to other teams or other departments within a company. Perhaps it's not a useful title to have, but a separate role or &quot;hat&quot; which a member of a software team wears; in fact this was the way I was introduced to the concept of architecture.</p>
-<p>Having both had the title of &quot;architect&quot; and having been an engineer at firms which had this title, I can see its utility. To caution though: just as every piece of software, every product, and every team is different - sometimes radically different - so too are the roles of those we call architects. This is perhaps why there are so many different ideas of what architecture is, and what a proper software architect ought be. Perhaps there can't be a single, specific definition to encapsulate the idea, as the types of architecture and architectural concerns are necessarily so varied between software efforts, domains, and technologies?</p>
-<p>To try to pin some universals down, I think I could say a few definitive things about architects. Architects should be coding, and actively involved in the engineering process. Architects should primarily focus on assisting all of the members of a development team - helping to ensure alignment and stimulating everyone to think architecturally. Architects shouldn't be dictators or cudgels which make demands - a somewhat common perception which is unfortunately sometimes earned. Architects should strive to be the most approachable and collaborative members of a team.</p>
-<p>While architects should be very technically knowledgeable, I don't know that they should have all the answers when it comes to architecture itself - curiously, I think the best architects are ones which are very creative and can help brainstorm architectural ideas, the idea being that they act as an enabler of a team to define a good architecture, rather than dictating an architecture from the start. In a difficult twist, this does mean that sometimes the architect will need to furnish a specific recommendation upon request, for example for a team in a tight bind which requires a quick resolution to a difficult problem.</p>
-<p>I can hear a colleague of mine saying now: &quot;This answer is so nonspecific as to be only slightly more helpful than a software architect theirself!&quot;; unkind but not unfounded. I put it to you though that the composition of any software team is a jigsaw puzzle balancing who can do what with which areas of expertise are required of the technology and domain, and from team to team the jigsaw piece labeled &quot;architect&quot; will be a very different shape and in a very different place in the overall puzzle.</p>
-<p><strong>Links</strong></p>
+		<p>I'm on the record as having labeled myself a <a href="https://ian.wold.guru/Posts/four_deeply_ingrained_csharp_cliches.html">unit test hater</a>. This is perhaps a bit extreme taken at face value; I like to advocate for approaches which consider the pros and cons of all solutions, and matching the right solutions to the problems they best solve. More often than not, unit tests are not the right solution; largely I find they corrupt our codebases, encouraging us to twist our architectures and use poor engineering practices. To be sure though, there's instances that unit testing is appropriate.</p>
+<p>But what kind of &quot;unit testing&quot; is good anyway? Forgive my diversion into definitions here, but this is important: are we talking about the same thing? One engineer might take &quot;unit testing&quot; to mean any form of testing where I'm only testing a single function or method, while another might take the same term to mean the specific practice of abusing mocks to white box test the various code paths of each method containing business logic. Can you see my bias? The former is quite agreeable, the latter is the source of much consternation. Insofar as the latter definition is a subset of the first, then I might say that I prefer the difference of the two.</p>
+<p>Given the general kind of unit testing which is good then, we can perhaps more specifically define the proper sort. A coupling of the test itself to the implementation of the code it tests should, in all but extreme cases, be off the table. Further, <a href="https://en.wikipedia.org/wiki/Data-driven_testing">example testing</a> whereby we match outputs to known inputs leads to fragile tests, missed cases, and generally avoids addressing the purpose of the method in question; the proper sort of unit tests test the relationship between the input and output, not the specific cases. Given these two properties of proper unit tests, I could specifically cite forms of parameter-based testing such as <a href="https://en.wikipedia.org/wiki/Property_testing">property testing</a> and <a href="https://en.wikipedia.org/wiki/Fuzzing">fuzz testing</a> as being ideals. Some others on the edge can be interesting too: <a href="https://en.wikipedia.org/wiki/Mutation_testing">mutation testing</a> and contract tests both have their uses but should be strictly used within the confines of our testing rules.</p>
+<p>Now, let me be quite clear here: drawing a line in the sand saying a unit test can't be coupled to the implementation it tests means we can't use mocks or fakes to instantiate a class to test its methods. Indeed, these testing methods are probably only proper for &quot;pure&quot; functions. I think this derivation is a sign I'm on the right path here. I fall back on two more fundamental principles here: first, our testing is there to test the behavior of our system, not to double or triple our implementation; second, maximizing the amount of logic in &quot;pure&quot; functions is good. Perhaps you disagree with me on these; that may well lead you to a very different conclusion.</p>
+<p>Understanding why we are testing - what specifically we want to gain with the tests - is perhaps the most important thing we need to sort out. I'm interested in automated tests which verify that the system I've built satisfies the requirements it was given. Realistically, this should mean a full decoupling between the suite of tests and the code it tests. Here's the catch then: if I'm testing individual methods, I don't have total decoupling. I couldn't (or it would be quite difficult to) write my tests in one language and the system itself in another language. This is where I come in with functional testing strategies like integration tests.</p>
+<p>Can I test a mathematics library with integration tests? Almost certainly not; an example like that is the domain of parameterized testing and the like. A microservice API though? I'm not sure that non-integration tests are needed in a lot of cases here. I'll go back to the fundamentals again and ask: what is it we want to get out of our tests? Why write them? I would say that I want to ensure my system meets its requirements. Integration tests, for most of our CRUD apps, are the ideal here. These are the tests that best let me define the constraints of the system, and that guarantee that it conforms.</p>
+<p>This brings me to the topic of BDD and TDD. You might guess that I dislike TDD, and you'd be right. Well, a bit. I dislike the idea that TDD should be prescribed. If you want to write unit tests coupled to the implementation before you write that implementation, you do you. Throw those away before you commit your changes, but bring whatever tools to the table make you the most effective engineer you can be. BDD - Behavior-Driven Development - on the other hand is something I can get behind. By my reading, BDD is just giving a name to the way I'd want to develop software anyway: that everyone developing the system should be aligned on how it's supposed to behave <em>before</em> we implement it.</p>
+<p>Finally, I feel I should touch on <em>code coverage</em>. If my goals for my automated tests are to ensure that it meets all of its requirements, then it seems to me that I'd want some kind of metric of &quot;requirements coverage&quot; or the like. If my code is meeting all of its requirements - that this is genuinely a big if - then I don't really care about code coverage, do I? Take an API for example - if I have integration tests set up which cover 100% of my business cases - both happy and sad path - then code coverage is just a metric of how much code I have in my codebase that isn't getting hit. It seems to me that the utility of code coverage is not as a primary indicator of the quality of my software, but rather an incidental heuristic which I could choose to use from time to time to help refactor bits of code.</p>
+<p><strong>Videos</strong></p>
 <ul>
-<li><a href="https://www.youtube.com/watch?v=v_nhv6aY1Kg">How to Become a Great Software Architect - Eberhard Wolff (2019)</a></li>
-<li><a href="https://www.youtube.com/watch?v=asoVNjGoFOM">How we do Architecture at Okta - Monica Bajaj and Mark Voelker (2023)</a></li>
-<li><a href="https://www.youtube.com/watch?v=nchRmYvUf2Y&amp;list=PLEx5khR4g7PJELLTYwXZHcimWAwTUaWGA">Democratizing Software Architecture - Eoin Woods (2023)</a></li>
-<li><a href="https://www.youtube.com/watch?v=mCM6QVHD08c">How to &quot;think&quot; (and design) like a Software Architect - Ron Kleinman (2019)</a></li>
-<li><a href="https://www.youtube.com/watch?v=6j-PyJ1tFn8">How I became a software architect... (or not) - CodeOpinion (2023)</a></li>
+<li><a href="https://www.youtube.com/watch?v=EZ05e7EMOLM">TDD, Where Did It All Go Wrong - Ian Cooper (2017)</a></li>
+<li><a href="https://www.youtube.com/watch?v=IN9lftH0cJc">TDD Revisited - Ian Cooper (2023)</a></li>
+<li><a href="https://www.youtube.com/watch?v=-022ONzvQlk">TDD, BDD &amp; ATDD - Allen Holub (2014)</a></li>
+<li><a href="https://www.youtube.com/watch?v=IYzDFHx6QPY">The lazy programmer's guide to writing thousands of tests - Scott Wlaschin (2020)</a></li>
+<li><a href="https://www.youtube.com/watch?v=yuEbZYKgZas">Test Driven Development: That’s Not What We Meant • Steve Freeman (2017)</a></li>
+<li><a href="https://www.youtube.com/watch?v=gXh0iUt4TXA">An Ultimate Guide to BDD - Dave Farley (2022)</a></li>
+<li><a href="https://www.youtube.com/watch?v=o-HTsJ1-wdI">STREAM VOD: ThePrimeagen vs Theo - Dev Debates on the FIRST DevHour Podcast (2022)</a></li>
 </ul>
-<p>I was recently recommended Mark Richard's series &quot;Software Architecture Monday&quot;, which is a part of <a href="https://developertoarchitect.com/">his site dedicated to <em>developing</em> more architects</a>. This series is well-thought-out, and contain a few excellent articles/videos which contain insights directly related to this topic:</p>
+<p><strong>Writing</strong></p>
 <ul>
-<li><a href="https://developertoarchitect.com/lessons/lesson108.html">The Role of a Software Architect</a></li>
-<li><a href="https://developertoarchitect.com/lessons/lesson100.html">My Architecture Journey: Lessons Learned </a></li>
-<li><a href="https://developertoarchitect.com/lessons/lesson54.html">The Software Architect's Bookshelf</a></li>
-<li><a href="https://developertoarchitect.com/lessons/lesson30.html">Agile and Software Architecture</a></li>
+<li><a href="https://tyrrrz.me/blog/unit-testing-is-overrated">Unit Testing is Overrated - Oleksii Holub (2020)</a></li>
+<li><a href="https://debugagent.com/why-i-dont-do-tdd">Why I Don't Do TDD - Shai Almog (2022)</a></li>
+<li><a href="https://dhh.dk/2014/test-induced-design-damage.html">Test-Induced Design Damage - David Heinemeier Hansson (2014)</a></li>
+<li><a href="https://martinfowler.com/bliki/TestCoverage.html">Test Coverage - Martin Fowler (2012)</a></li>
 </ul>
+<p>The last two posts are referenced (and elaborated on) by a series of conversations by Kent Beck, David Heinemeier Hansson, and Martin Fowler: <a href="https://martinfowler.com/articles/is-tdd-dead/">Is TDD Dead?</a></p>
 
 	</div>
 
@@ -162,6 +165,12 @@
 				<ul>
 					
 						<li>
+							<a href="../Posts/book_club_1-2024.html">
+								Book Club 1/2024: What is a Software Architect?<small>A few meandering and maybe unhelpful thoughts on the title "Software Architect"</small>
+							</a>
+						</li>
+					
+						<li>
 							<a href="../Posts/book_club_12-2023.html">
 								Book Club 12/2023: Workflow, Process, and Agile<small>Some thoughts on how to organize software development and teams, and how non-technical factors help (or hinder) us developing better software.</small>
 							</a>
@@ -170,12 +179,6 @@
 						<li>
 							<a href="../Posts/book_club_11-2023.html">
 								Book Club 11/2023: New .NET, New C#<small>The release of .NET 8 brings a lot of features I'm excited for!</small>
-							</a>
-						</li>
-					
-						<li>
-							<a href="../Posts/book_club_10-2023.html">
-								Book Club 10/2023: Functional Patterns in C#<small>This month I've focused on functional domain modeling and related patterns. We're just a few weeks away from the release of the next version of C#, and like each previous version it'll introduce even more functional features.</small>
 							</a>
 						</li>
 					
