@@ -164,7 +164,7 @@ new MetalsharpProject()
 })
 .Use(project => // Add table of contents to posts
 {
-	var posts = project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts") && f.Metadata.TryGetValue("contents", out object isContentsObject) && isContentsObject is bool isContents && isContents);
+	var posts = project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts"));// && f.Metadata.TryGetValue("contents", out object isContentsObject) && isContentsObject is bool isContents && isContents);
 
 	foreach (var post in posts)
 	{
