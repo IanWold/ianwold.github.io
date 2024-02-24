@@ -1,7 +1,7 @@
 ;;;
 {
 	"title": "Book Club 2/2024: Recovering from TDD and Unit Tests",
-	"description": "TDD with unit tests is the equivalent of Waterfall to software testing. ",
+	"description": "TDD and unit tests are overused and often misprescribed. What do we really hope to gain from our tests, and what testing practices support our goals?",
 	"date": "24 February 2024",
 	"contents": false,
 	"hero": "photo-1672309558498-cfcc89afff25",
