@@ -84,6 +84,20 @@ a {
 	color: #323232;
 }
 
+
+
+a.section-link {
+	display: none;
+	color: gainsboro;
+	text-decoration: none;
+}
+
+h1:hover>a.section-link, h2:hover>a.section-link {
+	display: not none;
+
+}
+
+
 .dark a {
 	color: white;
 }
