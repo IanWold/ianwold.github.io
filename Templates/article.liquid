@@ -43,7 +43,7 @@
 	{% endif %}
 
 	<div class="post">
-		{% if series == "Book Club" %}
+		{% if series %}
 			<div class="series">
 				<p style="font-weight: bold;">This is a post in my <a href="{{ directoryPrefix }}Series/{{ seriesSlug }}.html">{{ series }} Series</a>.</p>
 				{{ seriesDescription | raw }}
