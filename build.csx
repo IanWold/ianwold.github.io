@@ -218,7 +218,7 @@ new MetalsharpProject()
 					postBuilder.AppendLine("</section>");
 				}
 
-				var sectionName = matchContainingHeader.Groups[1].Captures[0].Value;
+				var sectionName = matchInnerHeader.Groups[1].Captures[0].Value;
 				var sectionSlug = getSectionSlug(sectionName);
 
 				addSection(sectionName, sectionSlug, 2);
