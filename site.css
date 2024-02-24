@@ -93,8 +93,7 @@ a.section-link {
 }
 
 h1:hover>a.section-link, h2:hover>a.section-link {
-	display: not none;
-
+	display: inline;
 }
 
 
