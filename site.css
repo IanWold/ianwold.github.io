@@ -202,7 +202,7 @@ nav {
 
 
 .section-gray {
-	background-color: whitesmoke;
+	background-color: #f6f8fa;
 }
 .dark .section-gray {
 	background-color: #222222;
@@ -274,7 +274,7 @@ nav {
 	}
 
 	.archive .series .description {
-		background-color: whitesmoke;
+		background-color: #f6f8fa;
 		border-radius: 3px;
 		padding-top: 8px;
 		padding-bottom: 9px;
@@ -439,7 +439,7 @@ header {
 	}
 
 	.post .series {
-		background-color: whitesmoke;
+		background-color: #f6f8fa;
 		border-radius: 3px;
 		padding-top: 8px;
 		padding-bottom: 9px;
@@ -530,7 +530,7 @@ header {
 			font-size: 15px;
 			letter-spacing: 0.75;
 			font-family: "Source Code Pro";
-			background-color: whitesmoke !important;
+			background-color: #f6f8fa !important;
 			border: 1px solid gainsboro;
 			padding-left: 6px;
 			padding-right: 5px;
