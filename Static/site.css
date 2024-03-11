@@ -1,3 +1,8 @@
+:root {
+	--l-light-gray: #f6f8fa;
+	--d-dark-gray: #222222;
+}
+
 /*
 	reset.css
 */
@@ -202,7 +207,7 @@ nav {
 
 
 .section-gray {
-	background-color: #f6f8fa;
+	background-color: var(--l-light-gray);
 }
 .dark .section-gray {
 	background-color: #222222;
@@ -274,7 +279,7 @@ nav {
 	}
 
 	.archive .series .description {
-		background-color: #f6f8fa;
+		background-color: var(--l-light-gray);
 		border-radius: 3px;
 		padding-top: 8px;
 		padding-bottom: 9px;
@@ -439,7 +444,7 @@ header {
 	}
 
 	.post .series {
-		background-color: #f6f8fa;
+		background-color: var(--l-light-gray);
 		border-radius: 3px;
 		padding-top: 8px;
 		padding-bottom: 9px;
@@ -530,7 +535,7 @@ header {
 			font-size: 15px;
 			letter-spacing: 0.75;
 			font-family: "Source Code Pro";
-			background-color: #f6f8fa !important;
+			background-color: var(--l-light-gray) !important;
 			border: 1px solid gainsboro;
 			padding-left: 6px;
 			padding-right: 5px;
