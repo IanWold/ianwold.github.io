@@ -373,6 +373,48 @@ They've journeyed forth, with purpose evergreen.&lt;/p&gt;
       <a10:updated>2023-12-16T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">book_club_3-2024</guid>
+      <link>https://ian.wold.guru/Posts/book_club_3-2024.html</link>
+      <title>Book Club 3/2024: Simplicity</title>
+      <description>&lt;p&gt;Everything is too complicated. Not just in software, everything! This isn't a novel concept, Teddy Roosevelt would have us believe that anything worth doing involves difficulty. I think this is a widely-adopted notion; simplicity in software seems to be a whole genre of software blogs. That makes my job here of sharing links quite easy though!&lt;/p&gt;
+&lt;p&gt;To spare all of the usual writing, simplicity is software is valuable because it &lt;em&gt;makes all the things better&lt;/em&gt;. Simple code is easier to read! It's easier to maintain! Your code will perform 10x faster if it's &lt;em&gt;simple&lt;/em&gt;! Simple code is more extensible, testable, and debuggable! Then we might consider the software itself - the UI, UX, and all the user-considerations. Simple software is easier to use! Users are less likely to reach an unintended state with simple software! You'll have fewer support calls and lower burden of feature growth with simple software!&lt;/p&gt;
+&lt;p&gt;These are all true, but a trap a lot of us fall into is neglecting complexity. Sure, our software &lt;em&gt;could&lt;/em&gt; be extremely simple, but it has to solve real user requirements. This is the main source of complexity. Sometimes a very simple piece of software can solve most requirements of most users mostly well. Sometimes a more complicated piece of software can solve those requirements &lt;em&gt;very&lt;/em&gt; well. We can't let ourselves want software more simple than the use case requires. I could just as easily rattle off plenty of pro-complexity platitudes: Complexity is necessary for real-world scenarios! Complexity is required to adequately address security and performance concerns! Architectures that maximize extension and innovation are necessarily complex!&lt;/p&gt;
+&lt;p&gt;Both simplicity and complexity are necessary. The difference here is that the necessity of complexity always comes with that asterisk - the &lt;em&gt;kind&lt;/em&gt; and &lt;em&gt;level&lt;/em&gt; of complexity that is required is the minimal amount required to satisfy the requirements you have for your system. Any complexity too far beyond that is detrimental; all of the listed benefits of simplicity are, in fact, true.&lt;/p&gt;
+&lt;p&gt;Understanding requirements is essential then. User requirements only capture so much. What are the environmental requirements? What quality attributes does the code need to support? These can introduce necessary complexity but often go overlooked. A complete understanding of the requirements of the code will allow you to develop a holistic view of the complexity that you need to introduce. This is a sort of &lt;em&gt;focused&lt;/em&gt; complexity - this is not just complexity that is &lt;em&gt;necessary&lt;/em&gt; but that is also &lt;em&gt;understood&lt;/em&gt;; you know why it's there. Unfocused complexity is surely just as bad as excessive complexity. No doubt we all have codebases that have the wrong &lt;em&gt;level&lt;/em&gt; of complexity, but ask also whether they have the wrong &lt;em&gt;kind&lt;/em&gt; of complexity. Maybe indeed the level of complexity is right but it's unfocused.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Watching&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=oejXFgvAwTA"&gt;Large-Scale Architecture: The Unreasonable Effectiveness of Simplicity - Randy Shoup (2022)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=P7CfWtR-ECk"&gt;Managing Complexity in Software - Hadi Hariri and Kevlin Henney (2022)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=uAwJEFLJunk"&gt;Software Architecture, Team Topologies and Complexity Science - James Lewis (2022)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=r0-GC3Y_OME"&gt;Highly Cohesive Software Design to tame Complexity - CodeOpinion&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And surely &lt;a href="https://www.youtube.com/watch?v=4oky64qN5WI"&gt;Jonathan Blow&lt;/a&gt; has something to say on the topic.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Reading&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://devdynamics.ai/blog/learn-code-complexity-understanding-code-complexity-with-ease/"&gt;Learn Code Complexity: Understanding Code Complexity with Ease - Mohit Trivedi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.thoughtworks.com/insights/blog/technology-strategy/why-embracing-complexity-real-challenge-software-today"&gt;Why embracing complexity is the real challenge in software today - Ken Mugrage&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://itnext.io/why-simple-is-so-complex-362bc835b763"&gt;Why Simple is So Complex - Joe Crick&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dev.to/alexbunardzic/software-complexity-essential-accidental-and-incidental-3i4d"&gt;Software Complexity: Essential, Accidental and Incidental - Alex Bunardzic&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://alexkondov.com/what-is-complexity/"&gt;What Is Complexity? - Alex Kondov&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.developer.com/guides/simplifying-software-development/"&gt;Simplifying Software Development - Dick Wall&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These two are kind of related:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://taylor.town/compress-code"&gt;Clean your codebase with basic information theory - Taylor Troesh&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://jserd.springeropen.com/articles/10.1186/s40411-018-0060-6"&gt;Metric-centered and technology-independent architectural views for software comprehension - Luis F. Mendivelso, Kelly Garcés, and Rubby Casallas&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;From Me&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I've had a couple articles recently that more or less relate to &amp;quot;simplicity&amp;quot;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://ian.wold.guru/Posts/just_use_postgresql.html"&gt;Just Use PostgreSQL&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ian.wold.guru/Posts/its_better_to_be_consistently_incorrect_than_consistently_correct.html"&gt;It's Better to be Consistently Incorrect than Inconsistently Correct&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ian.wold.guru/Posts/eight_maxims.html"&gt;Eight Maxims&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Mon, 25 Mar 2024 00:00:00 Z</pubDate>
+      <a10:updated>2024-03-25T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">book_club_9-2023</guid>
       <link>https://ian.wold.guru/Posts/book_club_9-2023.html</link>
       <title>Book Club 9/2023: Papers I Love</title>
