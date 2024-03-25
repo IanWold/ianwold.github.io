@@ -5,6 +5,8 @@
 
 {% assign years = posts | map: "year" | uniq | sort | reverse %}
 
+{% assign hidePastArticles = hidePastArticles | default: false %}
+
 <div class="content archive">
 	{% if series %}
 		<div class="series">
