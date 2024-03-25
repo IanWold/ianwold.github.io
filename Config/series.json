@@ -8,5 +8,10 @@
         "Title": "Fallacies of Distributed Computing",
         "Slug": "fallacies_distributed_computing",
         "Description": "I'm taking a look at the classic list of common, errant assumptions about distributed computing: How do the fallacies express themselves today, and how do they continue to help us develop modern distributed systems?"
+    },
+    {
+        "Title": "Past Articles",
+        "Slug": "past_articles",
+        "Description": "Several years before I started blogging at ian.wold.guru, I maintained a site with a CV and a small number of articles. I've preserved those articles on this site in this series."
     }
 ]

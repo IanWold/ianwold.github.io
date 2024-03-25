@@ -5,6 +5,7 @@
 	"date": "26 September 2014",
 	"contents": false,
 	"hero": "photo-1504851149312-7a075b496cc7",
+	"series": "Past Articles",
     "related": [
 		{ "title": "An Introduction to Sprache", "description": "Sprache is a parser-combinator library for C# that uses Linq to construct parsers. In this post I describe the fundamentals of understanding grammars and parsing them with Sprache, with several real-world examples.", "fileName": "sprache" },
         { "title": "Parsing Comments in Sprache", "description": "I recently made a comment parser for the Sprache framework, and I wanted to give a basic run-down on how it works.", "fileName": "sprache_comments" },

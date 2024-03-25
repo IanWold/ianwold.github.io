@@ -5,6 +5,7 @@
     "date": "22 January 2016",
 	"contents": true,
     "hero": "photo-1494435658045-a657e4a01bcc",
+    "series": "Past Articles",
     "related": [
         { "title": "Parsing Comments in Sprache", "description": "I recently made a comment parser for the Sprache framework, and I wanted to give a basic run-down on how it works.", "fileName": "sprache_comments" },
         { "title": "SpracheDown", "description": "I created a Markdown parser with the Sprache library after it was recommended to me at the Iowa Code Camp.", "fileName": "sprachedown" },

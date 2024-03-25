@@ -5,6 +5,7 @@
 	"date": "5 December 2013",
 	"contents": false,
 	"hero": "photo-1508921108053-9f757ead871c",
+    "series": "Past Articles",
     "related": [
         { "title": "Console2048", "description": "Jumping on the bandwagon, here's a C# implementation of Console 2048. Of course, 2048 has had a few console implementations, and most better done than this, but here it is anyway.", "fileName": "console2048" },
         { "title": "SpracheDown", "description": "I created a Markdown parser with the Sprache library after it was recommended to me at the Iowa Code Camp.", "fileName": "sprachedown" },
