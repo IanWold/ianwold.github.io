@@ -15,3 +15,4 @@ _This is a [now page](https://nownownow.com/about)._
 * **Having fun** [IndieWeb](https://indieweb.org/)-ify my website. Creating this "now" page is related to that.
 * **Researching/Considering** distributed systems architectures. Distributed systems are hard.
 * **Developing** my skills in pool and billiards. [Snooker](https://en.wikipedia.org/wiki/Snooker) is my favorite sport, and while I don't have easy access to a table in Minneapolis, I can practice other cue sports.
+* **Added** this "now" page. Wondering what else I could put here and how I might keep it up-to-date.
