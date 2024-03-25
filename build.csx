@@ -158,6 +158,7 @@ new MetalsharpProject()
 			["series"] = series.Key,
 			["template"] = "archive",
 			["removeScrollspy"] = true,
+			["hidePastArticles"] = true,
 			["posts"] = series.Value.OrderByDescending(p => DateTime.Parse(p["date"].ToString()))
 		}));
 	}

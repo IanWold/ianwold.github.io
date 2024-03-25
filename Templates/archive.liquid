@@ -15,19 +15,21 @@
 	{% endif %}
 
 	{% for year in years %}
-		<section id="{{ year }}">
-			<h1>{{ year }}</h1>
-			<ul>
-				{% assign postsForYear = posts | where: "year", year %}
-				{% for post in postsForYear %}
-					<li>
-						<em>{{ post.month }}.{{ post.day }}</em>
-						<a href="{{ directoryPrefix }}Posts/{{ post.fileName }}.html">
-							{{ post.title }}<small>{{ post.description }}</small>
-						</a>
-					</li>
-				{% endfor %}
-			</ul>
-		</section>
+		{% if hidePastArticles == false or year > 2020 %}
+			<section id="{{ year }}">
+				<h1>{{ year }}</h1>
+				<ul>
+					{% assign postsForYear = posts | where: "year", year %}
+					{% for post in postsForYear %}
+						<li>
+							<em>{{ post.month }}.{{ post.day }}</em>
+							<a href="{{ directoryPrefix }}Posts/{{ post.fileName }}.html">
+								{{ post.title }}<small>{{ post.description }}</small>
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</section>
+		{% endif %}
 	{% endfor %}
 </div>
