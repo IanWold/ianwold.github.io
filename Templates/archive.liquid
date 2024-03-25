@@ -17,7 +17,8 @@
 	{% endif %}
 
 	{% for year in years %}
-		{% if hidePastArticles == false or year > 2020 %}
+		{% assign intYear = year | plus: 0 %}
+		{% if hidePastArticles == false or intYear > 2020 %}
 			<section id="{{ year }}">
 				<h1>{{ year }}</h1>
 				<ul>
