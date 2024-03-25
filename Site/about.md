@@ -16,7 +16,7 @@ I spent the first many years of my career as an independent consultant, though t
 
 Please feel free to email me at [ian@wold.guru](mailto:ian@wold.guru?subject=Hello) to get in contact!
 
-To keep up-to-date with me, I'd encourage you to [subscribe to my newsletter](https://buttondown.email/ianwold) where I share what I'm reading and what I've written. Otherwise, my [RSS feed](https://ian.wold.guru/feed.xml) has just my posts here.
+To keep up-to-date with me, I'd encourage you to [subscribe to my book club](https://buttondown.email/ianwold) where I share what I'm reading and what I've written. Otherwise, my [RSS feed](https://ian.wold.guru/feed.xml) has just my posts here.
 
 Finally, if you might want to help me out with server costs and the like (and put a big smile on my face) you can [buy me a coffee](https://ko-fi.com/ianwold)! I promise to spend it on servers and not coffee.
 
