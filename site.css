@@ -302,6 +302,15 @@ nav {
 		background-color: #323232;
 	}
 
+	.archive .past-articles {
+		font-size: 12pt;
+		font-weight: 300;
+		display: block;
+		line-height: 1.2;
+		text-align: center;
+		font-style: italic;
+	}
+
 
 
 .page {
