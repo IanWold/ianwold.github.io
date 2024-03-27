@@ -42,7 +42,7 @@ I maintain or help maintain, somewhat sporadically, the following:
 
 **Metalsharp** on [GitHub](https://github.com/IanWold/Metalsharp) and [NuGet](https://www.nuget.org/packages/Metalsharp/): A tiny and extendable C# library for generating static sites, inspired by Metalsmith.
 
-**Daily Grud** on [Web](https://dailygrug-production.up.railway.app/): Need inspiration start day, made API.
+**Daily Grug** on [Web](https://dailygrug-production.up.railway.app/): Need inspiration start day, made API.
 
 **Sprache** on [GitHub](https://github.com/sprache/Sprache) and [NuGet](https://www.nuget.org/packages/Metalsharp/): Sprache is a simple, lightweight library for constructing parsers directly in C# code.
 
