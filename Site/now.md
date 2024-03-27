@@ -22,4 +22,4 @@ At this _very instant_ I am...
 
 **Wondering** what else I could include on this page and how I might keep it up-to-date.
 
-_This is a [now page](https://nownownow.com/about)._
+_This is a [now page](https://nownownow.com/about). You can see its [update history on GitHub](https://github.com/IanWold/ianwold.github.io/commits/master/Site/now.md)._
