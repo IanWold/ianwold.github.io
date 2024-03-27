@@ -12,7 +12,7 @@ Hi, I'm Ian! I'm a software engineer, architect, and team leader based in Minnea
 
 I spend the majority of my time solving the same problems over and over again, breaking them down and looking at them from different angles. I enjoy finding simple, elegant solutions to complicated problems. I think the best solutions come from thoughtful and deliberate relationships with _people_ - people using, commissioning, or otherwise affected by my code. Ideally, I'd like those solutions to last for a while.
 
-Outside of work, I find balance in my hobbies and my community. I'm frequently posted up at local pubs and breweries - interrupted by the occasional church gathering - speaking with my neighbors and meeting new folks. I keep my body active by walking, biking, or canoeing, and I keep my eye sharp with my enjoyment of billiards. My passion for philosophy adds a lot of color to my life, and my amateur appreciation for classical architecture reminds me of the importance of crafting enduring, beautiful work.
+Outside of work, I find balance in my hobbies and my community. I'm frequently posted up at local pubs and breweries - interrupted by the occasional church gathering - speaking with my neighbors and meeting new folks. I keep my body active by walking, biking, or canoeing, and I keep my eye sharp with my enjoyment of billiards. My passion for philosophy adds a lot of color to my life, and my amateur engagement with classical architecture reminds me of the importance of crafting enduring, beautiful work.
 
 # Connect
 
