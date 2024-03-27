@@ -8,9 +8,11 @@
 }
 ;;;
 
-I am a software engineer, architect, and team leader based in Minneapolis, Minnesota. I've always worked distributed though, so I've have had the pleasure of working with firms all across the US. My alma mater is the University of Iowa in Iowa City, where I studied Philosophy and Computer Science.
+Hi, I'm Ian! I'm a software engineer, architect, and team leader based in Minneapolis with 14 years of professional experience. My professional experience is rooted .NET, but I find enjoyment and interest in using a diverse set of technologies. My alma mater is the University of Iowa in Iowa City, where I studied Philosophy and Computer Science.
 
-I spent the first many years of my career as an independent consultant, though the last couple of positions I've held have been salaried. I've primarily worked in the Microsoft stack, though I have worked in - and have a great interest in - most any technologies with which you can build software. Currently I'm working for Crate & Barrel developing new ecommerce solutions, with a particular emphasis on distributed, cloud-based systems.
+I spend the majority of my time solving the same problems over and over again, breaking them down and looking at them from different angles. I enjoy finding simple, elegant solutions to complicated problems. I think the best solutions come from thoughtful and deliberate relationships with _people_ - people using, commissioning, or otherwise affected by my code. Ideally, I'd like those solutions to last for a while.
+
+Outside of work, I find balance in my hobbies and my community. I'm frequently posted up at local pubs and breweries - interrupted by the occasional church gathering - speaking with my neighbors and meeting new folks. I keep my body active by walking, biking, or canoeing, and I keep my eye sharp with my enjoyment of billiards. My passion for philosophy adds a lot of color to my life, and my amateur appreciation for classical architecture reminds me of the importance of crafting enduring, beautiful work.
 
 # Connect
 
