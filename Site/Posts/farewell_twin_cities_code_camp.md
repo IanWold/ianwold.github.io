@@ -19,6 +19,6 @@ I learned an incredible amount at these conferences, and I give them a fair amou
 
 Above all I enjoyed the time I got to spend with people there, and the folks I was introduced to at those events. But, all good things come to an end, and understandably the organizers of the conference have decided to discontinue it. They have my gratitude for having organized it for as long as they did.
 
-So what now? Sice COVID the _feeling_ of the industry seems to have gone through an entire shift; longstanding conferences seem to be falling by the wayside. I'm going to be looking into starting a local meetup group in downtown Minneapolis. [Get in touch with me](https://ian.wold.guru/about.html#connect) if that sounds interesting. If you don't know what a "code camp" is - or if you are interested in organizing one - [read the code camp manifesto](https://learn.microsoft.com/en-us/archive/blogs/trobbins/the-code-camp-manifesto).
+So what now? Since COVID the _feeling_ of the industry seems to have gone through an entire shift; longstanding conferences seem to be falling by the wayside. I'm going to be looking into starting a local meetup group in downtown Minneapolis. [Get in touch with me](https://ian.wold.guru/about.html#connect) if that sounds interesting. If you don't know what a "code camp" is - or if you are interested in organizing one - [read the code camp manifesto](https://learn.microsoft.com/en-us/archive/blogs/trobbins/the-code-camp-manifesto).
 
 Farewell, Twin Cities Code Camp!
