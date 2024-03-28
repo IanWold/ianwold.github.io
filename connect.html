@@ -9,14 +9,14 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		
-			<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap&text=ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" rel="stylesheet">
-			<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&family=Source+Code+Pro:wght@400&family=Vollkorn:wght@700&display=swap" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap&text=AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789%21%40%23%24%25%5E%26%2A%28%29%22%3B%3A%2C.%2F%3F%2B-%3D" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap&text=IAN%20WOLD" rel="stylesheet">
 		
 
 		<link rel="webmention" href="https://webmention.io/ian.wold.guru/webmention" />
 
 		<title>
-			Ian Wold |  
+			Ian Wold | Connect 
 		</title>
 
 		
@@ -43,7 +43,8 @@
 			</ul>
 		</nav>
 		
-		<p>You should reach out. No, really! I'm always open to have a conversation or read your comments.</p>
+		<div class="content page post">
+	<p>You should reach out. No, really! I'm always open to have a conversation or read your comments.</p>
 <p><strong>Say Hi!</strong></p>
 <ul>
 <li>Did I say something on this blog that inspired you or caught you off guard?</li>
@@ -56,6 +57,8 @@
 <p>This site is a <a href="https://github.com/IanWold/ianwold.github.io">GitHub repository</a> - you can watch the repo or <a href="https://github.com/IanWold">follow me</a> to stay up-to-date.</p>
 <p><strong>Support my Work</strong></p>
 <p>Finally, if you might want to help me out with server costs and the like (and put a big smile on my face) you can <a href="https://ko-fi.com/ianwold">buy me a coffee</a>! I promise to spend it on servers and not coffee.</p>
+
+</div>
 
 
 		<footer>
@@ -74,25 +77,6 @@
 		</footer>
 
 		<script>
-			
-				window.addEventListener('DOMContentLoaded', () => {
-					const observer = new IntersectionObserver(entries => {
-						entries.forEach(entry => {
-							const id = entry.target.getAttribute('id');
-							let classList = document.querySelector(`.pane li a[href="#${id}"]`).parentElement.classList;
-
-							if (entry.intersectionRatio > 0) {
-								classList.add('active');
-							} else {
-								classList.remove('active');
-							}
-						});
-					});
-
-					document.querySelectorAll('section[id]').forEach((section) => {
-						observer.observe(section);
-					});
-				});
 			
 
 			const darkModeToggle = document.getElementById("dark-mode-toggle");
