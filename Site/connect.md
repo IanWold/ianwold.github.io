@@ -1,3 +1,13 @@
+;;;
+{
+	"title": "Connect",
+	"highlight": "connect",
+	"template": "page",
+	"removeScrollspy": true,
+	"fontRequirement": "page"
+}
+;;;
+
 You should reach out. No, really! I'm always open to have a conversation or read your comments.
 
 **Say Hi!**
