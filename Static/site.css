@@ -110,6 +110,10 @@ h1:hover>a.section-link, h2:hover>a.section-link {
 		color: orangered;
 	}
 
+a.highlight {
+	color: orangered;
+}
+
 
 
 #dark-mode-toggle {
