@@ -45,9 +45,9 @@
 				<a href="https://ian.wold.guru/" class="h-card" rel="me">Ian Wold</a>
 			</div>
 			<ul>
-				<li><a href="{{ directoryPrefix }}about.html">About</a></li>
-				<li><a href="{{ directoryPrefix }}now.html">Now</a></li>
-				<li><a href="{{ directoryPrefix }}connect.html">Connect</a></li>
+				<li><a {% if highlight == "about" %} class="highlight" {% endif %} href="{{ directoryPrefix }}about.html">About</a></li>
+				<li><a {% if highlight == "now" %} class="highlight" {% endif %} href="{{ directoryPrefix }}now.html">Now</a></li>
+				<li><a {% if highlight == "connect" %} class="highlight" {% endif %} href="{{ directoryPrefix }}connect.html">Connect</a></li>
 				<li><a href="https://buttondown.email/ianwold" target="_blank">Book Club</a></li>
 			</ul>
 		</nav>
