@@ -20,7 +20,7 @@ David Boike, writing for Particular, [gives a succinct definition of Latency](ht
 
 # Resolving Latency We Control
 
-Unlike [network reliability issues](https://ian.wold.guru/Posts/the_network_is_reliable.html), the latency issue actually can be mostly overcome. Well, in theory it can; in practice probably not. And it depends on what kind of latency you care about. And only within the confines of your server components. Do you have total control over all of the latency in your system, and have you designed your system in such a way that no component is temporally dependent on another? 'm not sure it's possible for any real-world system to match that, but no doubt this is an area where theory can inform practice.
+Unlike [network reliability issues](https://ian.wold.guru/Posts/the_network_is_reliable.html), the latency issue actually can be mostly overcome. Well, in theory it can; in practice probably not. And it depends on what kind of latency you care about. And only within the confines of your server components. Do you have total control over all of the latency in your system, and have you designed your system in such a way that no component is temporally dependent on another? I'm not sure it's possible for any real-world system to match that, but no doubt this is an area where theory can inform practice.
 
 ## Maximize Utility-per-Call
 
