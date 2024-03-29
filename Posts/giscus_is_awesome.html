@@ -105,6 +105,8 @@
 
 	</div>
 
+	<div id="webmentions"></div>
+
 	<div class="comments">
 		<script src="https://giscus.app/client.js"
 			data-repo="IanWold/ianwold.github.io"
@@ -168,6 +170,41 @@
 	</div>
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch(`https://webmention.io/api/mentions.jf2?target=${window.location.href}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Ope!`);
+            }
+
+            return response.json();
+        })
+        .then(json => {
+            const mentionList = document.createElement('ul');
+
+            json.children.forEach(child => {
+                const date = new Date(child.published);
+                const formattedDate = date.toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric"
+                });
+
+                var itemHtml = document.createElement('li');
+                itemHtml.innerHTML = `<a href="${child.url}">${child.author.name} on ${formattedDate}</a>`;
+                mentionList.appendChild(itemHtml);
+            });
+
+            if (mentionList.children.length > 0) {
+                const webmentionsDiv = document.getElementById('webmentions');
+                webmentionsDiv.innerHTML = '<div class="post"><div class="section"><p style="font-weight: bold;">This post has been <a href="#">webmentioned</a> by:</p></div></div>';
+                console.log(webmentionsDiv.firstChild.firstChild);
+                webmentionsDiv.firstChild.firstChild.appendChild(mentionList);
+            }
+        });
+    });
+</script>
 
 		<footer>
 			<div class="content content-footer">
