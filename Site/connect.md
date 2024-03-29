@@ -18,6 +18,10 @@ You should reach out. No, really! I'm always open to have a conversation or read
 
 If so, then I want to hear from you! Please email me at [ian@wold.guru](mailto:ian@wold.guru?subject=Hello) to get in touch. I have notifications set up for these emails; you're guaranteed to reach me.
 
+**Webmention**
+
+My site accepts [webmentions](https://indieweb.org/Webmention) at `https://webmention.io/ian.wold.guru/webmention`. If you link one of my posts, be sure to webmention me! They'll show up at the bottom of my post.
+
 **Stay Updated**
 
 To keep up-to-date with me, I'd encourage you to [subscribe to my book club](https://buttondown.email/ianwold) where I share what I'm reading and what I've written. Otherwise, my [RSS feed](https://ian.wold.guru/feed.xml) has just my posts here.
