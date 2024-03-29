@@ -16,7 +16,9 @@ At this _very instant_ I am...
 
 **Enjoying** [IndieWeb](https://indieweb.org/)-ifying my website. Creating this "now" page is related to that.
 
-**Researching/Considering** distributed systems architectures. Distributed systems are hard.
+**Researching** distributed systems architectures. Distributed systems are hard.
+
+**Considering** The classic design patterns. SOLID, ACID, and the like. Are they still important? To what degree? Could we break them up and come out with something new? This is my book club topic in April. If you've got any thoughts on this, you should [contact me](https://ian.wold.guru/connect.html), and if you want to see what I come up with then you should [subscribe to my book club](https://buttondown.email/ianwold)!
 
 **Practicing** my skills in pool and billiards. [Snooker](https://en.wikipedia.org/wiki/Snooker) is my favorite sport, and while I don't have easy access to a table in Minneapolis, I can practice other cue sports.
 
