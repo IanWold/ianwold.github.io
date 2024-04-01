@@ -2,7 +2,7 @@
 {% for i in (1..level) %}
 {% assign directoryPrefix = directoryPrefix | append: "../" %}
 {% endfor %}
-
+<div>
 <article class="h-entry">
 <header class="content">
 	<h1 class="p-name">{{ title }}</h1>
@@ -109,6 +109,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 
 <script>
