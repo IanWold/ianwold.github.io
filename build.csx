@@ -51,7 +51,7 @@ new MetalsharpProject()
 			["year"] = postDate.Year.ToString(),
 			["month"] = postDate.Month.ToString("D2"),
 			["day"] = postDate.Day.ToString("D2"),
-			["isodate"] = postDaet.ToUniversalTime().ToString("o", System.Globalization.CultureInfo.InvariantCulture),
+			["isodate"] = postDate.ToUniversalTime().ToString("o", System.Globalization.CultureInfo.InvariantCulture),
 			["slug"] = post.Name
 		};
 	},
