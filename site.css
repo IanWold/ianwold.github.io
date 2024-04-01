@@ -224,11 +224,11 @@ nav {
 	margin-bottom: 36px;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: flex-start;
 	gap: 30px;
 }
 
-	.archive .year {
+	.archive .subheading {
 		font-family: 'Rubik';
 		font-weight: 500;
 		font-size: 14pt;
