@@ -11,7 +11,7 @@
 	{% if series %}
 		<div class="series">
 			<h1 class="title">{{ series }}</h1>
-			<h1>Series Archive</h1>
+			<div class="subheading">Series Archive</div>
 			<div class="description">{{ seriesDescription | raw }}</div>
 		</div>
 	{% endif %}
@@ -20,7 +20,7 @@
 		{% assign intYear = year | plus: 0 %}
 		{% if hidePastArticles == false or intYear > 2020 %}
 			<section id="{{ year }}">
-				<div class="year">{{ year }}</div>
+				<div class="subheading">{{ year }}</div>
 				<ul>
 					{% assign postsForYear = posts | where: "year", year %}
 					{% for post in postsForYear %}
