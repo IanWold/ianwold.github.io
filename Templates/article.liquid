@@ -3,11 +3,15 @@
 {% assign directoryPrefix = directoryPrefix | append: "../" %}
 {% endfor %}
 
+<article class="h-entry">
 <header class="content">
-	<h1>{{ title }}</h1>
+	<h1 class="p-name">{{ title }}</h1>
 	<small>
 		<span class="date">
 			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> {{ date }}
+		</span>
+		<span class="dt-published" style="display: none;">
+			{{ isodate }}
 		</span>
 		<span class="time">
 			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> {{ readingTime }} {% if readingTime == 1 %} Minute {% else %} Minutes {% endif %}
@@ -16,11 +20,11 @@
 			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-commit"><circle cx="12" cy="12" r="4"></circle><line x1="1.05" y1="12" x2="7" y2="12"></line><line x1="17.01" y1="12" x2="22.96" y2="12"></line></svg> <a href="https://github.com/IanWold/ianwold.github.io/commits/master/Site/Posts/{{ slug }}.md">History</a>
 		</span>
 	</small>
-	<p>{{ description }}</p>
+	<p class="p-summary">{{ description }}</p>
 </header>
 
 <div class="content hero">
-	<img src="https://images.unsplash.com/{{ hero }}?w=1000&h=525&fit=crop&crop=entropy" />
+	<img class="u-photo" src="https://images.unsplash.com/{{ hero }}?w=1000&h=525&fit=crop&crop=entropy" />
 </div>
 
 <div class="content">
@@ -42,7 +46,7 @@
 		</div>
 	{% endif %}
 
-	<div class="post">
+	<div class="post e-content">
 		{% if series %}
 			<div class="series">
 				<p style="font-weight: bold;">This is a post in my <a href="{{ directoryPrefix }}Series/{{ seriesSlug }}.html">{{ series }} Series</a>.</p>
@@ -74,6 +78,7 @@
 		</script>
 	</div>
 </div>
+</article>
 
 <div class="section-gray">
 	<div class="content post-end">
