@@ -20,7 +20,7 @@
 		{% assign intYear = year | plus: 0 %}
 		{% if hidePastArticles == false or intYear > 2020 %}
 			<section id="{{ year }}">
-				<h1>{{ year }}</h1>
+				<div class="year">{{ year }}</div>
 				<ul>
 					{% assign postsForYear = posts | where: "year", year %}
 					{% for post in postsForYear %}

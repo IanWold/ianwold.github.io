@@ -228,7 +228,7 @@ nav {
 	gap: 30px;
 }
 
-	.archive h1 {
+	.archive .year {
 		font-family: 'Rubik';
 		font-weight: 500;
 		font-size: 14pt;
