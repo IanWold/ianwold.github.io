@@ -58,7 +58,7 @@ new MetalsharpProject()
 	BlogFilePath = @".\index.html",
 	BlogMetadata = new()
 	{
-		["title"] = "",
+		["title"] = "Software Engineer, Architect, and Team Leader",
 		["template"] = "archive",
 		["removeScrollspy"] = true,
 		["hidePastArticles"] = true,
