@@ -277,7 +277,7 @@ new MetalsharpProject()
 
 	foreach (var page in project.OutputFiles.Where(f => f.Extension.Contains("html") && !f.Name.Contains("index")))
 	{
-		builder.AppendLine($"https://ian.wold.guru/{page.FilePath}");
+		builder.AppendLine($"https://ian.wold.guru/{page.FilePath.Replace(".\\", "").Replace("\\", "/")}");
 	}
 
 	project.AddOutput(new MetalsharpFile(builder.ToString(), "sitemap.txt"));
