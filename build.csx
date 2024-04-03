@@ -273,7 +273,7 @@ new MetalsharpProject()
 .Use(project => // Add sitemap
 {
 	var builder = new StringBuilder();
-	builder.AppendLine("https://ian.wold.guru/")
+	builder.AppendLine("https://ian.wold.guru/");
 
 	foreach (var page in project.OutputFiles.Where(f => f.Extension == "html" && !f.Name.Contains("index")))
 	{
