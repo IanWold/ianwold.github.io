@@ -275,7 +275,7 @@ new MetalsharpProject()
 	var builder = new StringBuilder();
 	builder.AppendLine("https://ian.wold.guru/");
 
-	foreach (var page in project.OutputFiles.Where(f => f.Extension == "html" && !f.Name.Contains("index")))
+	foreach (var page in project.OutputFiles.Where(f => f.Extension.Contains("html") && !f.Name.Contains("index")))
 	{
 		builder.AppendLine($"https://ian.wold.guru/{page.FilePath}");
 	}
