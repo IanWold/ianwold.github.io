@@ -62,7 +62,8 @@ new MetalsharpProject()
 		["template"] = "archive",
 		["removeScrollspy"] = true,
 		["hidePastArticles"] = true,
-		["fontRequirement"] = "index"
+		["fontRequirement"] = "index",
+		["includeCanonicalIndex"] = true
 	},
 })
 .Use(project => // Generate RSS feed
