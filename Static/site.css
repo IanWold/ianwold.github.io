@@ -730,7 +730,7 @@ footer {
     opacity: 1;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
 	.post-end img {
 		display: none;
 	}
