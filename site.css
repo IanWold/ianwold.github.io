@@ -330,7 +330,7 @@ header {
 	padding-bottom: 60px;
 
 	display: block;
-	width: 100%;
+	width: calc(100%-24px);
 }
 
 	header h1 {
@@ -728,4 +728,10 @@ footer {
 .torchlight.has-focus-lines:hover .line:not(.line-focus) {
     filter: blur(0px);
     opacity: 1;
+}
+
+@media (max-width: 600px) {
+	.post-end img {
+		display: none;
+	}
 }
