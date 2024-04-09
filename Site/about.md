@@ -16,12 +16,8 @@ Outside of work, I find balance in my hobbies and my community. I'm frequently p
 
 # Projects
 
-I maintain or help maintain, somewhat sporadically, the following:
+**FreePlanningPoker.io** on [Web](https://freeplanningpoker.io) and [GitHub](https://github.com/IanWold/PlanningPoker): A free tool for software teams to do "planning poker" exercises. It's always going to be free, without limits.
 
 **Metalsharp** on [GitHub](https://github.com/IanWold/Metalsharp) and [NuGet](https://www.nuget.org/packages/Metalsharp/): A tiny and extendable C# library for generating static sites, inspired by Metalsmith.
 
 **Daily Grug** on [Web](https://dailygrug-production.up.railway.app/): Need inspiration start day, made API.
-
-**Sprache** on [GitHub](https://github.com/sprache/Sprache) and [NuGet](https://www.nuget.org/packages/Metalsharp/): Sprache is a simple, lightweight library for constructing parsers directly in C# code.
-
-**Monokai Gray** on [Package Control](https://packagecontrol.io/packages/Monokai%20Gray) and [GitHub](https://github.com/IanWold/MonokaiGray): A Sublime Text 3 color scheme, the same as Monokai dark, but has “true” gray backgrounds. Useful with themes where the yellowey background of Monokai feels out of place.
