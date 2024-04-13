@@ -22,6 +22,7 @@ https://ian.wold.guru/Posts/develop_effective_coding_standards.html
 https://ian.wold.guru/Posts/eight_maxims.html
 https://ian.wold.guru/Posts/farewell_twin_cities_code_camp.html
 https://ian.wold.guru/Posts/four_deeply_ingrained_csharp_cliches.html
+https://ian.wold.guru/Posts/free_planning_poker.html
 https://ian.wold.guru/Posts/giscus_is_awesome.html
 https://ian.wold.guru/Posts/its_better_to_be_consistently_incorrect_than_consistently_correct.html
 https://ian.wold.guru/Posts/ive_indiewebbed_my_site.html
