@@ -16,7 +16,7 @@ At this _very instant_ I am...
 
 **Researching** distributed systems architectures. Distributed systems are hard.
 
-**Considering** The classic design patterns. SOLID, ACID, and the like. Are they still important? To what degree? Could we break them up and come out with something new? This is my book club topic in April. If you've got any thoughts on this, you should [contact me](https://ian.wold.guru/connect.html), and if you want to see what I come up with then you should [subscribe to my book club](https://buttondown.email/ianwold)!
+**Collecting** evidence against [ORMs](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping). I had been brushing up on classic design patterns for this month's book club, but that sent me down an ORM rabbit hole, so I'm focusing on that instead. I'm not a fan of ORMs, particularly in the case of .NET where a simple wrapper around ADO produces faster code that's easier to maintain and conforms better to a system's requriements. What about other languages? Are ORMs universally bad? Are they good in cases other than rapid prototyping? If you've got any thoughts on this, you should [contact me](https://ian.wold.guru/connect.html), and if you want to see what I come up with then you should [subscribe to my book club](https://buttondown.email/ianwold)!
 
 **Practicing** my skills in pool and billiards. [Snooker](https://en.wikipedia.org/wiki/Snooker) is my favorite sport, and while I don't have easy access to a table in Minneapolis, I can practice other cue sports.
 
