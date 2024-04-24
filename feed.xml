@@ -415,6 +415,38 @@ They've journeyed forth, with purpose evergreen.&lt;/p&gt;
       <a10:updated>2024-03-25T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">book_club_4-2024</guid>
+      <link>https://ian.wold.guru/Posts/book_club_4-2024.html</link>
+      <title>Book Club 4/2024: I Don't Like ORMs</title>
+      <description>&lt;p&gt;Indeed, &lt;a href="https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping"&gt;Object-Relational Mappers&lt;/a&gt; (ORMs) are a negative thing to me. For the uninitiated, these are tools which &lt;em&gt;automagically&lt;/em&gt; provide ways of mapping data between the object (class) representations in our application software and the corresponding relational representations in databases (specifically, of course, relational databases). They present an alternative to writing SQL and deserializing the data manually. Popular ORMs include &lt;a href="https://learn.microsoft.com/en-us/aspnet/entity-framework"&gt;Entity Framework for .NET&lt;/a&gt; or &lt;a href="https://www.prisma.io/orm"&gt;Prisma for Node/TS&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;ORMs typically have two main components: some way to map between properties in a class and table/columns in the database, and some way to not have to write SQL in your application. In the case of Entity Framework and similar libraries for .NET, this takes the form of attributes on class properties for the former, and using LINQ to write the queries which then &amp;quot;intelligently&amp;quot; get translated to SQL at runtime and sent down the wire. It provides type safety and absolves the engineer from having to write SQL in their applications. Many take this to be a good thing.&lt;/p&gt;
+&lt;p&gt;The problem which I have with ORMs is twofold, but it mainly boils down to the second. First, I perceive ORMs as polluting my objects - attributes and configuration code are annoying, sure, but I have concerns with vendor lock-in and more greatly that the query abstractions tend to hide what they're doing. Taking Entity Framework specifically, you need to be quite good at knowing what it's doing in the LINQ there to avoid any number of gotchas, which increases the incidence rate of footguns. This leads into my second and important gripe: ORMs offer less performance. Even if you're really good at them you're never going to get an overall performance benefit.&lt;/p&gt;
+&lt;p&gt;The performance problem does frequently come from a misunderstanding of how the SQL abstraction of a particular ORM maps to SQL, yes, but it's also &lt;em&gt;just&lt;/em&gt; less performant to insert an abstraction over something. A lot will push back on me at this point that performance isn't everything - readability and maintainability are important, and my straw man here will feel that the type-safe abstraction of the ORM is more of both. I think this is misguided. Unless you know SQL quite well &lt;em&gt;and&lt;/em&gt; you know how your ORM generates SQL from its abstraction you're going to be setting up some potential very volatile code, so you need to read the code you wrote in this abstraction through this lens. Which seems easier then - writing and reading this abstracted code while considering the SQL translation, or just writing and reading SQL?&lt;/p&gt;
+&lt;p&gt;One can claim &amp;quot;skill issue&amp;quot; here all they want, but the point is that I cannot see how using the ORM reduces any burden on me as I'm writing code. It only adds to the considerations I have to make. To be clear, I do believe you need to learn and know SQL well in order to be able to effectively use a relational database ever, whether you're using an ORM or not. For an engineer to desire to avoid learning and understanding SQL is lazy. Perhaps someone has indeed invested the time in learning it well and decided that they really would rather have the abstraction over it; this is an informed opinion which I can respect, and I'm sure such an engineer would be grateful for what they did learn from SQL (my favorite straw men are the respectable sort). I don't know that you can ultimately use any tool to make up for not understanding the fundamental working of databases and their query engines - just as in sports, it's not the tools that make one successful.&lt;/p&gt;
+&lt;p&gt;So all that considered, my recommendation is to just use SQL. That, to me, has the lowest burden across the board. Since I need to learn SQL I know it, when I write or read SQL I don't have to jump through translations, and when it comes to mapping or deserializing the response from the database I have all the control I need. But wait! Doesn't that lead to so much more boilerplate code? No, and I'm disinclined to elaborate for I've never seen a proof of this and I believe the burden of proof is on the individual making this assertion. Please leave your proof in the comments! To anticipate a response, the boilerplate which I use over ADO.NET and copy/paste/modify for any particular project clocks in at under 100 lines, I and everyone else in the codebase know exactly what it does, and it outperforms your ORM.&lt;/p&gt;
+&lt;p&gt;As a final note, there are a category of ORMs which assist you in writing actual SQL then handling just the mapping; they don't abstract over the SQL, which is my main objection. In .NET the most popular one by far is &lt;a href="https://github.com/DapperLib/Dapper"&gt;Dapper&lt;/a&gt;. Considering the low cost of entry to rolling my own mapping, I prefer and recommend that approach. However, there are projects or environments where Dapper can be useful, and I would recommend that everyone look to this library for these cases, or as an inspiration for what you can achieve on your own.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Watching&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=atABji4xqiI"&gt;I Would Never Use an ORM - Matteo Collina (2022)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=tbfKZy7Y1pc&amp;amp;t=0s"&gt;The Only Database Abstraction You Need - CompSciGuy (2023)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=4QN1BzxF8wM"&gt;I tried 8 different Postgres ORMs - Beyond Fireship (2023)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=evLx2TKTFI8"&gt;Why your DBA hates your ORM Hibernate or Entity application - Shad Sluiter (2020)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Reading&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://wozniak.ca/blog/2014/08/03/1/index.html?amp%3Butm_medium=referral"&gt;What ORMs have taught me: just learn SQL - Geoff Wozniak&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://blog.logrocket.com/node-js-orms-why-shouldnt-use/"&gt;Node.js ORMs: Why you shouldn’t use them - Thomas Hunter II&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I know that dev.to and Medium articles are a bit of a mixed bag, but these are well-considered with good, practical examples:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dev.to/harshhhdev/why-orms-arent-always-a-great-idea-41kg"&gt;Why ORMs Aren't Always a Great Idea - Harsh Singh&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://betterprogramming.pub/why-orms-are-not-always-the-way-to-go-6aa578026a16"&gt;Why ORMs Are Not Always the Way To Go - Joseph Pellegrini&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Wed, 24 Apr 2024 00:00:00 Z</pubDate>
+      <a10:updated>2024-04-24T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">book_club_9-2023</guid>
       <link>https://ian.wold.guru/Posts/book_club_9-2023.html</link>
       <title>Book Club 9/2023: Papers I Love</title>
