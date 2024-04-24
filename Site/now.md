@@ -20,7 +20,7 @@ At this _very instant_ I am...
 
 **Practicing** my skills in pool and billiards. [Snooker](https://en.wikipedia.org/wiki/Snooker) is my favorite sport, and while I don't have easy access to a table in Minneapolis, I can practice other cue sports.
 
-**Developing** [freeplanningpoker.io](https://freeplanningpoker.io) because every other online tool for this is costly or limited or not what I want, and this is an easy sort of thing to do. Want to help? I have some [good first issues](https://github.com/IanWold/PlanningPoker/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22) defined in the repository!
+**Celebrating** that my church _unanimously_ called a new senior minister! I think that's a big deal and I'm looking forward to seeing what that brings in future!
 
 **Wondering** what else I could include on this page and how I might keep it up-to-date.
 
