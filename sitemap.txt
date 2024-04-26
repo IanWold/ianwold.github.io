@@ -6,6 +6,7 @@ https://ian.wold.guru/now.html
 https://ian.wold.guru/Posts/90_of_my_homepage_was_useless.html
 https://ian.wold.guru/Posts/adding_a_database_to_our_railway_app.html
 https://ian.wold.guru/Posts/a_scrum_odyssey.html
+https://ian.wold.guru/Posts/bandwidth_is_infinite_ly_troublesome.html
 https://ian.wold.guru/Posts/book_club-2-2024.html
 https://ian.wold.guru/Posts/book_club_1-2024.html
 https://ian.wold.guru/Posts/book_club_10-2023.html
@@ -42,6 +43,6 @@ https://ian.wold.guru/Posts/sprachejson.html
 https://ian.wold.guru/Posts/sprache_comments.html
 https://ian.wold.guru/Posts/the_network_is_reliable.html
 https://ian.wold.guru/Posts/write_your_own_rdbms_versioned_migration_boilerplate.html
+https://ian.wold.guru/Series/fallacies_distributed_computing.html
 https://ian.wold.guru/Series/book_club.html
 https://ian.wold.guru/Series/past_articles.html
-https://ian.wold.guru/Series/fallacies_distributed_computing.html
