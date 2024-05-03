@@ -2053,7 +2053,7 @@ public record ServerError(string Description);
     public static implicit operator DatabaseQueryResult&amp;lt;T&amp;gt;(ServerError serverError) =&amp;gt; new();
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now the records whih represent our result states already contain all of the information we need, so we don't need to duplicate those properties on the &lt;code&gt;DatabaseQueryResult&lt;/code&gt; object. In order to keep our state we can define an &lt;code&gt;object&lt;/code&gt; field for our result class to store whichever result state we've gotten. Since our result object is carefully guarding its instantiation and internal state, I don't think we need to worry about type safety here. If you've got a different situation you might need to implement something more robust, though.&lt;/p&gt;
+&lt;p&gt;Now the records which represent our result states already contain all of the information we need, so we don't need to duplicate those properties on the &lt;code&gt;DatabaseQueryResult&lt;/code&gt; object. In order to keep our state we can define an &lt;code&gt;object&lt;/code&gt; field for our result class to store whichever result state we've gotten. Since our result object is carefully guarding its instantiation and internal state, I don't think we need to worry about type safety here. If you've got a different situation you might need to implement something more robust, though.&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-csharp"&gt;public sealed class DatabaseQueryResult&amp;lt;T&amp;gt;
 {
     object _value;
@@ -2103,7 +2103,7 @@ public record ServerError(string Description);
 &lt;pre&gt;&lt;code class="language-csharp"&gt;public bool IsEmpty() =&amp;gt;
     _value is Empty;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This should give us everything we need for thsi nicer result type. Compare our previous implementation of &lt;code&gt;GetAllItemsFromDatabase&lt;/code&gt; to this new one:&lt;/p&gt;
+&lt;p&gt;That should give us everything we need for this nicer result type. Compare our previous implementation of &lt;code&gt;GetAllItemsFromDatabase&lt;/code&gt; to this new one:&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-csharp"&gt;public DatabaseQueryResult&amp;lt;IEnumerable&amp;lt;Item&amp;gt;&amp;gt; GetAllItemsFromDatabase(...)
 {
     try
