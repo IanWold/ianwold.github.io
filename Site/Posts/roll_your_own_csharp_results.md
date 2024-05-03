@@ -400,7 +400,7 @@ public sealed class DatabaseQueryResult<T>
 }
 ```
 
-Now the records whih represent our result states already contain all of the information we need, so we don't need to duplicate those properties on the `DatabaseQueryResult` object. In order to keep our state we can define an `object` field for our result class to store whichever result state we've gotten. Since our result object is carefully guarding its instantiation and internal state, I don't think we need to worry about type safety here. If you've got a different situation you might need to implement something more robust, though.
+Now the records which represent our result states already contain all of the information we need, so we don't need to duplicate those properties on the `DatabaseQueryResult` object. In order to keep our state we can define an `object` field for our result class to store whichever result state we've gotten. Since our result object is carefully guarding its instantiation and internal state, I don't think we need to worry about type safety here. If you've got a different situation you might need to implement something more robust, though.
 
 
 ```csharp
@@ -460,7 +460,7 @@ public bool IsEmpty() =>
     _value is Empty;
 ```
 
-This should give us everything we need for thsi nicer result type. Compare our previous implementation of `GetAllItemsFromDatabase` to this new one:
+That should give us everything we need for this nicer result type. Compare our previous implementation of `GetAllItemsFromDatabase` to this new one:
 
 ```csharp
 public DatabaseQueryResult<IEnumerable<Item>> GetAllItemsFromDatabase(...)
