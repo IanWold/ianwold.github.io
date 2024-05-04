@@ -543,7 +543,7 @@ public sealed class DatabaseQueryResult<T>
 }
 ```
 
-These two overloads for `Match` allow our consumer to choose whether it cares about the client/server error distinction but still enforces that they must provide a complete mapping from any possible result state to an object. We could use this to rewrite our `ShowItems` method from earlier in a clearer way:
+These two overloads for `Map` allow our consumer to choose whether it cares about the client/server error distinction but still enforces that they must provide a complete mapping from any possible result state to an object. We could use this to rewrite our `ShowItems` method from earlier in a clearer way:
 
 ```csharp
 public void ShowItems() => Console.WriteLine(
@@ -557,3 +557,5 @@ public void ShowItems() => Console.WriteLine(
 ```
 
 Now _that's_ looking properly functional!
+
+_The complete code from this article [is available on GitHub](https://gist.github.com/IanWold/7efdf5df24bdd4e6ff5c652e1c051d6f)._
