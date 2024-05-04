@@ -2179,7 +2179,7 @@ public record ServerError(string Description);
     // Rest of implementation
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;These two overloads for &lt;code&gt;Match&lt;/code&gt; allow our consumer to choose whether it cares about the client/server error distinction but still enforces that they must provide a complete mapping from any possible result state to an object. We could use this to rewrite our &lt;code&gt;ShowItems&lt;/code&gt; method from earlier in a clearer way:&lt;/p&gt;
+&lt;p&gt;These two overloads for &lt;code&gt;Map&lt;/code&gt; allow our consumer to choose whether it cares about the client/server error distinction but still enforces that they must provide a complete mapping from any possible result state to an object. We could use this to rewrite our &lt;code&gt;ShowItems&lt;/code&gt; method from earlier in a clearer way:&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-csharp"&gt;public void ShowItems() =&amp;gt; Console.WriteLine(
     GetAllItemsFromDatabase(...)
     .Map(
@@ -2190,6 +2190,7 @@ public record ServerError(string Description);
 );
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now &lt;em&gt;that's&lt;/em&gt; looking properly functional!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;The complete code from this article &lt;a href="https://gist.github.com/IanWold/7efdf5df24bdd4e6ff5c652e1c051d6f"&gt;is available on GitHub&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 </description>
       <pubDate>Fri, 03 May 2024 00:00:00 Z</pubDate>
       <a10:updated>2024-05-03T00:00:00Z</a10:updated>
