@@ -16,6 +16,8 @@ At this _very instant_ I am...
 
 **Researching** distributed systems architectures. Distributed systems are hard.
 
+**Reading** a lot more of the latest developments in philosophy. The philosophies of information, computer science, and engineering are interesting to me right now in trying to consider philosophical issues in software engineering and architecture.
+
 **Practicing** my skills in pool and billiards. [Snooker](https://en.wikipedia.org/wiki/Snooker) is my favorite sport, and while I don't have easy access to a table in Minneapolis, I can practice other cue sports.
 
 _This is a [now page](https://nownownow.com/about). You can see its [update history on GitHub](https://github.com/IanWold/ianwold.github.io/commits/master/Site/now.md)._
