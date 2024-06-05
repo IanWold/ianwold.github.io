@@ -2223,6 +2223,63 @@ public record ServerError(string Description);
       <a10:updated>2024-05-03T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">scrum_is_not_agile</guid>
+      <link>https://ian.wold.guru/Posts/scrum_is_not_agile.html</link>
+      <title>Scrum is not Agile</title>
+      <description>&lt;p&gt;One of my favorite lectures concerned with software engineering methodology is Allen Holub's &lt;a href="https://www.youtube.com/watch?v=F42A3R28WMU"&gt;War is Peace, Freedom is Slavery, Ignorance is Strength, Scrum is Agile&lt;/a&gt;, in which I believe he convincingly articulates that Scrum is harmful and that it is not equivalent to Agile. This lecture is particularly useful in drawing a clear distinction between Scrum and Agile - even if you do disagree with Holub's assertion that Scrum is not a proper implementation of Agile, you must agree that Scrum and Agile are &lt;em&gt;different&lt;/em&gt; things.&lt;/p&gt;
+&lt;p&gt;The terms are thrown around interchangeably in our industry, and I think that does a disservice to both. I've heard a lot of criticisms levied against &amp;quot;Agile&amp;quot;, but it happens that the criticism is actually against specific practices in the Scrum guide, and while not as ubiquitous I've heard the opposite as well. If you disagree with the rest of my article here, I'd kindly suggest that you at least take this point away and encourage others to be a bit more precise when speaking in this area - neither criticism nor praise are useful if misattributed.&lt;/p&gt;
+&lt;p&gt;Holub's thesis is stronger than just &amp;quot;Scrum and Agile are different things&amp;quot;, though, and it's the stronger point which I find convincing and which I want to defend here. That point is that Scrum is not an implementation of Agile. Holub means this as an indictment of Scrum, where he sees the Agile princiles as being, I think it's not unfair to say, the best set of principles we have right now to guide development methodology. I've &lt;a href="https://ian.wold.guru/Posts/book_club_12-2023.html"&gt;written about opinions on this&lt;/a&gt; before, so I'm not going to rehash &lt;em&gt;opinion&lt;/em&gt; on the matter here. Rather, I think I can defend a dispassionate form of this statement, that based on definitions Scrum can be said to not be an implementation of Agile, even though it claims to be.&lt;/p&gt;
+&lt;p&gt;Agile is very broadly defined, as well it should be. Its purpose nowadays (I do not know the original intent) is to be a category of processes - there are processes which &lt;em&gt;are&lt;/em&gt; Agile and those which &lt;em&gt;are not&lt;/em&gt;, and helpfully there's going to end up being a murky middle ground with a fair amount of debate. Agile is bounded by a &lt;a href="https://agilemanifesto.org/"&gt;manifesto&lt;/a&gt; and &lt;a href="https://agilemanifesto.org/principles.html"&gt;twelve principles&lt;/a&gt;, making it obvious that any implementation of Agile needs to satisfy these properties. Is it necessary though for an implementation to &lt;em&gt;allow&lt;/em&gt; for these properties to be included with the specific methodology practiced, or is it necessary for an implementation to &lt;em&gt;support&lt;/em&gt; or even &lt;em&gt;require&lt;/em&gt; these properties? Take for example the following principle:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Build projects around motivated individuals. Give them the environment and support they need, and trust them to get the job done.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Certainly, if I invent a process which claims to implement Agile but in its definition precludes the ability for engineers to trust each other (say, one of its principles is &amp;quot;Trust nobody but yourself&amp;quot;), I can say that the process does not actually implement Agile. But is it necessary for an implementing system to specify that individuals within the system &lt;em&gt;must&lt;/em&gt; trust each other, or is the necessary component simply that the implementing system &lt;em&gt;allows&lt;/em&gt; for trust? Rather than splitting hairs, this is an important distinction which will affect how we interpret things, maybe drammatically. What do we do with the following Agile principle then, given this open question:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Continuous attention to technical excellence and good design enhances agility.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This doesn't directly recommend a practice or category of practice unless we consider &amp;quot;enhancing agility&amp;quot; to be a good quality, but that doesn't necessarily emerge from the rest of the writing on the matter. As an aside, if you or a coworker are engaged in a definitional project as the authors of the Agile Manifesto were two decades ago, I can't recommend enough that you consult a philosopher, they have 2500 years of experience in this sort of work.&lt;/p&gt;
+&lt;p&gt;Vaguely defined things like Agile can be broken down into &lt;em&gt;strong&lt;/em&gt; and &lt;em&gt;weak&lt;/em&gt; forms. A &lt;em&gt;strong Agile&lt;/em&gt; will be an implementation which makes clear and explicit accommodations for each of the Agile principles - trust in work would be encouraged or required, &amp;quot;enhancing agility&amp;quot; would be said to be good, and so on. A &lt;em&gt;weak Agile&lt;/em&gt; is one which might or might not explicitly require anything from the principles, but does not preclude or discourage any of them. This is a good distinction, but not terribly useful to us as it doesn't really give us a lot of teeth to be able to determine that something &lt;em&gt;is&lt;/em&gt; or &lt;em&gt;is not&lt;/em&gt; Agile, but rather a scale of Agility.&lt;/p&gt;
+&lt;p&gt;We do actually see Agile and non-Agile things though, so we need some way of being able to draw a line in the sand. I'll propose that there are a smaller set of well-defined qualities which can be used to properly delineate Agile, and I think this can be derived from the manifesto and those principles which prescribe practice. Thus, I'll suggest that a system is not Agile unless it explicitly requires the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Software must be delivered in continuously iterations, its proper function for the user must be continuously monitored, and the improvement of the software for the requirements of the user must be the highest priority at all times;&lt;/li&gt;
+&lt;li&gt;The stakeholders in the software all must be continuously engaged with by the engineers of a software, the engineers must be the sole owners of the software, and this relationship and working pace must be able to be carried on ad infinitum;&lt;/li&gt;
+&lt;li&gt;The engineers must be the sole owners of their own specific processes, they must continuously evaluate and adapt these, and they must accommodate change in any scope at any point in time.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These are the hard requirements which form the &amp;quot;core&amp;quot; of Agile; without specifically and explicitly adhering to these, a system is said to not be an implementation of Agile. While I've used three bullets for brevity, note that these are 9 points grouped into three.&lt;/p&gt;
+&lt;p&gt;Defining Scrum is, helpfully, much easier, &lt;a href="https://scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-US.pdf"&gt;It has a very specific guide&lt;/a&gt; to reference. There are specific roles, practices, and structure defined. I'll use that document as a reference for the specific definition of Scrum.&lt;/p&gt;
+&lt;p&gt;The question then is whether this document satisfies each of the above points - I'll go one-by-one.&lt;/p&gt;
+&lt;p&gt;Scrum certainly requires the delivery of software in continuous iterations, a &lt;code&gt;sprint&lt;/code&gt; is defined:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;They are fixed length events of one month or less to create consistency.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Check. Is its function being continuously monitored? &lt;code&gt;Scrum artifacts&lt;/code&gt; certianly are:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The Scrum artifacts and the progress toward agreed goals must be inspected frequently and diligently to detect potentially undesirable variances or problems.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Though the document leaves it open whether these artifacts includes the software itself, I think that it's proper to grant a charitable reading to say so. As to whether properly-functioning software is elevated to the highest priority, it seems that a team's goals are rather the highest priority:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The Scrum Team commits to achieving its goals and to supporting each other. Their primary focus is on the work of the Sprint to make the best possible progress toward these goals.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We would certainly hope that teams would, themselves, prioritize the functioning software, but this is not explicitly stated. As for the engineers being continuously engaged with the stakeholders, the Scrum guide falls short as well:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The Product Owner is one person, not a committee. The Product Owner may represent the needs of many stakeholders in the Product Backlog. Those wanting to change the Product Backlog can do so by trying to convince the Product Owner.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Being fair, this isolation can be beneficial in discrete applications, but to specify it as a part of the process goes against our second requirement for Agile. This Product Owner is also charged with developing the Product Goal, which is not explicitly defined. This is a problem as it ought at least be defined to exclude the possibility that the Product Owner might supplant the engineers as the sole owners of the software. Certainly nothing in the Scrum guide, I don't think, might be construed to suggest a working relationship or pace which is not infinitely maintainable.&lt;/p&gt;
+&lt;p&gt;The Scrum guide fails again in keeping the engineers the owner of their own process, the most glaring way is the inclusion of the Scrum Master role - this is not a simple inclusion and wrestles process control, at least in part, away from the engineers. The Scrum guide is quite successful, by contrast, in mandating Review and Retrospective meetings, both of which are opportunities to evaluate and adapt the process. Accommodating change in any scope at any point in time is a bit more tricky though, take the following:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;During the Sprint: [...] No changes are made that would endanger the Sprint Goal;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Surely there's some way to change course though? Well, there is this:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A Sprint could be cancelled if the Sprint Goal becomes obsolete. Only the Product Owner has the authority to cancel the Sprint.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I don't take that inclusion to be accommodating of change though, these prescriptions might allow for some change but they place impediments in its way and refocus the attention away from change being in support of the software to change being antagonistic to the sprint goals.&lt;/p&gt;
+&lt;p&gt;Is Scrum Agile? No, in the sense that they are just different things, but also no in the sense that Scrum is not an implementation of Agile. It's not just that there are required Agile prescriptions missing from Scrum, were that the case then I might be able to say that Scrum is an implementatino of a subset of Agile. I can't say that though because Scrum contradicts some Agile requirements. This all isn't to say anything negative or disparaging about Scrum, but rather to dispassionately say that it is not an implementation of Agile. Those committed to the whole of Scrum are, I think, committed to the position that not &lt;em&gt;all&lt;/em&gt; of Agile is desirable. So as to not throw the baby out with the bathwater, that might be alternatively phrased that &lt;em&gt;only some portion of Agile is desirable&lt;/em&gt;. In the same way, those who are committed to the whole of Agile are committed to the position that not &lt;em&gt;all&lt;/em&gt; of Scrum is desirable. Perhaps portions of it or ideas from it are.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 05 Jun 2024 00:00:00 Z</pubDate>
+      <a10:updated>2024-06-05T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">should_i_learn_insert_some_tech_here</guid>
       <link>https://ian.wold.guru/Posts/should_i_learn_insert_some_tech_here.html</link>
       <title>"Should I Learn (Insert Some Tech Here)?"</title>
