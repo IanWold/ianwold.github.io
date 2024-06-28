@@ -907,6 +907,62 @@ start      │ ./out/RailwayBlazorDemo.Client
       <a10:updated>2023-09-05T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">deploying_your_prolog_api_with_docker</guid>
+      <link>https://ian.wold.guru/Posts/deploying_your_prolog_api_with_docker.html</link>
+      <title>Deploying Your Prolog API with Docker</title>
+      <description>&lt;p&gt;&lt;a href="https://www.swi-prolog.org/"&gt;Prolog&lt;/a&gt; is truly a leader at the forefront of modern technology, and if you're anything like me then you're convinced that this langauge is the way forward for our microservice APIs. Part of our evidence for this (as though it isn't inherently obvious) is how easy it is to containerize and deploy with Docker.&lt;/p&gt;
+&lt;p&gt;To demonstrate this, let's set up a simple Hello World API with SWI Prolog:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-prolog"&gt;:- use_module(library(http/thread_httpd)).
+:- use_module(library(http/http_dispatch)).
+:- use_module(library(http/html_write)).
+
+:- http_handler('/', handle_request, []).
+
+handle_request(_Request) :-
+	format('Content-type: text/plain~n~n'),
+	format('Hello, World!').
+
+server(Port) :-
+	http_server(http_dispatch, [port(Port)]),
+	thread_get_message(_).
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There's a couple things to point out here. First, accepting a &lt;code&gt;Port&lt;/code&gt; variable for the &lt;code&gt;server&lt;/code&gt; predicate allows us to keep the port flexible as an environment variable, best to not hardcode that. Second, invoking the &lt;code&gt;thread_get_message&lt;/code&gt; predicate isn't necessary when we're debugging locally but it is going to be necessary when we run it in Docker to prevent the server from halting immediately.&lt;/p&gt;
+&lt;p&gt;The dockerfile isn't terribly difficult at all. We can base off of &lt;code&gt;ubuntu:latest&lt;/code&gt;, install SWI Prolog, and then run the command to start the prolog interpreter with the call to the &lt;code&gt;server&lt;/code&gt; predicate:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-dockerfile"&gt;# Use an official Ubuntu runtime as a parent image
+FROM ubuntu:latest
+
+# Set the working directory
+WORKDIR /usr/src/app
+
+# Install SWI-Prolog
+RUN apt-get update &amp;amp;&amp;amp; \
+    apt-get install -y software-properties-common &amp;amp;&amp;amp; \
+    apt-add-repository ppa:swi-prolog/stable &amp;amp;&amp;amp; \
+    apt-get update &amp;amp;&amp;amp; \
+    apt-get install -y swi-prolog
+
+# Copy the current directory contents into the container at /usr/src/app
+COPY . .
+
+# Make port 5000 available to the world outside this container
+EXPOSE 5000
+
+# Run swipl when the container launches
+CMD [&amp;quot;swipl&amp;quot;, &amp;quot;-g&amp;quot;, &amp;quot;server(5000)&amp;quot;, &amp;quot;-t&amp;quot;, &amp;quot;halt&amp;quot;, &amp;quot;server.pl&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I'm hardcoding &lt;code&gt;5000&lt;/code&gt; as the HTTP port here but it's just as easy to use an environment variable at this point. Note too I'm assuming the source is in &lt;code&gt;server.pl&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;With this we can build the image:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-plaintext"&gt;docker build -t prolog-server .
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And deploy:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-plaintext"&gt;docker run -p 5000:5000 prolog-server
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And that's it, we're off to the races! With dev ex this smooth, Prolog will concur the world. Any day now. Surely.&lt;/p&gt;
+</description>
+      <pubDate>Fri, 28 Jun 2024 00:00:00 Z</pubDate>
+      <a10:updated>2024-06-28T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">develop_effective_coding_standards</guid>
       <link>https://ian.wold.guru/Posts/develop_effective_coding_standards.html</link>
       <title>Develop Effective Coding Standards</title>
