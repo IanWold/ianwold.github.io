@@ -912,18 +912,24 @@ start      │ ./out/RailwayBlazorDemo.Client
       <title>Deploying Your Prolog API with Docker</title>
       <description>&lt;p&gt;&lt;a href="https://www.swi-prolog.org/"&gt;Prolog&lt;/a&gt; is truly a leader at the forefront of modern technology, and if you're anything like me then you're convinced that this langauge is the way forward for our microservice APIs. Part of our evidence for this (as though it isn't inherently obvious) is how easy it is to containerize and deploy with Docker.&lt;/p&gt;
 &lt;p&gt;To demonstrate this, let's set up a simple Hello World API with SWI Prolog:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-prolog"&gt;:- use_module(library(http/thread_httpd)).
+&lt;pre&gt;&lt;code class="language-prolog"&gt;% Import SWI modules for HTTP servers
+:- use_module(library(http/thread_httpd)).
 :- use_module(library(http/http_dispatch)).
 :- use_module(library(http/html_write)).
 
+% Set handle_request as the handler for URL /
 :- http_handler('/', handle_request, []).
 
+% Respond &amp;quot;Hello, World!&amp;quot; to requests
 handle_request(_Request) :-
 	format('Content-type: text/plain~n~n'),
 	format('Hello, World!').
 
+% Start the server listening to localhost:Port
 server(Port) :-
 	http_server(http_dispatch, [port(Port)]),
+    
+    % Spin while waiting for the next message
 	thread_get_message(_).
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;There's a couple things to point out here. First, accepting a &lt;code&gt;Port&lt;/code&gt; variable for the &lt;code&gt;server&lt;/code&gt; predicate allows us to keep the port flexible as an environment variable, best to not hardcode that. Second, invoking the &lt;code&gt;thread_get_message&lt;/code&gt; predicate isn't necessary when we're debugging locally but it is going to be necessary when we run it in Docker to prevent the server from halting immediately.&lt;/p&gt;
