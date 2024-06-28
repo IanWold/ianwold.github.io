@@ -18,18 +18,24 @@
 To demonstrate this, let's set up a simple Hello World API with SWI Prolog:
 
 ```prolog
+% Import SWI modules for HTTP servers
 :- use_module(library(http/thread_httpd)).
 :- use_module(library(http/http_dispatch)).
 :- use_module(library(http/html_write)).
 
+% Set handle_request as the handler for URL /
 :- http_handler('/', handle_request, []).
 
+% Respond "Hello, World!" to requests
 handle_request(_Request) :-
 	format('Content-type: text/plain~n~n'),
 	format('Hello, World!').
 
+% Start the server listening to localhost:Port
 server(Port) :-
 	http_server(http_dispatch, [port(Port)]),
+    
+    % Spin while waiting for the next message
 	thread_get_message(_).
 ```
 
