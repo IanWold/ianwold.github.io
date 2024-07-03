@@ -81,4 +81,8 @@ And deploy:
 docker run -p 5000:5000 prolog-server
 ```
 
-And that's it, we're off to the races! With dev ex this smooth, Prolog will concur the world. Any day now. Surely.
+And that's it! Isn't it fantastic how simple this is? Truly Prolog is the future.
+
+"But Ian," I hear you saying, "isn't it this easy to deploy _anything_ in Docker? Isn't that _the whole point_?"
+
+To thee I can only shake my head and hold my hands up in despair.
