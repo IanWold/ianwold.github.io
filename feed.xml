@@ -1032,6 +1032,43 @@ if (
       <a10:updated>2024-02-14T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">dont_retro_the_same_twice</guid>
+      <link>https://ian.wold.guru/Posts/dont_retro_the_same_twice.html</link>
+      <title>Don't Retro the Same Twice</title>
+      <description>&lt;p&gt;Retrospective meetings are a cornerstone for most modern software engineering teams. They're the only regular practice mentioned in the agile manifesto, they've been written about ad nauseum, and many colleagues seem quite excited on the days their teams have retrospectives. Well-conducted, the retrospective can offer a lot of benefits to a team, their projects, and their organization on the whole, so everyone &lt;em&gt;really&lt;/em&gt; wants to get the retro meeting right.&lt;/p&gt;
+&lt;p&gt;There's maybe a billion (I could be underselling it) formats for retro meetings, and in their care and consideration some folks have very strong opinions on the &amp;quot;right&amp;quot; structure for retro meetings. As (I hope) my writing on this blog can attest, I'm not a fan of that way of thinking about process. Retrospectives are simple - as long as there is a way to identify and discuss problems and successes then you're good to go; specific formats give some icing on the cake.&lt;/p&gt;
+&lt;p&gt;That icing can be quite important at times. While the primary utility of the retro is to identify and expedite the solution to problems, there's a host of ancillary benefits that can be gained from different retrospective formats. Indeed, different retro formats are going to be better suited to expressing different benefits. Maybe your team has a project which requires something more specific out of your retrospectives, and a particular format is obviously good for your team. That's great! Just remember it might change.&lt;/p&gt;
+&lt;p&gt;For most teams, one format isn't going to be clearly superior, but they can benefit - and benefit differently - from any format. So this is the advice I'll give: Don't have the same retro meeting twice in a row. This allows your team to get the benefits of all the formats, and there's a few ways to go about it. If you've got some persnickety folks on the team, you can rotate between different preferred formats to keep them all happy. You could, ahead of the meeting, briefly describe a couple of obvious challenges to Chat GPT and ask it to recommend a retro format to suit. My preferred way is to pick a format out of a hat and run with it.&lt;/p&gt;
+&lt;p&gt;Whatever you choose, don't retro the same twice! No format can do &lt;em&gt;all the things&lt;/em&gt; for you and your team, and keeping the retrospectives fresh allows your team to approach their problems from different angles. For short-term problems (problems within a sprint) any format is going to be sufficient - as I said earlier all that is really needed is the ability to identify and discuss these. However, a lot of teams have long-running or more complicated problems, and the different angles approach might be better at unblocking these.&lt;/p&gt;
+&lt;p&gt;For the sake of being (too) analytical about it, here are some of the ancillary benefits (beyond identifying problems, improving process, and adapting to change) that retrospectives offer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Increase collaboration between team members&lt;/li&gt;
+&lt;li&gt;Opportunity for distributed teams to build culture&lt;/li&gt;
+&lt;li&gt;Celebrating individual and team successes makes everyone feel good&lt;/li&gt;
+&lt;li&gt;Builds trust between members&lt;/li&gt;
+&lt;li&gt;Helps individual members learn from mistakes&lt;/li&gt;
+&lt;li&gt;Ensures team members have ownership over process&lt;/li&gt;
+&lt;li&gt;Ensures members are aligned on team goals&lt;/li&gt;
+&lt;li&gt;Allows individuals to &amp;quot;vent&amp;quot; when needed&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And then here are some common formats, and how they express different benefits. You can find endless blogs about retro formats, so this isn't an exhaustive list but an exercise to point out how different formats can yield different benefits.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Four Ls&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;quot;Loved, Loathed, Longed For, and Learned&amp;quot;. The &amp;quot;Loathed&amp;quot; column is particularly beneficial for members to see the results of mistakes and learn from them, and the &amp;quot;Learned&amp;quot; column specifically helps to stimulate collaboration.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Sailboat&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;quot;Wind (what's helping us), Anchor (what's holding us back), Rocks/Icebergs (potential future blockers), Island (what's the destination)&amp;quot;. The &amp;quot;Rocks&amp;quot; and &amp;quot;Island&amp;quot; columns ensure the retro is balanced on looking to the future as much as the past, which enhances understanding and ownership over goals.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Mad, Sad, Glad&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Self-descriptive, I hope! This breaks down the barriers to conversation, helping to build culture, celebrate successes, and allowing individuals to vent.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Six Hats&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Each member &amp;quot;wears&amp;quot; one of the hats - Facts, Emotions, Creativity, Process, Positives, Negatives - and each issue is looked at from that perspective. Forcing these perspectives to be accounted for helps to stimulate collaboration and trust between individuals.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Five Whys&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;For each problem, ask &amp;quot;Why?&amp;quot; five times. By hyper-focusing on root causes, this can give the team a lot of control over its process by gaining a better understanding of how problems arise from situations or facts.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;STAR&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Each problem is described by the Situtation that happened, the Task that was being done, the Actions that were taken, and the Result. This is a hyper-focus on the relationship between goals, actions, and results, which is beneficial for helping individuals learn from mistakes. In the right situation it can help members vent in a productive way.&lt;/p&gt;
+</description>
+      <pubDate>Mon, 22 Jul 2024 00:00:00 Z</pubDate>
+      <a10:updated>2024-07-22T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">eight_maxims</guid>
       <link>https://ian.wold.guru/Posts/eight_maxims.html</link>
       <title>Eight Maxims</title>
