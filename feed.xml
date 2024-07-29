@@ -522,6 +522,43 @@ They've journeyed forth, with purpose evergreen.&lt;/p&gt;
       <a10:updated>2024-05-29T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">book_club_6-7-2024</guid>
+      <link>https://ian.wold.guru/Posts/book_club_6-7-2024.html</link>
+      <title>Book Club 6&amp;7/2024: Postgres</title>
+      <description>&lt;p&gt;I hope you all in the northern hemisphere are enjoying summer; I've been trying to take some extra time here and there to enjoy things before Minnesota inevitably plunges back into the depths of winter, so I've been writing a bit less (and combining two months' book clubs) but I think that's okay, all things considered!&lt;/p&gt;
+&lt;p&gt;A few months ago I wrote a short piece recommending that we &lt;a href="https://ian.wold.guru/Posts/just_use_postgresql.html"&gt;just use PostgreSQL&lt;/a&gt;, and I've spent several months becoming more entrenched in this position. This might be me jumping on the bandwagon - Postgres has become increasingly popular in recent years - but its genuine, proven capabilities leave me wondering what else could be the best de facto choice? You might argue that a default database option isn't needed, though I see a lot of value in it; at least as a standards bearer, like Git is anymore for version control, it provides a baseline for the whole industry.&lt;/p&gt;
+&lt;p&gt;I've become very serious about insisting that any new projects &lt;em&gt;must&lt;/em&gt; use Postgres unless there's a clear argument in favor of another database, and that's a difficult hill to climb out of. The vast majority of professional applications are not just adequately served by a Postgres database, rather Postgres is typically one of the better options. The kicker though is that Postgres usually allows you to do a lot more than just data storage, keeping the solution architecture very minimal for a whole host of apps.&lt;/p&gt;
+&lt;p&gt;I didn't touch on the ancillary capabilities that Postgres has in my original article, but from the articles below we can collate a heck of a lot. It can be your cache, message queue, job queue, or cron daemon. It can act as a document database, graph database, geospatial database, or search database. It supports any data model and easily handles complicated data patterns like event sourcing. Logging, metrics, and analytics can all live within Postgres; &lt;a href="https://www.timescale.com/"&gt;Timescale&lt;/a&gt; allows you to make Postgres your data warehouse.&lt;/p&gt;
+&lt;p&gt;Most importantly, Postgres is &lt;em&gt;used&lt;/em&gt;, and it's used &lt;em&gt;a lot&lt;/em&gt;. All of these solutions are first-class and have been in use in major production systems for quite a while. There's great documentation all over for Postgres and all of these capabilities.&lt;/p&gt;
+&lt;p&gt;The other month I used Redis for a project, as SignalR doesn't have the ability to use PostgreSQL as a backplane, but I'm going to see about writing that. I've been exploring using Postgres for most of the uses above, and I'm feeling quite settled that Postgres is the standard bearer.&lt;/p&gt;
+&lt;p&gt;Next time you get the inkling to use something other than Postgres on a professional project, ask &lt;em&gt;why not Postgres?&lt;/em&gt; Insist on a proper, comprehensive answer that accounts for the flexibility, security, simplicity, documentation, and resilience that you get with Postgres. Yes, it's a tall hill to climb; yes, our professional work requires it.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.timescale.com/blog/postgres-for-everything/"&gt;Why PostgreSQL Is the Bedrock for the Future of Data - Ajay Kulkarni&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.amazingcto.com/postgres-for-everything/"&gt;Just Use Postgres for Everything - Stephan Schmidt&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://medium.com/data-engineering-chariot/why-not-just-use-postgres-cc13a506a9b5"&gt;Why Not Just Use Postgres? - Keith Gregory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dagster.io/blog/skip-kafka-use-postgres-message-queue"&gt;Postgres: a Better Message Queue than Kafka? - Pete Hunt&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://worlds-slowest.dev/posts/postgresql-message-queue/"&gt;How to use PostgreSQL like a message queue - Calvin Furano&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://fatdba.com/2021/07/30/pg_cron-probably-the-best-way-to-schedule-jobs-within-postgresql-database/"&gt;pg_cron : Probably the best way to schedule jobs within PostgreSQL database - FatDBA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://martinheinz.dev/blog/105"&gt;You Don't Need a Dedicated Cache Service - PostgreSQL as a Cache - Martin Heinz&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.dbvis.com/thetable/postgresql-full-text-search-the-definitive-guide/"&gt;PostgreSQL Full Text Search: The Definitive Guide - Antonello Zanini&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.dylanpaulus.com/posts/postgres-is-a-graph-database"&gt;Postgres: The Graph Database You Didn't Know You Had - Dylan Paulus&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://techcommunity.microsoft.com/t5/azure-database-for-postgresql/architecting-petabyte-scale-analytics-by-scaling-out-postgres-on/ba-p/969685"&gt;Architecting petabyte-scale analytics by scaling out Postgres on Azure with the Citus extension - Claire Giordano&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And some videos:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=nWchov5Do-o"&gt;The Only Database Abstraction You Need - The Primagen&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=pfL-9ntZqnI"&gt;Using PostgreSQL to Handle Calendar Data Like a Freak - Rob Conery&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=k5PQq9a4YqA"&gt;Just in time compilation in PostgreSQL - Andres Freund&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And now for something completely different:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=0rlATWBNvMw"&gt;DHH discusses SQLite (and Stoicism) - Aaron Francis with DHH&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Mon, 29 Jul 2024 00:00:00 Z</pubDate>
+      <a10:updated>2024-07-29T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">book_club_9-2023</guid>
       <link>https://ian.wold.guru/Posts/book_club_9-2023.html</link>
       <title>Book Club 9/2023: Papers I Love</title>
