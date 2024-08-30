@@ -1,7 +1,7 @@
 ;;;
 {
 	"title": "There's Always Money in the Banana Stand",
-	"description": "Except the "banana stand" is the transport layer and instead of saving the money for later you're just always setting it on fire.",
+	"description": "Except the 'banana stand' is the transport layer and instead of saving the money for later you're just always setting it on fire.",
 	"date": "30 August 2024",
 	"contents": false,
 	"hero": "photo-1451187580459-43490279c0fa",
