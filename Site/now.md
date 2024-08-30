@@ -14,9 +14,7 @@ At this _very instant_ I am...
 
 **Working** for [Crate & Barrel](https://www.crateandbarrel.com) on modernizing (read: distributing) their ecommerce system, where I get to work with a bunch of fantastic people!
 
-**Researching** distributed systems architectures. Distributed systems are hard.
-
-**Reading** a lot more of the latest developments in philosophy. The philosophies of information, computer science, and engineering are interesting to me right now in trying to consider philosophical issues in software engineering and architecture.
+**Enjoying** the last few weeks of summer. Minneapolis has great summers but less than great winters!
 
 **Practicing** my skills in pool and billiards. [Snooker](https://en.wikipedia.org/wiki/Snooker) is my favorite sport, and while I don't have easy access to a table in Minneapolis, I can practice other cue sports.
 
