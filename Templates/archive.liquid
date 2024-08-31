@@ -22,7 +22,9 @@
 		{% assign intYear = year | plus: 0 %}
 		{% if hidePastArticles == false or intYear > 2020 %}
 			<section id="{{ year }}">
-				<div class="subheading">{{ year }}</div>
+				{% if year.size > 1 %}
+					<div class="subheading">{{ year }}</div>
+				{% endif %}
 				<ul>
 					{% assign postsForYear = posts | where: "year", year %}
 					{% for post in postsForYear %}
