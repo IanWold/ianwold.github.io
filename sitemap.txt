@@ -55,6 +55,7 @@ https://ian.wold.guru/Posts/the_network_is_reliable.html
 https://ian.wold.guru/Posts/the_network_is_secure.html
 https://ian.wold.guru/Posts/topology_doesnt_change.html
 https://ian.wold.guru/Posts/using_interfaces.html
+https://ian.wold.guru/Posts/why_i_have_this_blog.html
 https://ian.wold.guru/Posts/write_your_own_rdbms_versioned_migration_boilerplate.html
 https://ian.wold.guru/Series/fallacies_distributed_computing.html
 https://ian.wold.guru/Series/book_club.html
