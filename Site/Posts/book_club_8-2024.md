@@ -1,7 +1,7 @@
 ;;;
 {
 	"title": "Book Club 8/2024: Labor",
-	"description": "",
+	"description": "Using Labor Day as an excuse to wonder about some recent trends in the industry",
 	"date": "2 September 2024",
 	"contents": false,
 	"hero": "photo-1672309558498-cfcc89afff25",
