@@ -36,6 +36,7 @@ https://ian.wold.guru/Posts/its_better_to_be_consistently_incorrect_than_consist
 https://ian.wold.guru/Posts/ive_indiewebbed_my_site.html
 https://ian.wold.guru/Posts/just_use_postgresql.html
 https://ian.wold.guru/Posts/lateny_is_zero.html
+https://ian.wold.guru/Posts/learn_the_old_languages.html
 https://ian.wold.guru/Posts/monokai_gray.html
 https://ian.wold.guru/Posts/my_continuing_descent_into_madness.html
 https://ian.wold.guru/Posts/on_task_priority.html
