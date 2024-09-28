@@ -571,9 +571,9 @@ Indeed, at the end of the day while the solution I presented above is I think th
 To start with, the boilerplate code that sets up the `DatabaseQueryResult` and each of its options in 140 lines long, and while that isn't really a lot of code, it's certainly a lot of code given how simple the concept is. The syntax to create a union type may end up looking something like the following:
 
 ```
-union DatabaseQueryResult
+union DatabaseQueryResult<T>
 {
-    Found<T>(T Value);
+    Found(T Value);
     Empty();
     ClientError(string Description);
     ServerError(string Description);
@@ -586,7 +586,7 @@ No `Map` function necessary to boot, since the language will allow the use of `s
 public void ShowItems() => Console.WriteLine(
     GetAllItemsFromDatabase(...) switch
     {
-        Found<IEnumerable<item>>(items) => string.Join(items.Select(i => i.ToString()), "\n"),
+        Found(items) => string.Join(items.Select(i => i.ToString()), "\n"),
         Empty() => "No items found!",
         ClientError(description) or ServerError(description) => $"Error! {description}"
     }
