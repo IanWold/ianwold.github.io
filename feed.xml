@@ -2479,9 +2479,9 @@ public record ServerError(string Description);
 &lt;p&gt;Once DUs are included in the language, the above code will become obsolete. As nice as the API we're able to create is, it might still be a bit &lt;em&gt;interesting&lt;/em&gt; for a new member of your team discovering &lt;code&gt;.Map&lt;/code&gt; everywhere. It's not that it isn't usable or easy to code in, but it is different. Wouldn't it be nice to be able to use &lt;code&gt;switch&lt;/code&gt;? And on that point, wouldn't it be nicer to not need to include all the boilerplate?&lt;/p&gt;
 &lt;p&gt;Indeed, at the end of the day while the solution I presented above is I think the best option currently, it is still hacky. I don't think this solution - or any others - will offer anything beyond what the language's own upcoming DU features will. The syntax for this feature is not set in stone, but &lt;a href="https://github.com/dotnet/csharplang/blob/main/meetings/2024/LDM-2024-03-27.md"&gt;a recent meeting and presentation&lt;/a&gt; by the language design team shows their current thinking, so I want to outline a snapshot of what the code that replaces my solution will look like.&lt;/p&gt;
 &lt;p&gt;To start with, the boilerplate code that sets up the &lt;code&gt;DatabaseQueryResult&lt;/code&gt; and each of its options in 140 lines long, and while that isn't really a lot of code, it's certainly a lot of code given how simple the concept is. The syntax to create a union type may end up looking something like the following:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;union DatabaseQueryResult
+&lt;pre&gt;&lt;code&gt;union DatabaseQueryResult&amp;lt;T&amp;gt;
 {
-    Found&amp;lt;T&amp;gt;(T Value);
+    Found(T Value);
     Empty();
     ClientError(string Description);
     ServerError(string Description);
@@ -2491,7 +2491,7 @@ public record ServerError(string Description);
 &lt;pre&gt;&lt;code&gt;public void ShowItems() =&amp;gt; Console.WriteLine(
     GetAllItemsFromDatabase(...) switch
     {
-        Found&amp;lt;IEnumerable&amp;lt;item&amp;gt;&amp;gt;(items) =&amp;gt; string.Join(items.Select(i =&amp;gt; i.ToString()), &amp;quot;\n&amp;quot;),
+        Found(items) =&amp;gt; string.Join(items.Select(i =&amp;gt; i.ToString()), &amp;quot;\n&amp;quot;),
         Empty() =&amp;gt; &amp;quot;No items found!&amp;quot;,
         ClientError(description) or ServerError(description) =&amp;gt; $&amp;quot;Error! {description}&amp;quot;
     }
