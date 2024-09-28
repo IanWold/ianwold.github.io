@@ -607,6 +607,54 @@ They've journeyed forth, with purpose evergreen.&lt;/p&gt;
       <a10:updated>2023-09-28T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">book_club_9-2024</guid>
+      <link>https://ian.wold.guru/Posts/book_club_9-2024.html</link>
+      <title>Book Club 9/2024: Blogroll</title>
+      <description>&lt;p&gt;As I &lt;a href="https://ian.wold.guru/Posts/why_i_have_this_blog.html"&gt;posted a couple weeks ago&lt;/a&gt;, this month is the anniversary of restarting my blog! As though trapped in a Norm MacDonald interview, I'm frequently asked by my colleagues where I get my ideas from. Thus, for today's book club I'm just going to share a list of blogs which I tune into frequently. Some of them are folks I've bumped into at a conference, others are folks who just came across my radar at some point. Some blogs haven't gotten an update in a bit, some are quite active. All of them are somehow related to software engineering.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://cultureandcommunication.org/galloway/"&gt;Alexander Galloway&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://holub.com/"&gt;Allen Holub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://math.andrej.com/"&gt;Andrej Bauer &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ariadne.space/"&gt;Ariadne Conill&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://benhoyt.com/"&gt;Ben Hoyt&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://bcantrill.dtrace.org/"&gt;Bryan Cantrill&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.benkuhn.net/"&gt;Ben Kuhn&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://nullprogram.com/"&gt;Chris Wellons&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://overreacted.io/"&gt;Dan Abramov&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dannorth.net/"&gt;Dan North&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://lemire.me/blog/"&gt;Daniel Lemire&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://world.hey.com/dhh"&gt;David Heinemeier Hansson&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ericnormand.me/"&gt;Eric Normand&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://fsharpforfunandprofit.com/"&gt;F# for Fun and Profit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.geepawhill.org/"&gt;GeePaw Hill&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://gojko.net/about/"&gt;Gojko Adzic&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://jvns.ca/"&gt;Julia Evans&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://khalidabuhakmeh.com/"&gt;Khalid Abuhakmeh&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://surfingcomplexity.blog/"&gt;Surfing Complexity&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://lambda-the-ultimate.org/"&gt;Lambda the Ultimate&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.logicmatters.net/"&gt;Logic Matters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lucasfcosta.com/"&gt;Lucas F. Costa&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.philosophyofinformation.net/"&gt;Luciano Floridi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://blog.maartenballiauw.be/"&gt;Maarten Balliauw&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://martin.kleppmann.com/"&gt;Martin Kleppmann&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://matt-rickard.com/archive"&gt;Matt Rickard&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://mattwarren.org/"&gt;Matt Warren&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.michaelnygard.com/"&gt;Michael Nygard&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://paulgraham.com/index.html"&gt;Paul Graham&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://wadler.blogspot.com/"&gt;Philip Wadler&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://renegadeotter.com/"&gt;Renegade Otter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.hanselman.com/"&gt;Scott Hanselman&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://newsletter.squishy.computer/"&gt;Squishy Computer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://staysaasy.com/"&gt;Stay SaaSy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://taylor.town/"&gt;taylor.town&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://tomcritchlow.com/writing/"&gt;Tom Critchlow&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you have other blogs that you like and want me to check out (even your own), don’t ever hesitate to &lt;a href="https://ian.wold.guru/connect.html"&gt;connect with me &lt;/a&gt; about it!&lt;/p&gt;
+</description>
+      <pubDate>Sat, 28 Sep 2024 00:00:00 Z</pubDate>
+      <a10:updated>2024-09-28T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">clean_meetings_a_software_engineers_guide</guid>
       <link>https://ian.wold.guru/Posts/clean_meetings_a_software_engineers_guide.html</link>
       <title>Clean Meetings: A Software Engineer's Guide</title>
