@@ -90,7 +90,7 @@
 			</time>
 		</span>
 		<span class="time">
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 25  Minutes 
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 27  Minutes 
 		</span>
 		<span class="history">
 			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-commit"><circle cx="12" cy="12" r="4"></circle><line x1="1.05" y1="12" x2="7" y2="12"></line><line x1="17.01" y1="12" x2="22.96" y2="12"></line></svg> <a href="https://github.com/IanWold/ianwold.github.io/commits/master/Site/Posts/roll_your_own_csharp_results.md">History</a>
@@ -532,6 +532,34 @@ public record ServerError(string Description);
 );
 </textarea></code></pre>
 <p>Now <em>that's</em> looking properly functional!</p>
+</section>
+<section id="future-approach:-discriminated-tag-unions">
+<h1>Future Approach: Discriminated Tag Unions <a class="section-link" href="https://ian.wold.guru/Posts/roll_your_own_csharp_results.html#future-approach:-discriminated-tag-unions">#</a></h1>
+<p><em>Update: I added this section to give a little more context on my reference to discriminated unions in C# and the context in which this article exists.</em></p>
+<p>I'm a big fan of these, and a big proponent of their inclusion in C#. The language does not currently support them, but the language design team is <a href="https://github.com/dotnet/csharplang/blob/main/proposals/TypeUnions.md">actively discussing their inclusion</a>. As I discussed earlier, our result is one of their use cases.</p>
+<p>Once DUs are included in the language, the above code will become obsolete. As nice as the API we're able to create is, it might still be a bit <em>interesting</em> for a new member of your team discovering <code>.Map</code> everywhere. It's not that it isn't usable or easy to code in, but it is different. Wouldn't it be nice to be able to use <code>switch</code>? And on that point, wouldn't it be nicer to not need to include all the boilerplate?</p>
+<p>Indeed, at the end of the day while the solution I presented above is I think the best option currently, it is still hacky. I don't think this solution - or any others - will offer anything beyond what the language's own upcoming DU features will. The syntax for this feature is not set in stone, but <a href="https://github.com/dotnet/csharplang/blob/main/meetings/2024/LDM-2024-03-27.md">a recent meeting and presentation</a> by the language design team shows their current thinking, so I want to outline a snapshot of what the code that replaces my solution will look like.</p>
+<p>To start with, the boilerplate code that sets up the <code>DatabaseQueryResult</code> and each of its options in 140 lines long, and while that isn't really a lot of code, it's certainly a lot of code given how simple the concept is. The syntax to create a union type may end up looking something like the following:</p>
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">union DatabaseQueryResult</span></div><div class='line'><span style="color: #F8F8F2;">{</span></div><div class='line'><span style="color: #F8F8F2;">    Found&lt;T&gt;(T Value);</span></div><div class='line'><span style="color: #F8F8F2;">    Empty();</span></div><div class='line'><span style="color: #F8F8F2;">    ClientError(string Description);</span></div><div class='line'><span style="color: #F8F8F2;">    ServerError(string Description);</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><textarea data-torchlight-original="true" style="display: none !important;">union DatabaseQueryResult
+{
+    Found&lt;T&gt;(T Value);
+    Empty();
+    ClientError(string Description);
+    ServerError(string Description);
+}
+</textarea></code></pre>
+<p>No <code>Map</code> function necessary to boot, since the language will allow the use of <code>switch</code>:</p>
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">public void ShowItems() =&gt; Console.WriteLine(</span></div><div class='line'><span style="color: #F8F8F2;">    GetAllItemsFromDatabase(...) switch</span></div><div class='line'><span style="color: #F8F8F2;">    {</span></div><div class='line'><span style="color: #F8F8F2;">        Found&lt;IEnumerable&lt;item&gt;&gt;(items) =&gt; string.Join(items.Select(i =&gt; i.ToString()), &quot;\n&quot;),</span></div><div class='line'><span style="color: #F8F8F2;">        Empty() =&gt; &quot;No items found!&quot;,</span></div><div class='line'><span style="color: #F8F8F2;">        ClientError(description) or ServerError(description) =&gt; $&quot;Error! {description}&quot;</span></div><div class='line'><span style="color: #F8F8F2;">    }</span></div><div class='line'><span style="color: #F8F8F2;">);</span></div><textarea data-torchlight-original="true" style="display: none !important;">public void ShowItems() =&gt; Console.WriteLine(
+    GetAllItemsFromDatabase(...) switch
+    {
+        Found&lt;IEnumerable&lt;item&gt;&gt;(items) =&gt; string.Join(items.Select(i =&gt; i.ToString()), "\n"),
+        Empty() =&gt; "No items found!",
+        ClientError(description) or ServerError(description) =&gt; $"Error! {description}"
+    }
+);
+</textarea></code></pre>
+<p>And ... that's it! From 164 lines total in my sample code down to 16.</p>
+<hr />
 <p><em>The complete code from this article <a href="https://gist.github.com/IanWold/7efdf5df24bdd4e6ff5c652e1c051d6f">is available on GitHub</a>.</em></p>
 </section>
 
