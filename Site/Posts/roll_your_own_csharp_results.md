@@ -558,4 +558,43 @@ public void ShowItems() => Console.WriteLine(
 
 Now _that's_ looking properly functional!
 
+# Future Approach: Discriminated Tag Unions
+
+_Update: I added this section to give a little more context on my reference to discriminated unions in C# and the context in which this article exists._
+
+I'm a big fan of these, and a big proponent of their inclusion in C#. The language does not currently support them, but the language design team is [actively discussing their inclusion](https://github.com/dotnet/csharplang/blob/main/proposals/TypeUnions.md). As I discussed earlier, our result is one of their use cases.
+
+Once DUs are included in the language, the above code will become obsolete. As nice as the API we're able to create is, it might still be a bit _interesting_ for a new member of your team discovering `.Map` everywhere. It's not that it isn't usable or easy to code in, but it is different. Wouldn't it be nice to be able to use `switch`? And on that point, wouldn't it be nicer to not need to include all the boilerplate?
+
+Indeed, at the end of the day while the solution I presented above is I think the best option currently, it is still hacky. I don't think this solution - or any others - will offer anything beyond what the language's own upcoming DU features will. The syntax for this feature is not set in stone, but [a recent meeting and presentation](https://github.com/dotnet/csharplang/blob/main/meetings/2024/LDM-2024-03-27.md) by the language design team shows their current thinking, so I want to outline a snapshot of what the code that replaces my solution will look like.
+
+To start with, the boilerplate code that sets up the `DatabaseQueryResult` and each of its options in 140 lines long, and while that isn't really a lot of code, it's certainly a lot of code given how simple the concept is. The syntax to create a union type may end up looking something like the following:
+
+```
+union DatabaseQueryResult
+{
+    Found<T>(T Value);
+    Empty();
+    ClientError(string Description);
+    ServerError(string Description);
+}
+```
+
+No `Map` function necessary to boot, since the language will allow the use of `switch`:
+
+```
+public void ShowItems() => Console.WriteLine(
+    GetAllItemsFromDatabase(...) switch
+    {
+        Found<IEnumerable<item>>(items) => string.Join(items.Select(i => i.ToString()), "\n"),
+        Empty() => "No items found!",
+        ClientError(description) or ServerError(description) => $"Error! {description}"
+    }
+);
+```
+
+And ... that's it! From 164 lines total in my sample code down to 16.
+
+---
+
 _The complete code from this article [is available on GitHub](https://gist.github.com/IanWold/7efdf5df24bdd4e6ff5c652e1c051d6f)._
