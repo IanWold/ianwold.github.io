@@ -53,4 +53,4 @@ As I [posted a couple weeks ago](https://ian.wold.guru/Posts/why_i_have_this_blo
 * [taylor.town](https://taylor.town/)
 * [Tom Critchlow](https://tomcritchlow.com/writing/)
 
-If you have other blogs that you like and want me to check out (even your own), don’t ever hesitate to [connect with me ](https://ian.wold.guru/connect.html) about it!
+If you have other blogs that you like and want me to check out (even your own), don’t ever hesitate to [connect with me ](https://ian.wold.guru/connect.html), or leave a comment right here 👇🏻
