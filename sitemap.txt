@@ -35,6 +35,7 @@ https://ian.wold.guru/Posts/free_planning_poker.html
 https://ian.wold.guru/Posts/giscus_is_awesome.html
 https://ian.wold.guru/Posts/its_better_to_be_consistently_incorrect_than_consistently_correct.html
 https://ian.wold.guru/Posts/ive_indiewebbed_my_site.html
+https://ian.wold.guru/Posts/ive_stopped_using_visual_studio.html
 https://ian.wold.guru/Posts/just_use_postgresql.html
 https://ian.wold.guru/Posts/lateny_is_zero.html
 https://ian.wold.guru/Posts/learn_the_old_languages.html
