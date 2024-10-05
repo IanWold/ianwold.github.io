@@ -8,7 +8,7 @@
     "related": [
         { "title": "Write Your Own RDBMS Versioned Migration Boilerplate", "description": "Versioned migrations are an essential tool for systems using an RDBMS, and it's no work at all to start your applications the right way with this pattern.", "fileName": "write_your_own_rdbms_versioned_migration_boilerplate" },
         { "title": "Just Use PostgreSQL", "description": "With a vast and growing ecosystem of database systems, data models, patterns, and paradigms, choosing the right one can be a long and complicated process. I prefer a simpler approach: Just use PostgreSQL.", "fileName": "just_use_postgresql" },
-        { "title": "Learn the Old Languages", "description": "New languages are hip, old languages are erudite. Don't neglect these languages as you round out your skills.", "fileName": "learn_the_old_languages" },
+        { "title": "Learn the Old Languages", "description": "New languages are hip, old languages are erudite. Don't neglect these languages as you round out your skills.", "fileName": "learn_the_old_languages" }
     ]
 }
 ;;;
