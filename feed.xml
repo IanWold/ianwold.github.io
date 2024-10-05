@@ -1780,6 +1780,186 @@ item.DoSomething();
       <a10:updated>2024-03-03T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">postgres_use_views_to_refactor_to_soft_delete</guid>
+      <link>https://ian.wold.guru/Posts/postgres_use_views_to_refactor_to_soft_delete.html</link>
+      <title>Postgres: Use Views to Refactor to Soft Delete</title>
+      <description>&lt;p&gt;In the world of persistence, there's two main patterns (maybe &amp;quot;groups of patterns&amp;quot;) to handle deletion: &lt;em&gt;hard&lt;/em&gt; and &lt;em&gt;soft&lt;/em&gt; deletion. Hard deletion is the default for most database systems - when you &amp;quot;delete&amp;quot; a record it is wiped from the database; as soon as the delete is committed the data is gone forever. More common in most business scenarios - particularly server-side - is to retain the deleted data, just using a flag to hide the &amp;quot;deleted&amp;quot; data from the customer. This is soft deletion: it allows us to support more comprehensive internal reporting, maintain more complicated referential integrity, and we can support an &amp;quot;undo&amp;quot; button for our users.&lt;/p&gt;
+&lt;p&gt;If you're designing a system from the ground up and you know you need to accommodate soft deletion, there's a whole host of implementations you can tailor to your needs. If you're updating an existing system from hard to soft delete though, you're more constrained. Yes, the data that has already been hard deleted is irrecoverable after your migration, but that's not your main concern. You might have a lot of tables and there's probably already a lot of code written to query against these tables. This refactor might seem like a lot of work at first glance.&lt;/p&gt;
+&lt;p&gt;Luckily because &lt;a href="https://ian.wold.guru/Posts/just_use_postgresql.html"&gt;you're definitely using Postgres&lt;/a&gt;, this really isn't a major concern. There's a simple way using views and rules we can add soft deletion &lt;em&gt;without changing any of our queries&lt;/em&gt;! In fact, there are two options which you might want to chose in different situations. I've implemented these strategies on a few production systems with zero downtime, and I'm sure you'll be able to make just as quick work of it as I can.&lt;/p&gt;
+&lt;p&gt;The first strategy keeps all records - those that are deleted and those that aren't - in a single table and uses a view to filter out deleted items. The second strategy adds a second table specifically for deleted items and uses a view to join the deleted and non-deleted records when needed. I have found the first option simpler to maintain and &lt;em&gt;usually&lt;/em&gt; simpler to implement, while the second option is better in scenarios where I need to run a lot of different queries on the deleted vs. non-deleted data, and note that the second option &lt;em&gt;can&lt;/em&gt; be easier to implement depending on the existing schema. These strategies could feasibly be combined in a single database, with some tables using one strategy and others the other, though consistency is probably better here.&lt;/p&gt;
+&lt;h1&gt;Setting Up&lt;/h1&gt;
+&lt;p&gt;I'm going to start by defining the existing system we're going to refactor. Let's consider a subset of an ecommerce system with tables &lt;code&gt;items&lt;/code&gt;, &lt;code&gt;cart&lt;/code&gt;, and of course &lt;code&gt;cart_items&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;CREATE TABLE items (
+    item_id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE cart (
+    cart_id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL, -- I won't define this table
+    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE cart_items (
+    cart_item_id SERIAL PRIMARY KEY,
+    cart_id INT NOT NULL,
+    item_id INT NOT NULL,
+    quantity INT NOT NULL DEFAULT 1,
+    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    CONSTRAINT fk_cart FOREIGN KEY (cart_id) REFERENCES cart (cart_id) ON DELETE CASCADE,
+    CONSTRAINT fk_item FOREIGN KEY (item_id) REFERENCES items (item_id) ON DELETE CASCADE
+);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And we're going to need to support all the various queries currently written against these tables. In addition to all the queries &lt;code&gt;SELECT&lt;/code&gt;ing from these tables, we're inserting, updating, and indeed deleting from each of these tables - those queries all need to remain the same.&lt;/p&gt;
+&lt;p&gt;There's a couple interesting queries I want to consider. Take the scenario where a cart is deleted:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;DELETE FROM carts WHERE cart_id = @cartId
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In this case, it's pretty straightforward to assume that its items should delete at the same time, so we'll need to preserve the cascade functionality but with soft delete in mind. How about the following though:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;DELETE FROM items WHERE item_id = @itemId;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In our current production system, when we delete that item it will delete from the cart automatically. This is a good demonstration of why we care about soft delete - by preserving the data in our database we'll be able to tell the user that their dinner plate set is no longer available. Indeed, properly supporting that functionality is going to require some extra work in our code, but remember that &lt;em&gt;that&lt;/em&gt; is a feature add: we can do our soft delete refactor and deploy it, preserving the current functionality with minimal effort. Later iterations can build on this work to add the new capabilities in.&lt;/p&gt;
+&lt;p&gt;This is the sort of planning work which needs to be done before beginning the refactor: The relationship between tables needs to be mapped out and understood. Typically you'll already have cascades set, so ideally this won't be difficult work to do.&lt;/p&gt;
+&lt;h1&gt;Single Table&lt;/h1&gt;
+&lt;p&gt;This is the first strategy I'll discuss. To implement this, we'll go through a few discrete steps. First, we'll add a &lt;code&gt;deleted&lt;/code&gt; flag to all of our tables, then we'll create a view for each table that excludes deleted records, and finally we'll update the definition of &lt;code&gt;DELETE&lt;/code&gt; to perform the soft delete. Those views will effectively replace our tables for all queries and commands. After the refactor, deleted items can be queried directly from the original tables, which for all other purposes will have been &amp;quot;hidden&amp;quot; by the new views.&lt;/p&gt;
+&lt;h2&gt;Adding the Deleted Flag&lt;/h2&gt;
+&lt;p&gt;The first step in our refactor will be to update every table we want to soft delete to add a new column. This will be the flag that determines whether the record is deleted or not. You can use just a boolean here, however this is an opportunity for us to capture more data and potentially make debugging a bit easier. I prefer using a nullable timestamp for my flag - &lt;code&gt;null&lt;/code&gt; signifies it is &lt;em&gt;not&lt;/em&gt; deleted, whereas the presence of a date indicates not only &lt;em&gt;that&lt;/em&gt; it was deleted, but also &lt;em&gt;when&lt;/em&gt;. Because soft deletion is commonly used to support internal reporting scenarios, this can sometimes be quite useful information.&lt;/p&gt;
+&lt;p&gt;Adding the column is quite straightforward of course, it can be added with no effect on the overall system:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;ALTER TABLE items ADD COLUMN deleted TIMESTAMP DEFAULT NULL;
+
+ALTER TABLE cart ADD COLUMN deleted TIMESTAMP DEFAULT NULL;
+
+ALTER TABLE cart_items ADD COLUMN deleted TIMESTAMP DEFAULT NULL;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This can be deployed at any time and will not affect the rest of the system unless you're doing something squirrely with your tables. Just note though that if there's a long gap between your migration steps, new tables should have this column included. Because this column isn't used, it will be null for all records, and until we proceed to the next steps records will still be hard deleted.&lt;/p&gt;
+&lt;h2&gt;Hiding Deleted Data&lt;/h2&gt;
+&lt;p&gt;This second step can also be deployed at any time after the first step with no change in the functionality of the system: we're going to hide any data where &lt;code&gt;deleted&lt;/code&gt; is not null. In order to accomplish this without needing to rewrite any of our queries, constraints, or the like, we'll use views to achieve this.&lt;/p&gt;
+&lt;p&gt;For the unfamiliar, views act just like tables, but are essentially projections of other underlying tables and views. You define them with a &lt;code&gt;SELECT&lt;/code&gt; statement just as you would query any other data. This allows you to marry commonly-referenced data together, but in our case we're going to use them a bit differently.&lt;/p&gt;
+&lt;p&gt;For &lt;em&gt;each&lt;/em&gt; table which has a &lt;code&gt;deleted&lt;/code&gt; column, we're going to define a new view which excludes the deleted values of the underlying column. Now, because we have how many references to the tables named &lt;code&gt;items&lt;/code&gt;, &lt;code&gt;cart&lt;/code&gt;, and &lt;code&gt;cart_items&lt;/code&gt;, and it's &lt;em&gt;these&lt;/em&gt; references from which we want to exclude the deleted items, we're going to give our views the names of the current tables and rename the current tables.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;ALTER TABLE items RENAME TO items_all;
+CREATE VIEW items AS SELECT * FROM items_all WHERE deleted IS NULL;
+
+ALTER TABLE cart RENAME TO cart_all;
+CREATE VIEW cart AS SELECT * FROM cart_all WHERE deleted IS NULL;
+
+ALTER TABLE cart_items RENAME TO cart_items_all;
+CREATE VIEW cart_items AS SELECT * FROM cart_items_all WHERE deleted IS NULL;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here I use the convention that the table name is suffixed &amp;quot;_all&amp;quot;, signifying of course that the tables contain &amp;quot;all&amp;quot; of the records. Your requirements might be different, so pick a naming convention that makes sense in the context. I recommend &lt;a href="https://ian.wold.guru/Posts/its_better_to_be_consistently_incorrect_than_consistently_correct.html"&gt;being extremely consistent&lt;/a&gt; here, and I also recommend picking a convention that is obvious in distinguishing the tables.&lt;/p&gt;
+&lt;p&gt;After deploying this update, you'll find that your system is still working exactly as it has in the past. Postgres passes any commands on these views down to the underlying table, so when you &lt;code&gt;INSERT&lt;/code&gt; into one of these views, the data will be inserted into its respective table. Neat!&lt;/p&gt;
+&lt;h2&gt;Make Deletes Not Delete&lt;/h2&gt;
+&lt;p&gt;This is the crucial step now: we need to redefine what a &amp;quot;delete&amp;quot; means. While the last two steps alter neither the behavior of the system nor the representation, this step will alter the representation of the data, and so long as we're dilligent it will not alter the behavior for your users. Because you're altering the data representation now though, be careful!&lt;/p&gt;
+&lt;p&gt;There's two steps we need to take here at once. First, we need to tell Postgres that when it gets a &lt;code&gt;DELETE&lt;/code&gt; command for one of these tables that it actually needs to &lt;em&gt;update&lt;/em&gt; the &lt;code&gt;deleted&lt;/code&gt; column instead. Second, we need to define the new cascade behaviors to propogate the soft deletion in the intended way.&lt;/p&gt;
+&lt;p&gt;To redefine &lt;code&gt;DELETE&lt;/code&gt;, Potgres allows us to create a &lt;em&gt;rule&lt;/em&gt; to perform an alternate action &lt;em&gt;instead&lt;/em&gt;. Typical for Postgres, this syntax is quite straightforward:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;CREATE RULE rule_soft_delete AS ON DELETE TO items DO INSTEAD (UPDATE items_all SET deleted = CURRENT_TIMESTAMP WHERE id = OLD.id);
+CREATE RULE rule_soft_delete AS ON DELETE TO carts DO INSTEAD (UPDATE carts_all SET deleted = CURRENT_TIMESTAMP WHERE id = OLD.id);
+CREATE RULE rule_soft_delete AS ON DELETE TO cart_items DO INSTEAD (UPDATE cart_items_all SET deleted = CURRENT_TIMESTAMP WHERE id = OLD.id);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And then we need to handle the cascades. Let's start with the simple case where we know that deleting a cart should cascade to each of its items. The rule we define will act on updates to the &lt;code&gt;carts_all&lt;/code&gt; table and propogate new, non-null values for &lt;code&gt;deleted&lt;/code&gt; to the cart items:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;CREATE RULE rule_cascade_deleted_cart_items AS ON UPDATE TO carts_all
+    WHERE OLD.deleted IS DISTINCT FROM NEW.deleted
+    DO ALSO UPDATE cart_items_all SET deleted = NEW.deleted WHERE cart_id = OLD.id;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Recall that the other cascade case, where we delete an item, is more complicated. The current behavior (which we are just trying to preserve for now) is that items are deleted from a cart when the items themselves are deleted. The state we want to achieve (some time after this migration) is that items will still show in the cart but as &amp;quot;no longer available&amp;quot;. That will take some extra coding to implement, however depending on the current state of our system we might be able to achieve some cost savings.&lt;/p&gt;
+&lt;p&gt;If you just want to keep the refactor simple or your system wouldn't currently support an alternate scheme, then you can implement the exact same rule but for items, then remove it later once you're ready. However, consider whether your current system would be able to do without the cascade right off the bat here. Suppose you have some logic on your cart page which attempts to get item data for all items in the cart and will not display items for which it cannot find data. In this case, you do not need to add the cascade, and the users will still observe the same behavior they currently have!&lt;/p&gt;
+&lt;p&gt;If you do decide not to carry over the cascade, there is the matter of the foreign key reference - if we soft delete a record from the &lt;code&gt;items_all&lt;/code&gt; table, the foreign key on &lt;code&gt;cart_items.item_id&lt;/code&gt; is still referencing the new &lt;code&gt;items&lt;/code&gt; view and will break! In this case, we'll need to update the foreign key now:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-SQL"&gt;ALTER TABLE cart_items_all DROP CONSTRAINT fk_item;
+ALTER TABLE cart_items_all ADD CONSTRAINT fk_items_all FOREIGN KEY (item_id) REFERENCES items_all (item_id) ON DELETE CASCADE;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Again, this step does &lt;em&gt;not&lt;/em&gt; need to be done now if you are adding the manual cascade for &lt;code&gt;items&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Accessing Deleted Records&lt;/h2&gt;
+&lt;p&gt;At this point, your migration is finished. Congratulations! In order to get records that have been deleted, you just need to query the &lt;code&gt;_all&lt;/code&gt; table for that record:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;SELECT * FROM items_all WHERE ...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In order to hard delete any records, you can &lt;code&gt;DELETE&lt;/code&gt; from the &lt;code&gt;_all&lt;/code&gt; table:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;DELETE FROM items_all WHERE ...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;Separate Deleted Table&lt;/h1&gt;
+&lt;p&gt;This is the second strategy, where deleted items are kept in separate tables. We'll also be able to work through some discrete steps to implement this. First, for each table we'll create a corresponding deleted table, and then we'll also create a corresponding view to unite the two. Finally, we'll alter the definition of &lt;code&gt;DELETE&lt;/code&gt; to perform the soft delete. After the refactor, we'll be able to consult the separate deleted tables to work with our deleted records.&lt;/p&gt;
+&lt;h2&gt;Adding the Deleted Tables&lt;/h2&gt;
+&lt;p&gt;The first step in our refactor will be to add a corresponding table for each existing table that will include the deleted fields. Instead of adding a &lt;code&gt;deleted&lt;/code&gt; timestamp on the main table itself, it's sufficient for only this copy table to contain the field. We'll use &lt;code&gt;LIKE&lt;/code&gt; to copy the schema of the base tables.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;CREATE TABLE items_deleted (
+    deleted TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    LIKE items INCLUDING ALL
+);
+
+CREATE TABLE carts_deleted (
+    deleted TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    LIKE carts INCLUDING ALL
+);
+
+CREATE TABLE cart_items_deleted (
+    deleted TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    LIKE cart_items INCLUDING ALL
+);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note also that it's not uncommon to see these tables in a schema separate to our main schema - this can be done easily enough with &lt;code&gt;CREATE SCHEMA&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;My same note from earlier about naming conventions applies, though I think &lt;code&gt;_deleted&lt;/code&gt; is probably the suffix 99% of us will ever use for these.&lt;/p&gt;
+&lt;h2&gt;Adding the Combined Views&lt;/h2&gt;
+&lt;p&gt;There are inevitably operations we're going to want to perform on the whole dataset for each table - deleted &lt;em&gt;and&lt;/em&gt; non-deleted items all as one. To facilitate this, we'll create a view for each table/deleted table pair which unions the two:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;CREATE VIEW items_combined AS SELECT null AS deleted, * FROM items UNION ALL SELECT * FROM items_deleted;
+CREATE VIEW carts_combined AS SELECT null AS deleted, * FROM carts UNION ALL SELECT * FROM carts_deleted;
+CREATE VIEW cart_items_combined AS SELECT null AS deleted, * FROM cart_items UNION ALL SELECT * FROM cart_items_deleted;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Make Delete Not Delete&lt;/h2&gt;
+&lt;p&gt;In order to make &lt;code&gt;DELETE&lt;/code&gt;s perform a soft delete in this setup, we need to do a couple things when deleting: first, we need to copy the record into the respective &lt;code&gt;_deleted&lt;/code&gt; table, then we need to allow the delete to actually happen.&lt;/p&gt;
+&lt;p&gt;Here we have a couple options. We could use a &lt;code&gt;RULE&lt;/code&gt;...&lt;code&gt;DO ALSO&lt;/code&gt; to perform the insert after the delete:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;CREATE RULE soft_delete AS ON DELETE TO items DO ALSO (
+    INSERT INTO items_deleted (item_id, name, price, created)
+    VALUES (OLD.item_id, OLD.name, OLD.price, OLD.created)
+);
+CREATE RULE soft_delete AS ON DELETE TO carts DO ALSO (
+    INSERT INTO carts_deleted (cart_id, user_id, created)
+    VALUES (OLD.cart_id, OLD.user_id, OLD.created)
+);
+CREATE RULE soft_delete AS ON DELETE TO cart_items DO ALSO (
+    INSERT INTO cart_items_deleted (cart_item_id, cart_id, item_id, quantity, created)
+    VALUES (OLD.cart_item_id, OLD.cart_id, OLD.item_id, OLD.quantity, OLD.created)
+);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;However, because we're combining operations I would tend towards preferring a trigger in this specific scenario:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;CREATE OR REPLACE FUNCTION items_soft_delete() RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO items_deleted (item_id, name, price, created)
+    VALUES (OLD.item_id, OLD.name, OLD.price, OLD.created);
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_items_delete BEFORE DELETE ON items FOR EACH ROW EXECUTE FUNCTION items_soft_delete();
+
+CREATE OR REPLACE FUNCTION carts_soft_delete() RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO carts_deleted (cart_id, user_id, created)
+    VALUES (OLD.cart_id, OLD.user_id, OLD.created);
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_carts_delete BEFORE DELETE ON carts FOR EACH ROW EXECUTE FUNCTION carts_soft_delete();
+
+CREATE OR REPLACE FUNCTION cart_items_soft_delete() RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO cart_items_deleted (cart_item_id, cart_id, item_id, quantity, created)
+    VALUES (OLD.cart_item_id, OLD.cart_id, OLD.item_id, OLD.quantity, OLD.created);
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_cart_items_delete BEFORE DELETE ON items FOR EACH ROW EXECUTE FUNCTION cart_items_soft_delete();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You then have the same considerations regarding cascades and foreign key references as you had in the last refactor option. Make sure to choose the best option for your system, and remember a refactor is an iterative development!&lt;/p&gt;
+&lt;h1&gt;Conclusion&lt;/h1&gt;
+&lt;p&gt;Implementing soft delete on an existing system can seem like an exceptionally daunting task if you consider it from the perspective of needing to rewrite whole swaths of existing queries to suppot it. Not to mention, the incidence rate of bugs from such a hands-on refactor will be quite high!&lt;/p&gt;
+&lt;p&gt;The less we can touch our system during a refactor, the better. As with any refactor, this one requires some careful planning up front to understand the relationships between tables as data is deleted. Once that's understood, the refactor can proceed really quite fast &lt;em&gt;just&lt;/em&gt; by changing the database schema, preserving the existing functionality and, crucially, the existing queries &lt;em&gt;and&lt;/em&gt; the underlying semantics of those queries.&lt;/p&gt;
+&lt;p&gt;This doesn't absolve you of the careful work in ensuring your refactor works correctly (doubly so as you're tinkering around in the persistence). However, it does put more guardrails in place. Being able to move quickly &lt;em&gt;and&lt;/em&gt; deliberately, touching as little as possible, leaves you in the best position for success in your refactor.&lt;/p&gt;
+</description>
+      <pubDate>Sat, 05 Oct 2024 00:00:00 Z</pubDate>
+      <a10:updated>2024-10-05T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">quick_and_dirty_sequential_ids_in_mongo</guid>
       <link>https://ian.wold.guru/Posts/quick_and_dirty_sequential_ids_in_mongo.html</link>
       <title>Quick &amp; Dirty Sequential IDs in MongoDB</title>
