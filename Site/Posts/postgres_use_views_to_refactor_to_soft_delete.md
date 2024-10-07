@@ -13,18 +13,17 @@
 }
 ;;;
 
-
 In the world of persistence, there's two main patterns (maybe "groups of patterns") to handle deletion: _hard_ and _soft_ deletion. Hard deletion is the default for most database systems - when you "delete" a record it is wiped from the database; as soon as the delete is committed the data is gone forever. More common in most business scenarios - particularly server-side - is to retain the deleted data, just using a flag to hide the "deleted" data from the customer. This is soft deletion: it allows us to support more comprehensive internal reporting, maintain more complicated referential integrity, and we can support an "undo" button for our users.
 
 If you're designing a system from the ground up and you know you need to accommodate soft deletion, there's a whole host of implementations you can tailor to your needs. If you're updating an existing system from hard to soft delete though, you're more constrained. Yes, the data that has already been hard deleted is irrecoverable after your migration, but that's not your main concern. You might have a lot of tables and there's probably already a lot of code written to query against these tables. This refactor might seem like a lot of work at first glance.
 
 Luckily because [you're definitely using Postgres](https://ian.wold.guru/Posts/just_use_postgresql.html), this really isn't a major concern. There's a simple way using views and rules we can add soft deletion _without changing any of our queries_! In fact, there are two options which you might want to chose in different situations. I've implemented these strategies on a few production systems with zero downtime, and I'm sure you'll be able to make just as quick work of it as I can.
 
-The first strategy keeps all records - those that are deleted and those that aren't - in a single table and uses a view to filter out deleted items. The second strategy adds a second table specifically for deleted items and uses a view to join the deleted and non-deleted records when needed. I have found the first option simpler to maintain and _usually_ simpler to implement, while the second option is better in scenarios where I need to run a lot of different queries on the deleted vs. non-deleted data, and note that the second option _can_ be easier to implement depending on the existing schema. These strategies could feasibly be combined in a single database, with some tables using one strategy and others the other, though consistency is probably better here.
+The first strategy keeps all records - those that are deleted and those that aren't - in a single table and uses a view to filter out deleted items. The second strategy adds a second table specifically for deleted items and uses a view to join the deleted and non-deleted records when needed. I have found the first option simpler to maintain and _usually_ simpler to implement, while the second option is better in scenarios where I need to run a lot of different queries on the deleted vs. non-deleted data. Note that the second option _can_ be easier to implement depending on the existing schema. These strategies could feasibly be combined in a single database, with some tables using one strategy and others the other, though consistency is probably better here.
 
 # Setting Up
 
-I'm going to start by defining the existing system we're going to refactor. Let's consider a subset of an ecommerce system with tables `items`, `cart`, and of course `cart_items`:
+I'm going to start by defining the existing system we're going to refactor. Let's consider a subset of an ecommerce system with tables `items`, `carts`, and of course `cart_items`:
 
 ```sql
 CREATE TABLE items (
@@ -34,7 +33,7 @@ CREATE TABLE items (
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE cart (
+CREATE TABLE carts (
     cart_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL, -- I won't define this table
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -47,7 +46,7 @@ CREATE TABLE cart_items (
     quantity INT NOT NULL DEFAULT 1,
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     
-    CONSTRAINT fk_cart FOREIGN KEY (cart_id) REFERENCES cart (cart_id) ON DELETE CASCADE,
+    CONSTRAINT fk_cart FOREIGN KEY (cart_id) REFERENCES carts (cart_id) ON DELETE CASCADE,
     CONSTRAINT fk_item FOREIGN KEY (item_id) REFERENCES items (item_id) ON DELETE CASCADE
 );
 ```
@@ -83,7 +82,7 @@ Adding the column is quite straightforward of course, it can be added with no ef
 ```sql
 ALTER TABLE items ADD COLUMN deleted TIMESTAMP DEFAULT NULL;
 
-ALTER TABLE cart ADD COLUMN deleted TIMESTAMP DEFAULT NULL;
+ALTER TABLE carts ADD COLUMN deleted TIMESTAMP DEFAULT NULL;
 
 ALTER TABLE cart_items ADD COLUMN deleted TIMESTAMP DEFAULT NULL;
 ```
@@ -96,14 +95,14 @@ This second step can also be deployed at any time after the first step with no c
 
 For the unfamiliar, views act just like tables, but are essentially projections of other underlying tables and views. You define them with a `SELECT` statement just as you would query any other data. This allows you to marry commonly-referenced data together, but in our case we're going to use them a bit differently.
 
-For _each_ table which has a `deleted` column, we're going to define a new view which excludes the deleted values of the underlying column. Now, because we have how many references to the tables named `items`, `cart`, and `cart_items`, and it's _these_ references from which we want to exclude the deleted items, we're going to give our views the names of the current tables and rename the current tables.
+For _each_ table which has a `deleted` column, we're going to define a new view which excludes the deleted values of the underlying column. Now, because we have how many references to the tables named `items`, `carts`, and `cart_items`, and it's _these_ references from which we want to exclude the deleted items, we're going to give our views the names of the current tables and rename the current tables.
 
 ```sql
 ALTER TABLE items RENAME TO items_all;
 CREATE VIEW items AS SELECT * FROM items_all WHERE deleted IS NULL;
 
-ALTER TABLE cart RENAME TO cart_all;
-CREATE VIEW cart AS SELECT * FROM cart_all WHERE deleted IS NULL;
+ALTER TABLE carts RENAME TO carts_all;
+CREATE VIEW carts AS SELECT * FROM carts_all WHERE deleted IS NULL;
 
 ALTER TABLE cart_items RENAME TO cart_items_all;
 CREATE VIEW cart_items AS SELECT * FROM cart_items_all WHERE deleted IS NULL;
@@ -187,9 +186,21 @@ CREATE TABLE cart_items_deleted (
 );
 ```
 
-Note also that it's not uncommon to see these tables in a schema separate to our main schema - this can be done easily enough with `CREATE SCHEMA`.
-
 My same note from earlier about naming conventions applies, though I think `_deleted` is probably the suffix 99% of us will ever use for these.
+
+There is one issue with this snippet though - can you spot it? The problem is in `cart_items_deleted`: `LIKE ... INCLUDING ALL` will copy over the _entire_ table schema, foreign key references included. In order to get around this, we'll need to not use `INCLUDING ALL` and manually copy over the foreign key constraints:
+
+```sql
+CREATE TABLE cart_items_deleted (
+    deleted TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    LIKE cart_items INCLUDING ALL,
+    
+    CONSTRAINT fk_cart FOREIGN KEY (cart_id) REFERENCES carts_deleted (cart_id) ON DELETE CASCADE,
+    CONSTRAINT fk_item FOREIGN KEY (item_id) REFERENCES items_deleted (item_id) ON DELETE CASCADE
+);
+```
+
+This demonstrates the extra complexity of this second approach. It allows for a greater separation between deleted and non-deleted items, though it's important to consider which functionality and level of complexity your system requires.
 
 ## Adding the Combined Views
 
@@ -256,7 +267,23 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER trigger_cart_items_delete BEFORE DELETE ON items FOR EACH ROW EXECUTE FUNCTION cart_items_soft_delete();
 ```
 
-You then have the same considerations regarding cascades and foreign key references as you had in the last refactor option. Make sure to choose the best option for your system, and remember a refactor is an iterative development!
+You then have the same considerations regarding cascades and foreign key references as you had in the last refactor option. I'll leave that as an exercise for you to extend the trigger functions to include that behavior.
+
+## Accessing Deleted Records
+
+This is either the benefit or the drawback of this setup compared to the first scheme. In order to access deleted records, you query the `_deleted` table:
+
+```sql
+SELECT * FROM items_deleted WHERE ...
+```
+
+And of course all records together from the separate view:
+
+```sql
+SELECT * FROM items_combined WHERE ...
+```
+
+If your application will need to regard these three sets differently in distinct queries, then this setup is advantageous: there's less chance of writing the queries incorrectly and causing bugs. However, if you do need to consult the blended data or perform mostly the same queries, the first option might be better.
 
 # Conclusion
 
