@@ -14,8 +14,10 @@ At this _very instant_ I am...
 
 **Working** for [Crate & Barrel](https://www.crateandbarrel.com) on modernizing (read: distributing) their ecommerce system, where I get to work with a bunch of fantastic people!
 
-**Enjoying** the last few weeks of summer. Minneapolis has great summers but less than great winters!
+**Tinkering** with Postgres _a lot_. I'm finding a particular interest in refactors involving it, but also experimenting developing a SignalR backplane for it. We'll see where we end up.
 
 **Practicing** my skills in pool and billiards. [Snooker](https://en.wikipedia.org/wiki/Snooker) is my favorite sport, and while I don't have easy access to a table in Minneapolis, I can practice other cue sports.
+
+**Getting lost** in corn mazes and feeding goats at nearby farms. This staves off the dread of the impending winter! Why do we call them "corn mazes" and not "maize mazes"?
 
 _This is a [now page](https://nownownow.com/about). You can see its [update history on GitHub](https://github.com/IanWold/ianwold.github.io/commits/master/Site/now.md)._
