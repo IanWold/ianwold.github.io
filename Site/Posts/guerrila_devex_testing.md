@@ -1,7 +1,7 @@
 ;;;
 {
 	"title": "Guerrila DevEx Testing",
-	"description": "Developer experience is subjective. Employ the "hallway test" method to ascertain your code's quality.",
+	"description": "Developer experience is subjective. Employ the \"hallway test\" method to ascertain your code's quality.",
 	"date": "11 October 2024",
 	"contents": false,
 	"hero": "photo-1708358097162-be6494dd44b3",
