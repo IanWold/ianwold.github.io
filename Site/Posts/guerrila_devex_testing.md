@@ -1,12 +1,12 @@
 ;;;
 {
 	"title": "Guerrila DevEx Testing",
-	"description": "Developer experience is subjective. Employ the \"hallway test\" method to ascertain your code's quality.",
+	"description": "Developer experience is subjective. Employ the 'hallway test' method to ascertain your code's quality.",
 	"date": "11 October 2024",
 	"contents": false,
 	"hero": "photo-1708358097162-be6494dd44b3",
     "related": [
-		{ "title": "The Case for Single-Reviewer PRs", "description": "Or, strengthening your team and its code with communication, professionalism, and trust.": "the_case_for_single_reviewer_prs" },
+		{ "title": "The Case for Single-Reviewer PRs", "description": "Or, strengthening your team and its code with communication, professionalism, and trust.", "fileName": "the_case_for_single_reviewer_prs" },
 		{ "title": "Reclaim Your Agile: The One Clever Trick Agile Coaches Don't Want You to Know", "description": "What if I told you there's one trick to being able to reshape your team's development process without your company knowing it? What if I told you that you can achieve actual Agile even though you work in a Scrum firm?", "fileName": "reclaim_your_agile" },
 		{ "title": "Don't Retro the Same Twice", "description": "Different retrospective formats are mostly the same thing in different flavors - don't argue about them; try all the flavors (at least once)", "fileName": "dont_retro_the_same_twice" }
     ]
