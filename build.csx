@@ -16,7 +16,6 @@ using System;
 using System.Text.Json;
 
 IEnumerable<SeriesInfo> seriesInfo = [];
-IEnumerable<TopicInfo> topicInfo = [];
 
 using (var reader = new StreamReader("Config/series.json"))
 {
