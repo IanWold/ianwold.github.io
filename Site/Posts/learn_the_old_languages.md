@@ -5,6 +5,7 @@
 	"date": "20 September 2024",
 	"contents": false,
 	"hero": "photo-1637356216542-0d0a4e93f992",
+    "topics": ["Languages", "Learning"],
     "related": [
 		{ "title": "It's Better to be Consistently Incorrect than Inconsistently Correct", "description": "On consistency in code and what it means for something to be 'incorrect'", "fileName": "its_better_to_be_consistently_incorrect_than_consistently_correct" },
 		{ "title": "90% of my Homepage was Useless", "description": "In a few days, I reduced the size of my homepage to 10% of what it had been, and sped it up by 50-66%.", "fileName": "90_of_my_homepage_was_useless" },

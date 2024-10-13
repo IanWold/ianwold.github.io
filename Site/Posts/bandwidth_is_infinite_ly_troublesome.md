@@ -5,6 +5,7 @@
 	"date": "26 April 2024",
 	"contents": true,
 	"hero": "photo-1451187580459-43490279c0fa",
+    "topics": ["Distribution", "Performance"],
 	"series": "Fallacies of Distributed Computing",
 	"related": [
         { "title": "Latency is Zero and the Speed of Light is Getting Faster", "description": "Latency is a constant and unavoidable fact of nature, but we can plan for it, work around it, and respond to it.", "fileName": "latency_is_zero" },

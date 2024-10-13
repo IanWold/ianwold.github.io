@@ -5,6 +5,7 @@
 	"date": "22 July 2024",
 	"contents": false,
 	"hero": "photo-1488841714725-bb4c32d1ac94",
+    "topics": ["Processes"],
     "related": [
         { "title": "Reclaim Your Agile: The One Clever Trick Agile Coaches Don't Want You to Know", "description": "What if I told you there's one trick to being able to reshape your team's development process without your company knowing it? What if I told you that you can achieve actual Agile even though you work in a Scrum firm?", "fileName": "reclaim_your_agile" },
         { "title": "Eight Maxims", "description": "A few principles for thoughtful software engineering.", "fileName": "eight_maxims" },

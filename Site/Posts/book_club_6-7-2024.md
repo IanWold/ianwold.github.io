@@ -5,6 +5,7 @@
 	"date": "29 July 2024",
 	"contents": false,
 	"hero": "photo-1672309558498-cfcc89afff25",
+    "topics": ["Postgres", "Databases"],
 	"series": "Book Club",
     "related": [
 		{ "title": "Book Club 5/2024: SOLID", "description": "Is SOLID still relevant?", "fileName": "book_club_5-2024" },

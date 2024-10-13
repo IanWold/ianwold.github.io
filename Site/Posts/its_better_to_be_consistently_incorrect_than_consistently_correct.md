@@ -5,6 +5,7 @@
 	"date": "15 February 2024",
 	"contents": true,
 	"hero": "photo-1598826739205-d09823c3bc3d",
+    "topics": ["Architecture", "DevEx", "Standards"],
     "related": [
         { "title": "Eight Maxims", "description": "A few principles for thoughtful software engineering.", "fileName": "eight_maxims" },
         { "title": "Reclaim Your Agile: The One Clever Trick Agile Coaches Don't Want You to Know", "description": "What if I told you there's one trick to being able to reshape your team's development process without your company knowing it? What if I told you that you can achieve actual Agile even though you work in a Scrum firm?", "filename": "reclaim_your_agile" },

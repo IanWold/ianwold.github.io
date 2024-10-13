@@ -5,6 +5,7 @@
 	"date": "28 June 2024",
 	"contents": false,
 	"hero": "photo-1464095718138-d9c47312eac5",
+    "topics": ["Languages", "Deployment"],
     "related": [
 		{ "title": "Deploying ASP.NET 7 Projects with Railway", "description": "Railway is a startup cloud infrastructure provider that has gained traction for being easy to use and cheap for hobbyists. Let's get a .NET 7 Blazor WASM app up and running with it!", "fileName": "deploying_aspdotnet_7_projects_with_railway" },
         { "title": "\"Should I Learn (Insert Some Tech Here)?\"", "description": "One of the most common questions - would it be good to learn this or that language, framework, database, etc? Taking even a little time to learn something new is good all around, but is it really worth making an investment in yourself to grow personally and professionally? Let's take a deep dive into this topic.", "fileName": "should_i_learn_insert_some_tech_here" },

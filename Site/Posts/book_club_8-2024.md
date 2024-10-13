@@ -5,6 +5,7 @@
 	"date": "2 September 2024",
 	"contents": false,
 	"hero": "photo-1672309558498-cfcc89afff25",
+    "topics": ["Industry"],
 	"series": "Book Club",
     "related": [
 		{ "title": "Book Club 6&7/2024: Postgres", "description": "I have become further radicalized to the opinion that we should all just be using PostgreSQL", "fileName": "book_club_6-7-2024" },

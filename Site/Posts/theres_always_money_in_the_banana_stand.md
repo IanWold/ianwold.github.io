@@ -5,6 +5,7 @@
 	"date": "30 August 2024",
 	"contents": false,
 	"hero": "photo-1451187580459-43490279c0fa",
+    "topics": ["Distribution", "Architecture"],
 	"series": "Fallacies of Distributed Computing",
 	"related": [
         { "title": "There Are Infinite Administrators", "description": "Yes, infinite, and they're inventing more each day! The larger the system, the greater the problem that nobody really knows how it all works.", "fileName": "there_is_one_admin" },

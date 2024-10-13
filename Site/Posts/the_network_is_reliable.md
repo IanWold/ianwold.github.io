@@ -5,6 +5,7 @@
 	"date": "21 February 2024",
 	"contents": true,
 	"hero": "photo-1451187580459-43490279c0fa",
+    "topics": ["Distribution", "Processes", "Patterns"],
 	"series": "Fallacies of Distributed Computing",
 	"related": [
 		{ "title": "Book Club 9/2023: Papers I Love", "description": "Reflecting on the final Strange Loop conference, having attended several 'Papers We Love' talks, I'm motivated to share five papers I love.", "fileName": "book_club_9-2023" },

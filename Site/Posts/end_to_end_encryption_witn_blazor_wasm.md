@@ -5,6 +5,7 @@
 	"date": "17 April 2024",
 	"contents": true,
 	"hero": "photo-1572435555646-7ad9a149ad91",
+    "topics": ["Dotnet", "Security", "How-To"],
     "related": [
         { "title": "Write Your Own RDBMS Versioned Migration Boilerplate", "description": "Versioned migrations are an essential tool for systems using an RDBMS, and it's no work at all to start your applications the right way with this pattern.", "fileName": "write_your_own_rdbms_versioned_migration_boilerplate" },
         { "title": "Deploying ASP.NET 7 Projects with Railway", "description": "Railway is a startup cloud infrastructure provider that has gained traction for being easy to use and cheap for hobbyists. Let's get a .NET 7 Blazor WASM app up and running with it!", "fileName": "deploying_aspdotnet_7_projects_with_railway" },

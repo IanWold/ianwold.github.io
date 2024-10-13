@@ -5,6 +5,7 @@
 	"date": "13 January 2024",
 	"contents": false,
 	"hero": "photo-1599921778557-082147629542",
+    "topics": ["Databases", "Postgres", "Standards"],
     "related": [
 		{ "title": "Write Your Own RDBMS Versioned Migration Boilerplate", "description": "Versioned migrations are an essential tool for systems using an RDBMS, and it's no work at all to start your applications the right way with this pattern.", "fileName": "write_your_own_rdbms_versioned_migration_boilerplate" },
         { "title": "Quick & Dirty Sequential IDs in MongoDB", "description": "Mongo doesn't natively support generating sequential IDs. Here's a quick & dirty solution to get you up and going if you need sequential IDs.", "fileName": "quick_and_dirty_sequential_ids_in_mongo" },

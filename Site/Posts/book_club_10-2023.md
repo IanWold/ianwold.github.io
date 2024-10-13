@@ -5,6 +5,7 @@
 	"date": "27 October 2023",
 	"contents": false,
 	"hero": "photo-1672309558498-cfcc89afff25",
+    "topics": ["Patterns", "Languages", "Dotnet"],
 	"series": "Book Club",
     "related": [
 		{ "title": "Book Club 9/2023: Papers I Love", "description": "Reflecting on the final Strange Loop conference, having attended several 'Papers We Love' talks, I'm motivated to share five papers I love.", "fileName": "book_club_9-2023" },

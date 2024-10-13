@@ -5,6 +5,7 @@
 	"date": "28 September 2023",
 	"contents": false,
 	"hero": "photo-1672309558498-cfcc89afff25",
+    "topics": ["Learning"],
 	"series": "Book Club",
     "related": [
 		{ "title": "An Introduction to Sprache", "description": "Sprache is a parser-combinator library for C# that uses Linq to construct parsers. In this post I describe the fundamentals of understanding grammars and parsing them with Sprache, with several real-world examples.", "fileName": "sprache" },

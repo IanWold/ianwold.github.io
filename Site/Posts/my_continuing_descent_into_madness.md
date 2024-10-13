@@ -5,6 +5,7 @@
 	"date": "9 December 2023",
 	"contents": false,
 	"hero": "photo-1549605659-32d82da3a059",
+    "topics": ["Tooling", "DevEx"],
     "related": [
         { "title": "Giscus Is Awesome", "description": "I can add comments to my statically generated blog? Using GitHub Discussions?? For Free??? And it works????", "fileName": "giscus_is_awesome" },
 		{ "title": "A Scrum Odyssey", "description": "A journey away from daily scrum meetings, as a cycle of eight Shakespearean sonnets.", "fileName": "a_scrum_odyssey" },

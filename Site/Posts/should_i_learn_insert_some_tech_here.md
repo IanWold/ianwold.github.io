@@ -5,6 +5,7 @@
 	"date": "14 November 2023",
 	"contents": false,
 	"hero": "photo-1522435229388-6f7a422cd95b",
+    "topics": ["Learning"],
     "related": [
 		{ "title": "Book Club 9/2023: Papers I Love", "description": "Reflecting on the final Strange Loop conference, having attended several 'Papers We Love' talks, I'm motivated to share five papers I love.", "fileName": "book_club_9-2023" },
 		{ "title": "A Scrum Odyssey", "description": "A journey away from daily scrum meetings, as a cycle of eight Shakespearean sonnets.", "fileName": "a_scrum_odyssey" },

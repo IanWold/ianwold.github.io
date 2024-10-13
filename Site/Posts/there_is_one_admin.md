@@ -5,6 +5,7 @@
 	"date": "23 August 2024",
 	"contents": true,
 	"hero": "photo-1451187580459-43490279c0fa",
+    "topics": ["Distribution", "Processes", "Architecture"],
 	"series": "Fallacies of Distributed Computing",
 	"related": [
         { "title": "The Topologies They Are a-Changin'", "description": "Okay, dumb title, but could you really have done better? Shifting topologies have always presented problems for distributed computing, and modern infrastructure systems sometimes leave us worse off than ever before.", "fileName": "topology_doesnt_change" },

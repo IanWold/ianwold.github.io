@@ -5,6 +5,7 @@
 	"date": "25 March 2024",
 	"contents": false,
 	"hero": "photo-1672309558498-cfcc89afff25",
+    "topics": ["Processes", "Architecture"],
 	"series": "Book Club",
     "related": [
 		{ "title": "Book Club 2/2024: Recovering from TDD and Unit Tests", "description": "TDD and unit tests are overused and often misprescribed. What do we really hope to gain from our tests, and what testing practices support our goals?", "fileName": "book_club_2-2024" },

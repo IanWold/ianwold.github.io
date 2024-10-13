@@ -16,6 +16,7 @@ using System;
 using System.Text.Json;
 
 IEnumerable<SeriesInfo> seriesInfo = [];
+IEnumerable<TopicInfo> topicInfo = [];
 
 using (var reader = new StreamReader("Config/series.json"))
 {
@@ -112,6 +113,7 @@ new MetalsharpProject()
 .Use(project => // Add SEO and "series" metadata to posts
 {
 	var seriesPosts = new Dictionary<string, IEnumerable<Dictionary<string, object>>>();
+	var topicPosts = new Dictionary<string, IEnumerable<Dictionary<string, object>>>();
 
 	var posts = project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts"));
 	foreach (var post in posts)
@@ -151,6 +153,21 @@ new MetalsharpProject()
 				seriesPosts.Add(seriesName, [ post.Metadata ]);
 			}
 		}
+
+		if (post.Metadata.TryGetValue("topics", out var topicsObject) && topicsObject is IEnumerable<string> topics)
+		{
+			foreach (var topic in topics)
+			{
+				if (topicPosts.TryGetValue(seriesName, out var topicPostsList))
+				{
+					seriesPosts[topic] = [ ..topicPostsList, post.Metadata ];
+				}
+				else
+				{
+					topicPosts.Add(topic, [ post.Metadata ]);
+				}
+			}
+		}
 	}
 
 	foreach (var series in seriesPosts)
@@ -162,6 +179,18 @@ new MetalsharpProject()
 			["template"] = "archive",
 			["removeScrollspy"] = true,
 			["posts"] = series.Value.OrderByDescending(p => DateTime.Parse(p["date"].ToString()))
+		}));
+	}
+
+	foreach (var topic in topicPosts)
+	{
+		project.AddOutput(new MetalsharpFile(string.Empty, $".\\Series\\{topic.Key.ToLowerInvariant()}.html", new Dictionary<string, object>()
+		{
+			["title"] = topic.Key,
+			["topic"] = topic.Key,
+			["template"] = "archive",
+			["removeScrollspy"] = true,
+			["posts"] = topic.Value.OrderByDescending(p => DateTime.Parse(p["date"].ToString()))
 		}));
 	}
 })

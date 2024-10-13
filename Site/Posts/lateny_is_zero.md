@@ -5,6 +5,7 @@
 	"date": "29 March 2024",
 	"contents": true,
 	"hero": "photo-1451187580459-43490279c0fa",
+    "topics": ["Distribution", "Performance"],
 	"series": "Fallacies of Distributed Computing",
 	"related": [
 		{ "title": "The Network is Unreliable and Reliability is Scary", "description": "Indeed the network is unreliable, and this is especially concerning for modern, distributed system. The catch though is that it never can be 100% reliable, and we can't create systems that perfectly compensate for this.", "fileName": "the_network_is_reliable" },

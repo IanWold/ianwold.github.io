@@ -5,6 +5,7 @@
 	"date": "25 November 2023",
 	"contents": false,
 	"hero": "photo-1596563910641-86f6aebaab9a",
+    "topics": ["Databases", "How-To"],
     "related": [
 		{ "title": "Adding a Database to our Railway App", "description": "Last time I looked at Railway, I got it up and running with a Blazor WASM app. Now, I'll look at adding a PostgreSQL database to it.", "fileName": "adding_a_database_to_our_railway_app" },
 		{ "title": "Quick & Dirty Sequential IDs in MongoDB", "description": "Mongo doesn't natively support generating sequential IDs. Here's a quick & dirty solution to get you up and going if you need sequential IDs.", "fileName": "quick_and_dirty_sequential_ids_in_mongo" }

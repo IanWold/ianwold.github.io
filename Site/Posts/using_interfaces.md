@@ -5,6 +5,7 @@
 	"date": "8 June 2024",
 	"contents": false,
 	"hero": "photo-1634136145105-03a3c2455513",
+    "topics": ["Standards", "Architecture"],
     "related": [
 		{ "title": "Develop Effective Coding Standards", "description": "Bad coding standards are worse than no standards, and even good standards are sometimes unnecessary. What's the utility in coding standards, and what makes a good one?", "fileName": "develop_effective_coding_standards" },
         { "title": "It's Better to be Consistently Incorrect than Inconsistently Correct", "description": "On consistency in code and what it means for something to be 'incorrect'", "fileName": "its_better_to_be_consistently_incorrect_than_consistently_correct" },

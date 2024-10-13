@@ -5,6 +5,7 @@
 	"date": "16 December 2023",
 	"contents": false,
 	"hero": "photo-1672309558498-cfcc89afff25",
+    "topics": ["Processes", "Industry"],
 	"series": "Book Club",
     "related": [
 		{ "title": "Book Club 11/2023: New .NET, New C#", "description": "The release of .NET 8 brings a lot of features I'm excited for!", "fileName": "book_club_11-2023" },

@@ -5,6 +5,7 @@
 	"date": "30 September 2024",
 	"contents": false,
 	"hero": "photo-1649180564403-db28d5673f48",
+    "topics": ["Tooling", "DevEx", "Dotnet"],
     "related": [
 		{ "title": "My (Continuing) Descent Into Madness", "description": "It started simply enough, when I asked myself if I should try an IDE other than Visual Studio. Mere months later, I'm now using a tiling window manager. This is the story of my (continuing) descent into madness.", "fileName": "my_continuing_descent_into_madness" },
 		{ "title": "90% of my Homepage was Useless", "description": "In a few days, I reduced the size of my homepage to 10% of what it had been, and sped it up by 50-66%.", "fileName": "90_of_my_homepage_was_useless" },

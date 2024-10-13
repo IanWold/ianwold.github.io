@@ -5,6 +5,7 @@
 	"date": "30 May 2024",
 	"contents": true,
 	"hero": "photo-1451187580459-43490279c0fa",
+    "topics": ["Distribution", "Security"],
 	"series": "Fallacies of Distributed Computing",
 	"related": [
         { "title": "Bandwidth is Infinite ... ly Troublesome", "description": "The bandwidth of the world-wide web has increased dramatically, but so has its demand. There's an abolute limit to how much data we can all transmit, and working around that requires dilligence.", "fileName": "bandwidth_is_infinite_ly_troublesome" },

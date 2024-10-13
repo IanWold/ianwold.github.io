@@ -5,6 +5,7 @@
 	"date": "12 February 2024",
 	"contents": false,
 	"hero": "photo-1559644705-15d30e582900",
+    "topics": ["Tooling"],
     "related": [
 		{ "title": "Eight Maxims", "description": "A few principles for thoughtful software engineering.", "fileName": "eight_maxims" },
 		{ "title": "My (Continuing) Descent Into Madness", "description": "It started simply enough, when I asked myself if I should try an IDE other than Visual Studio. Mere months later, I'm now using a tiling window manager. This is the story of my (continuing) descent into madness.", "fileName": "my_continuing_descent_into_madness" },

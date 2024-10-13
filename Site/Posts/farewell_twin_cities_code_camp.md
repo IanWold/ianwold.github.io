@@ -5,6 +5,7 @@
 	"date": "27 March 2024",
 	"contents": false,
 	"hero": "photo-1529268209110-62be1d87fe75",
+    "topics": ["Industry"],
     "related": [
 		{ "title": "An Introduction to Sprache", "description": "Sprache is a parser-combinator library for C# that uses Linq to construct parsers. In this post I describe the fundamentals of understanding grammars and parsing them with Sprache, with several real-world examples.", "fileName": "sprache" },
 		{ "title": "Daily Grug", "description": "Need inspiration start day, made API.", "fileName": "daily_grug" },

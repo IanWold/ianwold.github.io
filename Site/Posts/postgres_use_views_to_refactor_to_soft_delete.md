@@ -5,6 +5,7 @@
 	"date": "5 October 2024",
 	"contents": true,
 	"hero": "photo-1560506839-a23b986135a0",
+    "topics": ["Databases", "Postgres", "How-To", "Architecture"],
     "related": [
         { "title": "Write Your Own RDBMS Versioned Migration Boilerplate", "description": "Versioned migrations are an essential tool for systems using an RDBMS, and it's no work at all to start your applications the right way with this pattern.", "fileName": "write_your_own_rdbms_versioned_migration_boilerplate" },
         { "title": "Just Use PostgreSQL", "description": "With a vast and growing ecosystem of database systems, data models, patterns, and paradigms, choosing the right one can be a long and complicated process. I prefer a simpler approach: Just use PostgreSQL.", "fileName": "just_use_postgresql" },

@@ -341,7 +341,8 @@ header {
 	}
 
 	header small {
-		display: block;
+		display: flex;
+		gap: 40px;
 		font-family: 'Montserrat';
 		font-weight: 400;
 		font-size: 10pt;
@@ -367,8 +368,12 @@ header {
 			margin-right: 2px;
 		}
 
-		header>small>span {
-			margin-right: 36px;
+		header>small>span.topics {
+			margin-left: auto;
+		}
+	
+		header>small>span.topics a:not(:last-child) {
+			margin-right: 4px;
 		}
 
 	header p {

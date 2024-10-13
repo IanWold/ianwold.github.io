@@ -5,6 +5,7 @@
 	"date": "13 December 2023",
 	"contents": true,
 	"hero": "photo-1526232761682-d26e03ac148e",
+    "topics": ["Processes"],
     "related": [
         { "title": "Clean Meetings: A Software Engineer's Guide", "description": "If being in meetings all day isn't bad enough, spending more time thinking about them seems horrible. Here's a simple guide on making sure you're getting the most out of your meetings.", "fileName": "clean_meetings_a_software_engineers_guide" },
         { "title": "A Scrum Odyssey", "description": "A journey away from daily scrum meetings, as a cycle of eight Shakespearean sonnets.", "filename": "a_scrum_odyssey" },

@@ -5,6 +5,7 @@
 	"date": "19 June 2024",
 	"contents": true,
 	"hero": "photo-1451187580459-43490279c0fa",
+    "topics": ["Distribution", "Architecture"],
 	"series": "Fallacies of Distributed Computing",
 	"related": [
         { "title": "There's More to Network Security than the Network", "description": "Assuming a secure network in a distributed system loses sight of all the ways vulnerabilities can creep into our systems. Just as distributed computing makes our systems 10x more complex, the same effect is felt on security.", "fileName": "the_network_is_secure" },

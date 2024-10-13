@@ -5,6 +5,7 @@
 	"date": "4 February 2024",
 	"contents": false,
 	"hero": "photo-1619468654139-877048c5a71f",
+    "topics": ["Dotnet", "Standards"],
     "related": [
 		{ "title": "Eight Maxims", "description": "A few principles for thoughtful software engineering.", "fileName": "eight_maxims" },
 		{ "title": "My (Continuing) Descent Into Madness", "description": "It started simply enough, when I asked myself if I should try an IDE other than Visual Studio. Mere months later, I'm now using a tiling window manager. This is the story of my (continuing) descent into madness.", "fileName": "my_continuing_descent_into_madness" },

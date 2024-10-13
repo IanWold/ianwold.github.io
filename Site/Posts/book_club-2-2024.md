@@ -5,6 +5,7 @@
 	"date": "24 February 2024",
 	"contents": false,
 	"hero": "photo-1672309558498-cfcc89afff25",
+    "topics": [Architecture", "Testing"],
 	"series": "Book Club",
     "related": [
 		{ "title": "Book Club 1/2024: What is a Software Architect?", "description": "A few meandering and maybe unhelpful thoughts on the title \"Software Architect\"", "fileName": "book_club_1-2024" },

@@ -5,6 +5,7 @@
 	"date": "14 February 2024",
 	"contents": false,
 	"hero": "photo-1523240795612-9a054b0db644",
+    "topics": ["Standards", "Processes"],
     "related": [
 		{ "title": "Eight Maxims", "description": "A few principles for thoughtful software engineering.", "fileName": "eight_maxims" },
 		{ "title": "Clean Meetings: A Software Engineer's Guide", "description": "If being in meetings all day isn't bad enough, spending more time thinking about them seems horrible. Here's a simple guide on making sure you're getting the most out of your meetings.", "fileName": "clean_meetings_a_software_engineers_guide" },

@@ -5,6 +5,7 @@
 	"date": "24 April 2024",
 	"contents": false,
 	"hero": "photo-1672309558498-cfcc89afff25",
+    "topics": ["Architecture", "Patterns", "Databases"],
 	"series": "Book Club",
     "related": [
 		{ "title": "Book Club 3/2024: Simplicity", "description": "Everything is too complicated.", "fileName": "book_club_3-2024" },

@@ -5,6 +5,7 @@
 	"date": "29 May 2024",
 	"contents": false,
 	"hero": "photo-1672309558498-cfcc89afff25",
+    "topics": ["Architecture", "Patterns"],
 	"series": "Book Club",
     "related": [
 		{ "title": "Book Club 4/2024: I Don't Like ORMs", "description": "Object-relational mappers are more trouble than they're worth.", "fileName": "book_club_4-2024" },

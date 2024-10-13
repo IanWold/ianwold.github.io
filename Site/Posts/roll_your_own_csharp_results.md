@@ -5,6 +5,7 @@
 	"date": "3 May 2024",
 	"contents": false,
 	"hero": "photo-1562158147-f8d6fbcd76f8",
+    "topics": ["Dotnet", "Patterns", "How-To"],
     "related": [
 		{ "title": "Roll Your Own End-to-End Encryption in Blazor WASM", "description": "Using the SubtleCrypto API to get simple end-to-end encryption for a collaborative Blazor WASM app.", "fileName": "end_to_end_encryption_witn_blazor_wasm" },
 		{ "title": "Book Club 10/2023: Functional Patterns in C#", "description": "This month I've focused on functional domain modeling and related patterns. We're just a few weeks away from the release of the next version of C#, and like each previous version it'll introduce even more functional features.", "fileName": "book_club_10-2023" },

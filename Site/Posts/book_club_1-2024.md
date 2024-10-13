@@ -5,6 +5,7 @@
 	"date": "24 January 2024",
 	"contents": false,
 	"hero": "photo-1672309558498-cfcc89afff25",
+    "topics": ["Architecture", "Industry"],
 	"series": "Book Club",
     "related": [
 		{ "title": "Book Club 12/2023: Workflow, Process, and Agile", "description": "Some thoughts on how to organize software development and teams, and how non-technical factors help (or hinder) us developing better software.", "fileName": "book_club_12-2023" },

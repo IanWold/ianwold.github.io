@@ -5,6 +5,7 @@
 	"date": "9 September 2024",
 	"contents": false,
 	"hero": "photo-1436918898788-ebce04d38e46",
+    "topics": ["Blogging"],
     "related": [
 		{ "title": "My (Continuing) Descent Into Madness", "description": "A journey away from daily scrum meetings, as a cycle of eight Shakespearean sonnets.", "fileName": "my_continuing_descent_into_madness" },
 		{ "title": "Thing I Made: FreePlanningPoker.io", "description": "I made a free planning poker tool and named it aptly.", "fileName": "free_planning_poker" },

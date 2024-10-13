@@ -5,6 +5,7 @@
 	"date": "8 November 2023",
 	"contents": false,
 	"hero": "photo-1541509411630-9c14b774ecba",
+    "topics": ["Databases", "Deployment", "Dotnet", "How-To"],
     "related": [
         { "title": "Deploying ASP.NET 7 Projects with Railway", "description": "Railway is a startup cloud infrastructure provider that has gained traction for being easy to use and cheap for hobbyists. Let's get a .NET 7 Blazor WASM app up and running with it!", "fileName": "deploying_aspnet_7_projects_with_railway" },
         { "title": "Book Club 10/2023: Functional Patterns in C#", "description": "This month I've focused on functional domain modeling and related patterns. We're just a few weeks away from the release of the next version of C#, and like each previous version it'll introduce even more functional features.", "filename": "book_club_10-2023" },

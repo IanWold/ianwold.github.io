@@ -5,6 +5,7 @@
     "date": "1 November 2023",
     "contents": false,
     "hero": "photo-1534078362425-387ae9668c17",
+    "topics": ["Databases", "Mongo", "How-To"],
     "related": [
         { "title": "Deploying ASP.NET 7 Projects with Railway", "description": "Railway is a startup cloud infrastructure provider that has gained traction for being easy to use and cheap for hobbyists. Let's get a .NET 7 Blazor WASM app up and running with it!", "fileName": "deploying_aspdotnet_7_projects_with_railway" },
         { "title": "Giscus is Awesome", "description": "I can add comments to my statically generated blog? Using GitHub Discussions?? For Free??? And it works????", "fileName": "giscus_is_awesome" }

@@ -5,6 +5,7 @@
 	"date": "17 January 2024",
 	"contents": false,
 	"hero": "photo-1553736277-055142d018f0",
+    "topics": ["Industry", "Processes", "Standards"],
     "related": [
 		{ "title": "Clean Meetings: A Software Engineer's Guide", "description": "If being in meetings all day isn't bad enough, spending more time thinking about them seems horrible. Here's a simple guide on making sure you're getting the most out of your meetings.", "fileName": "clean_meetings_a_software_engineers_guide" },
 		{ "title": "My (Continuing) Descent Into Madness", "description": "It started simply enough, when I asked myself if I should try an IDE other than Visual Studio. Mere months later, I'm now using a tiling window manager. This is the story of my (continuing) descent into madness.", "fileName": "my_continuing_descent_into_madness" },

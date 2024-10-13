@@ -5,6 +5,7 @@
 	"date": "1 April 2024",
 	"contents": false,
 	"hero": "photo-1589933767411-38a58367efd7",
+    "topics": ["BLogging", "Patterns", "Tooling"],
     "related": [
 		{ "title": "Giscus Is Awesome", "description": "I can add comments to my statically generated blog? Using GitHub Discussions?? For Free??? And it works????", "fileName": "giscus_is_awesome" },
 		{ "title": "Daily Grug", "description": "Need inspiration start day, made API.", "fileName": "daily_grug" },
