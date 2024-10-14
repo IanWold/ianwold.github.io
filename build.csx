@@ -153,8 +153,11 @@ new MetalsharpProject()
 			}
 		}
 
-		if (post.Metadata.TryGetValue("topics", out var topicsObject) && topicsObject is JsonElement topicNamesElement)
+		if (post.Metadata.TryGetValue("topics", out var topicsObject))
 		{
+			Console.WriteLine(typeof(topicsObject).FullName());
+			if (topicsObject is JsonElement topicNamesElement)
+			{
 			foreach (var topicNameElement in topicNamesElement.EnumerateArray())
 			{
 				var topicName = topicNameElement.GetString();
@@ -166,6 +169,7 @@ new MetalsharpProject()
 				{
 					topicPosts.Add(topicName, [ post.Metadata ]);
 				}
+			}
 			}
 		}
 	}
