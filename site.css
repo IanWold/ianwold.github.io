@@ -275,7 +275,8 @@ nav {
 			padding-right: 12px;
 		}
 
-	.archive .series h1.title {
+	.archive .series h1.title,
+	.archive .topics h1.title {
 		font-family: 'Vollkorn';
 		font-weight: 700;
 		font-size: 51pt;
