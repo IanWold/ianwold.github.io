@@ -153,23 +153,20 @@ new MetalsharpProject()
 			}
 		}
 
-		if (post.Metadata.TryGetValue("topics", out var topicsObject))
+		if (post.Metadata.TryGetValue("topics", out var topicsObject) && topicsObject is IEnumerable<object> topicsObjectList)
 		{
-			Console.WriteLine(topicsObject.GetType().FullName);
-			if (topicsObject is JsonElement topicNamesElement)
+			foreach (var topicNameElement in topicsObjectList)
 			{
-			foreach (var topicNameElement in topicNamesElement.EnumerateArray())
-			{
-				var topicName = topicNameElement.GetString();
-				if (topicPosts.TryGetValue(topicName, out var topicPostsList))
-				{
-					seriesPosts[topicName] = [ ..topicPostsList, post.Metadata ];
-				}
-				else
-				{
-					topicPosts.Add(topicName, [ post.Metadata ]);
-				}
-			}
+				Console.WriteLine(topicNameElement.GetType().FullName);
+				// var topicName = topicNameElement.GetString();
+				// if (topicPosts.TryGetValue(topicName, out var topicPostsList))
+				// {
+				// 	seriesPosts[topicName] = [ ..topicPostsList, post.Metadata ];
+				// }
+				// else
+				// {
+				// 	topicPosts.Add(topicName, [ post.Metadata ]);
+				// }
 			}
 		}
 	}
