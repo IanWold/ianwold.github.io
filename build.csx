@@ -155,18 +155,16 @@ new MetalsharpProject()
 
 		if (post.Metadata.TryGetValue("topics", out var topicsObject) && topicsObject is IEnumerable<object> topicsObjectList)
 		{
-			foreach (var topicNameElement in topicsObjectList)
+			foreach (var topicName in topicsObjectList.Cast<string>())
 			{
-				Console.WriteLine(topicNameElement.GetType().FullName);
-				// var topicName = topicNameElement.GetString();
-				// if (topicPosts.TryGetValue(topicName, out var topicPostsList))
-				// {
-				// 	seriesPosts[topicName] = [ ..topicPostsList, post.Metadata ];
-				// }
-				// else
-				// {
-				// 	topicPosts.Add(topicName, [ post.Metadata ]);
-				// }
+				if (topicPosts.TryGetValue(topicName, out var topicPostsList))
+				{
+					seriesPosts[topicName] = [ ..topicPostsList, post.Metadata ];
+				}
+				else
+				{
+					topicPosts.Add(topicName, [ post.Metadata ]);
+				}
 			}
 		}
 	}
