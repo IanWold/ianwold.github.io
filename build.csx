@@ -183,7 +183,7 @@ new MetalsharpProject()
 
 	foreach (var topic in topicPosts)
 	{
-		project.AddOutput(new MetalsharpFile(string.Empty, $".\\Series\\{topic.Key.ToLowerInvariant()}.html", new Dictionary<string, object>()
+		project.AddOutput(new MetalsharpFile(string.Empty, $".\\Topics\\{topic.Key.ToLowerInvariant()}.html", new Dictionary<string, object>()
 		{
 			["title"] = topic.Key,
 			["topic"] = topic.Key,
