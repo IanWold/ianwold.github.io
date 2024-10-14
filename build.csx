@@ -153,10 +153,11 @@ new MetalsharpProject()
 			}
 		}
 
-		if (post.Metadata.TryGetValue("topics", out var topicsObject) && topicsObject is IEnumerable<string> topicNames)
+		if (post.Metadata.TryGetValue("topics", out var topicsObject) && topicsObject is JsonElement topicNamesElement)
 		{
-			foreach (var topicName in topicNames)
+			foreach (var topicNameElement in topicNamesElement.EnumerateArray())
 			{
+				var topicName = topicNameElement.GetString();
 				if (topicPosts.TryGetValue(topicName, out var topicPostsList))
 				{
 					seriesPosts[topicName] = [ ..topicPostsList, post.Metadata ];
