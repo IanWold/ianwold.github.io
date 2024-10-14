@@ -155,7 +155,7 @@ new MetalsharpProject()
 
 		if (post.Metadata.TryGetValue("topics", out var topicsObject))
 		{
-			Console.WriteLine(typeof(topicsObject).FullName());
+			Console.WriteLine(topicsObject.GetType().FullName());
 			if (topicsObject is JsonElement topicNamesElement)
 			{
 			foreach (var topicNameElement in topicNamesElement.EnumerateArray())
