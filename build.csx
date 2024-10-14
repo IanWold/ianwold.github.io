@@ -159,7 +159,7 @@ new MetalsharpProject()
 			{
 				if (topicPosts.TryGetValue(topicName, out var topicPostsList))
 				{
-					seriesPosts[topicName] = [ ..topicPostsList, post.Metadata ];
+					topicPosts[topicName] = [ ..topicPostsList, post.Metadata ];
 				}
 				else
 				{
