@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Metalsharp" Version="0.9.0-rc.5" />
+    <PackageReference Include="Metalsharp.LiquidTemplates" Version="0.9.0-rc-3" />
+    <PackageReference Include="Metalsharp.SimpleBlog" Version="0.9.0-rc.2" />
+    <PackageReference Include="System.ServiceModel.Syndication" Version="8.0.0" />
+  </ItemGroup>
+
+  <Target Name="GenerateCsxFile" AfterTargets="Build">
+    <ItemGroup>
+      <SourceFiles Include="Program.cs" />
+    </ItemGroup>
+    
+    <Copy SourceFiles="@(SourceFiles)" DestinationFolder="$(OutputPath)" />
+    
+    <WriteLinesToFile File="build.csx" Overwrite="true"
+      Lines="
+#! &quot;net8.0&quot;
+#r &quot;nuget: Metalsharp, 0.9.0-rc.5&quot;
+#r &quot;nuget: Metalsharp.LiquidTemplates, 0.9.0-rc-3&quot;
+#r &quot;nuget: Metalsharp.SimpleBlog, 0.9.0-rc.2&quot;
+#r &quot;nuget: System.ServiceModel.Syndication, 8.0.0&quot;
+" 
+    />
+
+    <Exec Command="type @(SourceFiles) >> build.csx" />
+  </Target>
+</Project>

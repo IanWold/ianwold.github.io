@@ -1,8 +1,3 @@
-#! "net8.0"
-#r "nuget: Metalsharp, 0.9.0-rc.5"
-#r "nuget: Metalsharp.LiquidTemplates, 0.9.0-rc-3"
-#r "nuget: Metalsharp.SimpleBlog, 0.9.0-rc.2"
-#r "nuget: System.ServiceModel.Syndication, 8.0.0"
 using Metalsharp;
 using Metalsharp.LiquidTemplates;
 using Metalsharp.SimpleBlog;
