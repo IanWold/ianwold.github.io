@@ -3,7 +3,7 @@
 	"title": "Many Dimensions of Heterogeneity",
 	"description": "The final fallacy of distributed computing - 'The Network is Always homogenous' - has more dimensions than typically considered. These tie all the other fallacies together.",
 	"date": "25 October 2024",
-	"contents": false,
+	"contents": true,
 	"hero": "photo-1451187580459-43490279c0fa",
     "topics": ["Distribution", "Architecture"],
 	"series": "Fallacies of Distributed Computing",
