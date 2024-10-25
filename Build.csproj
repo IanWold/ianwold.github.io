@@ -11,6 +11,13 @@
     <PackageReference Include="System.ServiceModel.Syndication" Version="8.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Config\**\*"><CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory></None>
+    <None Update="Site\**\*"><CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory></None>
+    <None Update="Static\**\*"><CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory></None>
+    <None Update="Templates\**\*"><CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory></None>
+  </ItemGroup>
+
   <Target Name="GenerateCsxFile" AfterTargets="Build">
     <ItemGroup>
       <SourceFiles Include="Program.cs" />

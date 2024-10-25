@@ -1,0 +1,10 @@
+{
+    "configurations": [
+    {
+        "name": "C#: Build Debug",
+        "type": "dotnet",
+        "request": "launch",
+        "projectPath": "${workspaceFolder}/Build.csproj"
+    }
+    ]
+}

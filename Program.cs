@@ -177,17 +177,47 @@ new MetalsharpProject()
 		}));
 	}
 
-	foreach (var topic in topicPosts)
-	{
-		project.AddOutput(new MetalsharpFile(string.Empty, $".\\Topics\\{topic.Key.ToLowerInvariant()}.html", new Dictionary<string, object>()
+	project.AddOutput(new MetalsharpFile(
+		"Sometimes I write a series of related posts, and I keep those series linked together to be able to easily go back over them. These are all the series I have written (or am in the process of writing):",
+		".\\series.html",
+		new Dictionary<string, object>()
 		{
-			["title"] = topic.Key,
-			["topic"] = topic.Key,
+			["title"] = "series",
+			["template"] = "linkList",
+			["removeScrollspy"] = true,
+			["fontRequirement"] = "page",
+			["links"] = seriesInfo,
+			["folder"] = "Series"
+		}
+	));
+
+	var topics = topicPosts.Select(t => new TopicInfo(t.Key, t.Key.ToLowerInvariant(), t.Value.OrderByDescending(p => DateTime.Parse(p["date"].ToString()))));
+
+	foreach (var topic in topics)
+	{
+		project.AddOutput(new MetalsharpFile(string.Empty, $".\\Topics\\{topic.Slug}.html", new Dictionary<string, object>()
+		{
+			["title"] = topic.Title,
+			["topic"] = topic.Title,
 			["template"] = "archive",
 			["removeScrollspy"] = true,
-			["posts"] = topic.Value.OrderByDescending(p => DateTime.Parse(p["date"].ToString()))
+			["posts"] = topic.Posts
 		}));
 	}
+
+	project.AddOutput(new MetalsharpFile(
+		"These are all of the topics under which I've categorized my posts:",
+		".\\topics.html",
+		new Dictionary<string, object>()
+		{
+			["title"] = "topics",
+			["template"] = "linkList",
+			["removeScrollspy"] = true,
+			["fontRequirement"] = "page",
+			["links"] = topics,
+			["folder"] = "Topics"
+		}
+	));
 })
 .Use(project => // Add table of contents to posts
 {
@@ -314,3 +344,4 @@ new MetalsharpProject()
 });
 
 record SeriesInfo(string Title, string Slug, string Description);
+record TopicInfo(string Title, string Slug, IEnumerable<Dictionary<string, object>> Posts);

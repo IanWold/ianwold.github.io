@@ -1,0 +1,9 @@
+<div class="content page post">
+    <p>{{ content | raw }}</p>
+    
+    <ul>
+        {% for l in links %}
+            <li><a href="{{ directoryPrefix }}{{ folder }}/{{ l.Slug }}.html">{{ l.Title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
