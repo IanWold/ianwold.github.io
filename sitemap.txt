@@ -65,6 +65,7 @@ https://ian.wold.guru/Posts/write_your_own_rdbms_versioned_migration_boilerplate
 https://ian.wold.guru/Series/fallacies_distributed_computing.html
 https://ian.wold.guru/Series/book_club.html
 https://ian.wold.guru/Series/past_articles.html
+https://ian.wold.guru/series.html
 https://ian.wold.guru/Topics/blogging.html
 https://ian.wold.guru/Topics/how-to.html
 https://ian.wold.guru/Topics/databases.html
@@ -86,3 +87,4 @@ https://ian.wold.guru/Topics/standards.html
 https://ian.wold.guru/Topics/security.html
 https://ian.wold.guru/Topics/devex.html
 https://ian.wold.guru/Topics/mongo.html
+https://ian.wold.guru/topics.html
