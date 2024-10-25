@@ -22,6 +22,4 @@ At this _very instant_ I am...
 
 **Getting lost** in corn mazes and feeding goats at nearby farms. This staves off the dread of the impending winter! Why do we call them "corn mazes" and not "maize mazes"?
 
-**Finishing** my [Fallacies of Distributed Computing series](https://ian.wold.guru/Series/fallacies_distributed_computing.html). The last one is almost done!
-
 _This is a [now page](https://nownownow.com/about). You can see its [update history on GitHub](https://github.com/IanWold/ianwold.github.io/commits/master/Site/now.md)._
