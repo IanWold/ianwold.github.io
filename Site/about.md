@@ -14,6 +14,8 @@ I spend the majority of my time solving the same problems over and over again, b
 
 Outside of work, I find balance in my hobbies and my community. I'm frequently posted up at local pubs and breweries - interrupted by the occasional church gathering - speaking with my neighbors and meeting new folks. I keep my body active by walking, biking, or canoeing, and I keep my eye sharp with my enjoyment of billiards. My passion for philosophy adds a lot of color to my life, and my amateur engagement with classical architecture reminds me of the importance of crafting enduring, beautiful work.
 
+I keep [a blogroll](https://ian.wold.guru/Blogroll/) with all the other blogs I like to read. Want me to check yours out? Feel free to [reach out](https://ian.wold.guru/connect.html)!
+
 # Projects
 
 **FreePlanningPoker.io** on [Web](https://freeplanningpoker.io) and [GitHub](https://github.com/IanWold/PlanningPoker): A free tool for software teams to do "planning poker" exercises. It's always going to be free, without limits.
