@@ -1645,6 +1645,23 @@ item.DoSomething();
       <a10:updated>2024-09-30T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">i_have_a_blogroll_now</guid>
+      <link>https://ian.wold.guru/Posts/i_have_a_blogroll_now.html</link>
+      <title>I Have a Blogroll Now!</title>
+      <description>&lt;p&gt;A bit ago I collected &lt;a href="https://ian.wold.guru/Posts/book_club_9-2024.html"&gt;a list of links&lt;/a&gt; to blogs that I enjoy tuning into. I think this is a good list of blogs; these are the ones I enjoy coming back to with some regularity - even the ones which haven't posted in a while have great articles that are worth revisiting.&lt;/p&gt;
+&lt;p&gt;There's a couple problems here though. First, I'm generally averse to blog posts with lots of updates; I think a post is a relatively static thing, so updates should be limited to correcting spelling/grammar errors and the occasional clarification. Thus, as I collect more blogs I'm disinclined to keep &lt;em&gt;that&lt;/em&gt; page updated. The second problem is reading them: they're links in my browser and it's quite sporadic how I go about reading them. I've got most of them saved in an RSS reader on my phone but I tend to go months without remembering that that exists.&lt;/p&gt;
+&lt;p&gt;So I want a couple things: I want a dynamic page that I can update with new RSS feeds I want to tune into, and I want an easy way to be able to catch updates from these blogs. The obvious step is to add a page at the top of this site that contains the list; this isn't a post so I can update it as frequently as I want (like my &lt;a href="https://ian.wold.guru/now.html"&gt;now page&lt;/a&gt;), but then this still requires that I go onto this page and click through to read the blogs. That's not much better than having a favorites bar, though it does make the blogroll public.&lt;/p&gt;
+&lt;p&gt;It's obviously advantageous that these are RSS feeds; I should be able to set up some sort of scheme to get the latest posts from them. To me, the best place for this would be my browser homepage; I like to start my day a bit lighter before an onslaught of morning meetings, so if I could have a reading list right when I get started I'll be more inclined to tune in more frequently.&lt;/p&gt;
+&lt;p&gt;As it happens, I do have a project that I haven't finished - a &lt;a href="https://github.com/IanWold/Metalsharp"&gt;static site generator&lt;/a&gt; which I use to generate this blog. I already know how to hook that up with GitHub Actions and Pages to get a static site really easy, so it really shouldn't be any work to set up a site that can host my bogroll and pull the latest posts from their feeds!&lt;/p&gt;
+&lt;p&gt;Indeed, it wasn't difficult to set up a first pass. I just have a JSON with a list of RSS links, and a C# script to download these RSSes, parse them, and build the site. It's just two pages: a list of blogs and a list of their latest articles (the latter page now being my browser homepage). What a deal! I didn't want to get bogged down in UI design or any super-fancy coding, so I stuck to the C# script setup that I know works, and I used &lt;a href="https://andybrewer.github.io/mvp/"&gt;MVP.css&lt;/a&gt; to give an attractive style to plain, old HTML. Super simple and out the door in no time!&lt;/p&gt;
+&lt;p&gt;This did replace &lt;a href="https://ian.wold.guru/Posts/daily_grug.html"&gt;Daily Grug&lt;/a&gt; as my homepage, so I'm going to need to get the daily grug quote inserted into the page.&lt;/p&gt;
+&lt;p&gt;I'll encourage you all to check out &lt;a href="https://ian.wold.guru/Blogroll/"&gt;my blogroll&lt;/a&gt;! If you've got suggestions for blogs I should follow (or your own blog), comment below or &lt;a href="https://ian.wold.guru/connect.html"&gt;reach out to me&lt;/a&gt; on any of my other channels, I'd love to find more.&lt;/p&gt;
+&lt;p&gt;In future I'll be putting in a bit of work to set up a template repo in GitHub to make it easy for anyone to use this scheme to publish a blogroll - stay tuned!&lt;/p&gt;
+</description>
+      <pubDate>Fri, 01 Nov 2024 00:00:00 Z</pubDate>
+      <a10:updated>2024-11-01T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">just_use_postgresql</guid>
       <link>https://ian.wold.guru/Posts/just_use_postgresql.html</link>
       <title>Just Use PostgreSQL</title>
