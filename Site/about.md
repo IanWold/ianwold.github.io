@@ -20,6 +20,8 @@ I keep [a blogroll](https://ian.wold.guru/Blogroll/) with all the other blogs I 
 
 **FreePlanningPoker.io** on [Web](https://freeplanningpoker.io) and [GitHub](https://github.com/IanWold/PlanningPoker): A free tool for software teams to do "planning poker" exercises. It's always going to be free, without limits.
 
+**StaticBlogroll** on [GitHub](https://github.com/IanWold/StaticBlogroll): Quickly publish a statically-generated blogroll with GitHub Actions and Pages.
+
 **Metalsharp** on [GitHub](https://github.com/IanWold/Metalsharp) and [NuGet](https://www.nuget.org/packages/Metalsharp/): A tiny and extendable C# library for generating static sites, inspired by Metalsmith.
 
 **Daily Grug** on [Web](https://dailygrug-production.up.railway.app/): Need inspiration start day, made API.
