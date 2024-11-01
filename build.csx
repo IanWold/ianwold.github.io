@@ -81,13 +81,18 @@ new MetalsharpProject()
 	var rssFeed = new SyndicationFeed(
 		"Ian Wold",
 		"Ian Wold's Blog",
-		new Uri("https://ian.wold.guru/feed.xml"),
+		new Uri("https://ian.wold.guru"),
 		rssItems.Select(i =>
 		{
 			i.PublishDate = i.LastUpdatedTime;
 			return i;
 		})
 	);
+
+    rssFeed.Links.Add(new SyndicationLink(new Uri("https://ian.wold.guru/feed.xml"))
+    {
+        RelationshipType = "self"
+    });
 
 	var xmlSettings = new XmlWriterSettings
     {
