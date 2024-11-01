@@ -1,8 +1,9 @@
 <rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>Ian Wold</title>
-    <link>https://ian.wold.guru/feed.xml</link>
+    <link>https://ian.wold.guru/</link>
     <description>Ian Wold's Blog</description>
+    <a10:link rel="self" href="https://ian.wold.guru/feed.xml" />
     <item>
       <guid isPermaLink="false">90_of_my_homepage_was_useless</guid>
       <link>https://ian.wold.guru/Posts/90_of_my_homepage_was_useless.html</link>
