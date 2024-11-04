@@ -18,7 +18,11 @@ using (var reader = new StreamReader("Config/series.json"))
 	seriesInfo = JsonSerializer.Deserialize<IEnumerable<SeriesInfo>>(reader.ReadToEnd());
 }
 
-new MetalsharpProject()
+new MetalsharpProject(new MetalsharpOptions()
+{
+	OutputDirectory = "output",
+	ClearOutputDirectory = true
+})
 .AddInput("Site", @".\")
 .UseFrontmatter()
 .RemoveFiles(file =>
@@ -305,7 +309,7 @@ new MetalsharpProject()
 			isInContainingSection = false;
 		}
 
-		post.Text = postBuilder.ToString();
+		post.Contents = Encoding.Default.GetBytes(postBuilder.ToString());
 		post.Metadata.Add("sections", sections);
 	}
 })
@@ -342,11 +346,7 @@ new MetalsharpProject()
 
 	project.AddOutput(new MetalsharpFile(builder.ToString(), "sitemap.txt"));
 })
-.Build(new BuildOptions()
-{
-	OutputDirectory = "output",
-	ClearOutputDirectory = true
-});
+.Build();
 
 record SeriesInfo(string Title, string Slug, string Description);
 record TopicInfo(string Title, string Slug, IEnumerable<Dictionary<string, object>> Posts);
