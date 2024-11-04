@@ -2135,6 +2135,28 @@ CREATE TRIGGER trigger_cart_items_delete BEFORE DELETE ON items FOR EACH ROW EXE
       <a10:updated>2024-10-05T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">publish_your_blogroll_now</guid>
+      <link>https://ian.wold.guru/Posts/publish_your_blogroll_now.html</link>
+      <title>Publish Your Blogroll Now</title>
+      <description>&lt;p&gt;Do you read blogs? Of course you do! How do you keep those blogs saved? How do you keep up with their latest posts? How do you share these blogs with everyone else?&lt;/p&gt;
+&lt;p&gt;I recently became motivated (by the realization that &lt;a href="https://ian.wold.guru/Posts/i_have_a_blogroll_now.html"&gt;I keep forgetting about my RSS reader&lt;/a&gt;) to answer these questions by creating a blogroll. But not just any blogroll, no! A &lt;em&gt;super cool&lt;/em&gt; blogroll - a standalone, statically generated page that lists all the latest posts from the blogs I follow. It's like an RSS reader but way better: I can share it with the internet, and I set my browser's homepage to the collection of latest posts. I can keep up with my reading and share it with everyone.&lt;/p&gt;
+&lt;p&gt;The best part is you can too! I developed &lt;a href="https://github.com/IanWold/StaticBlogroll"&gt;StaticBlogroll&lt;/a&gt;, a very creatively-named template repo you can use to get your own blogroll page going in no time flat. It uses GitHub Actions and Pages, so there's no work beyond just a little config to set up.&lt;/p&gt;
+&lt;h1&gt;Okay, but why do I need a blogroll?&lt;/h1&gt;
+&lt;p&gt;I'm a big advocate that everyone should be maintaining a blogroll. Not super actively - maybe more passively - but you should definitely have one. No doubt there's dozens of blogs a year you tune into - an article here to get help on an issue, an article there to learn about a topic, articles for fun or insight or curiousity.&lt;/p&gt;
+&lt;p&gt;A public blogroll helps others discover the blogs you enjoy. Even if only a few friends end up looking at your blogroll, you're helping the author find new readers at the same time you're helping your friends find something new. Even just recognizing an author on your blogroll is a kind gesture that shows your appreciation for their work.&lt;/p&gt;
+&lt;p&gt;If you happen to have your own blog, keeping a blogroll is an even better investment. Connecting your readers with blogs of similar interests gives a better, deeper experience for your readers. As for me, I feel like I can represent more aspects of my interests and personality by linking to other blogs that are better-focused than my blog on topics which I enjoy and influence my writing here.&lt;/p&gt;
+&lt;p&gt;So what's the utility in a &lt;em&gt;statically generated&lt;/em&gt; blogroll? The only thing I've added to take advantage of this setup (yet) is to read the latest posts in from the RSS feeds on my blogroll. As I mentioned, this was selfish because I needed an easy way to read them. I'm certain that could be handy for you as well, but I also like the idea that this makes it easier for visitors to my blogroll to skim through for articles they might be interested in.&lt;/p&gt;
+&lt;h1&gt;That sounds awesome! How do I get one?&lt;/h1&gt;
+&lt;p&gt;I've published &lt;a href="https://github.com/IanWold/StaticBlogroll"&gt;StaticBlogroll&lt;/a&gt; as a template repository on GitHub; you can &lt;a href="https://github.com/new?template_name=StaticBlogroll&amp;amp;template_owner=IanWold"&gt;create a new repo&lt;/a&gt; from that template and &lt;a href="https://github.com/IanWold/StaticBlogroll?tab=readme-ov-file#setup"&gt;follow the setup steps&lt;/a&gt; on the readme - these should take no more than 5 minutes to get all set up!&lt;/p&gt;
+&lt;p&gt;The way it works is very simple: there's a &lt;code&gt;config.json&lt;/code&gt; at the root level that has all the configurations. This is the name of the page, some headers and the like, but most importantly the list of &lt;code&gt;feeds&lt;/code&gt;. These are the URLs to the RSS feeds of the blogs you want on your roll.&lt;/p&gt;
+&lt;p&gt;From there, there is a GitHub Actions workflow that generates the static site based on this config, though there's a few other files (templates and static files) you can peruse at the root level if you want to customize it further. The workflow runs whenever you push to &lt;code&gt;main&lt;/code&gt; &lt;em&gt;and&lt;/em&gt; it runs once a day at midnight to regenerate the latest posts.&lt;/p&gt;
+&lt;p&gt;After you've gone through the simple steps to configure Actions and Pages, you'll have a blogroll page of your own! Woohoo! The only next step would be to share it with the world. I set up a discussion topic on my repository to showcase blogrolls made with it - please &lt;a href="https://github.com/IanWold/StaticBlogroll/discussions/new?category=showcase"&gt;add your own&lt;/a&gt; so I can see the cool blogs y'all read.&lt;/p&gt;
+&lt;p&gt;If you'd like a reference with some further customizations, check out &lt;a href="https://github.com/IanWold/Blogroll"&gt;my blogroll repo&lt;/a&gt; made off of this template.&lt;/p&gt;
+</description>
+      <pubDate>Sun, 03 Nov 2024 00:00:00 Z</pubDate>
+      <a10:updated>2024-11-03T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">quick_and_dirty_sequential_ids_in_mongo</guid>
       <link>https://ian.wold.guru/Posts/quick_and_dirty_sequential_ids_in_mongo.html</link>
       <title>Quick &amp; Dirty Sequential IDs in MongoDB</title>
