@@ -4,7 +4,7 @@
 	"description": "The AI will continue until morale improves!",
 	"date": "13 November 2024",
 	"contents": false,
-	"hero": "photo-1697577418970-95d99b5a55cf",
+	"hero": "photo-1721066115321-eb0eec055296",
     "topics": ["Dotnet"],
     "related": [
         { "title": "Learn the Old Languages", "description": "New languages are hip, old languages are erudite. Don't neglect these languages as you round out your skills.", "fileName": "learn_the_old_languages" },
