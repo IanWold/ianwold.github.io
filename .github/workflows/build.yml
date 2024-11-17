@@ -20,14 +20,14 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ${{ env.DOTNET_INSTALL_DIR }}
-        key: ${{ runner.os }}-dotnet-6
-        restore-keys: ${{ runner.os }}-dotnet-6
+        key: ${{ runner.os }}-dotnet-8
+        restore-keys: ${{ runner.os }}-dotnet-8
 
     - name: Setup dotnet
       if: ${{ steps.cache-dotnet.outputs.cache-hit != 'true' }}
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 8.0.x
 
     - name: Setup dotnet-script
       run: ${{ env.DOTNET_INSTALL_DIR }}\dotnet tool install -g dotnet-script
