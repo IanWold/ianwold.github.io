@@ -1,7 +1,7 @@
 ;;;
 {
 	"title": "Three Laws",
-	"description": "Some "folk laws" that are commonly known but seldom applied.",
+	"description": "Some 'folk laws' that are commonly known but seldom applied.",
 	"date": "20 November 2024",
 	"contents": false,
 	"hero": "photo-1593115057322-e94b77572f20",
