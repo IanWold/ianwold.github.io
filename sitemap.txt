@@ -63,6 +63,7 @@ https://ian.wold.guru/Posts/there_is_one_admin.html
 https://ian.wold.guru/Posts/the_case_for_single_reviewer_prs.html
 https://ian.wold.guru/Posts/the_network_is_reliable.html
 https://ian.wold.guru/Posts/the_network_is_secure.html
+https://ian.wold.guru/Posts/three_laws.html
 https://ian.wold.guru/Posts/topology_doesnt_change.html
 https://ian.wold.guru/Posts/using_interfaces.html
 https://ian.wold.guru/Posts/why_i_have_this_blog.html

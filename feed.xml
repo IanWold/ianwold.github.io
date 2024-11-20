@@ -3707,6 +3707,37 @@ Parser&amp;lt;JSONValue&amp;gt; JObject =
       <a10:updated>2024-05-30T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">three_laws</guid>
+      <link>https://ian.wold.guru/Posts/three_laws.html</link>
+      <title>Three Laws</title>
+      <description>&lt;p&gt;There is plenty of conventional &amp;quot;folk&amp;quot;-ish wisdom to be had, and a lot of it is widely known if sometimes unintuitive. This knowledge coalesces in the form of popular &amp;quot;laws,&amp;quot; particularly in areas like management and economics. Plenty has been written about the application of these laws to the software industry, to varying degrees of acceptability. The implications they have for us can be surprising, and studying them can give an intuition for the unintuitive: how to organize the best team, deliver the most successful project, or architect the best codebase.&lt;/p&gt;
+&lt;p&gt;Here's three which I find particularly helpful.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parkinson's First Law&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Work expands so as to fill the time available for its completion&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;That is, if I go through a pointing session and come out with a two week estimate for a task, it will take two weeks. If I estimate one week, it just might come out to one week. There are indeed efforts which take more or less time, but efforts afforded more time &lt;em&gt;will&lt;/em&gt; use that time.&lt;/p&gt;
+&lt;p&gt;This is one of the inefficiencies caused by estimating, and it becomes especially difficult if a culture of &amp;quot;it's okay to point a little higher just in case&amp;quot; develops. This has the potential to cause a feedback loop, where tasks are estimated with a bit of wiggle room, that room is &lt;em&gt;used&lt;/em&gt; (per Parkinson's), a new baseline is thus set and estimates expand again to maintain that &amp;quot;little room.&amp;quot; If this sets in it will grind a team to a halt eventually - there won't be time for small tasks and important quality work like refactors and vulnerability patches will be punted in favor of feature development.&lt;/p&gt;
+&lt;p&gt;Do not estimate! There are other reasons beyond Parkinson's to not estimate, but this is a big one. Forecast instead. In fact, you don't need to measure time taken on cards, you &lt;a href="https://www.youtube.com/watch?v=QVBlnCTu9Ms"&gt;just need to count cards&lt;/a&gt; to get forecasting that's more specific than estimation.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Law of Triviality&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;People in an organization devote a disproportionate amount of time to trivial issues&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I think of this like an 80/20 proposition: 80% of our resources will be spent on the trivial issues and 20% on the actual thing we need to focus on. One explanation for why this happens is that the trivial issues are easier for many people to understand, biasing people to discuss these. Another reason is that these issues are easier to &lt;em&gt;disagree&lt;/em&gt; about - if I'm wrong about a complicated technical issue that might call my competence into question, whereas being wrong about inconsequential issues has, obviously, no consequence.&lt;/p&gt;
+&lt;p&gt;Following the 80/20 idea, only commit 20% (the bare necessity) to tackling the issue needed. Should you have 15 folks on the call to go over the issue, or 3? Should that call be 60 minutes or 15? Should your meeting have an open - or no - agenda (allowing any topics to be discussed as they arise), or should you have an agenda with the 1-3 items that need discussing?&lt;/p&gt;
+&lt;p&gt;Do not expand! Liberally cull resources from the problem-solving space.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Jevon's Paradox&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;As the efficiency of consuming a resource is increased, the net consumption of that resource increases&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is a paradox as you'd expect the resource consumption to decrease, but instead the new efficiency induces an extra demand on that resource. This is a well-known phenomenon in urban planning: when lanes are added to a highway, it tends to cause the highway to have more jams than it did before.&lt;/p&gt;
+&lt;p&gt;As software engineers, we tend towards making things more efficient. New processors have more cores, algorithms run faster than old algorithms, cloud platforms can offer more &amp;quot;computes&amp;quot; per dollar, etc. We can fall in a trap thinking this can afford us to write code at higher-than-necessary levels, less efficient business logic, or that we can &amp;quot;just&amp;quot; use more cloud products. In the extreme this has manifested in an outsized adoption of distributed architectures; particularly microservices.&lt;/p&gt;
+&lt;p&gt;Do not complexity! &lt;a href="https://grugbrain.dev/"&gt;Complexity very, very bad&lt;/a&gt;! When we write software or make architectural diagrams or the like, we talk about taking several &amp;quot;passes&amp;quot;. There's the &amp;quot;get it to work&amp;quot; pass, the &amp;quot;make it pretty&amp;quot; pass, and so on. Always make sure you have a &amp;quot;make it simple&amp;quot; pass. Heck, do several! How many arrows and boxes can you take out of the architectural diagram? How much code can you get rid of? How many iterations over that list of widgets can you consolidate?&lt;/p&gt;
+</description>
+      <pubDate>Wed, 20 Nov 2024 00:00:00 Z</pubDate>
+      <a10:updated>2024-11-20T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">topology_doesnt_change</guid>
       <link>https://ian.wold.guru/Posts/topology_doesnt_change.html</link>
       <title>The Topologies They Are a-Changin'</title>
