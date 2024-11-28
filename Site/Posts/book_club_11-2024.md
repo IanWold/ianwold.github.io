@@ -10,7 +10,7 @@
     "related": [
 		{ "title": "Book Club 10/2024: Fallacies of Distributed Computing", "description": "Putting a pin in the series I wrote this year on the topic of these Fallacies", "fileName": "book_club_10-2024" },
 		{ "title": "Book Club 9/2024: Blogroll: Labor", "description": "I've been dying to ask you; I really want to know: where do you get your ideas from?", "fileName": "book_club_9-2024" },
-		{ "title": "Book Club 8/2024: Labor", "description": "Using Labor Day as an excuse to wonder about some recent trends in the industry", "fileName": "book_club_8-2024" },
+		{ "title": "Book Club 8/2024: Labor", "description": "Using Labor Day as an excuse to wonder about some recent trends in the industry", "fileName": "book_club_8-2024" }
 	]
 }
 ;;;
