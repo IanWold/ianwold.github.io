@@ -5,7 +5,7 @@
 	"date": "28 November 2024",
 	"contents": false,
 	"hero": "photo-1672309558498-cfcc89afff25",
-    "topics": ["Blogging"],
+    "topics": ["Processes", "Industry", "Learning"],
 	"series": "Book Club",
     "related": [
 		{ "title": "Book Club 10/2024: Fallacies of Distributed Computing", "description": "Putting a pin in the series I wrote this year on the topic of these Fallacies", "fileName": "book_club_10-2024" },
