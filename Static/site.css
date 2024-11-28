@@ -711,6 +711,10 @@ footer {
 	color: white;
 }
 
+ul ul {
+	margin-left: 24px;
+}
+
 
 
 .flex {
