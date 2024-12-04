@@ -7,22 +7,24 @@
 
 {% assign hidePastArticles = hidePastArticles | default: false %}
 
-<header>
-	{% if series %}
-		<h1>{{ series }}</h1>
-		<h2>Series Archive</h2>
-	{% elsif topic %}
-		<h1>Topic: {{ topic }}</h1>
-	{% else %}
-		<h1 style="display: none;">A blog about software engineering and architecture.</h1>
-	{% endif %}
-</header>
-
-<section>
-	{% if series %}
-		<aside>{{ seriesDescription | raw }}</aside>
-	{% endif %}
-</section>
+{% if series or topic %}
+	<header>
+		{% if series %}
+			<h1>{{ series }}</h1>
+			<h2>Series Archive</h2>
+		{% elsif topic %}
+			<h1>Topic: {{ topic }}</h1>
+		{% endif %}
+	</header>
+	
+	<section>
+		{% if series %}
+			<aside>{{ seriesDescription | raw }}</aside>
+		{% endif %}
+	</section>
+{% else %}
+	<h1 style="display: none;">A blog about software engineering and architecture.</h1>
+{% endif %}
 
 {% for year in years %}
 	{% assign intYear = year | plus: 0 %}
