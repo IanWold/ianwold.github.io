@@ -181,6 +181,10 @@ main {
         gap: 1rem;
     }
 
+	div {
+		width: 100%;
+	}
+
     > section:last-child, > article:last-child {
         margin-bottom: 2rem;
     }
