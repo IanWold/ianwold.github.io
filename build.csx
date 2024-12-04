@@ -233,6 +233,18 @@ new MetalsharpProject(new MetalsharpOptions()
 		}
 	));
 })
+.Use(project =>
+{
+	var posts = project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts"));
+
+	foreach (var post in posts)
+	{
+		post.Contents = Encoding.Default.GetBytes(post.Text.Replace("<h2>", "<h3>"));
+		post.Contents = Encoding.Default.GetBytes(post.Text.Replace("</h2>", "</h3>"));
+		post.Contents = Encoding.Default.GetBytes(post.Text.Replace("<h1>", "<h2>"));
+		post.Contents = Encoding.Default.GetBytes(post.Text.Replace("</h1>", "</h2>"));
+	}
+})
 .Use(project => // Add table of contents to posts
 {
 	var posts = project.OutputFiles.Where(f => f.Directory.StartsWith(@".\Posts"));// && f.Metadata.TryGetValue("contents", out object isContentsObject) && isContentsObject is bool isContents && isContents);
@@ -262,7 +274,7 @@ new MetalsharpProject(new MetalsharpOptions()
 			var lineToAdd = line;
 			var trimmedLine = line.Trim();
 
-			if (Regex.Match(trimmedLine, @"(?:<h1>)([^<]*)(?:<\/h1>)$") is Match matchContainingHeader && matchContainingHeader.Success)
+			if (Regex.Match(trimmedLine, @"(?:<h2>)([^<]*)(?:<\/h2>)$") is Match matchContainingHeader && matchContainingHeader.Success)
 			{
 				if (isInInnerSection)
 				{
@@ -283,7 +295,7 @@ new MetalsharpProject(new MetalsharpOptions()
 
 				isInContainingSection = true;
 			}
-			else if (Regex.Match(trimmedLine, @"(?:<h2>)([^<]*)(?:<\/h2>)$") is Match matchInnerHeader && matchInnerHeader.Success)
+			else if (Regex.Match(trimmedLine, @"(?:<h3>)([^<]*)(?:<\/h3>)$") is Match matchInnerHeader && matchInnerHeader.Success)
 			{
 				if (isInInnerSection)
 				{

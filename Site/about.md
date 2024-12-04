@@ -16,7 +16,7 @@ Outside of work, I find balance in my hobbies and my community. I'm frequently p
 
 I keep [a blogroll](https://ian.wold.guru/Blogroll/) with all the other blogs I like to read. Want me to check yours out? Feel free to [reach out](https://ian.wold.guru/connect.html)!
 
-# Projects
+## Projects
 
 **FreePlanningPoker.io** on [Web](https://freeplanningpoker.io) and [GitHub](https://github.com/IanWold/PlanningPoker): A free tool for software teams to do "planning poker" exercises. It's always going to be free, without limits.
 

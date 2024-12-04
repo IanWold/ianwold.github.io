@@ -7,46 +7,48 @@
 
 {% assign hidePastArticles = hidePastArticles | default: false %}
 
-<div class="content archive">
+<header>
 	{% if series %}
-		<div class="series">
-			<h1 class="title">{{ series }}</h1>
-			<div class="subheading">Series Archive</div>
-			<div class="description">{{ seriesDescription | raw }}</div>
-		</div>
+		<h1>{{ series }}</h1>
+		<h2>Series Archive</h2>
 	{% elsif topic %}
-		<div class="topics">
-			<h1 class="title">Topic: {{ topic }}</h1>
-		</div>
+		<h1>Topic: {{ topic }}</h1>
 	{% else %}
 		<h1 style="display: none;">A blog about software engineering and architecture.</h1>
 	{% endif %}
+</header>
 
-	{% for year in years %}
-		{% assign intYear = year | plus: 0 %}
-		{% if hidePastArticles == false or intYear > 2020 %}
-			<section id="{{ year }}">
-				{% if years.size > 1 %}
-					<div class="subheading">{{ year }}</div>
-				{% endif %}
-				<ul>
-					{% assign postsForYear = posts | where: "year", year %}
-					{% for post in postsForYear %}
-						<li>
-							<em>{{ post.month }}.{{ post.day }}</em>
-							<a href="{{ directoryPrefix }}Posts/{{ post.fileName }}.html">
-								{{ post.title }}<small>{{ post.description }}</small>
-							</a>
-						</li>
-					{% endfor %}
-				</ul>
-			</section>
-		{% endif %}
-	{% endfor %}
+<section>
+	{% if series %}
+		<aside>{{ seriesDescription | raw }}</aside>
+	{% endif %}
+</section>
 
-	{% if hidePastArticles %}
-		<section id="past-articles" class="past-articles">
-			Looking for an earlier article? All of my past articles are <a href="https://ian.wold.guru/Series/past_articles.html">archived here</a>.
+{% for year in years %}
+	{% assign intYear = year | plus: 0 %}
+	{% if hidePastArticles == false or intYear > 2020 %}
+		<section id="{{ year }}">
+			{% if years.size > 1 %}
+				<h2>{{ year }}</h2>
+			{% endif %}
+			<ul>
+				{% assign postsForYear = posts | where: "year", year %}
+				{% for post in postsForYear %}
+					<li>
+						<time>{{ post.month }}.{{ post.day }}</time>
+						<a href="{{ directoryPrefix }}Posts/{{ post.fileName }}.html">
+							<h3>{{ post.title }}</h3>
+							<small>{{ post.description }}</small>
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
 		</section>
 	{% endif %}
-</div>
+{% endfor %}
+
+{% if hidePastArticles %}
+	<section>
+		<small>Looking for an earlier article? All of my past articles are <a href="https://ian.wold.guru/Series/past_articles.html">archived here</a>.</small>
+	</section>
+{% endif %}
