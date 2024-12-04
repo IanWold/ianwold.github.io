@@ -182,8 +182,12 @@ main {
     }
 
 	div {
-		width: 100%;
+		align-self: stretch;
 	}
+
+    iframe {
+        width: 100%;
+    }
 
     > section:last-child, > article:last-child {
         margin-bottom: 2rem;
