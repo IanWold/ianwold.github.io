@@ -274,7 +274,6 @@ main {
 
             p {
                 font-size: 13pt;
-                font-family: 'Rubik';
                 font-weight: 500;
                 line-height: 1.75;
             }
@@ -309,7 +308,6 @@ main {
 
             ul {
                 padding-right: 12px;
-                font-family: 'Rubik';
                 font-size: 10pt;
                 line-height: 1;
             }
