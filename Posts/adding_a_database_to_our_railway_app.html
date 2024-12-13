@@ -138,15 +138,15 @@
 <p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/railway-database-variables.png" alt="New Project button in Railway" /></p>
 <p>This contains all the information that our app will need to connect to it. Railway allows the resources within a project to reference each others' variables, so we just need to know which ones to reference to build a connection string.</p>
 <p>Now, they've all got incredibly obvious names so you can certainly accomplish this by guessing in as much time as it takes you to read this article, but for thoroughness' sake I've got a connection string here:</p>
-<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-plaintext"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">User Id=${{Postgres.PGUSER}};Password=${{Postgres.PGPASSWORD}};Host=${{Postgres.PGHOST}};Port=${{Postgres.PGPORT}};Database=${{Postgres.PGDATABASE}}</span></div><textarea data-torchlight-original="true" style="display: none !important;">User Id=${{Postgres.PGUSER}};Password=${{Postgres.PGPASSWORD}};Host=${{Postgres.PGHOST}};Port=${{Postgres.PGPORT}};Database=${{Postgres.PGDATABASE}}
-</textarea></code></pre>
+<pre><code class="language-plaintext">User Id=${{Postgres.PGUSER}};Password=${{Postgres.PGPASSWORD}};Host=${{Postgres.PGHOST}};Port=${{Postgres.PGPORT}};Database=${{Postgres.PGDATABASE}}
+</code></pre>
 <p>If you copy that as the value of a new variable in your application, it will fill in each of the references with the values from your database's variables, and that should be a sufficient connectino string to test that it works:</p>
 <p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/railway-database-connection-string.png" alt="New Project button in Railway" /></p>
 <p>Note that I'm using the variable name <code>ConnectionStrings__Database</code>, with two underscores, which behaves as though I'm inserting the following into my <code>appsettings</code> (in a .NET context):</p>
-<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-json"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #E6DB74;">&quot;ConnectionStrings&quot;</span><span style="color: #F8F8F2;">: {</span></div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #66D9EF;">&quot;Database&quot;</span><span style="color: #F8F8F2;">: </span><span style="color: #CFCFC2;">&quot;...&quot;</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><textarea data-torchlight-original="true" style="display: none !important;">"ConnectionStrings": {
-    "Database": "..."
+<pre><code class="language-json">&quot;ConnectionStrings&quot;: {
+    &quot;Database&quot;: &quot;...&quot;
 }
-</textarea></code></pre>
+</code></pre>
 <p>And that's all the configuration needed for your app to be able to consume your new database!</p>
 </section>
 
