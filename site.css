@@ -402,14 +402,12 @@ main {
             }
 		}
 
-        blockquote {
+        blockquote>p {
 			font-family: 'Vollkorn';
-			font-size: 22pt;
+			font-size: 18pt;
 			line-height: 1.5;
 			font-weight: 400;
-			padding-left: 2rem;
-			padding-top: .5rem;
-			padding-bottom: .5rem;
+            padding: .5rem 2rem;
 			border-left: 6px solid #F0F0F0;
 		}
 
