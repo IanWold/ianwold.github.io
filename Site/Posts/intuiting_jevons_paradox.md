@@ -5,7 +5,7 @@
 	"date": "13 December 2024",
 	"contents": false,
 	"hero": "photo-1635241161466-541f065683ba",
-    "topics": ["Blogging", "How-To"],
+    "topics": ["Learning", "Standards", "Architecture", "Industry"],
     "related": [
 		{ "title": "Book Club 10/2024: Fallacies of Distributed Computing", "description": "Putting a pin in the series I wrote this year on the topic of these Fallacies", "fileName": "book_club_10-2024" },
 		{ "title": "Learn the Old Languages", "description": "New languages are hip, old languages are erudite. Don't neglect these languages as you round out your skills.", "fileName": "learn_the_old_languages" },
