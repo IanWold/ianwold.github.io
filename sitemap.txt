@@ -51,6 +51,7 @@ https://ian.wold.guru/Posts/my_continuing_descent_into_madness.html
 https://ian.wold.guru/Posts/on_task_priority.html
 https://ian.wold.guru/Posts/postgres_use_views_to_refactor_to_soft_delete.html
 https://ian.wold.guru/Posts/publish_your_blogroll_now.html
+https://ian.wold.guru/Posts/pull_requests_are_just_fine_thanks.html
 https://ian.wold.guru/Posts/quick_and_dirty_sequential_ids_in_mongo.html
 https://ian.wold.guru/Posts/reclaim_your_agile.html
 https://ian.wold.guru/Posts/roll_your_own_csharp_results.html

@@ -26,12 +26,31 @@
 		
 
 		<title>
-			Ian Wold | Blogging 
+			Ian Wold | Pull Requests are Just Fine, Thanks 
 		</title>
 
 		
 			<script type="application/ld+json">
-				
+				{
+	"@context": "https://schema.org",
+	"@type": "Article",
+	"author": [{
+		"@type": "Person",
+		"name": "Ian Wold"
+	}],
+	"datePublished": "12/18/2024 12:00:00 AM",
+	"image": "https://images.unsplash.com/photo-1605120617299-9f0c6365a1f1",
+	"headline": "Pull Requests are Just Fine, Thanks",
+	"description": "If you search around, there's a lot of anti-PR sentiment to be found on software engineering blogs, but if you follow onto forums it doesn't seem to be a popular sentiment. Most of these criticisms are misdirected; in fact, pull requests are just fine.",
+	"publisher": {
+		"@type": "Person",
+		"name": "Ian Wold",
+		"logo": {
+			"@type": "ImageObject",
+			"url": "https://ian.wold.guru/images/hero1.svg"
+		}
+	},
+}
 			</script>
 		
 
@@ -55,126 +74,207 @@
 		<main>
 
 
-	
 
 
 
-
-
-
-
+<article class="h-entry">
 	<header>
-		
-			<h1>Topic: Blogging</h1>
-		
+		<h1 class="p-name">Pull Requests are Just Fine, Thanks</h1>
+		<section>
+			<small>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+				18 December 2024
+				<time class="dt-published" style="display: none;">
+					2024-12-18T00:00:00.0000000Z
+				</time>
+			</small>
+			<small>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+				13  Minutes 
+			</small>
+			<small>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-commit"><circle cx="12" cy="12" r="4"></circle><line x1="1.05" y1="12" x2="7" y2="12"></line><line x1="17.01" y1="12" x2="22.96" y2="12"></line></svg>
+				<a href="https://github.com/IanWold/ianwold.github.io/commits/master/Site/Posts/pull_requests_are_just_fine_thanks.md">History</a>
+			</small>
+			
+				<small>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+					
+						<a href="../Topics/processes.html">Processes</a>
+					
+						<a href="../Topics/blogging.html">Blogging</a>
+					
+				</small>
+			
+		</section>
+		<p class="p-summary">If you search around, there's a lot of anti-PR sentiment to be found on software engineering blogs, but if you follow onto forums it doesn't seem to be a popular sentiment. Most of these criticisms are misdirected; in fact, pull requests are just fine.</p>
+		<img class="u-photo" alt="hero" src="https://images.unsplash.com/photo-1605120617299-9f0c6365a1f1?w=1000&h=525&fit=crop&crop=entropy" />
 	</header>
+
 	
-	<section>
-		
+	
+
+	<section class="e-content">
+		<p>There's a degree of popularity around claiming that pull requests are bad and we shouldn't do them. I'm not sure that this is the majority opinion, but it's one that over the years has been popularized by some notable voices like <a href="https://www.youtube.com/watch?v=ASOSEiJCyEM">Dave Farley</a>, eched by a host of easy-to-find blog posts about the <a href="https://blog.arkency.com/disadvantages-of-pull-requests/">their disadvantages</a> or <a href="https://thinkinglabs.io/articles/2024/02/22/the-good-and-the-dysfunctional-of-pull-requests.html">their dysfunctionality</a> or even <a href="https://thinkinglabs.io/articles/2024/02/22/the-good-and-the-dysfunctional-of-pull-requests.html">how they are hated</a>.</p>
+<p>A review of these articles (and plenty of others which crop up from time to time) reveal a common list of gripes with PRs:</p>
+<ul>
+<li>PRs give too much power to reviewers; open to exploitation</li>
+<li>If branches live long there are merge conflicts</li>
+<li>Large PRs are difficult to review</li>
+<li>If the team only gives superficial reviews there's no point</li>
+<li>PRs reduce or remove two-way communication (async over sync communication)</li>
+<li>A review at end of dev cycle is too late</li>
+<li>PR lag increases the amount of work in progress</li>
+<li>PRs make the development feedback loop longer; shorter feedback loops are better</li>
+<li>Sometimes it's easier to fix a bug than to explain the fix</li>
+<li>PRs discourage continuous refactoring</li>
+<li>PRs lead to negative emotions; reviewers might not be emotionally tactful</li>
+<li>Adopting PRs for the sake of it makes purpose unclear</li>
+</ul>
+<p>These complaints fall into a couple of buckets: there's problems with power dynamics, poor practices on part of reviewers, and poor practices on the part of authors. Then what to do instead of a PR? Farley would have you do pair programming before merging your code into main, while others would do away with the mandatory code review altogether. These are the practices we used before the PR came around - like many of these commentators, I did not use manual PRs for the first years I was a software engineer. In fact, I think it was almost a decade before I worked on a team which adopted the manual review.</p>
+<p>One thing I try to espouse on this blog is a way of thinking conditionally about different options we encounter as software engineers - whether that's process, architectural, or whatever decisions. In this instance, I don't want to say &quot;always use PRs and never use push-directly-to-main,&quot; instead I'll want to give reasonable and meaningful conditions as to when one is preferred. I don't get the same sense from most of these anti-PR articles. Sure, they do pay some service to cases where PRs are preferred, but this is superficial and unserious. The suggestions that PRs are <em>only</em> ever going to be useful in open source projects or when all members of a team seriously distrust each other are ridiculous and unhelpful.</p>
+<p>When will I suggest you use PRs? Whenever you want. When to use some alternative type of code review? Whenever your team wants. When to not review at all? Whenever you want. I've developed with teams adopting all manner of schemes and at the end of the day the software all ends up getting written. Usually. The only caveat, as with all process things, is to make sure you're measuring it and able to identify if a process is holding you back. Don't be afraid to experiment with something different!</p>
+<p>Our industry seems to have adopted (from my perspective, at least) mandatory PRs as the default way of doing code review. I'm perfectly fine with that; it's unfortunate when an organization might prohibit teams from experimenting otherwise, but that's not a hill I want to die on. Personally, I like PRs as a default, and I think the the anti-PR claims I enumerated above are well-overblown. In fact, I like PRs a lot, and I want to respond to those supposed disadvantages and argue in favor of PRs. I'll start with the last bullet I listed: we probably shouldn't be adopting processes which we're unable to justify, so if your team only adopts PRs &quot;just because&quot; then by all means have a rethink on that one.</p>
+<section id="why-prs-aren't-that-bad">
+<h2>Why PRs Aren't That Bad <a class="section-link" href="https://ian.wold.guru/Posts/pull_requests_are_just_fine_thanks.html#why-prs-aren't-that-bad">#</a></h2>
+<p>There are a couple points made on the topic of power, that is, ways that PRs are perceived to give too much power to reviewers. When a comment is blocking a PR that shouldn't be blocking one is an example of such a power dynamic, but the more subtle one is when a very influential member of a team leaves a suggestion which - <em>wink wink nudge nudge</em> - isn't really just a &quot;suggestion&quot;. These are concerns with team dynamics though. I know engineers tend to be a less social segment of society, but has the author of the PR with the blocking comment tried talking to the blocking reviewer? If PRs were not used would the very-insistent suggester still find other avenues for their so-called suggestions? Any process - PRs included - adopted by a team with unhealthy power dynamics will be brought down by those dynamics. PRs aren't more or less susceptible to this.</p>
+<p>Two other problems deal with PR size: large PRs are difficult to meaningfully review and long-lived branches tend to have more merge conflicts. Indeed these problems can come up, and if this is a sticking problem for your team it can be time to experiment with something else. In order to prevent this problem, branches should be <em>very</em> small and <em>very</em> short-lived. Indeed, plenty of features take a lot of code to implement, so the strategy is to PR frequently with the smallest possible changes at any point. Adopting a culture in the team to integrate changes at a fine-grained level like this is important not <em>only</em> if you're using PRs. In fact, any process will benefit from frequent integration. In fact, if you happen to be on a team where each engineer prefers to work on large, discrete features in isolation with infrequent integration, no process will help you here.</p>
+<p>If you're frequently engaging reviews then - as you should be doing whether or not you're using a PR process - you're solving two other issues brought up with PRs: the feedback loop is going to be much shorter and the reviews aren't only going to be coming in at the end of the dev cycle. Indeed, opening small PRs that are easily-reviewable thoughout the dev cycle ends up being a good way to engage colleagues on feedback. The other half of this is reviewer etiquitte - our teammembers need to be diligent about providing timely, meaningful reviews. If I'm only ever asking them to review a few files though, I find that this ask isn't just easy but indeed one to which my colleagues are eager to respond.</p>
+<p>Continuing to adopt a healthy team culture will solve more of our problems with PRs and, since the issues with team culture aren't actually about the PR process, will help to solve the same problems in any non-PR processes. With frequent, small PRs that are easily and eagerly reviewed, there is not a PR lag which results in more work being in progress. Indeed, as colleagues I find that we do want to give good feedback, so having removed the burden of giving feedback more often than not I find that I get that feedback. It certainly can be a problem with PR processes that they lead to superficial reviews, but any process with reviews is susceptible to this in different ways. Whatever your process, identify how it might discourage meaningful reviews and address that. Oh look, we've crossed off another bullet!</p>
+<p>On that point, I'm also not sure that a PR process necessarily leads to more hurt feelings than any other process. Any negative emotions I get from PRs are, in my experience, the same as what come up from other points during development. They're mitigated by communicating with colleagues; keep in mind that the PR comments section isn't the only communications channel available to us! So i'm also curious why it's felt that PRs discourage two-way communication: if you're not communicating enough with colleagues then you should ... communicate with them? If they rebuff you this is a larger contention for a broader group. Certainly if you identify a PR process as necessarily causing this in the team, by all means try something else. I just mean to be skeptical that the PR process is really the root cause of this?</p>
+<p>I've left two negative points about PRs that I think are actually good points. First, I strongly concur that it is sometimes easier to fix a bug than to explain it. Does your team care about documenting fixes? If not, and if the team is comfortable with members pushing fixes with some other process, then I can certainly see how a PR process is an impediment. I don't think most teams are like this though; personally I very much value documenting bugs and their fixes, and I think that bugfixes are the best problems to get a second set of eyes on. In this case, the explanation issue isn't necessarily a problem with a PR process seeing as you're going to need to provide the documentation to someone <em>anyway</em>. It's admittedly difficult for me to imagine a scenario where I want to push a bug fix wihout having explained the problem.</p>
+<p>I have observed it before that a PR process has discouraged continuous refactoring, though to be clear this is a problem with any process which includes a manual review, even the pair programming alternative from Dave Farley. The solution I have is the same as can be applied with any non-PR process, which is to encourage refactor and carve out a space for them. In a pair programming process, maybe allow refactors to just be pushed. In a PR process, I encourage my teams to allow &quot;boyscout&quot; PRs, which I named after the <a href="https://code-specialist.com/code-principles/boy-scout-rule">Boy Scout Rule</a>. The team treats these PRs specially and celebrates members who open such PRs. The broader point is that any process adopted by a team can encourage negative behaviors, so no matter the process your team should identify those patterns and alter the process to mitigate, eliminate, or reverse those.</p>
+</section>
+<section id="why-prs-are-good">
+<h2>Why PRs Are Good <a class="section-link" href="https://ian.wold.guru/Posts/pull_requests_are_just_fine_thanks.html#why-prs-are-good">#</a></h2>
+<p>As we can see, most of the problems brought up about PR processes aren't really problems with PR processes, but problems with communication, interpersonal dynamics, and the like. The same sorts of problems exist in any process, and while they might express themselves differently given different processes, I don't know that you can say they're <em>worse</em> in any particular process. This is a problem I have with a lot of these hot takes: they would be more valuable if they actually addressed the root cause of the experiences described.</p>
+<p>The same should be true of any praise; if I want to convince you that PRs are good I should cite some unique advantages of them. I could say that I like PRs because they reinforce a code review culture, or because I like getting reviews from colleagues, but those are benefits of mandatory reviews and not PRs. What are the specific things that a PR process is good for? Well, this is easier asked than answered. Try to come up with a list of benefits in your head, then go over those and see if they're really benefits of pull requests specifically?</p>
+<p>I think the unique benefits then are all going to be related to tooling in some way. Most development tools familiar to most engineers are set up really well to work with pull requests. GitHub, GitLab, BitBucket, Azure DevOps, and plenty of others have really robust PR interfaces. Take any popular IDE and it's bound to have some level of integration with these PR features. The tooling and familiarity barrier with PRs are both very low, and this is an obvious benefit. <em>If</em> your team is looking to some way of doing mandatory, pre-integration reviews, pull requests are <em>fantastic</em> because of the ease of adoption.</p>
+<p>The tooling benefit extends to integrations with other tooling activities, too. Pull requests and, crucially, the tooling which supports them, are great at isolating specific changes and relating them to issue tracking, build automation, and documentation repositories. Being able to integrate so many parts of the tooling with the tooling that supports the code review process is a huge advantage over alternatives.</p>
+<p>Tooling is necessary to support PRs, I think. I'm not quite sure what a PR process without PR tooling would look like (but comment below if you've got thoughts on that). The tooling itself then has unique advantages facilitating communication and knowledge sharing. In certain contexts asynchronous communication is required, and if that applies to your team then pull requests offer a pretty good mechanism for async communication on the code review or even general convos directly related to the codebase. PR tooling also makes it incredibly easy for engineers or other observers to see what's going on in the system and the development process. Indeed there are ways other than PRs to achieve this, but the unique offer is the ease of getting all of it.</p>
+<p>One of my favorite benefits to PRs is a documentation aspect. When I open a PR I have to write out what I've done, then any conversation related to what I've done is written out in the PR until the end of time. Or, at least, until the end of my repository's life. It's a great way to be able to retrace steps later to get both the <em>what</em> and the <em>why</em>. PRs aren't the only way but, I think, the best way to achieve that benefit, at least with the current state of our tooling.</p>
+</section>
+<section id="should-i-do-prs-or-not?">
+<h2>Should I Do PRs or Not? <a class="section-link" href="https://ian.wold.guru/Posts/pull_requests_are_just_fine_thanks.html#should-i-do-prs-or-not?">#</a></h2>
+<p>If you like them then use them, and if you don't like them then don't do them, by all means try something else! I want to get across that the bulk of &quot;PR bad&quot; articles floating around the internets aren't a meaningful contribution to the discourse. If the issue is with mandatory pre-integration reviews, then pin the blame there. If the issue is with interpersonal or team dynamics, then address the solutions in that space. <em>That</em> sort of analysis is what helps us make proper decisions about the conduct of our work. This popularity of terrible arguments creates a mini cacophony of almost-entirely-misdirected anti-PR sentiment - who is that good for?</p>
+<p>PRs are <em>fine</em>. In fact, they have plenty of benefits which they share with the basic practices they're built on: feature branching, mandatory review, pre-integration review, and the like. PRs uniquely excel at some of those shared benefits, and the state of tooling decidedly sets PRs apart as the best way to get those benefits. Do those patterns and benefits apply to your team? Maybe so, maybe not. If you're on the fence about PRs or any other review process, I can't recommend enough <a href="https://martinfowler.com/bliki/PullRequest.html">Martin Fowler's writing on the subject</a>, in which he does a great job framing PRs in the context of <a href="https://martinfowler.com/articles/branching-patterns.html">his branching patterns</a>. I'd be curious in a similar analysis on review patterns, come to think of it.</p>
+<p>Maybe in 10 years the next GitHub will have come out and revolutionized tooling in some way that something other than PRs are so easy to adopt. Maybe it will offer the same benefits in integration with other tooling, communication, visibility, and documentation, or maybe it will offer different benefits that make it a great thing to use. That's a fun thing to consider - do I actually <em>need</em> the benefits of PRs? Am I being impeded by feature branching or mandatory review?</p>
+</section>
+
 	</section>
 
-
-
+	<footer>
+		<div id="webmentions"></div>
 	
-	
-		<section id="2024">
-			
-				<h2>2024</h2>
-			
+		<div class="comments">
+			<script src="https://giscus.app/client.js"
+				data-repo="IanWold/ianwold.github.io"
+				data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk1NDkyNzI="
+				data-category="Posts"
+				data-category-id="DIC_kwDOCYKHWM4CZH2Y"
+				data-mapping="title"
+				data-strict="0"
+				data-reactions-enabled="0"
+				data-emit-metadata="0"
+				data-input-position="top"
+				data-theme="light"
+				data-lang="en"
+				data-loading="lazy"
+				crossorigin="anonymous"
+				async>
+			</script>
+		</div>
+	</footer>
+</article>
+<footer>
+	<section>
+		<img src="../images/hero1.svg" />
+		<section>
+			<h2>
+				Hi, I'm Ian
+			</h2>
+			<p>
+				I'm a software engineer, architect, and team leader in Minneapolis. My career has largely focused on .NET and web technologies, spread across several industries. Currently I'm working for Crate &amp; Barrel on their ecommerce solutions. You can find me on this blog, contributing to open source repositories, and at conferences around the Midwest.
+			</p>
+			<hr>
+			<p>
+				If you'd like to keep up with me, please subscribe to my <a href="https://buttondown.email/ianwold" target="_blank">book club</a> or <a href="https://ian.wold.guru/feed.xml" target="_blank">RSS feed</a>. If you'd like to help me out with server costs, I would be forever grateful if you <a href="https://ko-fi.com/ianwold">bought me a coffee</a>!
+			</p>
+			<hr>
+			<p>
+				Some other posts you might be interested in:
+			</p>
 			<ul>
 				
-				
 					<li>
-						<time>12.18</time>
-						<a href="../Posts/pull_requests_are_just_fine_thanks.html">
-							<h3>Pull Requests are Just Fine, Thanks</h3>
-							<small>If you search around, there's a lot of anti-PR sentiment to be found on software engineering blogs, but if you follow onto forums it doesn't seem to be a popular sentiment. Most of these criticisms are misdirected; in fact, pull requests are just fine.</small>
+						<a href="../Posts/reclaim_your_agile.html">
+							<h3>Reclaim Your Agile: The One Clever Trick Agile Coaches Don't Want You to Know</h3>
+							<small>What if I told you there's one trick to being able to reshape your team's development process without your company knowing it? What if I told you that you can achieve actual Agile even though you work in a Scrum firm?</small>
 						</a>
 					</li>
 				
 					<li>
-						<time>11.03</time>
-						<a href="../Posts/publish_your_blogroll_now.html">
-							<h3>Publish Your Blogroll Now</h3>
-							<small>I've done it and so can you; in fact, I've made it easier for you - way easier!</small>
+						<a href="../Posts/on_task_priority.html">
+							<h3>On Task Priority</h3>
+							<small>Some thoughts on assigning priority to our tasks.</small>
 						</a>
 					</li>
 				
 					<li>
-						<time>11.01</time>
-						<a href="../Posts/i_have_a_blogroll_now.html">
-							<h3>I Have a Blogroll Now!</h3>
-							<small>An actual blogroll, not just a blog post with a bulletted list of links!</small>
-						</a>
-					</li>
-				
-					<li>
-						<time>10.28</time>
-						<a href="../Posts/book_club_10-2024.html">
-							<h3>Book Club 10/2024: Fallacies of Distributed Computing</h3>
-							<small>Putting a pin in the series I wrote this year on the topic of these Fallacies</small>
-						</a>
-					</li>
-				
-					<li>
-						<time>09.28</time>
-						<a href="../Posts/book_club_9-2024.html">
-							<h3>Book Club 9/2024: Blogroll</h3>
-							<small>I've been dying to ask you; I really want to know: where do you get your ideas from?</small>
-						</a>
-					</li>
-				
-					<li>
-						<time>09.09</time>
-						<a href="../Posts/why_i_have_this_blog.html">
-							<h3>Why I Have This Blog</h3>
-							<small>Reflecting on the last year of blogging.</small>
-						</a>
-					</li>
-				
-					<li>
-						<time>04.01</time>
-						<a href="../Posts/ive_indiewebbed_my_site.html">
-							<h3>I've IndieWebbed My Site</h3>
-							<small>A small, loose collection of formats and protocols, IndieWeb is an interesting supplement (maybe alternative) to social media</small>
+						<a href="../Posts/dont_retro_the_same_twice.html">
+							<h3>Don't Retro the Same Twice</h3>
+							<small>Different retrospective formats are mostly the same thing in different flavors - don't argue about them; try all the flavors (at least once)</small>
 						</a>
 					</li>
 				
 			</ul>
 		</section>
-	
+	</section>
+</footer>
 
-	
-	
-		<section id="2023">
-			
-				<h2>2023</h2>
-			
-			<ul>
-				
-				
-					<li>
-						<time>12.06</time>
-						<a href="../Posts/90_of_my_homepage_was_useless.html">
-							<h3>90% of my Homepage was Useless</h3>
-							<small>In a few days, I reduced the size of my homepage to 10% of what it had been, and sped it up by 50-66%.</small>
-						</a>
-					</li>
-				
-					<li>
-						<time>09.14</time>
-						<a href="../Posts/giscus_is_awesome.html">
-							<h3>Giscus Is Awesome</h3>
-							<small>I can add comments to my statically generated blog? Using GitHub Discussions?? For Free??? And it works????</small>
-						</a>
-					</li>
-				
-			</ul>
-		</section>
-	
+<script>
+	const nav = document.querySelector('main nav');
+	if (nav) {
+		nav.style.setProperty('--element-height', `${nav.offsetHeight}px`);
+	}
 
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch(`https://webmention.io/api/mentions.jf2?target=${window.location.href}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Ope!`);
+            }
 
+            return response.json();
+        })
+        .then(json => {
+            const mentionList = document.createElement('ul');
 
+            json.children.forEach(child => {
+                const date = new Date(child.published);
+                const formattedDate = date.toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric"
+                });
+
+                var itemHtml = document.createElement('li');
+                itemHtml.innerHTML = `<a href="${child.url}">${child.author.name} on ${formattedDate}</a>`;
+                mentionList.appendChild(itemHtml);
+            });
+
+			const webmentionsDiv = document.getElementById('webmentions');
+
+            if (mentionList.children.length > 0) {
+                webmentionsDiv.innerHTML = '<section><p><strong>This post has been webmentioned by:</strong></p></section>';
+                console.log(webmentionsDiv.firstChild.firstChild);
+                webmentionsDiv.firstChild.firstChild.appendChild(mentionList);
+            } else {
+				webmentionsDiv.remove();
+			}
+        });
+    });
+</script>
 		</main>
 		<footer>
 			<section>
@@ -192,6 +292,25 @@
 		</footer>
 
 		<script>
+			
+				window.addEventListener('DOMContentLoaded', () => {
+					const observer = new IntersectionObserver(entries => {
+						entries.forEach(entry => {
+							const id = entry.target.getAttribute('id');
+							let classList = document.querySelector(`main nav li a[href="#${id}"]`).parentElement.classList;
+
+							if (entry.intersectionRatio > 0) {
+								classList.add('active');
+							} else {
+								classList.remove('active');
+							}
+						});
+					});
+
+					document.querySelectorAll('section[id]').forEach((section) => {
+						observer.observe(section);
+					});
+				});
 			
 
 			const darkModeToggle = document.getElementById("dark-mode-toggle");
