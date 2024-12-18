@@ -18,6 +18,7 @@ This site is built with:
 * [Umami](https://umami.is) for cookieless, GDPR and CCPA compliant analytics
 * [GitHub Pages](https://github.com/IanWold/ianwold.github.io) for hosting (source _and_ site)
 * [IndieWeb](https://ian.wold.guru/Posts/ive_indiewebbed_my_site.html) for identification, webmentions, and connections
+* [Instant.page](https://instant.page/) for speed and power
 
 In addition to this site, I'm also present around the interwebs via:
 

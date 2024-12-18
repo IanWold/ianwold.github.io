@@ -402,13 +402,16 @@ main {
             }
 		}
 
-        blockquote>p {
-			font-family: 'Vollkorn';
-			font-size: 18pt;
-			line-height: 1.5;
-			font-weight: 400;
-            padding: .5rem 2rem;
+        blockquote {
 			border-left: 6px solid #F0F0F0;
+			padding: .5rem 2rem;
+			
+			> p {
+				font-family: 'Vollkorn';
+				font-size: 18pt;
+				line-height: 1.5;
+				font-weight: 400;
+			}
 		}
 
         p {
