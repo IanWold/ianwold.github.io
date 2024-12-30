@@ -250,12 +250,29 @@
 
 			function toggleDarkMode() {
 				body.classList.toggle("dark");
+				let giscusTheme = "light";
 
 				if (localStorage.getItem("dark") === "enabled") {
 					localStorage.setItem("dark", "disabled");
 				} else {
 					localStorage.setItem("dark", "enabled");
+					giscusTheme = "dark";
 				}
+
+				function sendMessage(message) {
+					const iframe = document.querySelector('iframe.giscus-frame');
+					if (!iframe)
+					{
+						return;
+					}
+					iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+				}
+
+				sendMessage({
+					setConfig: {
+						theme: giscusTheme
+					}
+				});
 			}
 
 			darkModeToggle.addEventListener("click", toggleDarkMode);
