@@ -2,7 +2,7 @@
 {
 	"title": "Book Club 12/2024: Team Metrics and KPIs",
 	"description": "Allow neither ignorange nor complacency to abuse metrics or KPIs; these are important tools for the competent professional.",
-	"date": "28 November 2024",
+	"date": "30 December 2024",
 	"contents": false,
 	"hero": "photo-1672309558498-cfcc89afff25",
     "topics": ["Processes"],
