@@ -1726,6 +1726,57 @@ item.DoSomething();
       <a10:updated>2024-02-15T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">its_okay_to_be_a_bit_techy_in_your_gherkin</guid>
+      <link>https://ian.wold.guru/Posts/its_okay_to_be_a_bit_techy_in_your_gherkin.html</link>
+      <title>It's Okay to be a Bit Techy in Your Gherkin</title>
+      <description>&lt;p&gt;No, the title is not an innuendo, I mean tests written in &lt;a href="https://www.functionize.com/blog/what-is-gherkin-how-do-you-write-gherkin-tests"&gt;Gherkin&lt;/a&gt;, the language developed to facilitate better &lt;a href="https://en.wikipedia.org/wiki/Behavior-driven_development"&gt;BDD&lt;/a&gt; practices. Gherkin provides an abstraction between the definition of a test and the code which executes the test, allowing non-coding stakeholders to collaborate with engineers over automated tests for a project. While it's not the only way to &lt;a href="https://en.wikipedia.org/wiki/Shift-left_testing"&gt;shift testing left&lt;/a&gt; in the development cycle, I've used it to great effect on professional projects over the last few years that I've been at Crate and Barrel.&lt;/p&gt;
+&lt;p&gt;Gherkin is meant to be written in as human-readable a style (read: &lt;em&gt;non-engineer style&lt;/em&gt;) as possible, this being what can facilitate collaboration between all the various sorts of stakeholders. If you've used Gherkin for a period of time as I have, you'll have encountered the suggestion that Gherkin tests should have &lt;em&gt;no&lt;/em&gt; technical ontology, keeping its abstractions entirely separate from its test subject. Indeed, a proper distinction between a bit of code and its tests is necessary, but I want to push back on the idea that there shouldn't be any techyness in the Gherkin tests.&lt;/p&gt;
+&lt;p&gt;Indeed, for plenty of cases it does make more sense to allow the Gherkin tests to be more techy. I don't know that I can provide a formal definition of the word &amp;quot;techy&amp;quot; for my purposes here, but I think I can give a fair example: suppose I want to test a login page. The techy way might make use of identifiers and tech-focused concepts:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Given the user navigates to &amp;quot;http://example.com/login&amp;quot; using a Chrome browser
+When the user inputs &amp;quot;john_doe&amp;quot; into the element with id &amp;quot;username-field&amp;quot;
+And the user enters &amp;quot;password123&amp;quot; into the element with id &amp;quot;password-field&amp;quot;
+And clicks the button with id &amp;quot;login-button&amp;quot;
+Then the element with id &amp;quot;welcome-banner&amp;quot; should display &amp;quot;Welcome, John Doe!&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;While the non-techy way would abstract those away to only describe user behavior:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Given John Doe is on the login page
+When he enters his username and password
+And clicks the &amp;quot;Login&amp;quot; button
+Then he should see a welcome message saying &amp;quot;Welcome, John Doe!&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;These styles are two extremes. Identifiers really don't need to be used in such a case, but on the other hand I could feasibly have different business rules for different browsers. Certainly it should be no trouble to explicitly state user input in the tests. Maybe a better middle ground would be:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Given John Doe is on the login page using a Chrome browser
+When he enters username &amp;quot;john_doe&amp;quot; and password &amp;quot;password123&amp;quot;
+And clicks the &amp;quot;Login&amp;quot; button
+Then he should see a welcome message saying &amp;quot;Welcome, John Doe!&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you were to take a dogmatic, anti-techy view regarding your Gherkin, you might feel that this is a bit too much techyness. I don't think most would see it that way - certainly not most stakeholders. This is exactly the point I mean to make: the stakeholders with whom we are collaborating are stakeholders on a software project; they &lt;em&gt;are techy&lt;/em&gt; to &lt;em&gt;some level&lt;/em&gt;. Lesser than the engineers one would indeed hope, but clearly not incapable of navigating the tech world. In fact, I'll suggest that software tests do in fact need to be technical in plenty of ways, no matter the level of abstraction. They are, after all, automated tests for software!&lt;/p&gt;
+&lt;p&gt;To develop the idea a step further, I think I can give a good example of a time to have very-techy Gherkin. There's no doubt that the way stakeholders collaborate over a project is greatly - maybe mostly - influenced by &lt;em&gt;who&lt;/em&gt; the stakeholders are and what the project is. The same would be true for any Gherkin tests used for the project - their nature will be mostly influenced by the nature of the stakeholders and project. It follows that if the stakeholders are themselves very techincally-minded, or if the project is of a sufficiently technical level, that the Gherkin tests themselves would be written in a very techsome manner.&lt;/p&gt;
+&lt;p&gt;Suppose I have a project of standing up a new microservice to aggregate various events into &lt;code&gt;doodads&lt;/code&gt; for other internal services. The few stakeholders that there are know what a &lt;code&gt;doodad&lt;/code&gt; is, what a microservice is, and so on. I should have no problem with the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;When a &amp;quot;create-doodad&amp;quot; even is published with the body
+    &amp;quot;&amp;quot;&amp;quot;
+    {
+        &amp;quot;DoodadId&amp;quot;: 12,
+        &amp;quot;Name&amp;quot;: &amp;quot;Bob&amp;quot;
+    }
+    &amp;quot;&amp;quot;&amp;quot;
+And I send a GET request to &amp;quot;doodad-api/v1/doodads/12&amp;quot;
+Then the response should have status code 200 with body
+    &amp;quot;&amp;quot;&amp;quot;
+    {
+        &amp;quot;doodadId&amp;quot;: 12,
+        &amp;quot;name&amp;quot;: &amp;quot;Bob&amp;quot;
+    }
+    &amp;quot;&amp;quot;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If everyone understands concepts like events, event and response bodies, GET requests, and the whole shebang, then I suggest there's no issue with the above. In fact, being able to reduce the number of Gherkin steps to a small number of more generic, more technical steps can greatly simplify the testing. On a smaller project that's advantageous!&lt;/p&gt;
+&lt;p&gt;Now, this example is so technical as to bring into question why Gherkin is used at all - the tests read almost just as the code does. Truly, if there's no need for the Gherkin abstraction, then by all means don't use Gherkin. I did recently find myself in this position where the non-engineering stakeholders (such as a project manager, business analyst, and the like) knew perfectly well what HTTP requests and the like were - and preferred to define business rules in those terms - but would have found themselves too slowed reading actual test code. The uber-techy Gherkin provided exactly the right level of abstraction to facilitate collaboration and a successful BDD process.&lt;/p&gt;
+&lt;p&gt;So, don't be too dogmatic! There'll be plenty of times that various degrees of tech-speak need to make it into your Gherkin, and when done with respect to the expectations and capabilities of the project's stakeholders it can be a distinct benefit.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 31 Dec 2024 00:00:00 Z</pubDate>
+      <a10:updated>2024-12-31T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">ive_indiewebbed_my_site</guid>
       <link>https://ian.wold.guru/Posts/ive_indiewebbed_my_site.html</link>
       <title>I've IndieWebbed My Site</title>
