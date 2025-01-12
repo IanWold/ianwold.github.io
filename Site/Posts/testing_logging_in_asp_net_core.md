@@ -36,7 +36,7 @@ app.Run();
 
 If you start a new project today, you'll find that the ASP templates will set you up with a "classless" `Program.cs` file, but this is a bit of an issue when it comes to testing as we need to make the `Program` class public _or_ internally visible to the test project. To set up the demonstration I just updated [my Program.cs file](https://github.com/IanWold/AspNetCoreTestLogOutput/blob/main/AspNetCoreTestLogOutput.Api/Program.cs) to use an actual Program.Main method.
 
-The `Program` class is used in our test code to set up a client to which we can send HTTP requests. I'll use XUnit to set this test up, but this solution works with any test runner. (Note you'll need to add the Nuget packages [Microsoft.Extensions.Logging](https://www.nuget.org/packages/Microsoft.Extensions.Logging) and [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing)).
+The `Program` class is used in our test code to set up a client to which we can send HTTP requests. I'll use XUnit to set this test up, but this solution works with any test runner. (Note that the test code requires you to add the Nuget packages [Microsoft.Extensions.Logging](https://www.nuget.org/packages/Microsoft.Extensions.Logging) and [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing)).
 
 ```csharp
 [Fact]
