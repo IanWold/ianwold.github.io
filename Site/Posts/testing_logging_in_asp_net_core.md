@@ -98,14 +98,14 @@ public async Task TestErrorLogged()
 {
     var loggerProvider = new TestLoggerProvider(); // [tl! focus]
     var client = new WebApplicationFactory<Program>()
-        .WithWebHostBuilder(builder => // [tl! focus:7]
-            builder.ConfigureLogging(logging =>
-            {
-                logging.ClearProviders();
-                logging.AddProvider(loggerProvider);
-                logging.SetMinimumLevel(LogLevel.Trace);
-            })
-        )
+        .WithWebHostBuilder(builder => // [tl! focus]
+            builder.ConfigureLogging(logging => // [tl! focus]
+            { // [tl! focus]
+                logging.ClearProviders(); // [tl! focus]
+                logging.AddProvider(loggerProvider); // [tl! focus]
+                logging.SetMinimumLevel(LogLevel.Trace); // [tl! focus]
+            }) // [tl! focus]
+        ) // [tl! focus]
         .CreateClient();
 
     var response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Put, "/test"));
