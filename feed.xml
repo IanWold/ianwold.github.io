@@ -3701,6 +3701,91 @@ Parser&amp;lt;JSONValue&amp;gt; JObject =
       <a10:updated>2015-02-06T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">testing_logging_in_asp_net_core</guid>
+      <link>https://ian.wold.guru/Posts/testing_logging_in_asp_net_core.html</link>
+      <title>Testing Logging in ASP.NET Core</title>
+      <description>&lt;p&gt;While I'm not much a fan of unit tests, I'm a big fan of integration tests, particularly for distributed services. I'm in agreement with Grug that &lt;a href="https://grugbrain.dev/#grug-on-testing"&gt;this is the right level for long-lived automated tests&lt;/a&gt;, and I try to structure my projects in such a way that everything which I need to test can be and is tested this way. Now, this strategy doesn't apply to every project type, but any project that can be seen as a request-response black box - like an ASP.NET Core API - is a proper candidate.&lt;/p&gt;
+&lt;p&gt;A lot of API integration testing will focus on HTTP requests and the responses to those and call it a day. That's perfectly fine, and surely captures most all the necesssary business logic to test. We would be mistaken though to think these are the only inputs and outputs to an API. If you're running in production, I'm sure your API is able to be configured by a DevOps administrator, and maybe it publishes events to an event queue or schedules emails to be sent. These are all different inputs and outputs that can also be tested. One output of our services that often goes untested are their logs.&lt;/p&gt;
+&lt;p&gt;Why would we need to test log output? You might have many reasons, but I suspect the primary reason would be if you have a monitoring system reading the logs from the API with alert conditions set up in specific cases. Suppose you have a critical path in your API and you want to get pinged about any errors in this flow. You might configure your monitoring service to send you a text if it ever sees an ERROR-level log with text &amp;quot;critical failure.&amp;quot; This log output has just become a business rule, and you may well want to keep a test to ensure that if the API ever enters that condition, the log with the correct level and string will be output, as expected by the monitoring suite.&lt;/p&gt;
+&lt;p&gt;At least, that's the condition I found myself in recently, needing to ensure certain logging conditions are met for specific failure situations. So, I'll document how I went about setting these up for an integration test suite for an ASP.NET Core API. My whole sample solution and all the code on this article &lt;a href="https://github.com/IanWold/AspNetCoreTestLogOutput/tree/main"&gt;can be found on my GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To set up the tests, we just need a simple ASP application with an endpoint that logs an error:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;var app = WebApplication.CreateBuilder(args).Build();
+
+app.MapPut(&amp;quot;/test&amp;quot;, (ILogger&amp;lt;Program&amp;gt; logger) =&amp;gt;
+    logger.LogError(&amp;quot;Test error!&amp;quot;)
+);
+
+app.Run();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you start a new project today, you'll find that the ASP templates will set you up with a &amp;quot;classless&amp;quot; &lt;code&gt;Program.cs&lt;/code&gt; file, but this is a bit of an issue when it comes to testing as we need to make the &lt;code&gt;Program&lt;/code&gt; class public &lt;em&gt;or&lt;/em&gt; internally visible to the test project. To set up the demonstration I just updated &lt;a href="https://github.com/IanWold/AspNetCoreTestLogOutput/blob/main/AspNetCoreTestLogOutput.Api/Program.cs"&gt;my Program.cs file&lt;/a&gt; to use an actual Program.Main method.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;Program&lt;/code&gt; class is used in our test code to set up a client to which we can send HTTP requests. I'll use XUnit to set this test up, but this solution works with any test runner. (Note you'll need to add the Nuget packages &lt;a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging"&gt;Microsoft.Extensions.Logging&lt;/a&gt; and &lt;a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing"&gt;Microsoft.AspNetCore.Mvc.Testing&lt;/a&gt;).&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;[Fact]
+public async Task TestErrorLogged()
+{
+    var client = new WebApplicationFactory&amp;lt;Program&amp;gt;().WithWebHostBuilder(builder =&amp;gt; {}).CreateClient();
+    var response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Put, &amp;quot;/test&amp;quot;));
+    Assert.True(response.IsSuccessStatusCode);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If we run this test now we'll see it passing. The &lt;code&gt;/test&lt;/code&gt; endpoint is logging an error, but note that it is always responding 200 by default. Now, we need to capture that error log and update our test to check for it.&lt;/p&gt;
+&lt;p&gt;The web host builder, which we configure with the helpfully-named &lt;code&gt;WithWebHostBuilder&lt;/code&gt;, allows us to alter the configuration and services of the ASP app. You can think of it as ammending the normal setup logic in &lt;code&gt;Program&lt;/code&gt; so that the tests can inject their own configuration, replace services with fakes, or any other alterations that might be needed to set up the test.&lt;/p&gt;
+&lt;p&gt;In this case, we're going to want to configure how the ASP app deals with logs. ASP is set up with a default &lt;em&gt;logger provider&lt;/em&gt; which it uses to resolve the &lt;code&gt;ILogger&amp;lt;Program&amp;gt;&lt;/code&gt; dependency on our endpoint. We're going to want to write our own &lt;code&gt;ILogger&lt;/code&gt; to be injected there, and in order for ASP to use our &lt;code&gt;ILogger&lt;/code&gt; we'll also need to write our own &lt;code&gt;ILoggerProvider&lt;/code&gt; and configure our app-under-test to use this logger provider.&lt;/p&gt;
+&lt;p&gt;These interfaces are quite easy to implement, especially since we only need to store logs in-memory so we can search through them in the test. I'll use a &lt;a href="https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentbag-1?view=net-9.0"&gt;ConcurrentBag&lt;/a&gt; as the collection type to avoid any possible concurrency issues.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ILogger&lt;/code&gt; only contains three methods, and we'll really only be interested in the &lt;code&gt;Log&lt;/code&gt; message, in which we'll simply add the log into the in-memory &lt;code&gt;ConcurrentBag&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public record LogMessage(LogLevel LogLevel, string Message);
+
+public class TestLogger(ConcurrentBag&amp;lt;LogMessage&amp;gt; logs) : ILogger
+{
+    public void Log&amp;lt;TState&amp;gt;(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func&amp;lt;TState, Exception?, string&amp;gt; formatter) =&amp;gt;
+        logs.Add(new(logLevel, formatter(state, exception)));
+
+    public bool IsEnabled(LogLevel logLevel) =&amp;gt; true;
+
+    public IDisposable? BeginScope&amp;lt;TState&amp;gt;(TState state) where TState : notnull =&amp;gt; null;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;ILoggerProvider&lt;/code&gt; only has &lt;em&gt;one&lt;/em&gt; method which returns an &lt;code&gt;ILogger&lt;/code&gt; implementation given some category name. We don't care about the category name, so we can just return our custom &lt;code&gt;ILogger&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public class TestLoggerProvider : ILoggerProvider
+{
+    private readonly ConcurrentBag&amp;lt;LogMessage&amp;gt; _logs = [];
+
+    public IReadOnlyCollection&amp;lt;LogMessage&amp;gt; Logs =&amp;gt; _logs;
+
+    public ILogger CreateLogger(string categoryName) =&amp;gt; new TestLogger(_logs);
+
+    public void Dispose() =&amp;gt; GC.SuppressFinalize(this);
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I personally prefer to not expose a &lt;code&gt;ConcurrentBag&lt;/code&gt; and instead expose it as an &lt;code&gt;IReadOnlyCollection&lt;/code&gt;, but that's a stylistic preference.&lt;/p&gt;
+&lt;p&gt;The only thing left is to revisit our test method - we need to configure our ASP app to use this logger provider, and we should add a test for the error log. We can use the &lt;code&gt;ConfigureLogging&lt;/code&gt; method on the web host builder to ensure our custom logger provider is the only provider, and to make sure logs at all levels are captured. After we send the request, we can then inspect the logs in our custom logger provider to confirm the expected log was logged.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;[Fact]
+public async Task TestErrorLogged()
+{
+    var loggerProvider = new TestLoggerProvider(); // [tl! focus]
+    var client = new WebApplicationFactory&amp;lt;Program&amp;gt;()
+        .WithWebHostBuilder(builder =&amp;gt; // [tl! focus:7]
+            builder.ConfigureLogging(logging =&amp;gt;
+            {
+                logging.ClearProviders();
+                logging.AddProvider(loggerProvider);
+                logging.SetMinimumLevel(LogLevel.Trace);
+            })
+        )
+        .CreateClient();
+
+    var response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Put, &amp;quot;/test&amp;quot;));
+
+    Assert.True(response.IsSuccessStatusCode);
+    Assert.Contains(loggerProvider.Logs, l =&amp;gt; l.LogLevel == LogLevel.Error &amp;amp;&amp;amp; l.Message.Contains(&amp;quot;Test error&amp;quot;)); // [tl! focus]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And that's all! Again, all the code above is in &lt;a href="https://github.com/IanWold/AspNetCoreTestLogOutput/tree/main"&gt;a working solution on my GitHub&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Sun, 12 Jan 2025 00:00:00 Z</pubDate>
+      <a10:updated>2025-01-12T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">theres_always_money_in_the_banana_stand</guid>
       <link>https://ian.wold.guru/Posts/theres_always_money_in_the_banana_stand.html</link>
       <title>There's Always Money in the Banana Stand</title>

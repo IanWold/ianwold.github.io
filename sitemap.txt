@@ -63,6 +63,7 @@ https://ian.wold.guru/Posts/sprache.html
 https://ian.wold.guru/Posts/sprachedown.html
 https://ian.wold.guru/Posts/sprachejson.html
 https://ian.wold.guru/Posts/sprache_comments.html
+https://ian.wold.guru/Posts/testing_logging_in_asp_net_core.html
 https://ian.wold.guru/Posts/theres_always_money_in_the_banana_stand.html
 https://ian.wold.guru/Posts/there_is_one_admin.html
 https://ian.wold.guru/Posts/the_case_for_single_reviewer_prs.html
