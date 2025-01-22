@@ -3857,6 +3857,25 @@ public async Task TestErrorLogged()
       <a10:updated>2024-08-23T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">the_art_of_hype_driven_development</guid>
+      <link>https://ian.wold.guru/Posts/the_art_of_hype_driven_development.html</link>
+      <title>The Art of Hype-Driven Development</title>
+      <description>&lt;p&gt;From microservices to blockchain, from the dotcom bubble to AI, our industry has a surprisingly high hype cycle density. Many of us find this distasteful. However, as the old saying goes: if you can't beat them, join them; in this spirit I've developed the following principles to guide any aspiring grifters through the hypeverse. If you grind hard enough at conferences and social media - reputation be damned - you too can earn a massive profit for someone in Silicon Valley!&lt;/p&gt;
+&lt;h2&gt;1. Follow the Money&lt;/h2&gt;
+&lt;p&gt;If someone else is profiting massively over some new technology, do what you can to increase their profit. If money is the smart bet, then the biggest single pile of cash is the smartest bet. Since the best returns are &lt;em&gt;always&lt;/em&gt; just five years away, forget present-day realities; focus all your attention on imagining the glorious future of this new technology.&lt;/p&gt;
+&lt;h2&gt;2. Confidence over Comprehension&lt;/h2&gt;
+&lt;p&gt;Historically speaking, the more revolutionary an idea is, the less it is generally understood. Thus, the most revolutionary things don't need to be understood, and trying to articulate them is a waste of time. Just be confident, and be sure to have a promise to counter every uncertainty. Remember that specific statements are often false statements, so stick to more truthful statements like generalisms and benign platitudes.&lt;/p&gt;
+&lt;h2&gt;3. Ruthless Simplicity&lt;/h2&gt;
+&lt;p&gt;Always simplify, then simplify some more, and don't stop. Don't write a paper when a sentence will suffice, and then turn that sentence into a single word - one with a good &lt;em&gt;buzz&lt;/em&gt; to it. Don't release a complete product when an MVP will suffice, and then don't code that because you remember that the best MVP is a Minimum Viable PowerPoint. Use your buzzy word on that PowerPoint &lt;em&gt;a lot&lt;/em&gt;.&lt;/p&gt;
+&lt;h2&gt;4. Minimize Risks&lt;/h2&gt;
+&lt;p&gt;The best way to minimize risks is to not have risks, and the best way to not have risks is to have &lt;em&gt;opportunities&lt;/em&gt; instead. Your goal is to have zero risks - yes, zero! Pivot every risk into a future opportunity. Simplify your explanation into a word with &lt;em&gt;lots&lt;/em&gt; of buzz, and put this word on your PowerPoint.&lt;/p&gt;
+&lt;h2&gt;5. Organize your Community&lt;/h2&gt;
+&lt;p&gt;If all else fails, you can always try starting a cult! The AI hypers have &lt;a href="https://www.youtube.com/watch?v=m75SAPSrDjc"&gt;had to resort to this tactic&lt;/a&gt; but it's been very successful for them.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 22 Jan 2025 00:00:00 Z</pubDate>
+      <a10:updated>2025-01-22T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">the_case_for_single_reviewer_prs</guid>
       <link>https://ian.wold.guru/Posts/the_case_for_single_reviewer_prs.html</link>
       <title>The Case for Single-Reviewer PRs</title>
