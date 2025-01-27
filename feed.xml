@@ -2086,6 +2086,26 @@ Then the response should have status code 200 with body
       <a10:updated>2024-03-03T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">oops_i_noindexed_the_blog</guid>
+      <link>https://ian.wold.guru/Posts/oops_i_noindexed_the_blog.html</link>
+      <title>Oops, I noindexed the Blog!</title>
+      <description>&lt;p&gt;Many months ago, I set up &lt;a href="https://umami.is/"&gt;Umami&lt;/a&gt; to track views on my blog. It doesn't track users, just counts page hits and referring sources and the like. The results were encouraging: I do get a fair amount of traffic. Hello! I realized too that about 50% of it is from mobile devices. There goes my theory that I don't need to make it look good on mobile...&lt;/p&gt;
+&lt;p&gt;Last month I noticed a trend: I was getting many fewer clicks and almost no traffic was coming from Bing or Google (having a lot of .NET content I came up in Bing results a fair amount). This was odd but I attributed it to the holiday season. I was still getting plenty of traffic from Yandex and Baidu.&lt;/p&gt;
+&lt;p&gt;Well, it happens that the decrease in traffic coincided with my release of &lt;a href="https://github.com/IanWold/StaticBlogroll"&gt;StaticBlogroll&lt;/a&gt;, a repo/template I made to encourage others to share a public blogroll. It's intended to be deployed with GitHub Pages, and I figured it would be good to include &lt;code&gt;noindex, nofollow&lt;/code&gt; by default in the &lt;code&gt;robots.txt&lt;/code&gt; for this site, lest others' articles might appear under my domain on Google. Unlikely, but I didn't want the chance.&lt;/p&gt;
+&lt;p&gt;Well, as it happens, GitHub likes to deploy Pages sites under your domain if you've already registered it. Thus, my blogroll deployed to &lt;a href="https://ian.wold.guru/Blogroll"&gt;ian.wold.guru/Blogroll&lt;/a&gt;. No problem by my book!&lt;/p&gt;
+&lt;p&gt;Well, as it also happens, Bing and Google will read &lt;em&gt;every&lt;/em&gt; &lt;code&gt;robots.txt&lt;/code&gt; file on your site. As it further happens, &lt;code&gt;noindex nofollow&lt;/code&gt; in &lt;em&gt;any&lt;/em&gt; &lt;code&gt;robots.txt&lt;/code&gt; overrides &lt;em&gt;everything&lt;/em&gt; else.&lt;/p&gt;
+&lt;p&gt;Oops.&lt;/p&gt;
+&lt;p&gt;Two learnings:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;em&gt;That's&lt;/em&gt; why I had fewer hits, and&lt;/li&gt;
+&lt;li&gt;Yandex and Baidu are (maybe predictably) not following best practices.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Luckily, Bing and Google have webmaster tools with which you can notify any updates to these files, so the problem should be corrected. I've got no clue if some of my previously-most-popular articles will regain their positions though. I'm particularly happy with my article on &lt;a href="https://ian.wold.guru/Posts/end_to_end_encryption_witn_blazor_wasm.html"&gt;E2E encryption in Blazor WASM&lt;/a&gt; so I hope that one recovers. Finally, I've updated the default for StaticBlogroll and I've edited my (now only) &lt;code&gt;robots.txt&lt;/code&gt; for this site to exclude &lt;code&gt;/Blogroll&lt;/code&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Sun, 26 Jan 2025 00:00:00 Z</pubDate>
+      <a10:updated>2025-01-26T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">postgres_use_views_to_refactor_to_soft_delete</guid>
       <link>https://ian.wold.guru/Posts/postgres_use_views_to_refactor_to_soft_delete.html</link>
       <title>Postgres: Use Views to Refactor to Soft Delete</title>
