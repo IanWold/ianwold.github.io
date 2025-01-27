@@ -422,6 +422,7 @@ main {
                 margin: 0 auto;
                 border: 1px solid var(--fg-border);
                 border-radius: 3px;
+                max-width: 100%;
             }
 
             code {
