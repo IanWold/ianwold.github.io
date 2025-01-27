@@ -9,6 +9,7 @@ https://ian.wold.guru/Posts/a_scrum_odyssey.html
 https://ian.wold.guru/Posts/bandwidth_is_infinite_ly_troublesome.html
 https://ian.wold.guru/Posts/book_club-2-2024.html
 https://ian.wold.guru/Posts/book_club_1-2024.html
+https://ian.wold.guru/Posts/book_club_1-2025.html
 https://ian.wold.guru/Posts/book_club_10-2023.html
 https://ian.wold.guru/Posts/book_club_10-2024.html
 https://ian.wold.guru/Posts/book_club_11-2023.html
@@ -90,12 +91,12 @@ https://ian.wold.guru/Topics/performance.html
 https://ian.wold.guru/Topics/architecture.html
 https://ian.wold.guru/Topics/testing.html
 https://ian.wold.guru/Topics/industry.html
+https://ian.wold.guru/Topics/projects.html
+https://ian.wold.guru/Topics/learning.html
 https://ian.wold.guru/Topics/patterns.html
 https://ian.wold.guru/Topics/languages.html
-https://ian.wold.guru/Topics/learning.html
 https://ian.wold.guru/Topics/postgres.html
 https://ian.wold.guru/Topics/tooling.html
-https://ian.wold.guru/Topics/projects.html
 https://ian.wold.guru/Topics/standards.html
 https://ian.wold.guru/Topics/security.html
 https://ian.wold.guru/Topics/devex.html

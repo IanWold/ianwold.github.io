@@ -26,12 +26,31 @@
 		
 
 		<title>
-			Ian Wold | Testing 
+			Ian Wold | Book Club 1/25: Results, Railways, and Decisions 
 		</title>
 
 		
 			<script type="application/ld+json">
-				
+				{
+	"@context": "https://schema.org",
+	"@type": "Article",
+	"author": [{
+		"@type": "Person",
+		"name": "Ian Wold"
+	}],
+	"datePublished": "1/27/2025 12:00:00 AM",
+	"image": "https://images.unsplash.com/photo-1672309558498-cfcc89afff25",
+	"headline": "Book Club 1/25: Results, Railways, and Decisions",
+	"description": "A story on a successful result and insights gained from some more heady research this month.",
+	"publisher": {
+		"@type": "Person",
+		"name": "Ian Wold",
+		"logo": {
+			"@type": "ImageObject",
+			"url": "https://ian.wold.guru/images/hero1.svg"
+		}
+	},
+}
 			</script>
 		
 
@@ -55,85 +74,240 @@
 		<main>
 
 
-	
 
 
 
-
-
-
-
+<article class="h-entry">
 	<header>
-		
-			<h1>Topic: Testing</h1>
-		
+		<h1 class="p-name">Book Club 1/25: Results, Railways, and Decisions</h1>
+		<section>
+			<small>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+				27 January 2025
+				<time class="dt-published" style="display: none;">
+					2025-01-27T00:00:00.0000000Z
+				</time>
+			</small>
+			<small>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+				7  Minutes 
+			</small>
+			<small>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-commit"><circle cx="12" cy="12" r="4"></circle><line x1="1.05" y1="12" x2="7" y2="12"></line><line x1="17.01" y1="12" x2="22.96" y2="12"></line></svg>
+				<a href="https://github.com/IanWold/ianwold.github.io/commits/master/Site/Posts/book_club_1-2025.md">History</a>
+			</small>
+			
+				<small>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+					
+						<a href="../Topics/projects.html">Projects</a>
+					
+						<a href="../Topics/testing.html">Testing</a>
+					
+						<a href="../Topics/learning.html">Learning</a>
+					
+						<a href="../Topics/patterns.html">Patterns</a>
+					
+				</small>
+			
+		</section>
+		<p class="p-summary">A story on a successful result and insights gained from some more heady research this month.</p>
+		<img class="u-photo" alt="hero" src="https://images.unsplash.com/photo-1672309558498-cfcc89afff25?w=1000&h=525&fit=crop&crop=entropy" alt="Header image" />
 	</header>
+
 	
-	<section>
-		
+	
+		<aside>
+			<p><strong>This is a post in my <a href="../Series/book_club.html">Book Club Series</a>.</strong></p>
+			<p>My book club is a montly topical, curated list of things I've been reading, watching, or sometimes writing sent out via my email newsletter.</p><p>If you'd like to follow along with my book club, <a href="https://buttondown.email/ianwold">please subscribe</a>; I won't email you more than once a month.</p>
+		</aside>
+	
+
+	<section class="e-content">
+		<p>I've written before on my enthusiasm for the result pattern, but I'm going to expand on that a bit here and how it relates to testing. I've spent a fair chunk of my past work-month standing up a new distributed service at work, and it's such a simple project as to almost have completely written itself, except for one opportunity I took: I wanted to see how many ways I could approach black-box testing the API. If you know me, you know I'm a big fan of writing automated tests ... in <em>one</em> way - I really <em>really</em> like integration-level tests, and even then just covering successful vs failing input and checking state change is robust enough for the vast majority of our systems. I usually do this and then move on to actually implementing the darn thing, and that's perfectly fine. I'm poorly-versed in other methods, and so that's what I've been reading this past month.</p>
+<p>I promise that the result and railway design patterns <em>do</em> fit into my black-box testing ideas here; let me take a step back to motivate that. Last month, I spoke with a number of folks about the requirements of this API. It's only got a few endpoints, but there was some complexity around external systems it would need to consult - <em>who</em> has <em>what</em> data - so there were a number of models of the API developed before I coded anything. Goodness knows there are dozens of ways to model systems, but these (advantageously) took the form of control flow diagrams. Here's a simplified version of one for an endpoint to get a resource, which attempts to create the resource if it doesn't yet exist:</p>
+<ol>
+<li>Get the resource from the database
+<ul>
+<li>If it exists, go to step 4</li>
+<li>If it does not exist, proceed</li>
+</ul>
+</li>
+<li>Consult a cache holding some data about the resource
+<ul>
+<li>If there is no data in the cache, respond not found</li>
+<li>If there is data in the cache, proceed</li>
+</ul>
+</li>
+<li>Create the resource in the database with the data from the cache
+<ul>
+<li>If this fails, respond unexpected error</li>
+<li>If this succeeds, proceed</li>
+</ul>
+</li>
+<li>Consult <em>another</em> cache to get more data about the resource
+<ul>
+<li>If this succeeds, merge the datem and respond successfully</li>
+<li>If this fails, respond with the partial content from the database</li>
+</ul>
+</li>
+</ol>
+<p>This is a real treat to have! For all purposes, each step represents a different result-returning method - and the results are right there, in easy-to-read markdown no less! Not only does this neatly model my results, it also neatly models the railway of the system. If you're new to <a href="https://fsharpforfunandprofit.com/posts/recipe-part2/">the railway concept</a>, it's quite straightforward. Almost all of our business logic can be thought of as a railway in that it has two tracks. There's the success tack and the error track. The logic progresses through several steps along the success track, but any step might be unsuccessful and divert the control flow onto the other track. My model above is a bit more complicated because of the branching control flow and there being multiple success and failure paths, but this demonstrates the utility of this model: it keeps the extra complication straightforward and comprehensible. If I were to draw a railway diagram I might have (again, simplified):</p>
+<p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/book-club-1-25-railway.png" alt="Railway diagram for GET endpoint" /></p>
+<p>This might be a stylistic preference of mine, but there are two things at the top of my mind when I develop business logic. The first is what the railway of the logic looks like - I encounter <em>incredibly</em> little business logic that is not made more clear by railwaying. The second thing at the top of my mind are the results of the operations that create decision points where I might switch tracks. Those two things wholly constitute the structure of most any business logic: what tracks I have and the events that move between them. The business logic queues operations in order; those operations <em>operate</em> and report result; the business logic decides which results, if any, change tracks; repeat. I hope I can motivate my enthusiasm at being able to have these models as an output of my engagement with the stakeholders in the system - the code really does darn-near write itself.</p>
+<p><em>Side note: &quot;railway&quot; is more of a way of thinking, not really a pattern and not really an orientation. Maybe I could say &quot;the rail...way of thinking!&quot; Please laugh.</em></p>
+<p>This brings me to testing, and a hypothesis: I figure that just as these models were able to prefigure the structure of the system's code, so too they would prefigure its tests. This seems somewhat obvious: the model is a graph and by traversing each possible path through the graph I can generate all of the test scenarios necessary to cover all of the branches in control flow and ensure proper responses. For the graph I've given you it's quite easy to do this manually, however larger graphs whose nodes have more results (e.g. different types of successes or failures) will become unwieldy. This is the main thrust of my research this month, with which I <a href="https://github.com/IanWold/StateFusion">hacked together a tool</a> to generate test scenarios for me from these shared models.</p>
+<p>Owing to the large number of different ways we can diagram our systems, there are an equally large number of ways to generate test scenarios from these models. A collection of knowledge on this sort of practice can be found under the term <a href="https://en.wikipedia.org/wiki/Model-based_testing">model-based testing</a>. This sort of approach certainly has limits though. In my case the models were a product of the <em>kind</em> of collaboration I ended up doing for this project, and surely the utility of the specific testing approach I chose here is also influenced by the architecture of the broader system and the culture at my firm. Indeed, the approach might have to be quite different (or not used at all) on other projects.</p>
+<p>It is a very interesting consideration though, along with the rest of the resources available for test generation. I'm quite contented by the results of my exploration here; it's given me a more robust and flexible framework to approach testing!</p>
+<p><strong>My related writing:</strong></p>
+<ul>
+<li><a href="https://ian.wold.guru/Posts/roll_your_own_csharp_results.html">Roll Your Own C# Results</a></li>
+<li><a href="https://ian.wold.guru/Posts/testing_logging_in_asp_net_core.html">Testing Logging in ASP.NET Core</a></li>
+<li><a href="https://ian.wold.guru/Posts/its_okay_to_be_a_bit_techy_in_your_gherkin.html">It's Okay to be a Bit Techy in Your Gherkin</a></li>
+<li><a href="https://ian.wold.guru/Posts/guerrila_devex_testing.html">Guerrila DevEx Testing</a></li>
+<li><a href="https://ian.wold.guru/Posts/book_club_10-2023.html">Book Club 10/2023: Functional Patterns in C#</a></li>
+<li><a href="https://ian.wold.guru/Posts/book_club-2-2024.html">Book Club 2/2024: Recovering from TDD and Unit Tests</a></li>
+</ul>
+<p><strong>On results and railways:</strong></p>
+<ul>
+<li><a href="https://www.milanjovanovic.tech/blog/functional-error-handling-in-dotnet-with-the-result-pattern">Functional Error Handling in .NET With the Result Pattern - Milan Jovanović</a></li>
+<li><a href="https://andrewlock.net/working-with-the-result-pattern-part-4-is-the-result-pattern-worth-it/">Is the result pattern worth it? - Andrew Lock</a></li>
+<li><a href="https://threenine.blog/posts/operation-result-pattern">The Operation Result Pattern - Gary Woodfine</a></li>
+</ul>
+<p>A final note on the result pattern (on which I should probably elaborate in a future article) is its utility lies in modeling <em>expected</em> failure cases which have associated business logic. This is a distinction between bug, error, failure, or the other sorts of paths the code might take.</p>
+<ul>
+<li><a href="https://www.baeldung.com/cs/software-testing-defect-bug-error-and-failure">Software Testing: Defect, Bug, Error, and Failure - Rahmat Ullah Orakzai</a> gives a good overview of this</li>
+<li><a href="https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=936191">Bug, Fault, Error, or Weakness: Demystifying Software Security Vulnerabilities - Irena Bojanova and Carlos Eduardo C. Galhardo</a></li>
+<li><a href="https://joeduffyblog.com/2016/02/07/the-error-model/">The Error Model - Joe Duffy</a> gives my favorite explanation and prescribed solutions here</li>
+</ul>
+<p>I don't know of a better overview of the railway concept than that from Scott Wlaschin. He's also written a bit on property testing:</p>
+<ul>
+<li><a href="https://fsharpforfunandprofit.com/posts/recipe-part2/">Railway oriented programming</a></li>
+<li><a href="https://fsharpforfunandprofit.com/series/property-based-testing/">The &quot;Property Based Testing&quot; series</a></li>
+</ul>
+<p><strong>On testing</strong></p>
+<ul>
+<li><a href="https://www.geeksforgeeks.org/model-based-testing-in-software-testing/">Geeks for Geeks</a> gives an acceptable overview of concepts</li>
+<li><a href="https://www.geeksforgeeks.org/control-flow-software-testing/">Control Flow Software Testing - Geeks for Geeks</a></li>
+<li><a href="https://torxakis.org/userdocs/stable/mbt/mbt.html">Introduction to Model-Based Testing by TorXakis</a> begins a large repository of knowledge on the topic</li>
+<li><a href="https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=152162">Automated Combinatorial Test Methods – Beyond Pairwise Testing - D. Richard Kuhn, Dr. Raghu Kacker, and Dr. Yu Lei</a></li>
+<li><a href="https://csrc.nist.gov/projects/automated-combinatorial-testing-for-software">Combinatorial Methods for Trust and Assurance - NIST</a></li>
+</ul>
+
 	</section>
 
-
-
+	<footer>
+		<div id="webmentions"></div>
 	
-	
-		<section id="2025">
-			
-				<h2>2025</h2>
-			
+		<div class="comments">
+			<script src="https://giscus.app/client.js"
+				data-repo="IanWold/ianwold.github.io"
+				data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk1NDkyNzI="
+				data-category="Posts"
+				data-category-id="DIC_kwDOCYKHWM4CZH2Y"
+				data-mapping="title"
+				data-strict="0"
+				data-reactions-enabled="0"
+				data-emit-metadata="0"
+				data-input-position="top"
+				data-theme="light"
+				data-lang="en"
+				data-loading="lazy"
+				crossorigin="anonymous"
+				async>
+			</script>
+		</div>
+	</footer>
+</article>
+<footer>
+	<section>
+		<img src="../images/hero1.svg" alt="Ian's Logo" />
+		<section>
+			<h2>
+				Hi, I'm Ian
+			</h2>
+			<p>
+				I'm a software engineer, architect, and team leader in Minneapolis. My career has largely focused on .NET and web technologies, spread across several industries. Currently I'm working for Crate &amp; Barrel on their ecommerce solutions. You can find me on this blog, contributing to open source repositories, and at conferences around the Midwest.
+			</p>
+			<hr>
+			<p>
+				If you'd like to keep up with me, please subscribe to my <a href="https://buttondown.email/ianwold" target="_blank">book club</a> or <a href="https://ian.wold.guru/feed.xml" target="_blank">RSS feed</a>. If you'd like to help me out with server costs, I would be forever grateful if you <a href="https://ko-fi.com/ianwold">bought me a coffee</a>!
+			</p>
+			<hr>
+			<p>
+				Some other posts you might be interested in:
+			</p>
 			<ul>
 				
-				
 					<li>
-						<time>01.27</time>
-						<a href="../Posts/book_club_1-2025.html">
-							<h3>Book Club 1/25: Results, Railways, and Decisions</h3>
-							<small>A story on a successful result and insights gained from some more heady research this month.</small>
+						<a href="../Posts/book_club_12-2024.html">
+							<h3>Book Club 12/2024: Team Metrics and KPIs</h3>
+							<small>Allow neither ignorange nor complacency to abuse metrics or KPIs; these are important tools for the competent professional.</small>
 						</a>
 					</li>
 				
 					<li>
-						<time>01.12</time>
-						<a href="../Posts/testing_logging_in_asp_net_core.html">
-							<h3>Testing Logging in ASP.NET Core</h3>
-							<small>Comprehensive integration tests may need to validate that specific logs are output in certain conditions. Luckily, this is very easy in ASP.NET Core.</small>
+						<a href="../Posts/book_club_11-2024.html">
+							<h3>Book Club 11/2024: No</h3>
+							<small>On forming quality opinions and saying 'no'</small>
+						</a>
+					</li>
+				
+					<li>
+						<a href="../Posts/book_club_10-2024.html">
+							<h3>Book Club 10/2024: Fallacies of Distributed Computing</h3>
+							<small>Putting a pin in the series I wrote this year on the topic of these Fallacies</small>
 						</a>
 					</li>
 				
 			</ul>
 		</section>
-	
+	</section>
+</footer>
 
-	
-	
-		<section id="2024">
-			
-				<h2>2024</h2>
-			
-			<ul>
-				
-				
-					<li>
-						<time>12.31</time>
-						<a href="../Posts/its_okay_to_be_a_bit_techy_in_your_gherkin.html">
-							<h3>It's Okay to be a Bit Techy in Your Gherkin</h3>
-							<small>Gherkin tests are meant to be an abstraction over the code of automated tests to facilitate collaboration by all stakeholders, but that shouldn't mean that we banish any technical whiffs from them.</small>
-						</a>
-					</li>
-				
-					<li>
-						<time>02.24</time>
-						<a href="../Posts/book_club-2-2024.html">
-							<h3>Book Club 2/2024: Recovering from TDD and Unit Tests</h3>
-							<small>TDD and unit tests are overused and often misprescribed. What do we really hope to gain from our tests, and what testing practices support our goals?</small>
-						</a>
-					</li>
-				
-			</ul>
-		</section>
-	
+<script>
+	const nav = document.querySelector('main nav');
+	if (nav) {
+		nav.style.setProperty('--element-height', `${nav.offsetHeight}px`);
+	}
 
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch(`https://webmention.io/api/mentions.jf2?target=${window.location.href}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Ope!`);
+            }
 
+            return response.json();
+        })
+        .then(json => {
+            const mentionList = document.createElement('ul');
+
+            json.children.forEach(child => {
+                const date = new Date(child.published);
+                const formattedDate = date.toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric"
+                });
+
+                var itemHtml = document.createElement('li');
+                itemHtml.innerHTML = `<a href="${child.url}">${child.author.name} on ${formattedDate}</a>`;
+                mentionList.appendChild(itemHtml);
+            });
+
+			const webmentionsDiv = document.getElementById('webmentions');
+
+            if (mentionList.children.length > 0) {
+                webmentionsDiv.innerHTML = '<section><p><strong>This post has been webmentioned by:</strong></p></section>';
+                console.log(webmentionsDiv.firstChild.firstChild);
+                webmentionsDiv.firstChild.firstChild.appendChild(mentionList);
+            } else {
+				webmentionsDiv.remove();
+			}
+        });
+    });
+</script>
 
 		</main>
 		<footer>
@@ -152,6 +326,25 @@
 		</footer>
 
 		<script>
+			
+				window.addEventListener('DOMContentLoaded', () => {
+					const observer = new IntersectionObserver(entries => {
+						entries.forEach(entry => {
+							const id = entry.target.getAttribute('id');
+							let classList = document.querySelector(`main nav li a[href="#${id}"]`).parentElement.classList;
+
+							if (entry.intersectionRatio > 0) {
+								classList.add('active');
+							} else {
+								classList.remove('active');
+							}
+						});
+					});
+
+					document.querySelectorAll('section[id]').forEach((section) => {
+						observer.observe(section);
+					});
+				});
 			
 
 			const darkModeToggle = document.getElementById("dark-mode-toggle");
