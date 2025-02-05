@@ -26,12 +26,31 @@
 		
 
 		<title>
-			Ian Wold | Projects 
+			Ian Wold | Thing I Made: CFWeaver 
 		</title>
 
 		
 			<script type="application/ld+json">
-				
+				{
+	"@context": "https://schema.org",
+	"@type": "Article",
+	"author": [{
+		"@type": "Person",
+		"name": "Ian Wold"
+	}],
+	"datePublished": "2/5/2025 12:00:00 AM",
+	"image": "https://images.unsplash.com/photo-1569909115134-a0426936c879",
+	"headline": "Thing I Made: CFWeaver",
+	"description": "I made a simple CLI tool to generate comprehensive test scenarios from control flow models in simple markdown",
+	"publisher": {
+		"@type": "Person",
+		"name": "Ian Wold",
+		"logo": {
+			"@type": "ImageObject",
+			"url": "https://ian.wold.guru/images/hero1.svg"
+		}
+	},
+}
 			</script>
 		
 
@@ -55,114 +74,199 @@
 		<main>
 
 
-	
 
 
 
-
-
-
-
+<article class="h-entry">
 	<header>
-		
-			<h1>Topic: Projects</h1>
-		
+		<h1 class="p-name">Thing I Made: CFWeaver</h1>
+		<section>
+			<small>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+				5 February 2025
+				<time class="dt-published" style="display: none;">
+					2025-02-05T00:00:00.0000000Z
+				</time>
+			</small>
+			<small>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+				9  Minutes 
+			</small>
+			<small>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-commit"><circle cx="12" cy="12" r="4"></circle><line x1="1.05" y1="12" x2="7" y2="12"></line><line x1="17.01" y1="12" x2="22.96" y2="12"></line></svg>
+				<a href="https://github.com/IanWold/ianwold.github.io/commits/master/Site/Posts/thing_i_made_cfweaver.md">History</a>
+			</small>
+			
+				<small>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+					
+						<a href="../Topics/projects.html">Projects</a>
+					
+						<a href="../Topics/testing.html">Testing</a>
+					
+						<a href="../Topics/processes.html">Processes</a>
+					
+						<a href="../Topics/tooling.html">Tooling</a>
+					
+				</small>
+			
+		</section>
+		<p class="p-summary">I made a simple CLI tool to generate comprehensive test scenarios from control flow models in simple markdown</p>
+		<img class="u-photo" alt="hero" src="https://images.unsplash.com/photo-1569909115134-a0426936c879?w=1000&h=525&fit=crop&crop=entropy" alt="Header image" />
 	</header>
+
 	
-	<section>
-		
+	
+
+	<section class="e-content">
+		<p>Last week, I <a href="https://ian.wold.guru/Posts/book_club_1-2025.html">wrote about</a> some thoughts I had related to test generation and control flow in business logic. This followed an effort at work that naturally turned out to be a good candidate for a model-based testing strategy. From this, I developed the tool <a href="https://github.com/IanWold/CFWeaver">CFWeaver</a> to generate test scenarios from control flow models, which I've worked on over the last couple of weeks to get into a state that might be useful for others in a similar situation.</p>
+<p>CFWeaver is a very simple CLI: you input a control flow model and it outputs test scenarios to exhaustively cover all the possible paths through the control flow. The input file is written in valid Markdown with a special syntax, and it's able to output either HTML or Markdown. You can read more about its function on <a href="https://github.com/IanWold/CFWeaver">its GitHub repository</a>, but I'll give a small example here from the readme. I might have the following control flow model defined:</p>
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-markdown"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #A6E22E;"># Get an Item</span></div><div class='line'><span style="color: #A6E22E;">*</span><span style="color: #F8F8F2;"> Authenticate: Success | Failure = 403 ? I am not authenticated to access items</span></div><div class='line'><span style="color: #A6E22E;">*</span><span style="color: #F8F8F2;"> Validate: Success | Failure = 400 ? the request is invalid</span></div><div class='line'><span style="color: #A6E22E;">*</span><span style="color: #F8F8F2;"> GetFromDatabase: Found ? the item exists | Not found = 404 ? the item does not exist | Error = 500 ? The items table errors on select</span></div><div class='line'><span style="color: #A6E22E;">*</span><span style="color: #F8F8F2;"> Authorize: Success = 200 | Failure = 401 ? I am not authorized to access the specific item</span></div><textarea data-torchlight-original="true" style="display: none !important;"># Get an Item
+* Authenticate: Success | Failure = 403 ? I am not authenticated to access items
+* Validate: Success | Failure = 400 ? the request is invalid
+* GetFromDatabase: Found ? the item exists | Not found = 404 ? the item does not exist | Error = 500 ? The items table errors on select
+* Authorize: Success = 200 | Failure = 401 ? I am not authorized to access the specific item
+</textarea></code></pre>
+<p>CFWeaver can understand this model, compute the various combinations of control flow states, and generate the following (each row of the table being a test scenario):</p>
+<p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/cfweaver.png" alt="CFWeaver" /></p>
+<p>I've published CFWeaver at v0.9.0, with a small laundry list of tasks to get to &quot;1.0&quot; - I'll push some of those up to the repo as good first issues, if this project is interesting to you please do feel free to contribute!</p>
+<p>This is far from a jack-of-all-trades though; I think there are some factors that constrain testing this way generally, and the utility of this tool specifically, which I think make the ideal use case for it a bit unique. There's not much to say about a simple CLI tool that can't be understood from its README, so below I'll elaborate a fair amount on my thoughts on using a model-based testing strategy in various scenarios.</p>
+<section id="model-based-testing">
+<h3>Model-Based Testing <a class="section-link" href="https://ian.wold.guru/Posts/thing_i_made_cfweaver.html#model-based-testing">#</a></h3>
+<p>The overarching concept here is model-based testing, which covers any number of approaches to test generation where some model of the system under test (SUT) is made, <em>from</em> which tests are generated. The model could be any number of things we normally use to model our software: a model of the input parameters, state diagrams, Markov chains, or in my case a control flow diagram. Some tools generate full test suites you can repeatedly run, some will randomly compute tests at the point of test execution, and others will stop short of generating the full test in favor of some description of the tests.</p>
+<p>That latter behavior - only generating a <em>description</em> of the tests - is what CFWeaver does. Generating a full test suite which could be run directly against the SUT would have a few negative consequences. First, CFWeaver would almost certainly require much more fine-grained input about the nature of the SUT to be able to generate full, meaningful tests. This, in turn, raises the complexity and therefore development effort on my end. Finally, it would probably also restrict the types of systems for which CFWeaver could generate tests.</p>
+<p>So, in order to maximize utility and ease development, CFWeaver only generates scenarios to test, with the conditions to cause the scenario and the expected result. This makes CFWeaver suitable to generate scenarios for any <em>kind</em> of system at any level of testing (unit, integration, e2e, and so forth), though there are natural constraints on when you'd want to employ a strategy like this.</p>
+<p>On constraints, the most important consideration before employing <em>any</em> model-based strategy is the utility of the model from which the tests are generated. Since the tests aren't generated from the SUT itself, there needs to exist some model independent of that system. Does that separate model have a utility <em>other</em> than allowing tests to be generated from it? How difficult is it to develop that model? Does that model need to be maintained and evolved in tandem with the system in order to continue to be able to adequately test the system?</p>
+<p>These are all important questions to ask. If the model has no use outside of being used to generate tests and is difficult to create and/or maintain, I'd suggest you have a poor candidate for model-based testing. Any practice, testing practices included, will not work well if they don't work harmoniously with your whole software process. If you naturally have models as a product of your process <em>and</em> the sorts of tests that can be generated from that model are useful for the sort of system you have, <em>then</em> you might want to consider a model-based testing strategy.</p>
+<p>Take a web service, for example. I work on web services a lot these days. Often, services will generate an OpenAPI spec file as a result of their build processes. This model is easily generated, and it has a lot of utility in providing documentation to consumers, maybe generating clients, and so on. A tool like <a href="https://schemathesis.io/">Schemathesis</a> that randomly tests your service based on its OpenAPI spec might naturally fit into the workflow for a service with a good OpenAPI definition.</p>
+<p>I developed CFWeaver from a similar position. I wrote a new service for my company, and the business logic of this service was based on what essentially amounted to control flow diagrams which had been collaborated on by various stakeholders. These models define the system and are maintained by the stakeholders independently of the system; when the system changes it will be as a result of some collaboration over these models. Being able to generate all the test scenarios from this model was greatly valuable in that I was able to verify the expected business requirements for the various technical faults that were possible.</p>
+</section>
+<section id="black-or-white-box-testing?">
+<h3>Black or White Box Testing? <a class="section-link" href="https://ian.wold.guru/Posts/thing_i_made_cfweaver.html#black-or-white-box-testing?">#</a></h3>
+<p>Model-based testing supports both of these strategies, depending on how you come about your models. For review, black-box testing treats the SUT as a &quot;black box&quot; into which it cannot see; tests are based on external understandings of the system or the output from the system. White-box is the opposite; tests are based on information gleaned from the code of the system itself.</p>
+<p>If I go into a codebase and read the code (or perform some other sort of static analysis) in order to come up with a model of a system, then I'm using model-based testing in a white-box manner. The project I described above that caused me to make CFWeaver is a black-box project; the model exists independently of the system, and the system is tested in a code-agnostic manner to ensure it conforms to that specification.</p>
+<p>White-box approaches are good for testing technical aspects of the system and uncovering unexpected business requirements or lack thereof. For a web service, the return codes for various types of technical failures often fall under the purview of the business requirements for a system, and sometimes these scenarios can't be understood independently of the implementation of the system. Creating an independent model when analyzing a codebase for these sorts of technical states is usually beneficial, and a tool like CFWeaver can help after setting up the model if manually generating all the different scenarios is too complex or tedious.</p>
+<p>Such an approach is (probably; usually) a one-time spelunking, and the model is probably discarded after the analysis and test scenario generation. However, it is a natural product of the analysis and useful for engineers collaborating while understanding a system. That's particularly useful when analyzing legacy (or otherwise poorly-understood) code.</p>
+<p>I'm generally of the opinion though that the great majority of business logic can - and should - be tested from a black box approach. The software doesn't exist on its own, it exists because of an external requirement for its specific function. I largely don't care about implementation when it comes to ensuring the system meets those independent requirements, and on top of that it's beneficial to keep tests decoupled from implementation so that I can refactor the SUT without having to touch the tests; this makes refactoring easy and best ensures the success of the refactor (or any sort of change to the code, for that matter: feature add, bug fix, and so on).</p>
+<p>I do not know, but if you asked me to guess I would say that model-based testing probably is less naturally suited to black-box testing because it's more rare that formal models exist independently of the SUT. Indeed, the OpenAPI spec example is probably the most ubiquitous one, and I luckily landed in a project for which I was able to formalize the independent model. Rarity aside, if the stars <em>do</em> happen to align in a way that a project does maintain models independently of the system, then a model-based approach can be a powerful black-box testing tool.</p>
+<p>Black-box strategies naturally exist in some level of ambiguity; there is a large bit of information about the SUT that is missing: the implementation. As mentioned, this is desirable to focus the testing on the actual business requirements, but difficulty arises in needing to comprehend the full scope of those requirements. Different permutations of input or function or environmental states all need to be considered, so any tool that can help enumerate these states is desirable.</p>
+<p>Different systems are naturally suited to different kinds of modeling, and while every system does have a <em>control flow</em>, it isn't necessarily the case that every system is <em>best</em> understood by a model of its control flow. Plenty of system are though, and in those cases CFWeaver will be a good fit.</p>
+</section>
+
 	</section>
 
-
-
+	<footer>
+		<div id="webmentions"></div>
 	
-	
-		<section id="2025">
-			
-				<h2>2025</h2>
-			
+		<div class="comments">
+			<script src="https://giscus.app/client.js"
+				data-repo="IanWold/ianwold.github.io"
+				data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk1NDkyNzI="
+				data-category="Posts"
+				data-category-id="DIC_kwDOCYKHWM4CZH2Y"
+				data-mapping="title"
+				data-strict="0"
+				data-reactions-enabled="0"
+				data-emit-metadata="0"
+				data-input-position="top"
+				data-theme="light"
+				data-lang="en"
+				data-loading="lazy"
+				crossorigin="anonymous"
+				async>
+			</script>
+		</div>
+	</footer>
+</article>
+<footer>
+	<section>
+		<img src="../images/hero1.svg" alt="Ian's Logo" />
+		<section>
+			<h2>
+				Hi, I'm Ian
+			</h2>
+			<p>
+				I'm a software engineer, architect, and team leader in Minneapolis. My career has largely focused on .NET and web technologies, spread across several industries. Currently I'm working for Crate &amp; Barrel on their ecommerce solutions. You can find me on this blog, contributing to open source repositories, and at conferences around the Midwest.
+			</p>
+			<hr>
+			<p>
+				If you'd like to keep up with me, please subscribe to my <a href="https://buttondown.email/ianwold" target="_blank">book club</a> or <a href="https://ian.wold.guru/feed.xml" target="_blank">RSS feed</a>. If you'd like to help me out with server costs, I would be forever grateful if you <a href="https://ko-fi.com/ianwold">bought me a coffee</a>!
+			</p>
+			<hr>
+			<p>
+				Some other posts you might be interested in:
+			</p>
 			<ul>
 				
-				
 					<li>
-						<time>02.05</time>
-						<a href="../Posts/thing_i_made_cfweaver.html">
-							<h3>Thing I Made: CFWeaver</h3>
-							<small>I made a simple CLI tool to generate comprehensive test scenarios from control flow models in simple markdown</small>
-						</a>
-					</li>
-				
-					<li>
-						<time>01.27</time>
-						<a href="../Posts/book_club_1-2025.html">
-							<h3>Book Club 1/25: Results, Railways, and Decisions</h3>
-							<small>A story on a successful result and insights gained from some more heady research this month.</small>
-						</a>
-					</li>
-				
-			</ul>
-		</section>
-	
-
-	
-	
-		<section id="2024">
-			
-				<h2>2024</h2>
-			
-			<ul>
-				
-				
-					<li>
-						<time>11.03</time>
-						<a href="../Posts/publish_your_blogroll_now.html">
-							<h3>Publish Your Blogroll Now</h3>
-							<small>I've done it and so can you; in fact, I've made it easier for you - way easier!</small>
-						</a>
-					</li>
-				
-					<li>
-						<time>11.01</time>
-						<a href="../Posts/i_have_a_blogroll_now.html">
-							<h3>I Have a Blogroll Now!</h3>
-							<small>An actual blogroll, not just a blog post with a bulletted list of links!</small>
-						</a>
-					</li>
-				
-					<li>
-						<time>04.13</time>
 						<a href="../Posts/free_planning_poker.html">
 							<h3>Thing I Made: FreePlanningPoker.io</h3>
 							<small>I made a free planning poker tool and named it aptly.</small>
 						</a>
 					</li>
 				
-			</ul>
-		</section>
-	
-
-	
-	
-		<section id="2023">
-			
-				<h2>2023</h2>
-			
-			<ul>
-				
+					<li>
+						<a href="../Posts/book_club-2-2024.html">
+							<h3>Book Club 2/2024: Recovering from TDD and Unit Tests</h3>
+							<small>TDD and unit tests are overused and often misprescribed. What do we really hope to gain from our tests, and what testing practices support our goals?</small>
+						</a>
+					</li>
 				
 					<li>
-						<time>10.26</time>
-						<a href="../Posts/daily_grug.html">
-							<h3>Daily Grug</h3>
-							<small>Need inspiration start day, made API.</small>
+						<a href="../Posts/its_okay_to_be_a_bit_techy_in_your_gherkin.html">
+							<h3>It's Okay to be a Bit Techy in Your Gherkin</h3>
+							<small>Gherkin tests are meant to be an abstraction over the code of automated tests to facilitate collaboration by all stakeholders, but that shouldn't mean that we banish any technical whiffs from them.</small>
 						</a>
 					</li>
 				
 			</ul>
 		</section>
-	
+	</section>
+</footer>
 
+<script>
+	const nav = document.querySelector('main nav');
+	if (nav) {
+		nav.style.setProperty('--element-height', `${nav.offsetHeight}px`);
+	}
 
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch(`https://webmention.io/api/mentions.jf2?target=${window.location.href}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Ope!`);
+            }
+
+            return response.json();
+        })
+        .then(json => {
+            const mentionList = document.createElement('ul');
+
+            json.children.forEach(child => {
+                const date = new Date(child.published);
+                const formattedDate = date.toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric"
+                });
+
+                var itemHtml = document.createElement('li');
+                itemHtml.innerHTML = `<a href="${child.url}">${child.author.name} on ${formattedDate}</a>`;
+                mentionList.appendChild(itemHtml);
+            });
+
+			const webmentionsDiv = document.getElementById('webmentions');
+
+            if (mentionList.children.length > 0) {
+                webmentionsDiv.innerHTML = '<section><p><strong>This post has been webmentioned by:</strong></p></section>';
+                console.log(webmentionsDiv.firstChild.firstChild);
+                webmentionsDiv.firstChild.firstChild.appendChild(mentionList);
+            } else {
+				webmentionsDiv.remove();
+			}
+        });
+    });
+</script>
 
 		</main>
 		<footer>
@@ -181,6 +285,25 @@
 		</footer>
 
 		<script>
+			
+				window.addEventListener('DOMContentLoaded', () => {
+					const observer = new IntersectionObserver(entries => {
+						entries.forEach(entry => {
+							const id = entry.target.getAttribute('id');
+							let classList = document.querySelector(`main nav li a[href="#${id}"]`).parentElement.classList;
+
+							if (entry.intersectionRatio > 0) {
+								classList.add('active');
+							} else {
+								classList.remove('active');
+							}
+						});
+					});
+
+					document.querySelectorAll('section[id]').forEach((section) => {
+						observer.observe(section);
+					});
+				});
 			
 
 			const darkModeToggle = document.getElementById("dark-mode-toggle");
