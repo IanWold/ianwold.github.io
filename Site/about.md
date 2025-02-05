@@ -22,6 +22,8 @@ I keep [a blogroll](https://ian.wold.guru/Blogroll/) with all the other blogs I 
 
 **StaticBlogroll** on [GitHub](https://github.com/IanWold/StaticBlogroll): Quickly publish a statically-generated blogroll with GitHub Actions and Pages.
 
+**CFWeaver** on [GitHub](https://github.com/IanWold/CFWeaver): A CLI tool to generate test scenarios from a control flow diagram.
+
 **Metalsharp** on [GitHub](https://github.com/IanWold/Metalsharp) and [NuGet](https://www.nuget.org/packages/Metalsharp/): A tiny and extendable C# library for generating static sites, inspired by Metalsmith.
 
 **Daily Grug** on [Web](https://dailygrug-production.up.railway.app/): Need inspiration start day, made API.
