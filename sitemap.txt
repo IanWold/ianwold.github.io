@@ -69,7 +69,7 @@ https://ian.wold.guru/Posts/theres_always_money_in_the_banana_stand.html
 https://ian.wold.guru/Posts/there_is_one_admin.html
 https://ian.wold.guru/Posts/the_art_of_hype_driven_development.html
 https://ian.wold.guru/Posts/the_case_for_single_reviewer_prs.html
-https://ian.wold.guru/Posts/the_modular_monolith_wont_save_you_2.html
+https://ian.wold.guru/Posts/the_modular_monolith_wont_save_you.html
 https://ian.wold.guru/Posts/the_network_is_reliable.html
 https://ian.wold.guru/Posts/the_network_is_secure.html
 https://ian.wold.guru/Posts/thing_i_made_cfweaver.html

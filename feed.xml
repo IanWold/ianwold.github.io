@@ -4006,8 +4006,8 @@ public async Task TestErrorLogged()
       <a10:updated>2024-07-13T00:00:00Z</a10:updated>
     </item>
     <item>
-      <guid isPermaLink="false">the_modular_monolith_wont_save_you_2</guid>
-      <link>https://ian.wold.guru/Posts/the_modular_monolith_wont_save_you_2.html</link>
+      <guid isPermaLink="false">the_modular_monolith_wont_save_you</guid>
+      <link>https://ian.wold.guru/Posts/the_modular_monolith_wont_save_you.html</link>
       <title>The Modular Monolith Won't Save You</title>
       <description>&lt;p&gt;It seems like it was just the other day that microservices were the cool thing to be doing, but as fads come and go the microservice fad has waned. What are the evangelists to evangelize now? Some have dipped their toes into the &amp;quot;modular monolith,&amp;quot; which at times has both pleased and confused me.&lt;/p&gt;
 &lt;p&gt;I've been pleased that conversation has shifted to the benefits of monolithic codebases, although it would be nicer yet to replace this with conversation about the realistic drawbacks of distributed systems. I would think that monolithic code would be the default, that we wouldn't dream of distributing a system unless it developed to a point where some clear, specific principles would force the question of distributing. Maybe I'm an idealist.&lt;/p&gt;
@@ -4056,8 +4056,8 @@ public async Task TestErrorLogged()
 &lt;p&gt;The real requirements of our systems are sometimes contradictory even, and this frequently makes us have to choose least-worst options. Often, this even results in a contradiction of principles we hold. As a result, we engineers are frequently engaged in a process of reconciling these contradictions, and it's that process of working through contradictions that causes us to emerge with solutions to our problems, implementations of our systems, and hopefully new principles we can keep going forward.&lt;/p&gt;
 &lt;p&gt;The systems we actually implement are synthesized from the requirements and contradictions of the multitude of real variables surrounding them. The &lt;em&gt;actual&lt;/em&gt; design of our systems will never follow 1-to-1 how microservice or modular monolith or any other pattern might describe. To implement a system we need to have the skills to be able to construct it based on the real requirements it has, not based on the ideal or ephemeral assumptions of the patterns.&lt;/p&gt;
 </description>
-      <pubDate>Mon, 19 Feb 2024 00:00:00 Z</pubDate>
-      <a10:updated>2024-02-19T00:00:00Z</a10:updated>
+      <pubDate>Wed, 19 Feb 2025 00:00:00 Z</pubDate>
+      <a10:updated>2025-02-19T00:00:00Z</a10:updated>
     </item>
     <item>
       <guid isPermaLink="false">the_network_is_reliable</guid>
