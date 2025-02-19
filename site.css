@@ -264,7 +264,12 @@ main {
 
                     a {
                         color: darkgray !important;
+						margin-right: 0.5rem;
                     }
+
+					a:last-child {
+						margin-right: 0;
+					}
 
                     a:hover {
                         color: orangered !important;
