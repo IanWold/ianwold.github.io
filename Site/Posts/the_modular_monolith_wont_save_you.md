@@ -2,7 +2,7 @@
 {
 	"title": "The Modular Monolith Won't Save You",
 	"description": "I must once again insist there are no silver bullets; knowing architectural patterns is no substitute for knowing how to write software.",
-	"date": "19 February 2024",
+	"date": "19 February 2025",
 	"contents": true,
 	"hero": "photo-1613396276557-57ba407006f9",
     "topics": ["Processes", "Distribution", "Architecture", "Industry", "Patterns"],
