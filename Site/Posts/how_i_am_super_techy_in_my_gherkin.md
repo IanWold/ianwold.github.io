@@ -151,10 +151,6 @@ How this shakes out in any particular circumstance is going to be affected by to
 
 ```
 When I send a POST request to "/my/resource" with the body
-    | name          | value            |
-    | Content-Type  | application/json |
-    | Authorization | Bearer hello     |
-
     """
     ---
       headers:
