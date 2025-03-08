@@ -1865,10 +1865,6 @@ When I send the request ...
 &lt;p&gt;But barrier! My goal is to make it as easy and seamless as possible to move from scenarios we observe in test and prod into our Gherkin - and I want &lt;em&gt;anyone&lt;/em&gt; to be able to do that. We need more simple.&lt;/p&gt;
 &lt;p&gt;How this shakes out in any particular circumstance is going to be affected by tooling and preferences and the usual factors, but what I've found works is to adopt the &lt;a href="https://daily-dev-tips.com/posts/what-exactly-is-frontmatter/"&gt;frontmatter&lt;/a&gt; concept to the JSON bodies. With my specific projects (and I can't stress enough that this may be drastically different depending on a lot of factors) the easiest thing has been to include the headers as YAML frontmatter atop the JSON in the body:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;When I send a POST request to &amp;quot;/my/resource&amp;quot; with the body
-    | name          | value            |
-    | Content-Type  | application/json |
-    | Authorization | Bearer hello     |
-
     &amp;quot;&amp;quot;&amp;quot;
     ---
       headers:
