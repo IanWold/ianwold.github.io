@@ -1761,6 +1761,132 @@ item.DoSomething();
       <a10:updated>2024-10-11T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">how_i_am_super_techy_in_my_gherkin</guid>
+      <link>https://ian.wold.guru/Posts/how_i_am_super_techy_in_my_gherkin.html</link>
+      <title>How I am Super Techy in my Gherkin</title>
+      <description>&lt;p&gt;A few weeks ago I wrote about how &lt;a href="https://ian.wold.guru/Posts/its_okay_to_be_a_bit_techy_in_your_gherkin.html"&gt;it's okay to be a bit techy in your Gherkin&lt;/a&gt;, by which I mean that it's okay to include technical sorts of language in your Gherkin. Gherkin is designed to abstract away the specific technical details of automated tests to make it easy for engineers to collaborate with non-engineer stakeholders over automated tests for a codebase. The general guideline goes that Gherkin should be written in a &amp;quot;business-friendly&amp;quot; manner, but this is actually not quite right; rather, our Gherkin should be written in a &amp;quot;stakeholder-friendly&amp;quot; manner.&lt;/p&gt;
+&lt;p&gt;If your stakeholders include very-technically-illiterate folks, then you'll define your Gherkin steps to account for that. If, on the other hand, your stakeholders all understand what it means to send an HTTP request into the service you're testing, the following is (almost certainly) going to be easier to collaborate over:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Scenario: Create a resource when myFlag is on
+    Given the feature flag &amp;quot;myFlag&amp;quot; is ON
+    When I send a POST request to &amp;quot;/my/resource&amp;quot; with the body
+        &amp;quot;&amp;quot;&amp;quot;
+        {
+            &amp;quot;name&amp;quot;: &amp;quot;Bob&amp;quot;,
+            &amp;quot;age&amp;quot;: 42
+        }
+        &amp;quot;&amp;quot;&amp;quot;
+    Then the response status code should be 200
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Since I wrote that last blog post, I've had a lot of successful collaboration over a couple projects at work, and I want to share some of my findings here. Ultimately, I'm impressed by the very tight testing loop which this &amp;quot;low-level&amp;quot; form of Gherkin supports for my team's backend services. If we observe a bug or find one while doing exploratory testing, then we'll already have the request body - this Gherkin format makes it very easy for anyone - not just engineers - to write a test which can be immediately executed on the codebase.&lt;/p&gt;
+&lt;p&gt;So in a matter of minutes I have the issue reproducible on my local machine, and I can then reach out to other stakeholders to confirm the expected behavior. Again, everyone understands what an HTTP request is, so I can send them the Gherkin, and they can respond to me with updated, valid Gherkin in no time. This all shows the value in ensuring that you set up your Gherkin so that it works in the environment it's supposed to, &lt;em&gt;and&lt;/em&gt; that you're using it to actually facilitate collaboration.&lt;/p&gt;
+&lt;h2&gt;Steps to Arrange Data&lt;/h2&gt;
+&lt;p&gt;In my environment (this could be entirely different for you) anyone who understands what an HTTP request is knows, generally, how SQL or Redis or the like work. Setting up data for the test can be extremely simple that way. It's even easier for a document database. Take the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Given the &amp;quot;items&amp;quot; table in the Postgres database has the following records:
+    | id | name  | age |
+    | 1  | 'Bob' | 42  |
+    | 2  | 'Sue' | 50  |
+And the &amp;quot;some&amp;quot; key in the Redis cache has the value &amp;quot;hello&amp;quot;
+And the external endpoint &amp;quot;/my/service/other/resource/1&amp;quot; will respond with status code 200 and body
+    &amp;quot;&amp;quot;&amp;quot;
+    {
+        &amp;quot;id&amp;quot;: 1,
+        &amp;quot;favorites&amp;quot;: [ &amp;quot;Bob&amp;quot;, &amp;quot;Sue&amp;quot; ]
+    }
+    &amp;quot;&amp;quot;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Database tables are set up with - surprise - tables, Redis values are set directly, and responses from external services can have their bodies written out in full. Redis is an interesting case actually, since it can have lists and hashes and so on. It's relatively simple to add those:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Given the &amp;quot;some&amp;quot; key in the Redis cache has the list [ 1, 2, 3 ]
+And the &amp;quot;other&amp;quot; key in the Redis cache has the hash
+    | name   | value |
+    | first  | 1     |
+    | second | 2     |
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To reiterate, this works so long as all collaborators understand those sorts of systems. When they do, this straightforward approach gives the path of least resistance in moving from an observed scenario into the Gherkin language which allows collaborating over what the business requirements (outputs from the service) are in these conditions. Speaking of which:&lt;/p&gt;
+&lt;h2&gt;Steps to Test Responses&lt;/h2&gt;
+&lt;p&gt;One key point is that a service (an HTTP API, in this case) does not &lt;em&gt;just&lt;/em&gt; output responses to requests. Yes, that's the primary thing to test, but you might want to ensure that events are enqueued in a Kafka or that specific logs are output in certain scenarios to drive alerting, or the like.&lt;/p&gt;
+&lt;p&gt;These extra scenarios get a bit tricky and probably require that your tests have some way to read all of these output channels. That solution might vary wildly for your project, but the Gherkin steps can be very simple. Remember to keep the focus on what kinds of steps are both most understandable to all your stakeholders &lt;em&gt;and&lt;/em&gt; produce the least amount of friction when creating Gherkin scenarios from real-world observed scenarios.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Then an error level log is written containing &amp;quot;SuperImportantService failed to respond&amp;quot;
+And the following event was sent to the Kafka topic &amp;quot;topic&amp;quot;
+    &amp;quot;&amp;quot;&amp;quot;
+    {
+        &amp;quot;id&amp;quot;: 1,
+        &amp;quot;name&amp;quot;: &amp;quot;Bob&amp;quot;
+    }
+    &amp;quot;&amp;quot;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Testing the actual response from the service is just as easy, though in this case we might want to validate more than just the body - response status code is quite meaningful over HTTP:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Then the response status code is 200
+And the response body is
+    &amp;quot;&amp;quot;&amp;quot;
+    {
+        &amp;quot;id&amp;quot;: 1,
+        &amp;quot;name&amp;quot;: &amp;quot;Bob&amp;quot;,
+        &amp;quot;favorites&amp;quot;: [ &amp;quot;Bob&amp;quot;, &amp;quot;Sue&amp;quot; ]
+    }
+    &amp;quot;&amp;quot;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now, there is a catch here testing the bodies of both the event and the API response: how is the code written to match the bodies? If I write a multi-line string in my test but the server actually responds with a single-line JSON, I can't do a string compare. Even if we could solve perfectly for whitespace (I don't recommend trying) property rearranging is an issue. But then I also don't necessarily want to test &lt;em&gt;every&lt;/em&gt; property; maybe for some tests I just want to make sure one property is coming back altered.&lt;/p&gt;
+&lt;p&gt;What's wanted then is to test that the response JSON is a superset (for lack of a better word - is there something else we call this?) of what we expect. Luckily, this is quite easy to define:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;bool IsJsonSuperset(JsonElement targetJson, JsonElement expectedJson) =&amp;gt;
+    expectedJson.ValueKind switch
+    {
+        JsonValueKind.Object =&amp;gt;
+            expectedJson.EnumerateObject().All(expectedProperty =&amp;gt;
+                targetJson.TryGetProperty(expectedProperty.Name, out var targetValue)
+                &amp;amp;&amp;amp; IsJsonSuperset(targetValue, expectedProperty.Value)
+            ),
+        JsonValueKind.Array =&amp;gt;
+            targetJson.GetArrayLength() &amp;gt;= expectedJson.GetArrayLength()
+            &amp;amp;&amp;amp; expectedJson.EnumerateArray().All(expectedArrayElement =&amp;gt;
+                targetJson.EnumerateArray().Any(targetArrayElement =&amp;gt; IsJsonSuperset(targetArrayElement, expectedArrayElement))
+            ),
+        _ =&amp;gt; targetJson.GetRawText() == expectedJson.GetRawText()
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Accounting for HTTP Headers&lt;/h2&gt;
+&lt;p&gt;Ah, headers are just a table - surely I could just include them along with the body when I send the request:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;When I send a POST request to &amp;quot;/my/resource&amp;quot; with header and body
+    | name          | value            |
+    | Content-Type  | application/json |
+    | Authorization | Bearer hello     |
+
+    &amp;quot;&amp;quot;&amp;quot;
+    {
+        &amp;quot;name&amp;quot;: &amp;quot;Bob&amp;quot;,
+        &amp;quot;age&amp;quot;: 42
+    }
+    &amp;quot;&amp;quot;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Alas, Gherkin does not support such an idea. In a traditional setup, we'd break this down into multiple steps:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Given the request has header &amp;quot;Content-Type&amp;quot; with value &amp;quot;application/json&amp;quot;
+And the request has header &amp;quot;Authorization&amp;quot; with value &amp;quot;Bearer hello&amp;quot;
+When I send the request ...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;But barrier! My goal is to make it as easy and seamless as possible to move from scenarios we observe in test and prod into our Gherkin - and I want &lt;em&gt;anyone&lt;/em&gt; to be able to do that. We need more simple.&lt;/p&gt;
+&lt;p&gt;How this shakes out in any particular circumstance is going to be affected by tooling and preferences and the usual factors, but what I've found works is to adopt the &lt;a href="https://daily-dev-tips.com/posts/what-exactly-is-frontmatter/"&gt;frontmatter&lt;/a&gt; concept to the JSON bodies. With my specific projects (and I can't stress enough that this may be drastically different depending on a lot of factors) the easiest thing has been to include the headers as YAML frontmatter atop the JSON in the body:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;When I send a POST request to &amp;quot;/my/resource&amp;quot; with the body
+    | name          | value            |
+    | Content-Type  | application/json |
+    | Authorization | Bearer hello     |
+
+    &amp;quot;&amp;quot;&amp;quot;
+    ---
+      headers:
+        - Content-Type: application/json
+          Authorization: Bearer hello
+    ---
+    {
+        &amp;quot;name&amp;quot;: &amp;quot;Bob&amp;quot;,
+        &amp;quot;age&amp;quot;: 42
+    }
+    &amp;quot;&amp;quot;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It's easy then to parse out &lt;code&gt;---&lt;/code&gt; and get the information from the YAML. That &amp;quot;frontmatter&amp;quot; could just as easily be JSON, or you could even abandon the pseudo-frontmatter idea and write the whole body using &lt;a href="https://timdeschryver.dev/bits/http-files"&gt;http file syntax&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Sat, 08 Mar 2025 00:00:00 Z</pubDate>
+      <a10:updated>2025-03-08T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">intuiting_jevons_paradox</guid>
       <link>https://ian.wold.guru/Posts/intuiting_jevons_paradox.html</link>
       <title>Intuiting Jevon's Paradox</title>
