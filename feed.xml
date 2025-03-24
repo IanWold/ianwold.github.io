@@ -608,6 +608,57 @@ They've journeyed forth, with purpose evergreen.&lt;/p&gt;
       <a10:updated>2024-12-30T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">book_club_2-3-2025</guid>
+      <link>https://ian.wold.guru/Posts/book_club_2-3-2025.html</link>
+      <title>Book Club 2&amp;3/2025: Slack: Communication, Organization, Teams</title>
+      <description>&lt;p&gt;So a bit ago I got shuffled around onto a new position, I am now the leader of the team responsible for PLPs, PDPs, and such item-related &lt;em&gt;things&lt;/em&gt; at &lt;a href="http://www.crateandbarrel.com"&gt;crateandbarrel.com&lt;/a&gt;. New team = new ideas, and being a remote worker throughout my whole career ideas about &lt;em&gt;communication&lt;/em&gt; are particularly at the fore. My firm uses Slack to communicate, and I think Teams and other tools present a similar experience.&lt;/p&gt;
+&lt;p&gt;I've been reading a lot of disparate pieces about the functioning of teams, so my book club (for two months!) is a bit of a disjointed mess, but I think communication is the concept that ties it all together.&lt;/p&gt;
+&lt;p&gt;There's a lot of different ways to do communication, particularly over messaging platforms, and different situations call for different sorts of communication. How to create, manage, and structure various Slack channels seems like a critical skill; identifying communication patterns, shortcomings, and requirements can make or break a project. Here's a couple articles to do with Slack &amp;quot;architecture&amp;quot;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.benkuhn.net/pjm/"&gt;How I’ve run major projects - Ben Kuhn&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://taylor.town/friday-demos"&gt;Share Demos Every Friday - taylor.town&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I've implemented Friday Slack demos to mixed success. I think colleagues enjoyed it but participation was spotty. When year-end reviews came around, those who participated more got more out of it. That practice is probably better for some teams and more mixed for others; definitely worth a try!&lt;/p&gt;
+&lt;p&gt;No doubt different practices work for different situations, teams, individuals. I've got a number of ideas having worked remotely for so long, but I haven't published them because my remote working practices seem so ... personal? Inapplicable to others. I might do yet though; the following have given me some interesting thoughts even though I don't think they apply universally:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://taylor.town/tips-for-remote-work"&gt;Tips for Remote Work - taylor.town&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://taylor.town/weekend-whenever"&gt;Weekend Whenever - taylor.town&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://blog.maartenballiauw.be/post/2018/09/12/how-to-become-a-remote-worker.html"&gt;How to become a remote worker - Maarten Balliauw&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://jvns.ca/blog/2018/02/18/working-remotely--4-years-in/"&gt;Working Remotely, 4 Years In - Julia Evans&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And of course there's different styles of communication depending on the scenario or situation -&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://jvns.ca/blog/2020/07/14/when-your-coworker-does-great-work-tell-their-manager/"&gt;When your coworker does great work, tell their manager - Julia Evans&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://surfingcomplexity.blog/2022/06/03/youre-just-going-to-sit-there/"&gt;You’re just going to sit there??? - Surfing Complexity&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://surfingcomplexity.blog/2020/07/20/how-could-they-be-so-stupid/"&gt;“How could they be so stupid?” - Surfing Complexity&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Some writing on general team practices -&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.dylanamartin.com/2024/05/22/reflections-on-my-journey-at-brinc.html"&gt;Moving On: Reflections on my Journey at BRINC - Dylan Martin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://jvns.ca/blog/2017/01/13/how-do-you-make-an-awesome-team/"&gt;How do you Make an Awesome Team? - Julia Evans&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://lucasfcosta.com/2022/07/19/finish-what-you-start.html"&gt;How finishing what you start makes teams more productive and predictable - Lucas F. Costa&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And some writing on learning -&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://gojko.net/2009/10/15/how-to-promote-learning-in-software-teams/"&gt;How to promote learning in software teams - Gojko Adzic&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://jvns.ca/blog/2016/04/30/building-expertise-at-work/"&gt;How does knowledge get locked up in people's heads? - Julia Evans&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.benkuhn.net/50pct/"&gt;I apparently got 50% better at my job last month - Ben Kuhn&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.benkuhn.net/weekly/"&gt;My weekly review habit - Ben Kuhn&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://taylor.town/extinguish-all-notifications"&gt;Extinguish All Notifications - taylor.town&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Last but not least, here are a few articles I've published generally on this mater:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://ian.wold.guru/Posts/building_a_documentation_habit.html"&gt;Building a Documentation Habit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ian.wold.guru/Posts/principles_for_successful_teams.html"&gt;Principles for Successful Teams&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ian.wold.guru/Posts/scrum_is_not_agile.html"&gt;Scrum is not Agile&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ian.wold.guru/Posts/book_club_12-2023.html"&gt;Book Club 12/2023: Workflow, Process, and Agile&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;That's really all I've got here; usually I use this book club as a way of developing, rounding out, and reinforcing ideas and practices that I've developed over my career, but I took a step back here to absorb. This is altogether a lighter, less set-in-stone sort of topic anywho. For those readers who live in the northern midwest US, I hope you're all enjoying seeing all the birds migrate back; I spotted my first egret of the year yesterday!&lt;/p&gt;
+</description>
+      <pubDate>Mon, 24 Mar 2025 00:00:00 Z</pubDate>
+      <a10:updated>2025-03-24T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">book_club_3-2024</guid>
       <link>https://ian.wold.guru/Posts/book_club_3-2024.html</link>
       <title>Book Club 3/2024: Simplicity</title>
