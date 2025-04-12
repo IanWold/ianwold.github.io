@@ -2,7 +2,7 @@
 {
 	"title": "CFWeaver Version 1.0.0 Published",
 	"description": "I've published version 1 of my test scenario generation tool CFWeaver",
-	"date": "12 April 2024",
+	"date": "12 April 2025",
 	"contents": false,
 	"hero": "photo-1714245145426-c8565109aa34",
     "topics": ["Projects"],
