@@ -953,8 +953,8 @@ They've journeyed forth, with purpose evergreen.&lt;/p&gt;
 &lt;p&gt;The last thing I've done in preparation for this release is I've added an integration testing apparatus. I don't have &lt;em&gt;everything&lt;/em&gt; tested since I'm still considering the best way to test HTML and markdown output, but I do have all the errror conditions tested! This was an interesting process that I haven't done for a command line app yet.&lt;/p&gt;
 &lt;p&gt;Crucially, I had to set up the application to inject the console and file I/O functionality; you can &lt;a href="https://github.com/IanWold/CFWeaver/commit/80addb8ffb3822d804e14de5e2e7afd031154700"&gt;see that in this commit&lt;/a&gt;. This allows the tests to inject fakes to capture these operations and allows me to run integration tests without needing to build the application and run it in Docker or some other squirrely setup for testing.&lt;/p&gt;
 </description>
-      <pubDate>Fri, 12 Apr 2024 00:00:00 Z</pubDate>
-      <a10:updated>2024-04-12T00:00:00Z</a10:updated>
+      <pubDate>Sat, 12 Apr 2025 00:00:00 Z</pubDate>
+      <a10:updated>2025-04-12T00:00:00Z</a10:updated>
     </item>
     <item>
       <guid isPermaLink="false">clean_meetings_a_software_engineers_guide</guid>
