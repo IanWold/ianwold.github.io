@@ -33,6 +33,7 @@ https://ian.wold.guru/Posts/console2048.html
 https://ian.wold.guru/Posts/daily_grug.html
 https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html
 https://ian.wold.guru/Posts/deploying_your_prolog_api_with_docker.html
+https://ian.wold.guru/Posts/deploy_your_own_nocodb_on_railway.html
 https://ian.wold.guru/Posts/develop_effective_coding_standards.html
 https://ian.wold.guru/Posts/dont_retro_the_same_twice.html
 https://ian.wold.guru/Posts/dotnet_9_csharp_13.html

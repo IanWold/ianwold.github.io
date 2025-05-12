@@ -1410,6 +1410,35 @@ CMD [&amp;quot;swipl&amp;quot;, &amp;quot;-g&amp;quot;, &amp;quot;server(5000)&a
       <a10:updated>2024-06-28T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">deploy_your_own_nocodb_on_railway</guid>
+      <link>https://ian.wold.guru/Posts/deploy_your_own_nocodb_on_railway.html</link>
+      <title>Deploy Your Own NocoDB on Railway</title>
+      <description>&lt;p&gt;&lt;a href="https://github.com/nocodb/nocodb"&gt;NocoDB&lt;/a&gt; is an interesting open source project I came across some weeks ago; it aims to be an OSS alternative to &lt;a href="https://www.airtable.com/"&gt;Airtable&lt;/a&gt;. Airtable is a &amp;quot;nocode&amp;quot; solution for line-of-business applications, focusing on business process automation. It's like an enterprisey &lt;a href="https://ifttt.com/"&gt;IFTTT&lt;/a&gt; (although; IFTTT would probably want you to think of them as the enterprisey IFTTT). NocoDB is in its early stages but seems to want to occupy the same niche, but there's a couple differences that make it useful to me for other purposes.&lt;/p&gt;
+&lt;p&gt;Crucially, it's built as a UI wrapper around a database of your choice. Their documentation is a bit sparse right now, but I think I'm right in saying they support Postgres, MySQL, and SQLite at the time of this writing. If you've read my work before, you know that &lt;a href="https://ian.wold.guru/Posts/just_use_postgresql.html"&gt;I like Postgres&lt;/a&gt;. There's a lot of UIs you can use with Postgres, even some that have fancy visualizations like this NocoDB, but the difference with NocoDB that's impressed me is in their support for automation: by developing their software into the no/low-code niche, it becomes more useful for those cases where I &lt;em&gt;just&lt;/em&gt; need to set up some trigger here or interaction there.&lt;/p&gt;
+&lt;p&gt;I've been wanting to replace all my spreadsheets with Postgres for a while now, and NocoDB might just be the UI that lets me do that. Being OSS, I can deploy it myself with my own Postgres database for free! Here I'm going to outline how that's done in &lt;a href="https://railway.app"&gt;Railway&lt;/a&gt;, my preferred cloud host. The relevant docs from NocoDB are their &lt;a href="https://docs.nocodb.com/getting-started/self-hosted/installation/docker-install/"&gt;Docker install&lt;/a&gt; and &lt;a href="https://docs.nocodb.com/getting-started/self-hosted/environment-variables"&gt;environment variables&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The setup will be quite simple: we'll just need a Postgres database and a Docker container (with a volume) for NocoDB. We'll start by creating an empty project:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/nocodb-railway-new-project.png" alt="nocodb-railway-new-project" /&gt;&lt;/p&gt;
+&lt;p&gt;To which we can add a Postgres database:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/nocodb-railway-postgres.png" alt="nocodb-railway-postgres" /&gt;&lt;/p&gt;
+&lt;p&gt;I was fine with the default Postgres settings, but feel free to change yours how you need.&lt;/p&gt;
+&lt;p&gt;Creating the NocoDB container is easy enough; the image &lt;code&gt;nocodb/nocodb:latest&lt;/code&gt; is available from docker hub. We can create the container by selecting &lt;code&gt;Docker Image&lt;/code&gt; when we go to create the container:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/nocodb-railway-new-docker-image.png" alt="nocodb-railway-new-docker-image" /&gt;&lt;/p&gt;
+&lt;p&gt;and entering the image name&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/nocodb-railway-new-nocodb.png" alt="nocodb-railway-new-nocodb" /&gt;&lt;/p&gt;
+&lt;p&gt;You can deploy this now if you like, but we're going to want to attach a volume and connect it to Postgres to work. To attach the volume, right-click on the NocoDB container:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/nocodb-railway-attach-volume.png" alt="nocodb-railway-attach-volume" /&gt;&lt;/p&gt;
+&lt;p&gt;And mount the volume to &lt;code&gt;/usr/app/data/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/nocodb-railway-volume-mount.png" alt="nocodb-railway-volume-mount" /&gt;&lt;/p&gt;
+&lt;p&gt;In order to connect to the postgres database, we can set the &lt;code&gt;NC_DB&lt;/code&gt; variable on the NocoDB container. You can click on the container and then the Variables tab:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/nocodb-railway-variables.png" alt="nocodb-railway-variables" /&gt;&lt;/p&gt;
+&lt;p&gt;Railway has support for referencing other services in its environment variables, which we can take advantage of in constructing our connection string. When I added my variable, I used &lt;code&gt;pg://${{Postgres.RAILWAY_PRIVATE_DOMAIN}}:${{Postgres.PGPORT}}?u=${{Postgres.PGUSER}}&amp;amp;p=${{Postgres.PGPASSWORD}}&amp;amp;d=${{Postgres.PGDATABASE}}&lt;/code&gt; to get a connection string in the format that matches NocoDB's docs:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/nocodb-railway-attach-variable.png" alt="nocodb-railway-attach-variable" /&gt;&lt;/p&gt;
+&lt;p&gt;That's all we need now in order to deploy and check that we're successful. Once that's verified, you can &lt;a href="https://docs.railway.com/guides/public-networking"&gt;configure a public URL&lt;/a&gt; for your NocoDB container and start using it!&lt;/p&gt;
+</description>
+      <pubDate>Mon, 12 May 2025 00:00:00 Z</pubDate>
+      <a10:updated>2025-05-12T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">develop_effective_coding_standards</guid>
       <link>https://ian.wold.guru/Posts/develop_effective_coding_standards.html</link>
       <title>Develop Effective Coding Standards</title>
