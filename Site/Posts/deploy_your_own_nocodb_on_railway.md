@@ -50,7 +50,11 @@ In order to connect to the postgres database, we can set the `NC_DB` variable on
 
 ![nocodb-railway-variables](https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/nocodb-railway-variables.png)
 
-Railway has support for referencing other services in its environment variables, which we can take advantage of in constructing our connection string. When I added my variable, I used `pg://${{Postgres.RAILWAY_PRIVATE_DOMAIN}}:${{Postgres.PGPORT}}?u=${{Postgres.PGUSER}}&p=${{Postgres.PGPASSWORD}}&d=${{Postgres.PGDATABASE}}` to get a connection string in the format that matches NocoDB's docs:
+Railway has support for referencing other services in its environment variables, which we can take advantage of in constructing our connection string. When I added my variable, I used the following to get a connection string in the format that matches NocoDB's docs:
+
+```plaintext
+pg://${{Postgres.RAILWAY_PRIVATE_DOMAIN}}:${{Postgres.PGPORT}}?u=${{Postgres.PGUSER}}&p=${{Postgres.PGPASSWORD}}&d=${{Postgres.PGDATABASE}}
+```
 
 ![nocodb-railway-attach-variable](https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/nocodb-railway-attach-variable.png)
 
