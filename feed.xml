@@ -1431,7 +1431,9 @@ CMD [&amp;quot;swipl&amp;quot;, &amp;quot;-g&amp;quot;, &amp;quot;server(5000)&a
 &lt;p&gt;&lt;img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/nocodb-railway-volume-mount.png" alt="nocodb-railway-volume-mount" /&gt;&lt;/p&gt;
 &lt;p&gt;In order to connect to the postgres database, we can set the &lt;code&gt;NC_DB&lt;/code&gt; variable on the NocoDB container. You can click on the container and then the Variables tab:&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/nocodb-railway-variables.png" alt="nocodb-railway-variables" /&gt;&lt;/p&gt;
-&lt;p&gt;Railway has support for referencing other services in its environment variables, which we can take advantage of in constructing our connection string. When I added my variable, I used &lt;code&gt;pg://${{Postgres.RAILWAY_PRIVATE_DOMAIN}}:${{Postgres.PGPORT}}?u=${{Postgres.PGUSER}}&amp;amp;p=${{Postgres.PGPASSWORD}}&amp;amp;d=${{Postgres.PGDATABASE}}&lt;/code&gt; to get a connection string in the format that matches NocoDB's docs:&lt;/p&gt;
+&lt;p&gt;Railway has support for referencing other services in its environment variables, which we can take advantage of in constructing our connection string. When I added my variable, I used the following to get a connection string in the format that matches NocoDB's docs:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-plaintext"&gt;pg://${{Postgres.RAILWAY_PRIVATE_DOMAIN}}:${{Postgres.PGPORT}}?u=${{Postgres.PGUSER}}&amp;amp;p=${{Postgres.PGPASSWORD}}&amp;amp;d=${{Postgres.PGDATABASE}}
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/nocodb-railway-attach-variable.png" alt="nocodb-railway-attach-variable" /&gt;&lt;/p&gt;
 &lt;p&gt;That's all we need now in order to deploy and check that we're successful. Once that's verified, you can &lt;a href="https://docs.railway.com/guides/public-networking"&gt;configure a public URL&lt;/a&gt; for your NocoDB container and start using it!&lt;/p&gt;
 </description>
