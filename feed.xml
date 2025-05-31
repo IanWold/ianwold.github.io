@@ -757,6 +757,33 @@ They've journeyed forth, with purpose evergreen.&lt;/p&gt;
       <a10:updated>2024-04-24T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">book_club_4-5-2025</guid>
+      <link>https://ian.wold.guru/Posts/book_club_4-5-2025.html</link>
+      <title>Book Club 4&amp;5/2025: Incidents and Resiliency</title>
+      <description>&lt;p&gt;In March I moved to a different role at my current firm, and the thing that's changed the most for me is incidents. In the past quarter I have had to respond to more incidents than I had in the two and a half years prior. Comes with the territory sometimes, I suppose, but that puts the topic into my mind!&lt;/p&gt;
+&lt;p&gt;I'm very happy to have been subscribed to Lorin Hochstein's blog &lt;a href="https://surfingcomplexity.blog/"&gt;Surfing Complexity&lt;/a&gt;, which has given me a lot of links to share with colleagues. Lorin's approach to rigidity in complex systems is to center the interactions of the components of the system as the potential, and sometimes actualized, causes of failure. This is opposed to the traditional model of there being a single &amp;quot;cause&amp;quot; or &amp;quot;actor&amp;quot; within the system from which the failure arose. Stated plainly this seems like an obvious thing to think, but turning that thinking into something &lt;em&gt;operational&lt;/em&gt; is a different thing altogether.&lt;/p&gt;
+&lt;p&gt;Following up on an incident, how do we update our system to exclude failure-causing interactions? How do we do this in a way that avoids thinking about &amp;quot;root causes&amp;quot;? Most fundamentally, how do we even identify all the interactions in the first place? I figure that the complexity of a system will directly correlate with the complexity of incident-causing interactions. I also figure that complexity of any sort directly correlates with lack of understanding.&lt;/p&gt;
+&lt;p&gt;So, as the complexity of the system increases, the complexities of the causes of failure increase, the ignorance of the workings of the system increases, and the inabilities to comprehend the causes of failures increase. In short, the probability that the holistic understanding of the causes of an incident cannot be had increases with time. The greater the possibility that I can't understand the full picture as to why an incident occurred, the less useful it is for me to engage in root cause analysis. In such a system, the root cause analysis will at best not fix the issue, but at worst will introduce new issues.&lt;/p&gt;
+&lt;p&gt;What's to be done then? Resiliency, of course! Also easier said than done. The implication is that failure can never be ameliorated, but can only be managed. A system that better manages errors is more resilient and will function properly a greater percentage of the time. That might be an unfulfilling answer, but I'll ask you whether that maps better onto your experiences with complex systems?&lt;/p&gt;
+&lt;p&gt;When we follow up from incidents, we can identify individual failures in components of our system, and we can probably identify several points of interaction failure. The question to answer is how we can update the components to succeed in the face of the errors they encountered, not how we can fix the problem. Assume you can't fix the problem, because you can't comprehend the problem. You can only control the limited view you have over the system, and you can only make that slice of the system behave &lt;em&gt;better&lt;/em&gt; in its error-laden environment.&lt;/p&gt;
+&lt;p&gt;I was convinced to write about this topic for the book club this month by this recent post from Lorin : &lt;a href="https://surfingcomplexity.blog/2025/05/19/not-causal-chains-but-interactions-and-adaptations/"&gt;Not causal chains, but interactions and adaptations&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Links from folks other than Lorin, in alphabetical order of their names:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://overreacted.io/the-bug-o-notation/"&gt;The “Bug-O” Notation - Dan Abramov&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://overreacted.io/writing-resilient-components/"&gt;Writing Resilient Components - Dan Abramov&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://gojko.net/2017/12/08/people-making-computers-crazy.html"&gt;People that make computers go crazy - Gojko Adzic&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://gojko.net/2012/05/08/redefining-software-quality/"&gt;Redefining Software Quality - Gojko Adzic&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://lucasfcosta.com/2020/09/05/not-having-problems.html"&gt;The most efficient way to solve problems: not having them - Lucas F. Costa&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://jvns.ca/blog/2016/10/21/consistency-vs-availability/"&gt;Consistency vs. Availability - Julia Evans&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://martin.kleppmann.com/2013/08/12/system-operations-over-seven-centuries.html"&gt;System operations over seven centuries - Martin Kleppman&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://martin.kleppmann.com/2008/06/10/hermann-bondi-arrogance-of-certainty.html"&gt;Hermann Bondi: Arrogance of certainty - Martin Kleppman&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://martin.kleppmann.com/2012/10/08/complexity-of-user-experience.html"&gt;The complexity of user experience - Martin Kleppman&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Sat, 31 May 2025 00:00:00 Z</pubDate>
+      <a10:updated>2025-05-31T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">book_club_5-2024</guid>
       <link>https://ian.wold.guru/Posts/book_club_5-2024.html</link>
       <title>Book Club 5/2024: SOLID</title>
