@@ -1,3 +1,8 @@
+#:package Metalsharp@0.9.0-rc.6
+#:package Metalsharp.LiquidTemplates@0.9.0-rc.5
+#:package Metalsharp.SimpleBlog@0.9.0-rc.2
+#:package System.ServiceModel.Syndication@10.0.0-preview.5.25277.114
+
 using Metalsharp;
 using Metalsharp.LiquidTemplates;
 using Metalsharp.SimpleBlog;
