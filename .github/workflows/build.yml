@@ -36,7 +36,7 @@ jobs:
       run: npm i @torchlight-api/torchlight-cli
 
     - name: Build
-      run: ${{ env.DOTNET_INSTALL_DIR }}\dotnet script build.csx
+      run: ${{ env.DOTNET_INSTALL_DIR }}\dotnet run build.cs
 
     - name: Highlight
       env:
