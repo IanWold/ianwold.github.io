@@ -1,0 +1,11 @@
+{
+  "name": "ian.wold.guru",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "highlight": "torchlight"
+  },
+  "dependencies": {
+    "@torchlight-api/torchlight-cli": "^0.1.7"
+  }
+}
