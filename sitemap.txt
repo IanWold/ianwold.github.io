@@ -53,6 +53,7 @@ https://ian.wold.guru/Posts/its_okay_to_be_a_bit_techy_in_your_gherkin.html
 https://ian.wold.guru/Posts/ive_indiewebbed_my_site.html
 https://ian.wold.guru/Posts/ive_stopped_using_visual_studio.html
 https://ian.wold.guru/Posts/i_have_a_blogroll_now.html
+https://ian.wold.guru/Posts/i_like_petite_vue.html
 https://ian.wold.guru/Posts/just_use_postgresql.html
 https://ian.wold.guru/Posts/lateny_is_zero.html
 https://ian.wold.guru/Posts/learn_the_old_languages.html
