@@ -26,12 +26,31 @@
 		
 
 		<title>
-			Ian Wold | Postgres 
+			Ian Wold | Book Club 6&7/2025: OOP 
 		</title>
 
 		
 			<script type="application/ld+json">
-				
+				{
+	"@context": "https://schema.org",
+	"@type": "Article",
+	"author": [{
+		"@type": "Person",
+		"name": "Ian Wold"
+	}],
+	"datePublished": "7/30/2025 12:00:00 AM",
+	"image": "https://images.unsplash.com/photo-1672309558498-cfcc89afff25",
+	"headline": "Book Club 6&7/2025: OOP",
+	"description": "Just some blabbering about OOP, paradigms, and being non-dogmatic",
+	"publisher": {
+		"@type": "Person",
+		"name": "Ian Wold",
+		"logo": {
+			"@type": "ImageObject",
+			"url": "https://ian.wold.guru/images/hero1.svg"
+		}
+	},
+}
 			</script>
 		
 
@@ -55,93 +74,183 @@
 		<main>
 
 
-	
 
 
 
-
-
-
-
+<article class="h-entry">
 	<header>
-		
-			<h1>Topic: Postgres</h1>
-		
+		<h1 class="p-name">Book Club 6&7/2025: OOP</h1>
+		<section>
+			<small>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+				30 July 2025
+				<time class="dt-published" style="display: none;">
+					2025-07-30T00:00:00.0000000Z
+				</time>
+			</small>
+			<small>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+				5  Minutes 
+			</small>
+			<small>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-commit"><circle cx="12" cy="12" r="4"></circle><line x1="1.05" y1="12" x2="7" y2="12"></line><line x1="17.01" y1="12" x2="22.96" y2="12"></line></svg>
+				<a href="https://github.com/IanWold/ianwold.github.io/commits/master/Site/Posts/book_club_6-7-2025.md">History</a>
+			</small>
+			
+				<small>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+					
+						<a href="../Topics/postgres.html">Postgres</a>
+					
+						<a href="../Topics/databases.html">Databases</a>
+					
+				</small>
+			
+		</section>
+		<p class="p-summary">Just some blabbering about OOP, paradigms, and being non-dogmatic</p>
+		<img class="u-photo" alt="hero" src="https://images.unsplash.com/photo-1672309558498-cfcc89afff25?w=1000&h=525&fit=crop&crop=entropy" alt="Header image" />
 	</header>
+
 	
-	<section>
-		
+	
+		<aside>
+			<p><strong>This is a post in my <a href="../Series/book_club.html">Book Club Series</a>.</strong></p>
+			<p>My book club is a montly topical, curated list of things I've been reading, watching, or sometimes writing sent out via my email newsletter.</p><p>If you'd like to follow along with my book club, <a href="https://buttondown.email/ianwold">please subscribe</a>; I won't email you more than once a month.</p>
+		</aside>
+	
+
+	<section class="e-content">
+		<p>Happy summer! It's been a couple months since I checked in on my newsletter; I've been busy enjoying sweltering heat, lots of rain, and wildfire smoke. In truth, I've been focusing more on a new role at work than my blog, but I promise I have found plenty of gripes there that I will resume my regular posting cadence here shortly! These last two months though, I've been thinking about object-orientation, so today you get some ramblings at a high level.</p>
+<p>As ideas ebb and flow in popularity in the software world, OOP is perhaps a bit on the ebb nowadays. Certainly it's not difficult to understand a contemporary distaste with OOP. At the risk of gross oversimplification, Java and C# engineers (and others I'm sure) have over the last several decades developed a style of programming which emphasizes overengineering and overarchitecting, developing massive codebases of passthrough layers, pointless interfaces, useless abstractions over sometimes useful abstractions; no doubt all reflections of the sometimes bizarre bureaucratic structures of the larger firms that typically employ these languages. This is the monster a lot of our colleagues envision when hearing &quot;object-oriented programming,&quot; and they're not entirely off-base.</p>
+<p>While this is what OOP means these days - at least colloquially - any rigorous definition of OOP isn't going to make it obvious that such code necessarily results from the paradigm. Indeed, surely in a decade there will be a revival of &quot;classic OOP&quot; or some nonsense as the popularity pendulum overcorrects far to the other side. These &quot;classic OOP&quot;ers will insist that OOP is <em>solely</em> about objects, or encapsulation+polmorphism, or <em>message passing</em>. I feel confident in my prediction here as this sort of defense has already begun in some circles, and again it's not entirely off base. These are all suitable definitions.</p>
+<p>On that last one, message passing: if you spend a sufficient time reading about OOP you'll uncover the group of colleagues who insist that Smalltalk is the only real OOP language. Avoiding the lower-level debate about what it means for a word to mean some thing (in this case, &quot;OOP&quot; to definitionally include &quot;Java&quot;), such a claim doesn't quite pass the sniff test to anybody with a decent understanding of the history of programming languages; the OOP ideas all came through in various stages and together form a consistent thread of ideas for approaching software architecture and engineering. Nonetheless, I'd be hard-pressed to defend the idea that the present understanding of OOP is better than the more limited Smalltalk-esque understanding; the more focused principle (or, maybe, more principled focus) of the messaging notion of OOP might well provide the necessary constraints for software to be developed better. Perhaps that's why so much new software is being developed in Smalltalk these days! Well...</p>
+<p>Perhaps it's unfair to conclude from Smalltalk's failure that its particular paradigm is also destined to failure, but I wouldn't hold my breath. So too for other paradigms that claim some sort of purity; there are no silver bullets. Today's OOP has developed as a hodgepodge of many different ideas, forms, and learnings; this makes it as undefinable as unfocused, or maybe un-specific. There's sometimes many valid approaches to the same problem within the present OOP canon. Yet, it would be a mistake to conclude that this is a bug instead of a feature, for the very reason that OOP has developed in this way is precisely <em>because</em> it has been forced to solve just about every programming task under the sun. Recognizing that different problems will require (sometimes very) different paradigms to optimally solve, we must conclude that our languages and architectures must have the flexibility to accommodate many different approaches at once, thus making the hodgepodgeness of OOP a practical necessity.</p>
+<p>So the contemporary, undefined, colloquially-understood OOP is not such a bad thing, from a certain point of view. What though when we come upon a situation that objects are insufficient bags for our logic, or that a more pure functional language compiles much more efficiently for some or another problem? Today's software is more varied and diverse than ever before, so our incidence rate of stubbing our toes on these situations is quite high now. Hence the unpopularity of OOP: the traditional languages within the paradigm have not been flexible enough for some of the most basic procedural or functional styles best-suited to many of these tasks. On the other hand, many traditionally-OO languages have been incorporating support for other paradigms to quite a great extent; anecdotally, much of the C# world (including myself) has moved on to quite functional-looking styles as that language has (not insignificantly) morphed to accommodate it.</p>
+<p>The ideal future of OOP, should we all continue to agree this is the desirable path, is maybe a sort of fading into oblivion in which its constituent ideas are considered coequal with those from the other paradigms, and our languages and runtimes support a fluid combination of whichever structures we might discover are the most efficient solutions to our problems. There's certainly plenty of momentum in this direction, but making our tooling more permissive won't stave off any potential future hype for some &quot;pure&quot; form of OOP or functional or what-have-you programming; nothing can replace solid principles. OOP, by any definition, isn't good or bad, nor is it any one specific thing.</p>
+<p><strong>Watch</strong></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=wo84LFzx5nI">The Big OOPs: Anatomy of a Thirty-five-year Mistake - Casey Muratori</a></li>
+<li><a href="https://www.youtube.com/watch?v=0iyB0_qPvWk">Object-Oriented Programming is Good</a>, <a href="https://www.youtube.com/watch?v=QM1iUe6IofM">Object-Oriented Programming is Bad</a>, and <a href="https://www.youtube.com/watch?v=V6VP-2aIcSc">Object-Oriented Programming is Garbage</a> by Brian Will</li>
+<li><a href="https://www.youtube.com/watch?v=0mbrLxAT_QI">Odin creator Ginger Bill on his programming language and state of software! - Wookash Podcast</a></li>
+<li><a href="https://www.youtube.com/watch?v=o9pEzgHorH0">Stop Writing Classes - Jack Diederich</a></li>
+<li><a href="https://www.youtube.com/watch?v=QjJaFG63Hlo">Seminar with Alan Kay on Object Oriented Programming</a></li>
+<li><a href="https://www.youtube.com/watch?v=sokb6zZC-ZE">Cuis Smalltalk and the History of Computing’s Future (with Juan Vuletich) - Developer Voices</a></li>
+</ul>
+
 	</section>
 
-
-
+	<footer>
+		<div id="webmentions"></div>
 	
-	
-		<section id="2025">
-			
-				<h2>2025</h2>
-			
+		<div class="comments">
+			<script src="https://giscus.app/client.js"
+				data-repo="IanWold/ianwold.github.io"
+				data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk1NDkyNzI="
+				data-category="Posts"
+				data-category-id="DIC_kwDOCYKHWM4CZH2Y"
+				data-mapping="title"
+				data-strict="0"
+				data-reactions-enabled="0"
+				data-emit-metadata="0"
+				data-input-position="top"
+				data-theme="light"
+				data-lang="en"
+				data-loading="lazy"
+				crossorigin="anonymous"
+				async>
+			</script>
+		</div>
+	</footer>
+</article>
+<footer>
+	<section>
+		<img src="../images/hero1.svg" alt="Ian's Logo" />
+		<section>
+			<h2>
+				Hi, I'm Ian
+			</h2>
+			<p>
+				I'm a software engineer, architect, and team leader in Minneapolis. My career has largely focused on .NET and web technologies, spread across several industries. Currently I'm working for Crate &amp; Barrel on their ecommerce solutions. You can find me on this blog, contributing to open source repositories, and at conferences around the Midwest.
+			</p>
+			<hr>
+			<p>
+				If you'd like to keep up with me, please subscribe to my <a href="https://buttondown.email/ianwold" target="_blank">book club</a> or <a href="https://ian.wold.guru/feed.xml" target="_blank">RSS feed</a>. If you'd like to help me out with server costs, I would be forever grateful if you <a href="https://ko-fi.com/ianwold">bought me a coffee</a>!
+			</p>
+			<hr>
+			<p>
+				Some other posts you might be interested in:
+			</p>
 			<ul>
 				
-				
 					<li>
-						<time>07.30</time>
-						<a href="../Posts/book_club_6-7-2025.html">
-							<h3>Book Club 6&7/2025: OOP</h3>
-							<small>Just some blabbering about OOP, paradigms, and being non-dogmatic</small>
+						<a href="../Posts/book_club_4-5-2025.html">
+							<h3>Book Club 4&5/2025: Incidents and Resiliency</h3>
+							<small>Thinking more about responding to and preventing incidents</small>
 						</a>
 					</li>
 				
 					<li>
-						<time>03.24</time>
 						<a href="../Posts/book_club_2-3-2025.html">
 							<h3>Book Club 2&3/2025: Slack: Communication, Organization, Teams</h3>
 							<small>On various aspects of teamwork, communication, and the like</small>
 						</a>
 					</li>
 				
-			</ul>
-		</section>
-	
-
-	
-	
-		<section id="2024">
-			
-				<h2>2024</h2>
-			
-			<ul>
-				
-				
 					<li>
-						<time>10.05</time>
-						<a href="../Posts/postgres_use_views_to_refactor_to_soft_delete.html">
-							<h3>Postgres: Use Views to Refactor to Soft Delete</h3>
-							<small>Refactors are tough, database refactors are scary. Being a bit clever can save us a lot of pain!</small>
-						</a>
-					</li>
-				
-					<li>
-						<time>07.29</time>
-						<a href="../Posts/book_club_6-7-2024.html">
-							<h3>Book Club 6&7/2024: Postgres</h3>
-							<small>I have become further radicalized to the opinion that we should all just be using PostgreSQL</small>
-						</a>
-					</li>
-				
-					<li>
-						<time>01.13</time>
-						<a href="../Posts/just_use_postgresql.html">
-							<h3>Just Use PostgreSQL</h3>
-							<small>With a vast and growing ecosystem of database systems, data models, patterns, and paradigms, choosing the right one can be a long and complicated process. I prefer a simpler approach: Just use PostgreSQL.</small>
+						<a href="../Posts/book_club_1-2025.html">
+							<h3>Book Club 1/25: Results, Railways, and Decisions</h3>
+							<small>A story on a successful result and insights gained from some more heady research this month.</small>
 						</a>
 					</li>
 				
 			</ul>
 		</section>
-	
+	</section>
+</footer>
 
+<script>
+	const nav = document.querySelector('main nav');
+	if (nav) {
+		nav.style.setProperty('--element-height', `${nav.offsetHeight}px`);
+	}
 
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch(`https://webmention.io/api/mentions.jf2?target=${window.location.href}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Ope!`);
+            }
+
+            return response.json();
+        })
+        .then(json => {
+            const mentionList = document.createElement('ul');
+
+            json.children.forEach(child => {
+                const date = new Date(child.published);
+                const formattedDate = date.toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric"
+                });
+
+                var itemHtml = document.createElement('li');
+                itemHtml.innerHTML = `<a href="${child.url}">${child.author.name} on ${formattedDate}</a>`;
+                mentionList.appendChild(itemHtml);
+            });
+
+			const webmentionsDiv = document.getElementById('webmentions');
+
+            if (mentionList.children.length > 0) {
+                webmentionsDiv.innerHTML = '<section><p><strong>This post has been webmentioned by:</strong></p></section>';
+                console.log(webmentionsDiv.firstChild.firstChild);
+                webmentionsDiv.firstChild.firstChild.appendChild(mentionList);
+            } else {
+				webmentionsDiv.remove();
+			}
+        });
+    });
+</script>
 
 		</main>
 		<footer>
@@ -160,6 +269,25 @@
 		</footer>
 
 		<script>
+			
+				window.addEventListener('DOMContentLoaded', () => {
+					const observer = new IntersectionObserver(entries => {
+						entries.forEach(entry => {
+							const id = entry.target.getAttribute('id');
+							let classList = document.querySelector(`main nav li a[href="#${id}"]`).parentElement.classList;
+
+							if (entry.intersectionRatio > 0) {
+								classList.add('active');
+							} else {
+								classList.remove('active');
+							}
+						});
+					});
+
+					document.querySelectorAll('section[id]').forEach((section) => {
+						observer.observe(section);
+					});
+				});
 			
 
 			const darkModeToggle = document.getElementById("dark-mode-toggle");
