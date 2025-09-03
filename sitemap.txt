@@ -70,6 +70,7 @@ https://ian.wold.guru/Posts/quick_and_dirty_sequential_ids_in_mongo.html
 https://ian.wold.guru/Posts/reclaim_your_agile.html
 https://ian.wold.guru/Posts/roll_your_own_csharp_results.html
 https://ian.wold.guru/Posts/scrum_is_not_agile.html
+https://ian.wold.guru/Posts/shenanigans_as_an_accelerator.html
 https://ian.wold.guru/Posts/should_i_learn_insert_some_tech_here.html
 https://ian.wold.guru/Posts/sprache.html
 https://ian.wold.guru/Posts/sprachedown.html
