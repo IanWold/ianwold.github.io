@@ -902,6 +902,44 @@ They've journeyed forth, with purpose evergreen.&lt;/p&gt;
       <a10:updated>2024-09-02T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">book_club_8-9-2025</guid>
+      <link>https://ian.wold.guru/Posts/book_club_8-9-2025.html</link>
+      <title>Book Club 6&amp;7/2025: Async</title>
+      <description>&lt;p&gt;These last two months, the interesting thing that I'm researching is asynchronous communication patterns. Last year I wrote a whole &lt;a href="https://ian.wold.guru/Series/fallacies_distributed_computing.html"&gt;series on the Fallacies of Distributed Computing&lt;/a&gt; exploring some common dos and don'ts for systems that rely on network communication. Asynchronous communication (which, I'm just going to type &amp;quot;async&amp;quot; here on out) is a common solution to reach for as the number of nodes in the distributed network increases. It solves the problem of huge latency in requests that need to chain through several services, though at the expense of system complexity and comprehension.&lt;/p&gt;
+&lt;p&gt;In an ideal world, systems would be quite &amp;quot;flat&amp;quot;, with user-level requests being able to be serviced in only a single network call to the server. Plenty of systems can't accommodate this for one reason or another, a backend might need to consult other services to fulfill a request; here though, plenty of systems can be designed so that &lt;em&gt;those&lt;/em&gt; bottom-level services don't need to make blocking calls to each other to fulfill their own requirements. Commonly, there might be a &lt;em&gt;backend-for-fronend&lt;/em&gt; that owns all of the synchronous calls, making it easier to manage temporal dependencies by isolating them all to a particular area.&lt;/p&gt;
+&lt;p&gt;Suppose the lower-level services &lt;em&gt;do&lt;/em&gt; need to exchange data? Alternately, suppose we end up with too many temporal dependencies, resulting in long-running calls even though we've made them architecturally understandable within a single layer? That's where we should be inclined to reach for async. I'm supposing here that we're imagining a relatively well-designed system; that the call patterns are well-considered to fulfill actual business needs.&lt;/p&gt;
+&lt;p&gt;How does async work? At the top level, when transformations happen to any data or state in the system, the service doing the changing emits an event through a shared bus, which is then read by systems that care about that transformation. Those systems will store their own representations of the data they care about, and are free to service requests on the &amp;quot;hot path&amp;quot; without having to introduce blocking calls. This has several implications: data is duplicated in many points throughout the system, the data is eventually consistent, the code for each service becomes more complex, considerations need to be made to prevent data drift, and plenty more there.&lt;/p&gt;
+&lt;p&gt;Given the set of problems solved by async and the implications of adopting it, there are many patterns and ideas around them. I haven't been terribly organized or disciplined in this research; this is a grab-bag of things that have caught my eye these last two months:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://learn.microsoft.com/en-us/azure/architecture/guide/multitenant/approaches/messaging"&gt;Architectural approaches for messaging in multitenant solutions - Microsoft&lt;/a&gt; Surprisingly fine overview of patterns.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://medium.com/@jaredhatfield/lessons-in-asynchronous-messaging-patterns-pitfalls-and-best-practices-35254b3218e8"&gt;Lessons in Asynchronous Messaging: Patterns, Pitfalls, and Best Practices - Jared Hatfield&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.martinfowler.com/articles/distributed-objects-microservices.html"&gt;Microservices and the First Law of Distributed Objects - Martin Fowler&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://brandur.org/notifier"&gt;The Notifier Pattern for Applications That Use Postgres - brandur&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://joeduffyblog.com/2015/11/19/asynchronous-everything/"&gt;Asynchronous Everything - Joe Duffy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.infoq.com/articles/async-high-perf-login-web-farms/"&gt;Asynchronous, High-Performance Login for Web Farms - Udi Dahan&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.infoq.com/articles/orchestrating-resilience-modern-asynchronous-systems/"&gt;Orchestrating Resilience Building Modern Asynchronous Systems - Sai Pragna Etikyala and Vikranth Etikyala&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.infoq.com/news/2025/02/dropbox-messaging-system-model/"&gt;Dropbox’s Asynchronous Platform Evolution: from Challenges to a Unified Messaging System Model - Aditya Kulkarni&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Kind of related:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://martinfowler.com/bliki/ServiceOrientedAmbiguity.html"&gt;Service Oriented Ambiguity - Martin Fowler&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.michaelnygard.com/blog/2018/01/services-by-lifecycle/"&gt;Services By Lifecycle - Michael T. Nygard&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.michaelnygard.com/blog/2008/05/soa-at-3.5-million-transactions-per-hour/"&gt;SOA at 3.5 Million Transactions Per Hour - Michael T. Nygard&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Watching:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://particular.net/videos/cqrs-user-interaction-patterns"&gt;Better CQRS through asynchronous user interaction patterns - Udi Dahan&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.infoq.com/presentations/rest-evolution-async-operations"&gt;No REST - Architecting Real-Time Bulk Async APIs - Michael Uzquiano&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.infoq.com/presentations/distributed-systems-theory/"&gt;Distributed Systems Theory for Practical Engineers - Alvaro Videla&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=FPBkz24QkZI"&gt;Loosely coupled orchestration with messaging - Udi Dahan&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=eW4JgrkwWEM"&gt;Microservices communication patterns, messaging basics, RabbitMQ | Messaging in distributed systems - DevMentors&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This has all taken me down a rabbit hole about &lt;a href="https://www.asyncapi.com/"&gt;AsyncAPI&lt;/a&gt;, but that may be for another time...&lt;/p&gt;
+</description>
+      <pubDate>Sat, 27 Sep 2025 00:00:00 Z</pubDate>
+      <a10:updated>2025-09-27T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">book_club_9-2023</guid>
       <link>https://ian.wold.guru/Posts/book_club_9-2023.html</link>
       <title>Book Club 9/2023: Papers I Love</title>
