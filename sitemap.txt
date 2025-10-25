@@ -49,6 +49,7 @@ https://ian.wold.guru/Posts/free_planning_poker.html
 https://ian.wold.guru/Posts/giscus_is_awesome.html
 https://ian.wold.guru/Posts/guerrila_devex_testing.html
 https://ian.wold.guru/Posts/how_i_am_super_techy_in_my_gherkin.html
+https://ian.wold.guru/Posts/how_to_write_an_app_in_one_day.html
 https://ian.wold.guru/Posts/intuiting_jevons_paradox.html
 https://ian.wold.guru/Posts/its_better_to_be_consistently_incorrect_than_consistently_correct.html
 https://ian.wold.guru/Posts/its_okay_to_be_a_bit_techy_in_your_gherkin.html
