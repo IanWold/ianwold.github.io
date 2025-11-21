@@ -254,7 +254,7 @@ new MetalsharpProject(new MetalsharpOptions()
 
 	foreach (var post in posts)
 	{
-		var postLines = post.Text.Split('\n').Select(l => l.Trim());
+		var postLines = post.Text.Split('\n');
 		var postBuilder = new StringBuilder();
 		var sections = new List<object>();
 		var isInContainingSection = false;
@@ -272,8 +272,9 @@ new MetalsharpProject(new MetalsharpOptions()
 		foreach (var line in postLines)
 		{
 			var lineToAdd = line;
+			var trimmedLine = lineToAdd.Trim();
 
-			if (Regex.Match(lineToAdd, @"(?:<h2>)([^<]*)(?:<\/h2>)$") is Match matchContainingHeader && matchContainingHeader.Success)
+			if (Regex.Match(trimmedLine, @"(?:<h2>)([^<]*)(?:<\/h2>)$") is Match matchContainingHeader && matchContainingHeader.Success)
 			{
 				if (isInInnerSection)
 				{
@@ -290,11 +291,11 @@ new MetalsharpProject(new MetalsharpOptions()
 				var sectionSlug = getSectionSlug(sectionName);
 
 				addSection(sectionName, sectionSlug, 1);
-				lineToAdd = getHeaderWithSectionLink(sectionSlug, lineToAdd);
+				lineToAdd = getHeaderWithSectionLink(sectionSlug, trimmedLine);
 
 				isInContainingSection = true;
 			}
-			else if (Regex.Match(lineToAdd, @"(?:<h3>)([^<]*)(?:<\/h3>)$") is Match matchInnerHeader && matchInnerHeader.Success)
+			else if (Regex.Match(trimmedLine, @"(?:<h3>)([^<]*)(?:<\/h3>)$") is Match matchInnerHeader && matchInnerHeader.Success)
 			{
 				if (isInInnerSection)
 				{
@@ -305,7 +306,7 @@ new MetalsharpProject(new MetalsharpOptions()
 				var sectionSlug = getSectionSlug(sectionName);
 
 				addSection(sectionName, sectionSlug, 2);
-				lineToAdd = getHeaderWithSectionLink(sectionSlug, lineToAdd);
+				lineToAdd = getHeaderWithSectionLink(sectionSlug, trimmedLine);
 
 				isInInnerSection = true;
 			}
