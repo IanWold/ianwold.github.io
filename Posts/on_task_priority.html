@@ -116,52 +116,35 @@
 		<p>I don't know of a lot of successful software projects that don't have some sort of list of tasks defined. Unless you've found some magical, outlying case, we need to define our work before we can do it. This usually takes the form of a kanban board where tasks are &quot;cards&quot;, or at the very least tasks are defined in rows in a spreadsheet.</p>
 <p>Naturally, these tasks have priority. This isn't just useful so that I know which task to pick up next when I'm done with my current one - we usually have milestones or objectives we need to meet in our development and organizing that gives priority to the tasks. Tasks and priorities are absolutely necessary, so we slap a tshirt size on our cards, keep them ordered with higher priority at the top of the list, and consistently reevaluate priorities to keep everyone aligned, right? Right?</p>
 <p>The trouble, as with most things in software engineering, comes from the fact that this field is filled with software engineers. Maybe one day we'll be able to do something about that root cause, but until then we'll have to deal with it. In this case it's that we software engineers can't help but organize, systematize, and insert-your-word-here-ize every problem we find. We do tend to over-engineer, and boy is task priority the sort of thing we tend to over-engineer. I want to take a look here at the best practices.</p>
-<section id="maintain-alignment">
-<h2>Maintain Alignment <a class="section-link" href="https://ian.wold.guru/Posts/on_task_priority.html#maintain-alignment">#</a></h2>
+<h2>Maintain Alignment</h2>
 <p>The priority of a task is directly tied to the definition of the task and the goals of the project, and none of the variables are static. They change by the day, and sometimes by the hour. Each of these three are essential for an entire team to understand about a project, and everyone needs to be on the same page. This is the most important thing to recognize about task priority.</p>
-<section id="reevaluate-often">
-<h3>Reevaluate Often <a class="section-link" href="https://ian.wold.guru/Posts/on_task_priority.html#reevaluate-often">#</a></h3>
+<h3>Reevaluate Often</h3>
 <p>Every single time we meet with stakeholders, the project changes. Sometimes dramatically. This is a feature, not a bug; we want to have the tightest loop we can between delivering value and incorporating feedback. This feedback always changes priorities. Features get reconsidered, bugs get discovered, milestones move.</p>
 <p>The ramification is that priorities change to adapt to this, and as long as priorities are being documented they need to be revisited and revised when these parameters change. This is an opportunity to make sure the stakeholders and the team are aligned. Ask questions in terms of priority, and document and clarify <em>why</em> tasks have the priority they do.</p>
-</section>
-<section id="organize-tasks-by-priority">
-<h3>Organize Tasks by Priority <a class="section-link" href="https://ian.wold.guru/Posts/on_task_priority.html#organize-tasks-by-priority">#</a></h3>
+<h3>Organize Tasks by Priority</h3>
 <p>This is as simple as keeping them at the top of whatever shared list the team has. It seems obvious to read, but it's often overlooked. How many times have we found an errant &quot;high&quot; priority task that's been at the bottom of a backlog for twenty sprints?</p>
 <p>Reorganization should be part of reevaluation. Often times tasks will be assigned one of a small number of priority options; in this case there are several tasks with &quot;high&quot;, &quot;medium&quot;, or whichever priority labels you have. This doesn't tell the whole story though - the team might have different goals this week or sprint. Maybe some milestone is more pressing and its related tasks should be considered first. These fine-grained priority assignments are best encoded and documented by keeping the task list in order of priority.</p>
-</section>
-</section>
-<section id="assign-meaningful-priority">
-<h2>Assign Meaningful Priority <a class="section-link" href="https://ian.wold.guru/Posts/on_task_priority.html#assign-meaningful-priority">#</a></h2>
+<h2>Assign Meaningful Priority</h2>
 <p>Priority has meaning to everyone - the stakeholders, team members, and even users sometimes. All of these people need to be kept in alignment about priority, and so some kind of common language is needed. The priority needs to be meaningful to everyone involved, and the meaning needs to be the same for everyone across the board. This is extremely difficult to achieve since very few of us have developed adequate skills in telepathy.</p>
 <p>The most important thing is to keep priority limited to a very small number of generic words. 3-5 is ideal. If you're able to get away with just 2, that's spectacular. Consider that each additional priority category <em>doubles</em> the chance for confusion for each individual that needs to be aligned on priority. If you have 15 priority categories ranging from &quot;no priority&quot; to &quot;EVERYONE SWARM NOW&quot; then nobody is going to understand anything, math being what it is (trust me, I ran the numbers).</p>
-<section id="&quot;highest&quot;-and-&quot;lowest&quot;-have-no-meaning">
-<h3>&quot;Highest&quot; and &quot;Lowest&quot; Have no Meaning <a class="section-link" href="https://ian.wold.guru/Posts/on_task_priority.html#&quot;highest&quot;-and-&quot;lowest&quot;-have-no-meaning">#</a></h3>
+<h3>&quot;Highest&quot; and &quot;Lowest&quot; Have no Meaning</h3>
 <p>Taking the common tshirt-size priority list of &quot;high&quot;, &quot;medium&quot;, and &quot;low&quot;, it's quite common to want to tack on &quot;highest&quot; for a catastrophic situation and &quot;lowest&quot; for a backburner want-to-have. I understand the inclination, but there really is no meaning here.</p>
 <p>For &quot;lowest&quot; priority items, why even have it on your set of tasks? if this is something that your team <em>is</em> going to do, then it should be understood in the context of the whole project and have a proper priority. If it's a wishful thought or a pipedream of one of the engineers (what this category is typically used for) then it's not a part of the project and it's wasting valuable space. Get rid of it.</p>
 <p>Similarly, if I really get an incident that requires immediate intervention, I'm not going to create a &quot;highest&quot; priority card for it. I'm getting everyone on a Zoom call, starting an incident document, and fixing the issue. &quot;Highest&quot; priority cards lag around because some individual needed to be placated that we're definitely considering this one as important. This is a misalignment, and it should be addressed as such. Everyone should have the same idea as to what we're marching towards.</p>
-</section>
-<section id="don't-use-&quot;medium&quot;">
-<h3>Don't use &quot;Medium&quot; <a class="section-link" href="https://ian.wold.guru/Posts/on_task_priority.html#don't-use-&quot;medium&quot;">#</a></h3>
+<h3>Don't use &quot;Medium&quot;</h3>
 <p>No, really! Just like &quot;highest&quot; and &quot;lowest&quot;, this one ends up having no meaning. Using tshirt sizes, &quot;medium&quot; becomes the priority for 90% of all tasks - when someone creates a task they don't want to upset the boat by choosing &quot;high&quot;, but they definitely want it done so they're not going to select &quot;low&quot;. Instead, they use &quot;medium&quot; as the default &quot;pffft, don't know don't care&quot; option, tell the PM, then the PM doesn't reassign priority because they don't understand the full scope of why refactoring the <code>IDoSomething</code> interface is really needed at this stage.</p>
 <p>A &quot;medium&quot; priority becomes a dumping ground for all tasks and leads to a situation where the <em>true</em> priority never gets documented because everything is &quot;medium&quot;. This is a major source for misalignment acorss the entire team. Instead, my preferred set of priorities is &quot;high&quot;, &quot;higher&quot;, and &quot;lower&quot;. This forces us to consider whether it's more or less important, and recognizes that most tasks on the board are there because they have some heightened priority. For ideas or far-off things, I would suggest keeping a separate, non-prioritized list for documentation purposes.</p>
 <p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/priority.png" alt="Assigning Priority" /></p>
-</section>
-</section>
-<section id="beyond-priority">
-<h2>Beyond Priority <a class="section-link" href="https://ian.wold.guru/Posts/on_task_priority.html#beyond-priority">#</a></h2>
+<h2>Beyond Priority</h2>
 <p>Priority is, for most of our projects, a simplified capture of many different complicated factors about our tasks - the perceived need of different groups of stakeholders, the hopes and wants of the development team, and the unkowns of new technologies or complicated use cases. In some projects however, things are more clear-cut. There might only be a single, contiguous group of users, or the focus might be so constrained as to be relatively obvious to all the parties involved.</p>
 <p>In these cases it could be that priority is actually too ambiguous, and measuring other factors might serve us better in terms of understanding task order and importance.</p>
-<section id="impact">
-<h3>Impact <a class="section-link" href="https://ian.wold.guru/Posts/on_task_priority.html#impact">#</a></h3>
+<h3>Impact</h3>
 <p>If the project as a whole is addressing a specific use case or need, it might be useful to measure tasks in terms of <em>customer impact</em> and <em>business impact</em>. You can use the modified tshirt sizes of &quot;high&quot;, &quot;higher&quot;, and &quot;lower&quot;, or you can just use &quot;high&quot; and &quot;low&quot; for each. By focusing on the different aspects of priority, this can greatly simplify the priority assigning process and make the documentation more meaningful.</p>
 <p>The types of impact can be varied depending on the project type as well - if the project is a heavy refactor then <em>team impact</em> or <em>codebase impact</em> might be good inclusions.</p>
-</section>
-<section id="necessity">
-<h3>Necessity <a class="section-link" href="https://ian.wold.guru/Posts/on_task_priority.html#necessity">#</a></h3>
+<h3>Necessity</h3>
 <p>When the project is narrowly defined but has several different and/or disparate groups of stakeholders, defining the priority of a task instead by its necessity for different kinds of stakeholders can be the best option. Again, the modified tshirt sizes or just &quot;high&quot; and &quot;low&quot; can be used here.</p>
 <p>The broader idea is to think about what kinds of divisions the definition of <em>your</em> project has, and to consider breaking priority out along those lines. By making &quot;priority&quot; a more concrete concept, it will be easier to assign and reevaluate priority, and it will be more meaningful for everyone who needs to be aligned on it.</p>
-</section>
-</section>
+
 
 	</section>
 

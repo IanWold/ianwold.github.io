@@ -121,78 +121,6 @@
 		<nav>
 			<ul>
 				
-				<li>
-					<a href="#microservices-vs.-modular-monoliths">
-						
-							<strong>Microservices vs. Modular Monoliths</strong>
-						
-					</a>
-				</li>
-				
-				<li>
-					<a href="#the-rise-and-fall-of-microservices">
-						
-							The Rise and Fall of Microservices
-						
-					</a>
-				</li>
-				
-				<li>
-					<a href="#the-rise-of-the-modular-monolith">
-						
-							The Rise of the Modular Monolith
-						
-					</a>
-				</li>
-				
-				<li>
-					<a href="#which-one-is-better?">
-						
-							Which One is Better?
-						
-					</a>
-				</li>
-				
-				<li>
-					<a href="#patterns-won't-save-you">
-						
-							<strong>Patterns Won't Save You</strong>
-						
-					</a>
-				</li>
-				
-				<li>
-					<a href="#the-role-of-patterns">
-						
-							The Role of Patterns
-						
-					</a>
-				</li>
-				
-				<li>
-					<a href="#the-real-world">
-						
-							The Real World
-						
-					</a>
-				</li>
-				
-				<li>
-					<a href="#avoid-the-trap">
-						
-							Avoid the Trap
-						
-					</a>
-				</li>
-				
-				<li>
-					<a href="#principles-over-patterns">
-						
-							<strong>Principles over Patterns</strong>
-						
-					</a>
-				</li>
-				
 			</ul>
 		</nav>
 	
@@ -203,66 +131,49 @@
 <p>I've been pleased that conversation has shifted to the benefits of monolithic codebases, although it would be nicer yet to replace this with conversation about the realistic drawbacks of distributed systems. I would think that monolithic code would be the default, that we wouldn't dream of distributing a system unless it developed to a point where some clear, specific principles would force the question of distributing. Maybe I'm an idealist.</p>
 <p>That leads partially to my confusion over the new focus on the modular monolith. &quot;Modular?&quot; Isn't that just how monoliths - nay, any professional code - should be written? Can't it just be the <em>default</em> that we do our best to architect and engineer a <em>really good</em> bit of code, and that code all executed together until it absolutely can't? Oh yes, I'm definitely an idealist.</p>
 <p>I fear that the modular monolith might take the same place that microservices had in the 2010s, with some degree of dogma, some degree of specific aesthetic concerns, and some degree of very vague rationale in their favor. Realistically, the microservices vs. modular monolith question is a false dichotomy, and this allows me to discuss the broader role of patterns and principles. Or, maybe I'm swapping out my idealism for skepticism.</p>
-<section id="microservices-vs.-modular-monoliths">
-<h2>Microservices vs. Modular Monoliths <a class="section-link" href="https://ian.wold.guru/Posts/the_modular_monolith_wont_save_you.html#microservices-vs.-modular-monoliths">#</a></h2>
+<h2>Microservices vs. Modular Monoliths</h2>
 <p>In one sense these are natural opposites - many of those generally opposed to the proliferation of the microservices pattern holding the new modular monolith pattern up as a reaction. In any other sense these are two of an infinite number of ways to think about the organization of software.</p>
-<section id="the-rise-and-fall-of-microservices">
-<h3>The Rise and Fall of Microservices <a class="section-link" href="https://ian.wold.guru/Posts/the_modular_monolith_wont_save_you.html#the-rise-and-fall-of-microservices">#</a></h3>
+<h3>The Rise and Fall of Microservices</h3>
 <p>Much has been written about this subject, some of which by myself on this blog, so I'll stay brief here. I can't recommend enough <a href="https://renegadeotter.com/2023/09/10/death-by-a-thousand-microservices.html">Death by a Thousand Microservices by Renegade Otter</a> as a primer. &quot;Microservices&quot; is a term that loosely refers to a distributed system composed of dozens to hundreds of very-small independently-deployed services, each focusing on a narrow and specific domain problem. Ideally each one wholly owns its domain area and contains its own persistence.</p>
 <p>The pattern arose at firms like Amazon and, maybe most famously, Netflix, as they attempted to tackle the most difficult distributed problems at a global scale. These firms didn't adopt this architecture for fun, nor did they do so out of an idea that it is <em>the</em> right way to architect software (or even specifically distributed software). Rather, they adoped the architecture because they had to - there was no other way to solve planet-scale problems as theirs any other way.</p>
 <p>Being good colleagues, the architects and engineers involved with these firms published their results for the rest of us to admire and maybe learn from. Being bad colleagues, the tech evangelists observing this figured they could gain a lot of money or prominence by &quot;helping&quot; much smaller firms and teams with much smaller problems adopt this architecture. Microservices were presented as the antidote to all the crappy legacy code we had to work with up to that point. Code which, coincidentally, was monolithic. &quot;Monolith&quot; was made to mean &quot;legacy&quot; and &quot;spaghetti&quot;, and &quot;microservices&quot; were made to mean the opposite.</p>
 <p>Of course, the nicest thing to say about that line of thinking is it's misguided; bad code is bad code, but bad code that is <em>distributed</em> is more expensive. In the disarray of the hype, cloud providers have made a fortune, and each year now there's an increasing amount of crappy legacy <em>distributed</em> code that is so much more expensive to maintain than its previous generation of crappy legacy <em>monolithic</em> code. The architectures are neither the problem nor the solution; it's the code.</p>
 <p>That was all as unsustainable as it sounds, and I feel confident now in saying that the microservices bubble has most certainly burst. The problem of course is that distributed systems are already hard - <a href="https://ian.wold.guru/Series/fallacies_distributed_computing.html">really hard</a> - and they'll bite a team not knowing what it's doing. If pain isn't felt setting up a new, distributed system, it's certain to be felt down the line when some new business requirement <a href="https://www.youtube.com/watch?v=y8OnoxKotPQ">reveals the system has been coded into a corner</a>. The pendulum of excitement has been swinging in a distinctly new direction over the last couple of years.</p>
-</section>
-<section id="the-rise-of-the-modular-monolith">
-<h3>The Rise of the Modular Monolith <a class="section-link" href="https://ian.wold.guru/Posts/the_modular_monolith_wont_save_you.html#the-rise-of-the-modular-monolith">#</a></h3>
+<h3>The Rise of the Modular Monolith</h3>
 <p>I'm not very good at history, so I'm not sure when this term came about. Maybe it's been around for 20 years, maybe it came up a few years ago when I first heard it. Whatever the case, it's maybe the most commonly-cited anti-microservices pattern. <em>Why</em> that is, I'm unclear. I wonder if it's not partially a bit of clever marketing - microservices having been somewhat of a reaction to the perceived weakness of monolithic software, it makes sense that advocating for the monolith requires some answer to that perceived weakness.</p>
 <p>However the case, &quot;modular monolith&quot; comes about and is now excitedly and widely discussed. Loosely it means a monolithic architecture that has good separation between domain boundaries. But wait, I ask: isn't that just how software is always supposed to be made - with proper separation of concerns? If this is all the &quot;modular monolith&quot; is, then why aren't we just saying &quot;do a monolith but don't suck at coding?&quot; I might prefer a step further even: if monolithic architectures should be the default then maybe we should say &quot;don't suck at coding and don't distribute unless you really, really need to.&quot;</p>
 <p>But that hasn't got a good ring to it so now we've got the &quot;modular monolith,&quot; almost as though before microservices there were no well-written monoliths. And here's exactly the problem I perceive: because it needs some overarching explanation of the right way to structure software, it becomes a term that is open to being coopted into meaning something dogmatic. &quot;Microservice&quot; started as something incredibly different to how it ended up largely due to the widespread adoption of ill-formed ideas as to why software is the way it is.</p>
-</section>
-<section id="which-one-is-better?">
-<h3>Which One is Better? <a class="section-link" href="https://ian.wold.guru/Posts/the_modular_monolith_wont_save_you.html#which-one-is-better?">#</a></h3>
+<h3>Which One is Better?</h3>
 <p>I'm not going to answer that. Not just because I don't want to, but because I can't. Well, also because I don't want to. Microservices are better for Amazon and Netflix and the like. If you're starting up a brand-new system then a monolithic architecture is probably better. This is a false dichotomy though: these are not the only two options! In fact, you might adopt different definitions of &quot;monolith&quot;; consider whether you think a C# server with a standalone React frontend and a Postgres database is a monolith or a distributed system. Most systems today require <em>some</em> kind of distribution, but it's also the case that <em>almost</em> every single microservices system doesn't need to have a microservices architecture.</p>
 <p>I do feel comfortable committing to the position that monolithic architectures are the proper default for new systems development, but even then I need to attach the boring caveat that &quot;default&quot; practices are overridable by well-considered reasoning and understanding of the system's domain. This lands me back at a more fundamental truth though: naïveté is the highest virtue when approaching a new system. Well, naïve in a smart sense, I suppose. Keep it simple; less is more; start with what you need then grow from there; so on and so forth.</p>
 <p>If you're with me on that, then you'll probably agree it's a point in favor of the so-called modular monolith. &quot;monolith more simple than distribute&quot; + &quot;more bias towards simple&quot; = &quot;more bias towards monolith than distribute&quot;. And look how cleverly I can continue to avoid taking a definite position! That's not due to a commitment towards noncommitment on my part; you simply <em>can't</em> make objective statements about the quality of any pattern, their goodnesses can only be judged in relation to some system, problem, or domain.</p>
 <p>There are plenty more foundational principles on which I feel quite comfortable taking objective positions, though. In addition to the simplicity bias, I think it's easy to say that code which is written and formatted neatly and tidily is better. At least, more professional. Code with the right balance of abstraction and modularity is better, and even that is quite a bit more definite than our architectural patterns: less is more but it grows with the scale of the domain, system, and complexity.</p>
 <p>These principles all seem to be pointing in favor of our modular monolith pattern, but taking that step from principles to an architectural pattern that may well pan out to be some new buzzword (just like what happened to &quot;microservices&quot;) gives me pause. Let me re-ask a question I hinted at earlier in this article: Does the &quot;modular monolith&quot; <em>just</em> refer to &quot;proper, professional coding practices also it's a monolith&quot;, or is it instead an actual architectural pattern? If it's the former it's not a pattern; &quot;try to code good&quot; is a universal ideal.</p>
-</section>
-</section>
-<section id="patterns-won't-save-you">
-<h2>Patterns Won't Save You <a class="section-link" href="https://ian.wold.guru/Posts/the_modular_monolith_wont_save_you.html#patterns-won't-save-you">#</a></h2>
+<h2>Patterns Won't Save You</h2>
 <p>Increasingly I get the sense that the &quot;modular monolith&quot; term is being defined as something of a fad pattern. Some patterns are quite well-defined, even broad ones: if I ask you to implement dependency injection you can get to work and your result is probably not going to spark a lot of debate as to whether your code &quot;is&quot; or &quot;is not&quot; a proper example. Other patterns are poorly defined: I've never seen &quot;single responsibility pattern&quot; mentioned during a code review that <em>didn't</em> spiral into debate.</p>
 <p>Fad patterns, particularly the architectural ones, are in a weird state as regards quality of definition. We can make some definite statements about them: microservices should have lots of distributed services, blockchain systems are slow, and so on. At the same time there is a general confusion, or at least lack of consensus: implementation details get fuzzy and lots of ideologues have divergent prescriptions for different problems that arise. They have a general, agreed <em>thrust</em> that might be more aesthetic than technical, along with a large cloud of nebulous hype and half-thought-out implementation details. The microservices debacle shows that even with a concerted educational effort by our colleagues who actually know what they're doing, the nebula still wreaks havoc over plenty of systems.</p>
-<section id="the-role-of-patterns">
-<h3>The Role of Patterns <a class="section-link" href="https://ian.wold.guru/Posts/the_modular_monolith_wont_save_you.html#the-role-of-patterns">#</a></h3>
+<h3>The Role of Patterns</h3>
 <p>We certainly shouldn't understand architectural patterns as being too wishy-washy to be useful. Yes, they don't have definite prescriptions regarding implementation, but architecture sits around the implementation details a lot of the time anyway. These sorts of patterns give us a common language at a 10,000-foot view. For all the folly, if in a conversation I say &quot;microservices&quot; my interlocutor will get a good sense that the following conversation is going to involve topics of distribution, infrastructure, domain separation, and a lot of complaining about patterns!</p>
 <p>Patterns are good pedagogical tools too. In spite of the fact that university educations are typically poor preparations for professional software engineers, any serious course needs some way to give a name to different concepts discussed. Students need easy ways to be able to distinguish between broad concepts, and patterns give that sort of naming foundation.</p>
 <p>Similarly, patterns are useful for those of us who have been in the industry for a bit of time. Seeing as things change so frequently as they do, I don't only need some way to be able to latch on to new concepts, but also a way to apply those new concepts in my considerations at work. Patterns define a space where we can explore exercises in abstract thinking about problems, which is crucial to being able to integrate new thinking into our work.</p>
 <p>These (and maybe a couple others I've missed) constitute the proper utility of architectural patterns. None of them have anything to do with the implementation of systems, as none of them are capable of describing an implemented system. They're abstract and exist for the benefit of our thinking and communication, not for the benefit of our fingers-on-keyboards work. These patterns are informed by real-world problems, and in turn real-world solutions are informed by them, but &quot;informed&quot; doesn't do any heavy lifting for us.</p>
-</section>
-<section id="the-real-world">
-<h3>The Real World <a class="section-link" href="https://ian.wold.guru/Posts/the_modular_monolith_wont_save_you.html#the-real-world">#</a></h3>
+<h3>The Real World</h3>
 <p>The real world is a world that has a lot of variables in it. When we're considering how to implement a real system we've got (off the top of my head) business requirements, quality attributes, specific infrastructures or cloud providers, performance targets, security of both the system and the environment it'll be working in, the hopes and dreams of managers, particular egos within a team, competitions with other deliverables for the firm, technical complexity, and the degree of understanding of the domain or solution. Surely, there's dozens more.</p>
 <p>These variables all present requirements your solution may need to fill, and don't roll your eyes at &quot;egos within a team!&quot; I'm quite serious about that one - keeping up development at a sustainable pace means keeping everyone happy. We're engaged from 8 to 5 in doing implementation, so details about those implementations affect our contentedness. Egos are an often-overlooked variable. At the same time though don't necessarily take it as being on par with &quot;business requirements&quot; - <em>that</em> is a huge hole itself filled with many variables.</p>
 <p>The broader point is that the patterns account for a small set of requirement variables and propose a solution to satisfy <em>those</em>. Variables which aren't accounted for will alter the implementation of the pattern or maybe make it irrelevant. Maybe your business requirements <em>do</em> contain the set of factors that are addressed by some pattern, but also include an extra one which makes the pattern unsuitable.</p>
 <p>There's no formula to apply here, and there's (as best I can tell) no way to teach how to navigate discovering a proper implementation for a set of requirements. There's only experience and diligence, and constant learning. Our patterns only help us with that third point. If you take from patterns the principles of problem solving, then you can solve any problem with the same <em>principles</em>. However, if you only satisfy requirements by applying predefined patterns, you've missed the forest for the trees.</p>
-</section>
-<section id="avoid-the-trap">
-<h3>Avoid the Trap <a class="section-link" href="https://ian.wold.guru/Posts/the_modular_monolith_wont_save_you.html#avoid-the-trap">#</a></h3>
+<h3>Avoid the Trap</h3>
 <p>With this understanding, let me ask: how many of the ill effects of microservices implementations are ultimately attributable to a misunderstanding of the roles of patterns? How frequently has it been that some demonstration of microservices at a pattern level has found its way into our codebases? The problem might not be the pattern, it might be <em>us</em>. Both the &quot;us&quot; that becomes lazy when considering implementing a real system, and also the &quot;us&quot; that becomes lazy when teaching or mentoring. These are two sides of the same coin: the misunderstanding of the role of patterns gives way to a confusion of the pattern for an implementation prescription. This is the &quot;pattern trap.&quot;</p>
 <p>If the recent buzz around the modular monolith resembles the same follies as that around the microservice, are we falling into the same trap again? If I wanted to be cynical I might throw my arms up in despair that our industry is eternally captive to hype. There's plenty of indication that a similar thing is happening - popular teachers are lazily making prescriptions from a loose understanding of a pattern and we're all not immune from a bout of laziness while inflicting those prescriptions upon our own code.</p>
 <p>I'll go back to the most hilarious aspect of this all (at least, hilarious to me): I still don't think that &quot;modular monolith&quot; means anything! Take a gander over to <a href="https://en.wikipedia.org/wiki/Modular_programming">Wikipedia on 'modular programming'</a> - &quot;modular&quot; isn't some ultra-sophisticated way of handling domain separation; it's just using classes. Or packages, or &quot;namespaces&quot;, or whatever your language supports. You're already doing it! Monoliths <em>are</em> &quot;modular.&quot; What gives?</p>
 <p>This has potentially alarming implications. A survey of articles about the &quot;modular monolith&quot; offer a wide array of interpretations about what work &quot;modular&quot; is doing in that name, many of which incompatible with each other. One writer might take it to mean using <a href="https://en.wikipedia.org/wiki/Domain-driven_design">DDD</a> and another might take it to mean writing each module in a way that it might easily be separated out into a distributed service. These are wildly different.</p>
 <p>One of the main problems with &quot;microservices&quot; was that the term came to mean less and less over time. It started as a very specific pattern describing architecture and practice, and over the years evangelists watered down and confused the meaning to the point that the popular understanding of the term became something like &quot;vaguely distributed system and also the word 'event' should probably be used.&quot; The end result was to create an environment for a hefty set of poorly-considered and many times contradictory prescriptions to take hold. These became implemented on enough codebases that the popular zeitgeist now has a bad taste for the word &quot;monolith.&quot;</p>
 <p>And to think - &quot;modular monolith&quot; has <em>started off</em> not meaning anything! The pattern trap is a real trap, and trends tend to set these traps. There's plenty of new trends constantly about, and the modular monolith is one of them.</p>
-</section>
-</section>
-<section id="principles-over-patterns">
-<h2>Principles over Patterns <a class="section-link" href="https://ian.wold.guru/Posts/the_modular_monolith_wont_save_you.html#principles-over-patterns">#</a></h2>
+<h2>Principles over Patterns</h2>
 <p>None of this is to say that any pattern should be avoided, and that includes writing on both microservices and modular monoliths. The point is how we understand them, and how those come to inform our implementations. The role these patterns have is not one of prescribing solutions; they're intellectual exercises. Studying patterns will, hopefully, help one develop ways to consider problem solving in the face of different sorts of requirements. They're a <em>component</em> of developing principles to guide our approach to writing software. Principles which, if you're doing things right, will change over time.</p>
 <p>The real requirements of our systems are sometimes contradictory even, and this frequently makes us have to choose least-worst options. Often, this even results in a contradiction of principles we hold. As a result, we engineers are frequently engaged in a process of reconciling these contradictions, and it's that process of working through contradictions that causes us to emerge with solutions to our problems, implementations of our systems, and hopefully new principles we can keep going forward.</p>
 <p>The systems we actually implement are synthesized from the requirements and contradictions of the multitude of real variables surrounding them. The <em>actual</em> design of our systems will never follow 1-to-1 how microservice or modular monolith or any other pattern might describe. To implement a system we need to have the skills to be able to construct it based on the real requirements it has, not based on the ideal or ephemeral assumptions of the patterns.</p>
-</section>
+
 
 	</section>
 
