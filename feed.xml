@@ -1661,6 +1661,485 @@ if (
       <a10:updated>2024-11-13T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">dotnet_from_framework_to_10</guid>
+      <link>https://ian.wold.guru/Posts/dotnet_from_framework_to_10.html</link>
+      <title>.NET: From Framework to 10</title>
+      <description>&lt;p&gt;It's been more than six years since the last major version of .NET Framework (4.8) was launched along with C# 7.3, and the .NET world has come a huge way in that time. Last week Microsoft released .NET 10 and C# 14, continuing a trend of releases that significantly rework how software is written on the .NET platform. While Microsoft, and most brand-new .NET development along with them, have been making these strides, there's still plenty of older applications still on .NET Framework; as a result, there are plenty of engineers focused on maintaining these codebases that feel increasingly disconnected with modern .NET practices.&lt;/p&gt;
+&lt;p&gt;Each year now brings a new release of .NET (that is &amp;quot;.NET&amp;quot; and not &amp;quot;.NET Framework&amp;quot; or &amp;quot;.NET Core&amp;quot;) along with a new release of C#, and each of these releases is a significant lift to the libraries, language, tooling, best practices, and standards. C# has become much more accommodating (and in some cases requiring) functional programming styles, while .NET has introduced sweeping new features across all of its workloads. This huge amount of change is reflected in the ways engineers think about, architect, and productionalize applications in .NET.&lt;/p&gt;
+&lt;p&gt;I can't give a perfectly thorough explanation of &lt;em&gt;all&lt;/em&gt; the ways that .NET is different now than it was in 2019, but I do want to type up &lt;em&gt;some&lt;/em&gt; thoughts on what's going on. Each year it becomes more and more difficult for .NET Framework engineers to make the hop over to the latest .NET with the same level of productivity and familiarity. It's not just the new .NET APIs or the new C# keywords but the styles and paradigms of the development and the &amp;quot;why&amp;quot;s motivating the new changes. 10 seems like a good version number for a catch-up, so I want some writing here that can serve as a jumping-off point for .NET Framework engineers wanting to get up-to-speed with the latest toys.&lt;/p&gt;
+&lt;p&gt;It is difficult to, for any individual update, explain the precise way that the new features have resulted in a different style of development. This is particularly so since many of these changes have been made in order to accommodate development practices that had already emerged; the language and framework evolved to meet the requests of engineers that have been influenced from other sources. Thus, by giving an explanation of modern .NET practices by starting &lt;em&gt;from&lt;/em&gt; these updates, I'm missing out on the other force that is moving .NET development along, and that will need to be a future post from me. Nonetheless, I think that the majority of .NET engineers are not on this vanguard but are instead wanting to adopt these new features into their existing workflow, and this is where I see the utility of tying all these into an explanation of &amp;quot;modern .NET.&amp;quot;&lt;/p&gt;
+&lt;p&gt;As a fair forewarning though, I'm largely going off of memory and some incomplete historic documentation from Microsoft to figure everything out historically so there might be some inaccuracies around the edges here. However, everything I say you can do in C# and .NET now is accurate, maybe the history is a bit wonky. Furthermore, I'm also not giong to say anything about F#. I enjoy using F# but I use C# professionally, so I want to focus on how changes to .NET and C# have affected how we do development with those two. Finally, I will not be explaining any improvements to EntityFramework because a polished dung is still a dung.&lt;/p&gt;
+&lt;h2&gt;.NET History: Framwork, Standard, and Core&lt;/h2&gt;
+&lt;p&gt;I think a (very small) bit of history can help understand most of the reasons that have motivated the lion's share of changes in .NET and help disambiguate terms. .NET Framework came about ages ago to be the standard library for the (then) new C# language, and expanded and evolved quite rapidly alongside the language to support all the different kinds of applications Microsoft wanted to support. ASP was added as a web framework, WinForms (then WPF then a mess of other things) supported desktop GUIs, WCF supported SOAP, Silverlight allowed engineers to frustrate everyone who wanted to watch the 2008 Olympics, and so on.&lt;/p&gt;
+&lt;p&gt;As software engineers we understand very well that if requirements expand and change too rapidly and haphazardly, the sooner a rewrite of the system is going to be needed, but we usually try to stave off a rewrite until &lt;em&gt;something&lt;/em&gt; happens to make it necessary. What happened to .NET a bit over ten years ago is it needed to run on Linux among a host of other factors (I'm boiling it down significantly). It came to be that a rewrite and some breaking changes needed to be made.&lt;/p&gt;
+&lt;p&gt;So, Microsoft embarked on creating an alternative standard library for C#, which they called .NET Core, and released it in 2016. They also created a separate deal called &amp;quot;.NET Standard&amp;quot; to act as a standard between .NET Framework and .NET Core, guaranteeing certain similar APIs in both standard libraries to ease transitioning from one to another, or writing code that could be guaranteed to work in both libraries.&lt;/p&gt;
+&lt;p&gt;.NET Core progressed through a few versions before Microsoft quickly decided that it would be best to only develop updates for the new .NET Core going forward. In 2019 they released the last major version of .NET Framework, but also to demark the change they decided to be rid of the &amp;quot;Core&amp;quot; name as well. The last version of .NET Core, 3.1, was developed into the first version of &amp;quot;.NET&amp;quot;, which they began at version 5 as the lowest major version number not common to either of its predecessors. Each year since .NET 5 was released, Microsoft has released a new major version of .NET along with a new major version of the C# language, and this period has seen the most significant updates to the framework and language.&lt;/p&gt;
+&lt;h2&gt;.NET Core: 1.0 to 3.1&lt;/h2&gt;
+&lt;p&gt;The various versions of .NET Core essentially ended up serving as the ramp-up period for the new .NET development, and did not very significantly diverge from .NET Framemwork but for having full support for Linux and MacOS.&lt;/p&gt;
+&lt;p&gt;The first super duper thing introduced with it was the &lt;a href="https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet"&gt;dotnet CLI tool&lt;/a&gt; exposing actions like creating a new app, building it, restoring packages, and the like. This acts in a similar way to the compilers of most programming languages, facilitating doing C# development in a similar manner to any other language. Go has commands like &lt;code&gt;go run .&lt;/code&gt;, and now .NET has &lt;code&gt;dotnet run&lt;/code&gt; as well.&lt;/p&gt;
+&lt;p&gt;.NET Core 3.0 is the first interesting .NET version to me. It introduced the ability to publish an app as a single file; instead of having to ship a bunch of DLLs and support files, the C# app gets contained in one &lt;code&gt;.exe&lt;/code&gt; or whatever format it is for the target OS you select.&lt;/p&gt;
+&lt;p&gt;.NET Core 3.0 shipped along with C# 8, which had a huge number of updates to the language. The most significant feature was the nullable reference types. Null was, previously, very tricky with reference types, since they always had the option to be null, requiring huge amount of null checks and lots of time lost to reference-type variables unexpectedly becoming null in prod. The solution was to allow the nullable &lt;code&gt;?&lt;/code&gt; operator to be added for reference types, and a compiler directive to tell C# that it should throw warnings or errors if null checks weren't explicitly added around these.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;string? myString = ...;
+PrintLength(myString); // Error: myString can be null
+
+public void PrintLength(string s) =&amp;gt;
+    Console.WriteLine(s.Length());
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the csproj, the &lt;code&gt;Nullable&lt;/code&gt; property needs to be set, and now is by default:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;Nullable&amp;gt;enable&amp;lt;/Nullable&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I'm going to dump a bunch of little things here:&lt;/p&gt;
+&lt;p&gt;One of the cooler things in C# 8 is default interface members:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public interface IThing
+{
+    string GetName() =&amp;gt; &amp;quot;Unnamed&amp;quot;;
+}
+
+public class Thing : IThing {}
+
+Console.WriteLine((new Thing()).GetName()); // Prints &amp;quot;Unnamed&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As well as &amp;quot;static abstract&amp;quot; members:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public interface IThing
+{
+    static abstract string Name { get; }
+}
+
+public class Thing : IThing
+{
+    public static string Name =&amp;gt; &amp;quot;I'm Thing&amp;quot;; // Required to be present to compile
+}
+
+public void PrintName&amp;lt;T&amp;gt;() where T : IThing =&amp;gt;
+    Console.WriteLine(T.Name);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Switch expressions were also introduced, allowing you to treat a &lt;code&gt;switch&lt;/code&gt; as a value:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;var myThing = myIntThing switch
+{
+    1 =&amp;gt; &amp;quot;one&amp;quot;,
+    2 =&amp;gt; &amp;quot;two&amp;quot;,
+    _ =&amp;gt; &amp;quot;larger than two&amp;quot;
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This supports very functional-looking development doing pattern matching on the shape of arguments in a method, though this example is admittedly very contrived:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public bool IsEmpty&amp;lt;T&amp;gt;(IEnumerable&amp;lt;T&amp;gt; list) =&amp;gt; list switch
+{
+    var l when l.Count &amp;gt; 0 =&amp;gt; true,
+    _ =&amp;gt; false
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Local functions are pretty significant and just support keeping appropriate scope for methods:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public void DoThing()
+{
+    string GetString() =&amp;gt;
+        &amp;quot;hi&amp;quot;;
+
+    Console.WriteLine(GetString());
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I make huge use of null-coalescing assignment for lazy loading properties:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public class Thing
+{
+    private MyLoadableThing? _prop;
+    public MyLoadableThing Prop =&amp;gt; _prop ??= new MyLoadableThing();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;A huge quality of life improvement came with &lt;code&gt;..&lt;/code&gt; as a range operator like many other languages have (this example taken from MS's docs):&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;int[] numbers = [0, 10, 20, 30, 40, 50];
+int start = 1;
+int amountToTake = 3;
+int[] subset = numbers[start..(start + amountToTake)];
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;One of the most interesting additions to the .NET world with .NET Core 3.0 was Blazor, which takes a bit of explaining for the uninitiated. For some time, there's been an amount of effort to create an assembly language for the web - Web Assembly or WASM - understood by all browsers, that can be as ubiquitously implemented as JavaScript but that is, well, assembly, instead of JS. This has resulted in a number of languages being able to target WASM as a platform separate to Windows, Linux, and so on.&lt;/p&gt;
+&lt;p&gt;Microsoft figured that with .NET Core intending to support multiple platforms that WASM should be no different, but of course &lt;em&gt;the&lt;/em&gt; use case for WASM is web apps, so Microsoft developed Blazor as both the .NET runtime for WASM as well as the framework for developing a web UI in C# for WASM.&lt;/p&gt;
+&lt;p&gt;I won't dig too much into Blazor here, that can be a whole separate thing. However, I'll point you to an open source app I have: &lt;a href="https://ian.wold.guru/Posts/free_planning_poker.html"&gt;FreePlanningPoker.io&lt;/a&gt;, which is a simple Blazor + SignalR app that you can dive into for a taste of Blazor!&lt;/p&gt;
+&lt;h2&gt;.NET 5 and C# 9&lt;/h2&gt;
+&lt;p&gt;Being the first version to &amp;quot;consolidate&amp;quot; the standard library post-Framework, there wasn't too much added to the APIs here. Most significantly is probably that ASP introduced the option to self-host instead of needing to rely on IIS, making it much easier to deploy containerized.&lt;/p&gt;
+&lt;p&gt;C# 9 was released in tandem, and just like the previous release had a huge number of things included. I think the most significantly new feature in C# in the last five years was introducted in this version: records. A record is a type of class in C# that is primarily designed for immutable data; that is, a class where no properties change. These are used extensively in functional languages and the compiler can make a lot of optimizations for immutable data when you use them.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public record Person(string Name, int Age);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is &lt;em&gt;kind of&lt;/em&gt; equivalent to:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public class Person
+{
+    public string Name { get; private set; }
+
+    public int Age { get; private set; }
+
+    public Person(string name, int Age) { /* assign props */ }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Except the Name and Age properties can never be modified (either from inside or outside the record). Further, records have deep value equality, so:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;var first = new Person(&amp;quot;John&amp;quot;, 30);
+var second = new Person(&amp;quot;John&amp;quot;, 30);
+Console.WriteLine(first == second); // Outputs true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Functional styles with immutable records will typically assign new values when record data needs to change, and C# supports this pattern now with the &lt;code&gt;with&lt;/code&gt; keyword:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;Person Birthday(Person person) =&amp;gt;
+    person with { Age = person.Age + 1 };
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The other really awesome change is a quality of life improvement that Program.cs does &lt;em&gt;not&lt;/em&gt; need a class, Main method, or even a namespace now. The following will compile as a valid C# program:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;Console.WriteLine(&amp;quot;Hello, World!&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;.NET 6 and C# 10&lt;/h2&gt;
+&lt;p&gt;.NET 6 started seeing some new things introduced in the API level. Most notably though is MAUI, &amp;quot;modern application UI&amp;quot;, which was created to replace Xamarin and WPF as the cross-platform way to develop UIs in C#. This is a huge disappointment: it was buggy and incomplete on its release and it has not improved very much since.&lt;/p&gt;
+&lt;p&gt;In the ASP level, .NET 6 introduced &amp;quot;minimal APIs,&amp;quot; which were developed to be able to have as easy a proof-of-concept story as other languages. For example, in Python, setting up a hello world endpoint is trivially simple:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-python"&gt;from flask import Flask
+
+app = Flask(__name__)
+
+@app.route(&amp;quot;/&amp;quot;)
+def hello_world():
+    return &amp;quot;&amp;lt;p&amp;gt;Hello, World!&amp;lt;/p&amp;gt;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In ASP this had previously required creating a controller class, and while that's not &lt;em&gt;difficult&lt;/em&gt;, it's not super speedy feels like the future, so now we've got this as an option alongside controllers:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;app.MapGet(&amp;quot;/&amp;quot;, () =&amp;gt; &amp;quot;Hello, World&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Which is actually astonishing for rapid development. Kudos here. Other great thing: lots of Open Telemetry support. I just use the regular OTEL added with the templates nowadays so I'm kind of dumb as to what specifically was done here, but it was done.&lt;/p&gt;
+&lt;p&gt;On the C# side, the super cool deal everyone was talking about was file-scoped namespaces. Now, instead of:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;namespace MyApp
+{
+    class MyClass
+    {
+        // ...
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Do this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;namespace MyApp;
+
+class MyClass
+{
+    // ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I refuse to read code if it is &amp;gt;= version 10 and does not do this. Another cool namespace thing you can do:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;global using WhateverNamespace; // now no other file needs &amp;quot;using WhateverNamespace;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And then the functional support is extended through pattern matching with &amp;quot;property patterns&amp;quot;, this from MS's docs:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;if (e is MethodCallExpression { Method.Name: &amp;quot;MethodName&amp;quot; })
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This can be a bit unintuitive at first, but it fits right in line with how a lot of languages with better pattern matching support do. Pattern matching is hugely important for functional patterns, and can be kind of fun:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public abstract record Shape;
+
+public record Circle(double Radius) : Shape;
+public record Rectangle(double Width, double Height) : Shape;
+
+public static double Area(Shape shape) =&amp;gt; shape switch
+{
+    Circle { Radius: var r } =&amp;gt; Math.PI * r * r,
+    Rectangle { Width: var w, Height: var h } =&amp;gt; w * h,
+    _ =&amp;gt; throw new ArgumentException(&amp;quot;Unknown shape&amp;quot;) // required for exhaustiveness in the switch expression
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;.NET 7 and C# 11&lt;/h2&gt;
+&lt;p&gt;I remember .NET 7 being very cool, but looking back at the historical documentation I can't really remember this happening. If I'm remembering correctly, .NET 7 came out a little over a year after I started at Crate &amp;amp; Barrel, and I had upgraded some brand new microservices from .NET 5 to .NET 7 right then because I could. What a deal!&lt;/p&gt;
+&lt;p&gt;The really cool thing here was you can now choose to have .NET generate a Dockerfile when you publish your app, instead of just compiling it. This makes it so you don't need to hand-write the Dockerfile, which is a really nifty feature and has supported being able to debug directly in Docker from Visual Studio. Maybe Code also. I don't use it very much but no doubt it's nifty.&lt;/p&gt;
+&lt;p&gt;This was also the year that &lt;a href="https://devblogs.microsoft.com/dotnet/performance_improvements_in_net_7/"&gt;Stephen Toub's annual performance improvement report&lt;/a&gt; became the talk of the industry. He'd been writing these for some time, but this one was really overwhelming at the time. To say these articles are &amp;quot;huge&amp;quot; would be an understatement as large as these articles are; they're incredibly thorough, meticulous, and technical, but a &amp;quot;TLDR&amp;quot; on the .NET 7 article sums up the cause of its impact in this particular release:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;TL;DR: .NET 7 is fast. Really fast. A thousand performance-impacting PRs went into runtime and core libraries this release, never mind all the improvements in ASP.NET Core and Windows Forms and Entity Framework and beyond. It’s the fastest .NET ever. If your manager asks you why your project should upgrade to .NET 7, you can say “in addition to all the new functionality in the release, .NET 7 is super fast.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;.NET 7's focus on performance continued past this release into each of the subsequent releases, and each year since I've observed improvements from each version bump we do. .NET gets a lot of flack for being bloaty; .NET 7 is Microsoft righting that course.&lt;/p&gt;
+&lt;p&gt;Apart from supporting dark mode for developer exception pages, ASP had a lot of small quality of life features, but it's tough to parse out a single one that's changed how development happens. By this point too, development on WinForms and WPF had largely stalled, while MAUI and Blazor made a couple steps forward but not enough for me to really enjoy them. MAUI remained half-baked and Blazor remained difficult to debug.&lt;/p&gt;
+&lt;p&gt;C# 11 brought a bunch of things that have really influenced how I do development.&lt;/p&gt;
+&lt;p&gt;The feature they called &amp;quot;generic math&amp;quot; had a huge amount of discussion on the C# language design repository, and launched to much acclaim. Essentially they had all the numeric types in C# implement &lt;code&gt;INumber&amp;lt;self&amp;gt;&lt;/code&gt;, so &lt;code&gt;Integer&lt;/code&gt; implements &lt;code&gt;INumber&amp;lt;Integer&amp;gt;&lt;/code&gt; for example. This allows math to be done indiscriminately of whether the numeric type is &lt;code&gt;double&lt;/code&gt; or &lt;code&gt;int&lt;/code&gt; or whatever. From MS's docs:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public static TResult Sum&amp;lt;T, TResult&amp;gt;(IEnumerable&amp;lt;T&amp;gt; values)
+    where T : INumber&amp;lt;T&amp;gt;
+    where TResult : INumber&amp;lt;TResult&amp;gt;
+{
+    TResult result = TResult.Zero;
+
+    foreach (var value in values)
+    {
+        result += TResult.Create(value);
+    }
+
+    return result;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Very cool! I never use it, but indeed there are many applications for it.&lt;/p&gt;
+&lt;p&gt;What I do use all the time, particularly for SQL scripts, is raw string literals:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;var myString = &amp;quot;&amp;quot;&amp;quot;
+    Hello,
+    World
+    &amp;quot;&amp;quot;&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And you can specify how many curlies are needed for interpolation by adding &lt;code&gt;$&lt;/code&gt;s:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;var hi = &amp;quot;Hello&amp;quot;;
+var myString = $$$$$&amp;quot;&amp;quot;&amp;quot;
+    {{{{{hi}}}}},
+    World
+    &amp;quot;&amp;quot;&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;File types are also something I make a lot of use of. Instead of private nested classes, &lt;code&gt;file&lt;/code&gt; will limit the scope of a type to a file:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;// No longer do:
+public class MyClass
+{
+    private record MyRecord(../);
+
+    // Use MyRecord
+}
+
+// Now do:
+file record MyRecord(...);
+
+public class MyClass
+{
+    // Use MyRecord
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Saves nesting, makes it easier to navigate files.&lt;/p&gt;
+&lt;p&gt;Continuing the support for pattern matching (and functional patterns by extension), this version introduced list pattern matching. You can do some wild things:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;x switch
+{
+    [1, 2, 3] =&amp;gt; //matches if x is int[] { 1, 2, 3 }
+    [1, 2, 3, ..] =&amp;gt; // matches if x is int[] { 1, 2, 3, 4, etc }
+    [_, _, ..] =&amp;gt; // matches if x has at least 2 items (_ is a throwaway identifier, the values are not kept)
+    [.., 2] =&amp;gt; // matches if x ends with 2
+    [ &amp;gt;1, ..] =&amp;gt; // matches if the first element of x is greater than 1
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;.NET 8 and C# 12&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://ian.wold.guru/Posts/book_club_11-2023.html"&gt;This is the first .NET release I did a blog about!&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I remember this release being particularly good for ahead-of-time (AOT) compilation. .NET Core and its successor have focused on providing support for AOT compilation, which differs from the typical .NET compilation strategy of just-in-time (JIT) by compiling the entire application into native machine code, instead of compiling into IL and relying on a pre-installed .NET runtime on the target machine.&lt;/p&gt;
+&lt;p&gt;Compiling AOT obviously has more limitations as .NET is primarily designed for JIT, but it is an important feature to support the portability and, in some cases, performance requirements of many applications. After .NET 8 I became quite comfortable using AOT.&lt;/p&gt;
+&lt;p&gt;I also remember that the &lt;code&gt;System.Text.Json&lt;/code&gt; library became very good in this release, as it was after .NET 8 that I replaced a lot of code that had used Newtonsoft with the new one.&lt;/p&gt;
+&lt;p&gt;This release also had a significant upgrade for the standard dependency injection framework with keyed services, letting you &amp;quot;key&amp;quot; a service implementation with a string:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;builder.Services.AddKeyedScoped&amp;lt;IService, ServiceOne&amp;gt;(&amp;quot;one&amp;quot;);
+builder.Services.AddKeyedScoped&amp;lt;IService, ServiceTwo&amp;gt;(&amp;quot;two&amp;quot;);
+
+app.MapGet(&amp;quot;/&amp;quot;, ([FromKeyedService(&amp;quot;two&amp;quot;)] IService service) =&amp;gt; ...);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I don't say that keyed services are significant because I use them, but because I now have to be cognizant of them whenever I implement some DI thing!&lt;/p&gt;
+&lt;p&gt;In the web development world, there were a lot of small things that, looking back on them now, I do not use. There are a couple neat things though.&lt;/p&gt;
+&lt;p&gt;SignalR, for one, got a new &lt;code&gt;WithStatefulReconnect&lt;/code&gt; feature that a client connection can specify to automatically reconnect with the same client id when it's disconnected. This, however, relies on the same SignalR server staying alive (as it remembers the client id in its memory). This makes it more difficult to deploy SignalR servers unless you have access to some fancy deployment management tooling to keep servers with outstanding connections alive after new versions are deployed. I stopped using it after a bit.&lt;/p&gt;
+&lt;p&gt;Blazor got a bit of a major rejigger on this release, allowing us to blend server- and client- side Blazor. You can now have a server-rendered Blazor application that has some &lt;em&gt;components&lt;/em&gt; that execute in WASM on the client, or you can even wriet a SPA that initially is server-rendered but then seamlessly transitions itself into a full WASM client once the client is fully downloaded, eliminating long startup times. They also introduced &amp;quot;Blazor Hybrid,&amp;quot; allowing an electron-like experience with Blazor and MAUI, but MAUI is still bad.&lt;/p&gt;
+&lt;p&gt;Blazor applications are &lt;em&gt;still&lt;/em&gt; 10MB by default, so very large, and the whole server-to-client transition thing is a bit of a workaround, but it's not uncommon for SPA libraries to support this and Blazor makes it quite easy.&lt;/p&gt;
+&lt;p&gt;C# 12 introduced two huge quality of life features: primary constructors and collection expressions.&lt;/p&gt;
+&lt;p&gt;When records were introduced in C# 9, they had &amp;quot;primary constructors&amp;quot;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public record Person(string Name, int Age);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;These arguments are then compiled into public, read-only properties in the record. C# 12 made primary constructors available for classes, but they behave differently:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public class PersonService(PersonRepository repository, ILogger&amp;lt;PersonService&amp;gt; logger)
+{
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Notice the argument identifiers are lower-case: for classes, primary constructor arguments compile into private, read-only fields. In fact, the above is exactly equivalent to the following in previous versions:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public class PersonService
+{
+    private readonly PersonRepository repository;
+    private readonly ILogger&amp;lt;PersonService&amp;gt; logger;
+
+    public PersonService(PersonRepository repository, ILogger&amp;lt;PersonService&amp;gt; logger)
+    {
+        this.repository = repository;
+        this.logger = logger;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The primary constructor, then, significantly reduces the amount of things we need to write, particularly for services with many dependencies. One thing to note also is the primary constructor gets rid of the need to preface private fields with an underscore (&lt;code&gt;_&lt;/code&gt;). In previous versions, most C# engineers would have preferred to write the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public class PersonService
+{
+    private readonly PersonRepository _repository;
+    private readonly ILogger&amp;lt;PersonService&amp;gt; _logger;
+
+    public PersonService(PersonRepository repository, ILogger&amp;lt;PersonService&amp;gt; logger)
+    {
+        _repository = repository;
+        _logger = logger;
+    }
+
+    public Person? GetPerson(int id)
+    {
+        var personResult = _repository.GetPersonById(id);
+
+        if (personResult is not PersonDao p)
+        {
+            _logger.LogInfo(&amp;quot;Unable to find person {Id}&amp;quot;, id);
+            return null;
+        }
+
+        return new(p.Name, p.Age);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;However, it's now typically preferred to eschew the underscore entirely:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public class PersonService(PersonRepository repository, ILogger&amp;lt;PersonService&amp;gt; logger)
+{
+    public Person? GetPerson(int id)
+    {
+        var personResult = repository.GetPersonById(id);
+
+        if (personResult is not PersonDao p)
+        {
+            logger.LogInfo(&amp;quot;Unable to find person {Id}&amp;quot;, id);
+            return null;
+        }
+
+        return new(p.Name, p.Age);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Collection expressions are the other great feature in this release. What this feature does is it makes the following a literal value in C#:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;[1, 2, 3]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So, I can do the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public int[] GetInts() =&amp;gt;
+    [1, 2, 3];
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is huge! Previously I'd need to do:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public int[] GetInts() =&amp;gt;
+    new int[] {1, 2, 3};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With the spread operator this saves a lot of code:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public static T[] Concat&amp;lt;T&amp;gt;(this T[] first, T[] second) =&amp;gt; [..first, ..second];
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;.NET 9 and C# 13&lt;/h2&gt;
+&lt;p&gt;Having done such a significant amount of development to this point, .NET 9 slowed down a bit and, like .NET 7, had a huge focus on performance. Not that .NET 8 didn't have major performance improvements, but .NET 9 really did. When &lt;a href="https://ian.wold.guru/Posts/dotnet_9_csharp_13.html"&gt;I wrote about this release&lt;/a&gt; I mostly complained about Microsoft pushing AI and Aspire, and I continue to hold this opinion.&lt;/p&gt;
+&lt;p&gt;There were some fun goodies though. I enjoy my LINQ and we got new &lt;code&gt;CountBy&lt;/code&gt; and &lt;code&gt;AggregateBy&lt;/code&gt; methods, which do what they sound like they do.&lt;/p&gt;
+&lt;p&gt;In this version the compiler started recommending the following when doing any kind of regex matching (example from MS's docs):&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;[GeneratedRegex(@&amp;quot;\b\w{5}\b&amp;quot;)]
+private static partial Regex FiveCharWordProperty { get; }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This uses source generators for regex, which does seem to be a whole lot faster in parsing regex. This is good news all around, I know plenty of applications with a little bit of regex here and there (mostly in a validation layer) that benefit from this.&lt;/p&gt;
+&lt;p&gt;A big improvement to async work came with &lt;code&gt;await foreach&lt;/code&gt; and &lt;code&gt;Task.WhenEach&lt;/code&gt; (example also from MS's docs):&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;await foreach (Task&amp;lt;string&amp;gt; t in Task.WhenEach(first, second, third))
+{
+    Console.WriteLine(t.Result);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The other great async improvement is the new &lt;code&gt;System.Threading.Lock&lt;/code&gt; object, which provides a better interface and language integration for locking assets in async operations (instead of locking on an &lt;code&gt;object&lt;/code&gt;, use the &lt;code&gt;Lock&lt;/code&gt; API).&lt;/p&gt;
+&lt;p&gt;On the web side, ASP got &lt;code&gt;app.MapStaticAssets()&lt;/code&gt;, which is a great builtin feature for shipping static assets, like a React SPA, with compression and etags built in.&lt;/p&gt;
+&lt;p&gt;Blazor got constructor injection for Razor components! Yes, before this you had to use property injection. No joke!&lt;/p&gt;
+&lt;p&gt;SignalR received a number of improvements. Polymorphic type support was big for me when it came out, but it also received a lot of updates to the telemetry it omits. This was really key for a lot of applications; having a complicated websockets app with insufficient telemetry was probably not great for a lot of folks.&lt;/p&gt;
+&lt;p&gt;Finally, ASP also introduced a &lt;code&gt;HybridCache&lt;/code&gt; type that is capable of being both in-memory and distributed, handling a lot of the complexity of having those two tiers of cache. Very handy! I constantly insist that caches are difficult and hazardous; having a well-constructed first-party implementation with an appropriately restrictive API allows a wider adoption of safer caches.&lt;/p&gt;
+&lt;p&gt;On the C# side, there's a bunch of small things. With how impactful previous features were, it is good they slowed down a bit.&lt;/p&gt;
+&lt;p&gt;My favorite is being able to use any collection type for &lt;code&gt;params&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public void DoThing(params IEnumerable&amp;lt;string&amp;gt; args) =&amp;gt; ...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The language also introduced &lt;code&gt;^&lt;/code&gt; as an operator you can use when indexing arrays, meaning &amp;quot;from the end&amp;quot;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;var myArray = new int[5];
+myArray[^1] = 12;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;myArray&lt;/code&gt; then has &lt;code&gt;12&lt;/code&gt; at the 1th position from the end. Interesting!&lt;/p&gt;
+&lt;h2&gt;.NET 10 and C# 14&lt;/h2&gt;
+&lt;p&gt;As of my writing this, .NET 10 and C# 14 have &lt;em&gt;just&lt;/em&gt; been released a few days ago. Exciting!&lt;/p&gt;
+&lt;p&gt;This release is similar to the last in that the development has settled into a more manageable pace; it keeps the focus on broad performance improvements, incremental nice-to-haves, and rounding out C#'s support for modern development patterns.&lt;/p&gt;
+&lt;p&gt;One &lt;em&gt;very&lt;/em&gt; nice addition is &lt;code&gt;WebSocketStream&lt;/code&gt;, which essentially lets you treat a web sockets connection like a stream. I think I may be using this a lot!&lt;/p&gt;
+&lt;p&gt;My favorite nice-to-have is &lt;code&gt;dotnet run program.cs&lt;/code&gt;, which completes the scripting capabilities in C#. With this feature, I do not need a SLN or CSPROJ in order to run a C# script. If I have a file &lt;code&gt;sayhi.cs&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;Console.WriteLine(&amp;quot;Hello, World!&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With nothing else in the directory, I can &lt;code&gt;dotnet run sayhi.cs&lt;/code&gt; and it runs. Super cool! This isn't just great for local scripting, I use this to generate my site!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;My site has a single &lt;a href="https://github.com/IanWold/ianwold.github.io/blob/master/build.cs"&gt;build.cs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Which I then run to generate this static site &lt;a href="https://github.com/IanWold/ianwold.github.io/blob/master/.github/workflows/build.yml#L47"&gt;in a GitHub action&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;On the web development side, Blazor got a huge number of quality-of-life improvements that make developing with it - even a full WASM app - actually doable. I have a few Blazor projects and since upgrading to the .NET 10 previews it's been actually very nice. I won't go into any particular features but to say that if you've not enjoyed Blazor in the past, this one might make you more comfortable with it.&lt;/p&gt;
+&lt;p&gt;Another thing I'm eager to dig into is an overhaul of JSON Patch. PATCH is still a difficult thing to deal with, but there's a lot of applications for it and a new, robust, standards-compliant implementation looks good.&lt;/p&gt;
+&lt;p&gt;C# 14 has two features I'm very excited for that have been a long time in the making, maybe more than 10 years each.&lt;/p&gt;
+&lt;p&gt;First is the &lt;code&gt;field&lt;/code&gt; keyword. For too long, we've had to manually create backing fields for properties:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public class MyClass
+{
+    private LazyService? _service;
+    public LazyService Service =&amp;gt;
+        _service ??= new(...);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is unfortunate because auto properties compile to include their own scoped field anyway, but the programmer has never had access to this. Having to do the above exposes the backing field internally in the class. Should instance methods use &lt;code&gt;Service&lt;/code&gt; or &lt;code&gt;_service&lt;/code&gt;? The answer is definitely &lt;code&gt;Service&lt;/code&gt; but that gets ignored sometimes. Now, we can use &lt;code&gt;field&lt;/code&gt; instead to ensure the field is properly scoped to the property:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public class MyClass
+{
+    public LazyService Service =&amp;gt;
+        field ??= new(...);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The next super-cool feature is &amp;quot;extension members.&amp;quot; Not really sure where they got that name but that's what we're going with. For a very long time now, the C# language design team has dreamed of what they call &amp;quot;extension everything,&amp;quot; extending the langauge to support that any kind of extensions could be made for types. Many languages, not just functional languages, support a much more robust extension system than C#. In fact, C#'s extensions are kind of hacky, essentially just giving a way to turn a static method call into a &lt;code&gt;.&lt;/code&gt;-looking call. Not &lt;em&gt;really&lt;/em&gt; extensions.&lt;/p&gt;
+&lt;p&gt;This version of C# lets you do the following wizardry, in a step towards &amp;quot;extension everything&amp;quot;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public record Person(string FirstName, string LastName, int Age);
+
+public static class Extensions
+{
+    extension (Person)
+    {
+        public static string Species =&amp;gt; &amp;quot;Homo Sapiens&amp;quot;;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;What can I do with that?&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;Console.WriteLine(Person.Species); // Outputs &amp;quot;Homo Sapiens&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Whoa!! Super cool! It's an &lt;em&gt;actual&lt;/em&gt; extension! But wait, there's more - if I name that type then I can put extensions into the type, similar to how I do with the &lt;code&gt;this&lt;/code&gt; keyword today:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public static class Extensions
+{
+    extension (Person person)
+    {
+        public string FullName =&amp;gt; $&amp;quot;{person.FirstName} {Person.LastName}&amp;quot;;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;But ... notice it's a property and not a method! Wooooo!!! You can still do methods too.&lt;/p&gt;
+&lt;h2&gt;Bringing Everything Together&lt;/h2&gt;
+&lt;p&gt;So, given all of these, what do modern development practices look like today?&lt;/p&gt;
+&lt;p&gt;I've mentioned &amp;quot;functional&amp;quot; styles a fair amount. There's three features in particular that support functional-style development: records, pattern matching, and switch expressions. Switch expressions might seem an odd inclusion on this list, but let me demonstrate that it's necessary to include these to really be able to harness functional patterns in C#. Most functional languages rely on function definitions using pattern matching, like this Haskell Fibonacci function:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-haskell"&gt;fib :: Integer -&amp;gt; Integer
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n - 1) + fib (n - 2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The C# equivalent now looks &lt;em&gt;extremely similar&lt;/em&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public static int Fib(int n) =&amp;gt; n switch {
+    0 =&amp;gt; 0,
+    1 =&amp;gt; 1,
+    _ =&amp;gt; Fib(n - 1) + Fib(n - 2)
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And it's not just an aesthetic similarity at that. Functional patterns will assume functions can be written in this form, and the switch expression is the &lt;em&gt;thing&lt;/em&gt; that allows C# to be able to adopt the patterns 1-to-1.&lt;/p&gt;
+&lt;p&gt;A more fun comparison could be made with list patterns, here the classic list sum function:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-haskell"&gt;sum :: [Int] -&amp;gt; Int
+sum [] = 0
+sum (x:xs) = x + sum xs
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Is also equivalent in C#:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public static int Sum(IEnumerable&amp;lt;int&amp;gt; l) =&amp;gt; l switch
+{
+    [] =&amp;gt; 0,
+    [var x, .. var xs] =&amp;gt; x + Sum(xs),
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To bring records into the fold, these are equivalent to data types that typically exist in functional languages; immutable types are the norm there, and their patterns require these kinds of structures. In particular, functional languages have &lt;em&gt;algebraic data types&lt;/em&gt; (ADTs), which are discrete (closed) unions of other types. Take this example:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-haskell"&gt;data Expression
+    = Const Int
+    | Add Expr Expr
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;What is this saying? There is a type &lt;code&gt;Expression&lt;/code&gt; that can be &lt;em&gt;either&lt;/em&gt; a &lt;code&gt;Const&lt;/code&gt; (which will itself contain a single integer), or an &lt;code&gt;Add&lt;/code&gt; (which will contain two &lt;code&gt;Expression&lt;/code&gt; objects). This is modeled like so today with records in C#:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public abstract record Expression;
+public record Const(int Value) : Expression;
+public record Add(Expression Left, Expression Right) : Expression;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In this case, C# uses inheritance to signify that an &lt;code&gt;Expression&lt;/code&gt; can be a &lt;code&gt;Const&lt;/code&gt; or an &lt;code&gt;Add&lt;/code&gt;, and this is a typical arrangement when mapping functional ADTs into C#. It is not, however, as precise a translation as the previous examples, because the Haskell structure is saying something kind of different. Where in my C# code I could create a record in some other part of the code and inherit &lt;code&gt;Expression&lt;/code&gt;, I cannot do this in the Haskell example. Technically, we would say that the C# &lt;code&gt;Expression&lt;/code&gt; is not &lt;code&gt;closed&lt;/code&gt;. This presents a difficulty now in how we handle these in functions. Take this Haskell:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-haskell"&gt;evaluate :: Expression -&amp;gt; Int
+evaluate (Const n) = n
+evaluate (Add a b) = evaluate a + evaluate b
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Since &lt;code&gt;Expression&lt;/code&gt; is closed in Haskell we will have no problems detected by the compiler, but C# needs an extra line:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public static int Evaluate(Expression e) =&amp;gt; e switch
+{
+    Const c =&amp;gt; c.Value,
+    Add(var l, var r) =&amp;gt; Evaluate(l) + Evaluate(r),
+    _ =&amp;gt; throw new ArgumentException(&amp;quot;Unknown expression&amp;quot;)
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This last line is required to complete the switch, since C# currently has no mechanism by which it can close the &lt;code&gt;Expression&lt;/code&gt; type while allowing the inheritance by &lt;code&gt;Const&lt;/code&gt; and &lt;code&gt;Add&lt;/code&gt;. Nonetheless, this is the current proper translation of the functional functions, and is commonly seen in C# today. In fact, this is a great example of what I mentioned in the introduction to this article, that the langauge and framework also evolve to meet the demands of engineers who are using C# in new ways owing to external influence! In this case, the C# langauge team has been pursuing including ADTs fully into the language, a feature which they call &amp;quot;discriminated unions.&amp;quot; The language design team's latest writings on the feature seem to indicate we should see initial support for these in the next version.&lt;/p&gt;
+&lt;p&gt;I've also written a bit about some functional patterns that have become particularly popular in the .NET world:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://ian.wold.guru/Posts/book_club_10-2023.html"&gt;Functional Patterns in C#&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ian.wold.guru/Posts/book_club_1-2025.html"&gt;Results, Railways, and Decisions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ian.wold.guru/Posts/roll_your_own_csharp_results.html"&gt;Roll Your Own C# Results&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Fri, 21 Nov 2025 00:00:00 Z</pubDate>
+      <a10:updated>2025-11-21T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">eight_maxims</guid>
       <link>https://ian.wold.guru/Posts/eight_maxims.html</link>
       <title>Eight Maxims</title>

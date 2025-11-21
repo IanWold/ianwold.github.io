@@ -41,6 +41,7 @@ https://ian.wold.guru/Posts/develop_effective_coding_standards.html
 https://ian.wold.guru/Posts/dont_retro_the_same_twice.html
 https://ian.wold.guru/Posts/dotnet-10-single-file-finally.html
 https://ian.wold.guru/Posts/dotnet_9_csharp_13.html
+https://ian.wold.guru/Posts/dotnet_from_framework_to_10.html
 https://ian.wold.guru/Posts/eight_maxims.html
 https://ian.wold.guru/Posts/end_to_end_encryption_witn_blazor_wasm.html
 https://ian.wold.guru/Posts/farewell_twin_cities_code_camp.html
