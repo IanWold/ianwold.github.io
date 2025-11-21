@@ -143,21 +143,21 @@ Then he should see a welcome message saying "Welcome, John Doe!"
 <p>If you were to take a dogmatic, anti-techy view regarding your Gherkin, you might feel that this is a bit too much techyness. I don't think most would see it that way - certainly not most stakeholders. This is exactly the point I mean to make: the stakeholders with whom we are collaborating are stakeholders on a software project; they <em>are techy</em> to <em>some level</em>. Lesser than the engineers one would indeed hope, but clearly not incapable of navigating the tech world. In fact, I'll suggest that software tests do in fact need to be technical in plenty of ways, no matter the level of abstraction. They are, after all, automated tests for software!</p>
 <p>To develop the idea a step further, I think I can give a good example of a time to have very-techy Gherkin. There's no doubt that the way stakeholders collaborate over a project is greatly - maybe mostly - influenced by <em>who</em> the stakeholders are and what the project is. The same would be true for any Gherkin tests used for the project - their nature will be mostly influenced by the nature of the stakeholders and project. It follows that if the stakeholders are themselves very techincally-minded, or if the project is of a sufficiently technical level, that the Gherkin tests themselves would be written in a very techsome manner.</p>
 <p>Suppose I have a project of standing up a new microservice to aggregate various events into <code>doodads</code> for other internal services. The few stakeholders that there are know what a <code>doodad</code> is, what a microservice is, and so on. I should have no problem with the following:</p>
-<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">When a &quot;create-doodad&quot; even is published with the body</span></div><div class='line'><span style="color: #F8F8F2;">    &quot;&quot;&quot;</span></div><div class='line'><span style="color: #F8F8F2;">    {</span></div><div class='line'><span style="color: #F8F8F2;">        &quot;DoodadId&quot;: 12,</span></div><div class='line'><span style="color: #F8F8F2;">        &quot;Name&quot;: &quot;Bob&quot;</span></div><div class='line'><span style="color: #F8F8F2;">    }</span></div><div class='line'><span style="color: #F8F8F2;">    &quot;&quot;&quot;</span></div><div class='line'><span style="color: #F8F8F2;">And I send a GET request to &quot;doodad-api/v1/doodads/12&quot;</span></div><div class='line'><span style="color: #F8F8F2;">Then the response should have status code 200 with body</span></div><div class='line'><span style="color: #F8F8F2;">    &quot;&quot;&quot;</span></div><div class='line'><span style="color: #F8F8F2;">    {</span></div><div class='line'><span style="color: #F8F8F2;">        &quot;doodadId&quot;: 12,</span></div><div class='line'><span style="color: #F8F8F2;">        &quot;name&quot;: &quot;Bob&quot;</span></div><div class='line'><span style="color: #F8F8F2;">    }</span></div><div class='line'><span style="color: #F8F8F2;">    &quot;&quot;&quot;</span></div><textarea data-torchlight-original="true" style="display: none !important;">When a "create-doodad" even is published with the body
-    """
-    {
-        "DoodadId": 12,
-        "Name": "Bob"
-    }
-    """
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">When a &quot;create-doodad&quot; even is published with the body</span></div><div class='line'><span style="color: #F8F8F2;">&quot;&quot;&quot;</span></div><div class='line'><span style="color: #F8F8F2;">{</span></div><div class='line'><span style="color: #F8F8F2;">&quot;DoodadId&quot;: 12,</span></div><div class='line'><span style="color: #F8F8F2;">&quot;Name&quot;: &quot;Bob&quot;</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><div class='line'><span style="color: #F8F8F2;">&quot;&quot;&quot;</span></div><div class='line'><span style="color: #F8F8F2;">And I send a GET request to &quot;doodad-api/v1/doodads/12&quot;</span></div><div class='line'><span style="color: #F8F8F2;">Then the response should have status code 200 with body</span></div><div class='line'><span style="color: #F8F8F2;">&quot;&quot;&quot;</span></div><div class='line'><span style="color: #F8F8F2;">{</span></div><div class='line'><span style="color: #F8F8F2;">&quot;doodadId&quot;: 12,</span></div><div class='line'><span style="color: #F8F8F2;">&quot;name&quot;: &quot;Bob&quot;</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><div class='line'><span style="color: #F8F8F2;">&quot;&quot;&quot;</span></div><textarea data-torchlight-original="true" style="display: none !important;">When a "create-doodad" even is published with the body
+"""
+{
+"DoodadId": 12,
+"Name": "Bob"
+}
+"""
 And I send a GET request to "doodad-api/v1/doodads/12"
 Then the response should have status code 200 with body
-    """
-    {
-        "doodadId": 12,
-        "name": "Bob"
-    }
-    """
+"""
+{
+"doodadId": 12,
+"name": "Bob"
+}
+"""
 </textarea></code></pre>
 <p>If everyone understands concepts like events, event and response bodies, GET requests, and the whole shebang, then I suggest there's no issue with the above. In fact, being able to reduce the number of Gherkin steps to a small number of more generic, more technical steps can greatly simplify the testing. On a smaller project that's advantageous!</p>
 <p>Now, this example is so technical as to bring into question why Gherkin is used at all - the tests read almost just as the code does. Truly, if there's no need for the Gherkin abstraction, then by all means don't use Gherkin. I did recently find myself in this position where the non-engineering stakeholders (such as a project manager, business analyst, and the like) knew perfectly well what HTTP requests and the like were - and preferred to define business rules in those terms - but would have found themselves too slowed reading actual test code. The uber-techy Gherkin provided exactly the right level of abstraction to facilitate collaboration and a successful BDD process.</p>

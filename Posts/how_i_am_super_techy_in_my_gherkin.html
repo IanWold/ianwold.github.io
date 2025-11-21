@@ -117,96 +117,101 @@
 	<section class="e-content">
 		<p>A few weeks ago I wrote about how <a href="https://ian.wold.guru/Posts/its_okay_to_be_a_bit_techy_in_your_gherkin.html">it's okay to be a bit techy in your Gherkin</a>, by which I mean that it's okay to include technical sorts of language in your Gherkin. Gherkin is designed to abstract away the specific technical details of automated tests to make it easy for engineers to collaborate with non-engineer stakeholders over automated tests for a codebase. The general guideline goes that Gherkin should be written in a &quot;business-friendly&quot; manner, but this is actually not quite right; rather, our Gherkin should be written in a &quot;stakeholder-friendly&quot; manner.</p>
 <p>If your stakeholders include very-technically-illiterate folks, then you'll define your Gherkin steps to account for that. If, on the other hand, your stakeholders all understand what it means to send an HTTP request into the service you're testing, the following is (almost certainly) going to be easier to collaborate over:</p>
-<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">Scenario: Create a resource when myFlag is on</span></div><div class='line'><span style="color: #F8F8F2;">    Given the feature flag &quot;myFlag&quot; is ON</span></div><div class='line'><span style="color: #F8F8F2;">    When I send a POST request to &quot;/my/resource&quot; with the body</span></div><div class='line'><span style="color: #F8F8F2;">        &quot;&quot;&quot;</span></div><div class='line'><span style="color: #F8F8F2;">        {</span></div><div class='line'><span style="color: #F8F8F2;">            &quot;name&quot;: &quot;Bob&quot;,</span></div><div class='line'><span style="color: #F8F8F2;">            &quot;age&quot;: 42</span></div><div class='line'><span style="color: #F8F8F2;">        }</span></div><div class='line'><span style="color: #F8F8F2;">        &quot;&quot;&quot;</span></div><div class='line'><span style="color: #F8F8F2;">    Then the response status code should be 200</span></div><textarea data-torchlight-original="true" style="display: none !important;">Scenario: Create a resource when myFlag is on
-    Given the feature flag "myFlag" is ON
-    When I send a POST request to "/my/resource" with the body
-        """
-        {
-            "name": "Bob",
-            "age": 42
-        }
-        """
-    Then the response status code should be 200
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">Scenario: Create a resource when myFlag is on</span></div><div class='line'><span style="color: #F8F8F2;">Given the feature flag &quot;myFlag&quot; is ON</span></div><div class='line'><span style="color: #F8F8F2;">When I send a POST request to &quot;/my/resource&quot; with the body</span></div><div class='line'><span style="color: #F8F8F2;">&quot;&quot;&quot;</span></div><div class='line'><span style="color: #F8F8F2;">{</span></div><div class='line'><span style="color: #F8F8F2;">&quot;name&quot;: &quot;Bob&quot;,</span></div><div class='line'><span style="color: #F8F8F2;">&quot;age&quot;: 42</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><div class='line'><span style="color: #F8F8F2;">&quot;&quot;&quot;</span></div><div class='line'><span style="color: #F8F8F2;">Then the response status code should be 200</span></div><textarea data-torchlight-original="true" style="display: none !important;">Scenario: Create a resource when myFlag is on
+Given the feature flag "myFlag" is ON
+When I send a POST request to "/my/resource" with the body
+"""
+{
+"name": "Bob",
+"age": 42
+}
+"""
+Then the response status code should be 200
 </textarea></code></pre>
 <p>Since I wrote that last blog post, I've had a lot of successful collaboration over a couple projects at work, and I want to share some of my findings here. Ultimately, I'm impressed by the very tight testing loop which this &quot;low-level&quot; form of Gherkin supports for my team's backend services. If we observe a bug or find one while doing exploratory testing, then we'll already have the request body - this Gherkin format makes it very easy for anyone - not just engineers - to write a test which can be immediately executed on the codebase.</p>
 <p>So in a matter of minutes I have the issue reproducible on my local machine, and I can then reach out to other stakeholders to confirm the expected behavior. Again, everyone understands what an HTTP request is, so I can send them the Gherkin, and they can respond to me with updated, valid Gherkin in no time. This all shows the value in ensuring that you set up your Gherkin so that it works in the environment it's supposed to, <em>and</em> that you're using it to actually facilitate collaboration.</p>
-<h3>Steps to Arrange Data</h3>
+<section id="steps-to-arrange-data">
+<h3>Steps to Arrange Data <a class="section-link" href="https://ian.wold.guru/Posts/how_i_am_super_techy_in_my_gherkin.html#steps-to-arrange-data">#</a></h3>
 <p>In my environment (this could be entirely different for you) anyone who understands what an HTTP request is knows, generally, how SQL or Redis or the like work. Setting up data for the test can be extremely simple that way. It's even easier for a document database. Take the following:</p>
-<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">Given the &quot;items&quot; table in the Postgres database has the following records:</span></div><div class='line'><span style="color: #F8F8F2;">    | id | name  | age |</span></div><div class='line'><span style="color: #F8F8F2;">    | 1  | &#39;Bob&#39; | 42  |</span></div><div class='line'><span style="color: #F8F8F2;">    | 2  | &#39;Sue&#39; | 50  |</span></div><div class='line'><span style="color: #F8F8F2;">And the &quot;some&quot; key in the Redis cache has the value &quot;hello&quot;</span></div><div class='line'><span style="color: #F8F8F2;">And the external endpoint &quot;/my/service/other/resource/1&quot; will respond with status code 200 and body</span></div><div class='line'><span style="color: #F8F8F2;">    &quot;&quot;&quot;</span></div><div class='line'><span style="color: #F8F8F2;">    {</span></div><div class='line'><span style="color: #F8F8F2;">        &quot;id&quot;: 1,</span></div><div class='line'><span style="color: #F8F8F2;">        &quot;favorites&quot;: [ &quot;Bob&quot;, &quot;Sue&quot; ]</span></div><div class='line'><span style="color: #F8F8F2;">    }</span></div><div class='line'><span style="color: #F8F8F2;">    &quot;&quot;&quot;</span></div><textarea data-torchlight-original="true" style="display: none !important;">Given the "items" table in the Postgres database has the following records:
-    | id | name  | age |
-    | 1  | 'Bob' | 42  |
-    | 2  | 'Sue' | 50  |
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">Given the &quot;items&quot; table in the Postgres database has the following records:</span></div><div class='line'><span style="color: #F8F8F2;">| id | name  | age |</span></div><div class='line'><span style="color: #F8F8F2;">| 1  | &#39;Bob&#39; | 42  |</span></div><div class='line'><span style="color: #F8F8F2;">| 2  | &#39;Sue&#39; | 50  |</span></div><div class='line'><span style="color: #F8F8F2;">And the &quot;some&quot; key in the Redis cache has the value &quot;hello&quot;</span></div><div class='line'><span style="color: #F8F8F2;">And the external endpoint &quot;/my/service/other/resource/1&quot; will respond with status code 200 and body</span></div><div class='line'><span style="color: #F8F8F2;">&quot;&quot;&quot;</span></div><div class='line'><span style="color: #F8F8F2;">{</span></div><div class='line'><span style="color: #F8F8F2;">&quot;id&quot;: 1,</span></div><div class='line'><span style="color: #F8F8F2;">&quot;favorites&quot;: [ &quot;Bob&quot;, &quot;Sue&quot; ]</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><div class='line'><span style="color: #F8F8F2;">&quot;&quot;&quot;</span></div><textarea data-torchlight-original="true" style="display: none !important;">Given the "items" table in the Postgres database has the following records:
+| id | name  | age |
+| 1  | 'Bob' | 42  |
+| 2  | 'Sue' | 50  |
 And the "some" key in the Redis cache has the value "hello"
 And the external endpoint "/my/service/other/resource/1" will respond with status code 200 and body
-    """
-    {
-        "id": 1,
-        "favorites": [ "Bob", "Sue" ]
-    }
-    """
+"""
+{
+"id": 1,
+"favorites": [ "Bob", "Sue" ]
+}
+"""
 </textarea></code></pre>
 <p>Database tables are set up with - surprise - tables, Redis values are set directly, and responses from external services can have their bodies written out in full. Redis is an interesting case actually, since it can have lists and hashes and so on. It's relatively simple to add those:</p>
-<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">Given the &quot;some&quot; key in the Redis cache has the list [ 1, 2, 3 ]</span></div><div class='line'><span style="color: #F8F8F2;">And the &quot;other&quot; key in the Redis cache has the hash</span></div><div class='line'><span style="color: #F8F8F2;">    | name   | value |</span></div><div class='line'><span style="color: #F8F8F2;">    | first  | 1     |</span></div><div class='line'><span style="color: #F8F8F2;">    | second | 2     |</span></div><textarea data-torchlight-original="true" style="display: none !important;">Given the "some" key in the Redis cache has the list [ 1, 2, 3 ]
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">Given the &quot;some&quot; key in the Redis cache has the list [ 1, 2, 3 ]</span></div><div class='line'><span style="color: #F8F8F2;">And the &quot;other&quot; key in the Redis cache has the hash</span></div><div class='line'><span style="color: #F8F8F2;">| name   | value |</span></div><div class='line'><span style="color: #F8F8F2;">| first  | 1     |</span></div><div class='line'><span style="color: #F8F8F2;">| second | 2     |</span></div><textarea data-torchlight-original="true" style="display: none !important;">Given the "some" key in the Redis cache has the list [ 1, 2, 3 ]
 And the "other" key in the Redis cache has the hash
-    | name   | value |
-    | first  | 1     |
-    | second | 2     |
+| name   | value |
+| first  | 1     |
+| second | 2     |
 </textarea></code></pre>
 <p>To reiterate, this works so long as all collaborators understand those sorts of systems. When they do, this straightforward approach gives the path of least resistance in moving from an observed scenario into the Gherkin language which allows collaborating over what the business requirements (outputs from the service) are in these conditions. Speaking of which:</p>
-<h3>Steps to Test Responses</h3>
+</section>
+<section id="steps-to-test-responses">
+<h3>Steps to Test Responses <a class="section-link" href="https://ian.wold.guru/Posts/how_i_am_super_techy_in_my_gherkin.html#steps-to-test-responses">#</a></h3>
 <p>One key point is that a service (an HTTP API, in this case) does not <em>just</em> output responses to requests. Yes, that's the primary thing to test, but you might want to ensure that events are enqueued in a Kafka or that specific logs are output in certain scenarios to drive alerting, or the like.</p>
 <p>These extra scenarios get a bit tricky and probably require that your tests have some way to read all of these output channels. That solution might vary wildly for your project, but the Gherkin steps can be very simple. Remember to keep the focus on what kinds of steps are both most understandable to all your stakeholders <em>and</em> produce the least amount of friction when creating Gherkin scenarios from real-world observed scenarios.</p>
-<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">Then an error level log is written containing &quot;SuperImportantService failed to respond&quot;</span></div><div class='line'><span style="color: #F8F8F2;">And the following event was sent to the Kafka topic &quot;topic&quot;</span></div><div class='line'><span style="color: #F8F8F2;">    &quot;&quot;&quot;</span></div><div class='line'><span style="color: #F8F8F2;">    {</span></div><div class='line'><span style="color: #F8F8F2;">        &quot;id&quot;: 1,</span></div><div class='line'><span style="color: #F8F8F2;">        &quot;name&quot;: &quot;Bob&quot;</span></div><div class='line'><span style="color: #F8F8F2;">    }</span></div><div class='line'><span style="color: #F8F8F2;">    &quot;&quot;&quot;</span></div><textarea data-torchlight-original="true" style="display: none !important;">Then an error level log is written containing "SuperImportantService failed to respond"
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">Then an error level log is written containing &quot;SuperImportantService failed to respond&quot;</span></div><div class='line'><span style="color: #F8F8F2;">And the following event was sent to the Kafka topic &quot;topic&quot;</span></div><div class='line'><span style="color: #F8F8F2;">&quot;&quot;&quot;</span></div><div class='line'><span style="color: #F8F8F2;">{</span></div><div class='line'><span style="color: #F8F8F2;">&quot;id&quot;: 1,</span></div><div class='line'><span style="color: #F8F8F2;">&quot;name&quot;: &quot;Bob&quot;</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><div class='line'><span style="color: #F8F8F2;">&quot;&quot;&quot;</span></div><textarea data-torchlight-original="true" style="display: none !important;">Then an error level log is written containing "SuperImportantService failed to respond"
 And the following event was sent to the Kafka topic "topic"
-    """
-    {
-        "id": 1,
-        "name": "Bob"
-    }
-    """
+"""
+{
+"id": 1,
+"name": "Bob"
+}
+"""
 </textarea></code></pre>
 <p>Testing the actual response from the service is just as easy, though in this case we might want to validate more than just the body - response status code is quite meaningful over HTTP:</p>
-<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">Then the response status code is 200</span></div><div class='line'><span style="color: #F8F8F2;">And the response body is</span></div><div class='line'><span style="color: #F8F8F2;">    &quot;&quot;&quot;</span></div><div class='line'><span style="color: #F8F8F2;">    {</span></div><div class='line'><span style="color: #F8F8F2;">        &quot;id&quot;: 1,</span></div><div class='line'><span style="color: #F8F8F2;">        &quot;name&quot;: &quot;Bob&quot;,</span></div><div class='line'><span style="color: #F8F8F2;">        &quot;favorites&quot;: [ &quot;Bob&quot;, &quot;Sue&quot; ]</span></div><div class='line'><span style="color: #F8F8F2;">    }</span></div><div class='line'><span style="color: #F8F8F2;">    &quot;&quot;&quot;</span></div><textarea data-torchlight-original="true" style="display: none !important;">Then the response status code is 200
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">Then the response status code is 200</span></div><div class='line'><span style="color: #F8F8F2;">And the response body is</span></div><div class='line'><span style="color: #F8F8F2;">&quot;&quot;&quot;</span></div><div class='line'><span style="color: #F8F8F2;">{</span></div><div class='line'><span style="color: #F8F8F2;">&quot;id&quot;: 1,</span></div><div class='line'><span style="color: #F8F8F2;">&quot;name&quot;: &quot;Bob&quot;,</span></div><div class='line'><span style="color: #F8F8F2;">&quot;favorites&quot;: [ &quot;Bob&quot;, &quot;Sue&quot; ]</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><div class='line'><span style="color: #F8F8F2;">&quot;&quot;&quot;</span></div><textarea data-torchlight-original="true" style="display: none !important;">Then the response status code is 200
 And the response body is
-    """
-    {
-        "id": 1,
-        "name": "Bob",
-        "favorites": [ "Bob", "Sue" ]
-    }
-    """
+"""
+{
+"id": 1,
+"name": "Bob",
+"favorites": [ "Bob", "Sue" ]
+}
+"""
 </textarea></code></pre>
 <p>Now, there is a catch here testing the bodies of both the event and the API response: how is the code written to match the bodies? If I write a multi-line string in my test but the server actually responds with a single-line JSON, I can't do a string compare. Even if we could solve perfectly for whitespace (I don't recommend trying) property rearranging is an issue. But then I also don't necessarily want to test <em>every</em> property; maybe for some tests I just want to make sure one property is coming back altered.</p>
 <p>What's wanted then is to test that the response JSON is a superset (for lack of a better word - is there something else we call this?) of what we expect. Luckily, this is quite easy to define:</p>
-<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-csharp"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F92672;">bool</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">IsJsonSuperset</span><span style="color: #F8F8F2;">(</span><span style="color: #66D9EF;">JsonElement</span><span style="color: #F8F8F2;"> targetJson, </span><span style="color: #66D9EF;">JsonElement</span><span style="color: #F8F8F2;"> expectedJson) </span><span style="color: #F92672;">=&gt;</span></div><div class='line'><span style="color: #F8F8F2;">    expectedJson.ValueKind </span><span style="color: #F92672;">switch</span></div><div class='line'><span style="color: #F8F8F2;">    {</span></div><div class='line'><span style="color: #F8F8F2;">        JsonValueKind.Object </span><span style="color: #F92672;">=&gt;</span></div><div class='line'><span style="color: #F8F8F2;">            expectedJson.</span><span style="color: #A6E22E;">EnumerateObject</span><span style="color: #F8F8F2;">().</span><span style="color: #A6E22E;">All</span><span style="color: #F8F8F2;">(expectedProperty </span><span style="color: #F92672;">=&gt;</span></div><div class='line'><span style="color: #F8F8F2;">                targetJson.</span><span style="color: #A6E22E;">TryGetProperty</span><span style="color: #F8F8F2;">(expectedProperty.Name, </span><span style="color: #F92672;">out</span><span style="color: #F8F8F2;"> </span><span style="color: #F92672;">var</span><span style="color: #F8F8F2;"> targetValue)</span></div><div class='line'><span style="color: #F8F8F2;">                </span><span style="color: #F92672;">&amp;&amp;</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">IsJsonSuperset</span><span style="color: #F8F8F2;">(targetValue, expectedProperty.Value)</span></div><div class='line'><span style="color: #F8F8F2;">            ),</span></div><div class='line'><span style="color: #F8F8F2;">        JsonValueKind.Array </span><span style="color: #F92672;">=&gt;</span></div><div class='line'><span style="color: #F8F8F2;">            targetJson.</span><span style="color: #A6E22E;">GetArrayLength</span><span style="color: #F8F8F2;">() </span><span style="color: #F92672;">&gt;=</span><span style="color: #F8F8F2;"> expectedJson.</span><span style="color: #A6E22E;">GetArrayLength</span><span style="color: #F8F8F2;">()</span></div><div class='line'><span style="color: #F8F8F2;">            </span><span style="color: #F92672;">&amp;&amp;</span><span style="color: #F8F8F2;"> expectedJson.</span><span style="color: #A6E22E;">EnumerateArray</span><span style="color: #F8F8F2;">().</span><span style="color: #A6E22E;">All</span><span style="color: #F8F8F2;">(expectedArrayElement </span><span style="color: #F92672;">=&gt;</span></div><div class='line'><span style="color: #F8F8F2;">                targetJson.</span><span style="color: #A6E22E;">EnumerateArray</span><span style="color: #F8F8F2;">().</span><span style="color: #A6E22E;">Any</span><span style="color: #F8F8F2;">(targetArrayElement </span><span style="color: #F92672;">=&gt;</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">IsJsonSuperset</span><span style="color: #F8F8F2;">(targetArrayElement, expectedArrayElement))</span></div><div class='line'><span style="color: #F8F8F2;">            ),</span></div><div class='line'><span style="color: #F8F8F2;">        _ </span><span style="color: #F92672;">=&gt;</span><span style="color: #F8F8F2;"> targetJson.</span><span style="color: #A6E22E;">GetRawText</span><span style="color: #F8F8F2;">() </span><span style="color: #F92672;">==</span><span style="color: #F8F8F2;"> expectedJson.</span><span style="color: #A6E22E;">GetRawText</span><span style="color: #F8F8F2;">()</span></div><div class='line'><span style="color: #F8F8F2;">    }</span></div><textarea data-torchlight-original="true" style="display: none !important;">bool IsJsonSuperset(JsonElement targetJson, JsonElement expectedJson) =&gt;
-    expectedJson.ValueKind switch
-    {
-        JsonValueKind.Object =&gt;
-            expectedJson.EnumerateObject().All(expectedProperty =&gt;
-                targetJson.TryGetProperty(expectedProperty.Name, out var targetValue)
-                &amp;&amp; IsJsonSuperset(targetValue, expectedProperty.Value)
-            ),
-        JsonValueKind.Array =&gt;
-            targetJson.GetArrayLength() &gt;= expectedJson.GetArrayLength()
-            &amp;&amp; expectedJson.EnumerateArray().All(expectedArrayElement =&gt;
-                targetJson.EnumerateArray().Any(targetArrayElement =&gt; IsJsonSuperset(targetArrayElement, expectedArrayElement))
-            ),
-        _ =&gt; targetJson.GetRawText() == expectedJson.GetRawText()
-    }
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-csharp"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F92672;">bool</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">IsJsonSuperset</span><span style="color: #F8F8F2;">(</span><span style="color: #66D9EF;">JsonElement</span><span style="color: #F8F8F2;"> targetJson, </span><span style="color: #66D9EF;">JsonElement</span><span style="color: #F8F8F2;"> expectedJson) </span><span style="color: #F92672;">=&gt;</span></div><div class='line'><span style="color: #F8F8F2;">expectedJson.ValueKind </span><span style="color: #F92672;">switch</span></div><div class='line'><span style="color: #F8F8F2;">{</span></div><div class='line'><span style="color: #F8F8F2;">JsonValueKind.Object </span><span style="color: #F92672;">=&gt;</span></div><div class='line'><span style="color: #F8F8F2;">expectedJson.</span><span style="color: #A6E22E;">EnumerateObject</span><span style="color: #F8F8F2;">().</span><span style="color: #A6E22E;">All</span><span style="color: #F8F8F2;">(expectedProperty </span><span style="color: #F92672;">=&gt;</span></div><div class='line'><span style="color: #F8F8F2;">targetJson.</span><span style="color: #A6E22E;">TryGetProperty</span><span style="color: #F8F8F2;">(expectedProperty.Name, </span><span style="color: #F92672;">out</span><span style="color: #F8F8F2;"> </span><span style="color: #F92672;">var</span><span style="color: #F8F8F2;"> targetValue)</span></div><div class='line'><span style="color: #F92672;">&amp;&amp;</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">IsJsonSuperset</span><span style="color: #F8F8F2;">(targetValue, expectedProperty.Value)</span></div><div class='line'><span style="color: #F8F8F2;">),</span></div><div class='line'><span style="color: #F8F8F2;">JsonValueKind.Array </span><span style="color: #F92672;">=&gt;</span></div><div class='line'><span style="color: #F8F8F2;">targetJson.</span><span style="color: #A6E22E;">GetArrayLength</span><span style="color: #F8F8F2;">() </span><span style="color: #F92672;">&gt;=</span><span style="color: #F8F8F2;"> expectedJson.</span><span style="color: #A6E22E;">GetArrayLength</span><span style="color: #F8F8F2;">()</span></div><div class='line'><span style="color: #F92672;">&amp;&amp;</span><span style="color: #F8F8F2;"> expectedJson.</span><span style="color: #A6E22E;">EnumerateArray</span><span style="color: #F8F8F2;">().</span><span style="color: #A6E22E;">All</span><span style="color: #F8F8F2;">(expectedArrayElement </span><span style="color: #F92672;">=&gt;</span></div><div class='line'><span style="color: #F8F8F2;">targetJson.</span><span style="color: #A6E22E;">EnumerateArray</span><span style="color: #F8F8F2;">().</span><span style="color: #A6E22E;">Any</span><span style="color: #F8F8F2;">(targetArrayElement </span><span style="color: #F92672;">=&gt;</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">IsJsonSuperset</span><span style="color: #F8F8F2;">(targetArrayElement, expectedArrayElement))</span></div><div class='line'><span style="color: #F8F8F2;">),</span></div><div class='line'><span style="color: #F8F8F2;">_ </span><span style="color: #F92672;">=&gt;</span><span style="color: #F8F8F2;"> targetJson.</span><span style="color: #A6E22E;">GetRawText</span><span style="color: #F8F8F2;">() </span><span style="color: #F92672;">==</span><span style="color: #F8F8F2;"> expectedJson.</span><span style="color: #A6E22E;">GetRawText</span><span style="color: #F8F8F2;">()</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><textarea data-torchlight-original="true" style="display: none !important;">bool IsJsonSuperset(JsonElement targetJson, JsonElement expectedJson) =&gt;
+expectedJson.ValueKind switch
+{
+JsonValueKind.Object =&gt;
+expectedJson.EnumerateObject().All(expectedProperty =&gt;
+targetJson.TryGetProperty(expectedProperty.Name, out var targetValue)
+&amp;&amp; IsJsonSuperset(targetValue, expectedProperty.Value)
+),
+JsonValueKind.Array =&gt;
+targetJson.GetArrayLength() &gt;= expectedJson.GetArrayLength()
+&amp;&amp; expectedJson.EnumerateArray().All(expectedArrayElement =&gt;
+targetJson.EnumerateArray().Any(targetArrayElement =&gt; IsJsonSuperset(targetArrayElement, expectedArrayElement))
+),
+_ =&gt; targetJson.GetRawText() == expectedJson.GetRawText()
+}
 </textarea></code></pre>
-<h3>Accounting for HTTP Headers</h3>
+</section>
+<section id="accounting-for-http-headers">
+<h3>Accounting for HTTP Headers <a class="section-link" href="https://ian.wold.guru/Posts/how_i_am_super_techy_in_my_gherkin.html#accounting-for-http-headers">#</a></h3>
 <p>Ah, headers are just a table - surely I could just include them along with the body when I send the request:</p>
-<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">When I send a POST request to &quot;/my/resource&quot; with header and body</span></div><div class='line'><span style="color: #F8F8F2;">    | name          | value            |</span></div><div class='line'><span style="color: #F8F8F2;">    | Content-Type  | application/json |</span></div><div class='line'><span style="color: #F8F8F2;">    | Authorization | Bearer hello     |</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">    &quot;&quot;&quot;</span></div><div class='line'><span style="color: #F8F8F2;">    {</span></div><div class='line'><span style="color: #F8F8F2;">        &quot;name&quot;: &quot;Bob&quot;,</span></div><div class='line'><span style="color: #F8F8F2;">        &quot;age&quot;: 42</span></div><div class='line'><span style="color: #F8F8F2;">    }</span></div><div class='line'><span style="color: #F8F8F2;">    &quot;&quot;&quot;</span></div><textarea data-torchlight-original="true" style="display: none !important;">When I send a POST request to "/my/resource" with header and body
-    | name          | value            |
-    | Content-Type  | application/json |
-    | Authorization | Bearer hello     |
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">When I send a POST request to &quot;/my/resource&quot; with header and body</span></div><div class='line'><span style="color: #F8F8F2;">| name          | value            |</span></div><div class='line'><span style="color: #F8F8F2;">| Content-Type  | application/json |</span></div><div class='line'><span style="color: #F8F8F2;">| Authorization | Bearer hello     |</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">&quot;&quot;&quot;</span></div><div class='line'><span style="color: #F8F8F2;">{</span></div><div class='line'><span style="color: #F8F8F2;">&quot;name&quot;: &quot;Bob&quot;,</span></div><div class='line'><span style="color: #F8F8F2;">&quot;age&quot;: 42</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><div class='line'><span style="color: #F8F8F2;">&quot;&quot;&quot;</span></div><textarea data-torchlight-original="true" style="display: none !important;">When I send a POST request to "/my/resource" with header and body
+| name          | value            |
+| Content-Type  | application/json |
+| Authorization | Bearer hello     |
 
-    """
-    {
-        "name": "Bob",
-        "age": 42
-    }
-    """
+"""
+{
+"name": "Bob",
+"age": 42
+}
+"""
 </textarea></code></pre>
 <p>Alas, Gherkin does not support such an idea. In a traditional setup, we'd break this down into multiple steps:</p>
 <pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">Given the request has header &quot;Content-Type&quot; with value &quot;application/json&quot;</span></div><div class='line'><span style="color: #F8F8F2;">And the request has header &quot;Authorization&quot; with value &quot;Bearer hello&quot;</span></div><div class='line'><span style="color: #F8F8F2;">When I send the request ...</span></div><textarea data-torchlight-original="true" style="display: none !important;">Given the request has header "Content-Type" with value "application/json"
@@ -215,21 +220,22 @@ When I send the request ...
 </textarea></code></pre>
 <p>But barrier! My goal is to make it as easy and seamless as possible to move from scenarios we observe in test and prod into our Gherkin - and I want <em>anyone</em> to be able to do that. We need more simple.</p>
 <p>How this shakes out in any particular circumstance is going to be affected by tooling and preferences and the usual factors, but what I've found works is to adopt the <a href="https://daily-dev-tips.com/posts/what-exactly-is-frontmatter/">frontmatter</a> concept to the JSON bodies. With my specific projects (and I can't stress enough that this may be drastically different depending on a lot of factors) the easiest thing has been to include the headers as YAML frontmatter atop the JSON in the body:</p>
-<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">When I send a POST request to &quot;/my/resource&quot; with the body</span></div><div class='line'><span style="color: #F8F8F2;">    &quot;&quot;&quot;</span></div><div class='line'><span style="color: #F8F8F2;">    ---</span></div><div class='line'><span style="color: #F8F8F2;">      headers:</span></div><div class='line'><span style="color: #F8F8F2;">        - Content-Type: application/json</span></div><div class='line'><span style="color: #F8F8F2;">          Authorization: Bearer hello</span></div><div class='line'><span style="color: #F8F8F2;">    ---</span></div><div class='line'><span style="color: #F8F8F2;">    {</span></div><div class='line'><span style="color: #F8F8F2;">        &quot;name&quot;: &quot;Bob&quot;,</span></div><div class='line'><span style="color: #F8F8F2;">        &quot;age&quot;: 42</span></div><div class='line'><span style="color: #F8F8F2;">    }</span></div><div class='line'><span style="color: #F8F8F2;">    &quot;&quot;&quot;</span></div><textarea data-torchlight-original="true" style="display: none !important;">When I send a POST request to "/my/resource" with the body
-    """
-    ---
-      headers:
-        - Content-Type: application/json
-          Authorization: Bearer hello
-    ---
-    {
-        "name": "Bob",
-        "age": 42
-    }
-    """
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">When I send a POST request to &quot;/my/resource&quot; with the body</span></div><div class='line'><span style="color: #F8F8F2;">&quot;&quot;&quot;</span></div><div class='line'><span style="color: #F8F8F2;">---</span></div><div class='line'><span style="color: #F8F8F2;">headers:</span></div><div class='line'><span style="color: #F8F8F2;">- Content-Type: application/json</span></div><div class='line'><span style="color: #F8F8F2;">Authorization: Bearer hello</span></div><div class='line'><span style="color: #F8F8F2;">---</span></div><div class='line'><span style="color: #F8F8F2;">{</span></div><div class='line'><span style="color: #F8F8F2;">&quot;name&quot;: &quot;Bob&quot;,</span></div><div class='line'><span style="color: #F8F8F2;">&quot;age&quot;: 42</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><div class='line'><span style="color: #F8F8F2;">&quot;&quot;&quot;</span></div><textarea data-torchlight-original="true" style="display: none !important;">When I send a POST request to "/my/resource" with the body
+"""
+---
+headers:
+- Content-Type: application/json
+Authorization: Bearer hello
+---
+{
+"name": "Bob",
+"age": 42
+}
+"""
 </textarea></code></pre>
 <p>It's easy then to parse out <code>---</code> and get the information from the YAML. That &quot;frontmatter&quot; could just as easily be JSON, or you could even abandon the pseudo-frontmatter idea and write the whole body using <a href="https://timdeschryver.dev/bits/http-files">http file syntax</a>.</p>
 
+</section>
 
 	</section>
 

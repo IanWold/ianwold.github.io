@@ -115,6 +115,78 @@
 		<nav>
 			<ul>
 				
+				<li>
+					<a href="#problems-from-topology">
+						
+							<strong>Problems from Topology</strong>
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#services">
+						
+							Services
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#connections">
+						
+							Connections
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#decouple-services-from-topology">
+						
+							<strong>Decouple Services from Topology</strong>
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#abstract-the-message-from-its-delivery">
+						
+							Abstract the Message from its Delivery
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#async-communication">
+						
+							Async Communication
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#self-healing-architecture">
+						
+							Self-Healing Architecture
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#communication-and-monitoring">
+						
+							<strong>Communication and Monitoring</strong>
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#conclusion">
+						
+							<strong>Conclusion</strong>
+						
+					</a>
+				</li>
+				
 			</ul>
 		</nav>
 	
@@ -130,27 +202,35 @@
 <p>The topic on which he was required to lecture was, of course being germane to this article, topology. <em>His</em> was a lecture on the subject in mathematics, so I'm hoping that network topology is a more interesting subject for us here, but be warned that I will take some delight if you leave a comment about this being a boring subject! I do not think so - network topology consists of the actual layout of all of the components and connections between them within a network, which is an area with which I think we all have hands-on experience.</p>
 <p>The fifth fallacy of distributed computing is &quot;topology never changes&quot;, the implication being that it changes constantly. Twenty years ago when these fallacies were written that was a concern, and I will suggest that it's a significantly higher concern today. Not only do we tend to build systems with more distributed components and more connections than we did twenty years ago, but nowadays we have <em>managed</em> systems, we throw load balancers everywhere, and I'm not sure any of us knows <em>everything</em> that cloud providers do behind the scenes. Heck, each time a client connects or disconnects that's a change in the topology, and sometimes it's not a trivial one.</p>
 <p>Our topologies change constantly and mostly due to automated processes. Thankfully, this is an area where practice has mostly kept up with the times, and the industry actually seems to be relatively good at writing systems which are resistant, to some degree, to changes in topology. Cloud providers assign names to services by default, modern application frameworks make some best practices the default, and so on. This is an excellent start but we oughtn't allow ourselves to be lulled into a false sense of security here. Just as with the other fallacies, errors induced by topology can cause some wild behaviors in our systems.</p>
-<h2>Problems from Topology</h2>
+<section id="problems-from-topology">
+<h2>Problems from Topology <a class="section-link" href="https://ian.wold.guru/Posts/topology_doesnt_change.html#problems-from-topology">#</a></h2>
 <p>Topology changes can be the cause of any of the problems covered in <a href="https://ian.wold.guru/Series/fallacies_distributed_computing.html">the other fallacies</a>. Changing the location or address of a service can prevent its dependents from being able to contact it, adding ride-along services can induce latency, closely locating services can surface bandwidth issues, and so on for each of the issues we have (and will) discuss. To some extent then, applying the lessons learned from our exploration of the other fallacies will guard us against the problems we can encounter from topology changes.</p>
 <p>Were the list of fallacies just a list of sources for errors from distributed computing, then including topology changes might well be redundant. Instead of being <em>that</em> list though, the fallacies are a matter of mindset - a list of human assumptions we ought keep ourselves from making. By adopting the assumption that the topology <em>will</em> change, and frequently, we can eliminate this category of network instabilities from affecting our systems.</p>
-<h3>Services</h3>
+<section id="services">
+<h3>Services <a class="section-link" href="https://ian.wold.guru/Posts/topology_doesnt_change.html#services">#</a></h3>
 <p>Obviously, a service failing and removing itself from the topology can have knockon effects if there are other services which depend on it; this creates a <a href="https://ian.wold.guru/Posts/the_network_is_reliable.html">network instability</a> and can be protected against with a number of patterns. Equally concerning though is when services add themselves into the topology.</p>
 <p>These situations can cause balancing errors, sometimes localized to the area of the service itself, sometimes with ripple effects across the whole network. The configurations of the load balancers take on a greater importance here, even small inconsistencies can cause a service to underperform. At scale this can introduce issues related to latency and bandwidth.</p>
 <p>Even just when the services <em>change</em>, say when an update is rolled out, should not be discounted as a change to the topology - while the new version occupies the same node as the previous version and fulfills the same contract, but it's not the same as the topology before the update. This makes these update times sensitive; the team should monitor the system at the time of the update, and it would also be best to retain with your historical logs when updates are pushed out. The more subtle a problem, the further down the line it's likely to be caught.</p>
-<h3>Connections</h3>
+</section>
+<section id="connections">
+<h3>Connections <a class="section-link" href="https://ian.wold.guru/Posts/topology_doesnt_change.html#connections">#</a></h3>
 <p>Services can be connected with each other in various ways. If a service needs to dispatch a call to another, that's an obvious connection. If one service consumes events which another is responsible for producing, that's another more abstracted connection. These connections can chain into very complicated dependency chains, and that complexity is a source of problems itself. If the complexity grows to the point that it can't be understood, or if appropriate telemetry isn't set up to give you insight into the system, those introduce human problems. Human problems are the most difficult to solve.</p>
 <p>There's a physical aspect to the connections as well - services which are physically, geographically more separated will have more connection issues. Even in a perfect world without packet drops, those communications will be slower. <a href="https://en.wikipedia.org/wiki/Software-defined_networking">Software-defined networking</a> approaches can really help, depending on the scope of the system, and this introduces the same sort of configuration issue I mentioned with the load balancers. These systems can also become very much affected by service updates or other triggers that might cause the dependency graph to change - either by calling different systems or by routing more or less traffic over a particular connection.</p>
 <p>This is where it's important to have a proper understanding of the conceptual topology; you might not be able to predict all the ramifications of a change, but at least you can get some good insights into what you might need to test. This is not just useful for large changes; if your topology is well-understood, this sort of analysis can become part of the working process.</p>
-<h2>Decouple Services from Topology</h2>
+</section>
+</section>
+<section id="decouple-services-from-topology">
+<h2>Decouple Services from Topology <a class="section-link" href="https://ian.wold.guru/Posts/topology_doesnt_change.html#decouple-services-from-topology">#</a></h2>
 <p><em>The</em> way to prevent changes in topology from inducing these errors in the system is to decouple the system from the topology. This is almost a question-begging argument: &quot;Disconnecting the system from the topology disconnects the topology from the system!&quot; However, the system can't be disconnected from the topology, not entirely, as the topology arises from the system itself. The statement rather is to say that the system should be written with abstractions over the pieces which interact with the topology such that a specific topology is not required for any component to work correctly.</p>
 <p>Maybe the most obvious example of decoupling services from the specifics of the topology is IP and DNS. I'm sure you would give me quite a quizical look if I were to suggest that send requests from one service to another using the target service's IP address instead of its domain name; the IP address of the service will almost certainly change, so we'd definitely break our connection if we did that! We use DNS to escape this problem. Well, others too, but we're focused on topology. Instead of having to rely on a specific about the topology (IP), we use an abstraction (DNS) that hides underlying changes from us.</p>
 <p>Just as we have an expectation that services' IP addresses <em>will</em> change, we should expect that <em>all</em> aspects of the topology can change. I'm almost always a fan of not introducing abstractions until a codebase or system reveals a pattern that is clearly asking for an abstraction, but this is not a case for that. Distributed computing increases the complexity of our systems tenfold (at least), and a significant contributing factor to that is the <em>necessity</em> of a host of abstractions.</p>
-<h3>Abstract the Message from its Delivery</h3>
+<section id="abstract-the-message-from-its-delivery">
+<h3>Abstract the Message from its Delivery <a class="section-link" href="https://ian.wold.guru/Posts/topology_doesnt_change.html#abstract-the-message-from-its-delivery">#</a></h3>
 <p>This seems simple conceptually but ends up being more interesting in practice. The idea is that messages dispatched across a network have a <em>message</em> that's being sent and some <em>address</em> it's being sent to; these should never be coupled with each other. That seems simple - we'll just throw the URL of the target service (ServiceA) in the configuration of the service making the request (ServiceB)!</p>
 <p>That's a start - suppose we include a <code>ServiceABaseUrl</code> config in ServiceB, then when ServiceB needs to send a request it can send it thus:</p>
-<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-csharp"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">result </span><span style="color: #F92672;">=</span><span style="color: #F8F8F2;"> httpHandler.</span><span style="color: #A6E22E;">SendRequest</span><span style="color: #F8F8F2;">(</span></div><div class='line'><span style="color: #F8F8F2;">    url: </span><span style="color: #E6DB74;">$&quot;{</span><span style="color: #F8F8F2;">serviceAConfig</span><span style="color: #E6DB74;">.</span><span style="color: #F8F8F2;">BaseUrl</span><span style="color: #E6DB74;">}/some/endpoint&quot;</span><span style="color: #F8F8F2;">,</span></div><div class='line'><span style="color: #F8F8F2;">    request: packet</span></div><div class='line'><span style="color: #F8F8F2;">);</span></div><textarea data-torchlight-original="true" style="display: none !important;">result = httpHandler.SendRequest(
-    url: $"{serviceAConfig.BaseUrl}/some/endpoint",
-    request: packet
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-csharp"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">result </span><span style="color: #F92672;">=</span><span style="color: #F8F8F2;"> httpHandler.</span><span style="color: #A6E22E;">SendRequest</span><span style="color: #F8F8F2;">(</span></div><div class='line'><span style="color: #F8F8F2;">url: </span><span style="color: #E6DB74;">$&quot;{</span><span style="color: #F8F8F2;">serviceAConfig</span><span style="color: #E6DB74;">.</span><span style="color: #F8F8F2;">BaseUrl</span><span style="color: #E6DB74;">}/some/endpoint&quot;</span><span style="color: #F8F8F2;">,</span></div><div class='line'><span style="color: #F8F8F2;">request: packet</span></div><div class='line'><span style="color: #F8F8F2;">);</span></div><textarea data-torchlight-original="true" style="display: none !important;">result = httpHandler.SendRequest(
+url: $"{serviceAConfig.BaseUrl}/some/endpoint",
+request: packet
 );
 </textarea></code></pre>
 <p>Oh wait, ServiceB is coupled to the <em>endpoint</em> of ServiceA now! In some very simple scenarios this could well be enough, but we would probably be wise to be more resilient. Sure, we could throw all of the individual endpoints into the configs as well, and that gives us more flexibility. But there's still a couple problems. Less importantly, we're going to have tons of config values. More importantly, even with the values of ServiceA's address(es) in configs in ServiceB, the latter is <em>still</em> coupled to specific addresses about the former. We'll need to involve another party in order to properly decouple these.</p>
@@ -160,25 +240,35 @@
 <p>Fortunately, this idea describes the widely-known pattern <em>service discovery</em>, and there are dedicated systems which can support this. Employing one of these systems is essentially the same pattern as above but with the complex logic already built in. If your use case(s) are appropriately small, using your own configuration management with your own logic on top might be the right solution, otherwise I'd encourage you to look into dedicated service discovery systems.</p>
 <p>You might notice a flaw or two with this pattern though. Each dependent service will need to maintain its own logic to connect to and understand the service discovery system; more microservices in the network will result in more updates to that state being required; the dependent services still need to dispatch requests in order to understand addresses; and so on. In short, if I have a complex topology, then this pattern may be insufficient.</p>
 <p>The next step up would be a <em>service mesh</em> to provide an independent component dedicated to managing the traffic across the network, rather than just managing address configurations. Service mesh systems like <a href="https://www.envoyproxy.io/">Envou</a> or <a href="https://istio.io/">Istio</a> will have you deploy a <em>sidecar</em> alongside each service to handle inbound and outboud communication. These are centrally coordinated through a control plane to route requests correctly (as well as security, telemetry, and whatnot). This allows each service to minimize the amount of configuration required to dispatch its requests.</p>
-<h3>Async Communication</h3>
+</section>
+<section id="async-communication">
+<h3>Async Communication <a class="section-link" href="https://ian.wold.guru/Posts/topology_doesnt_change.html#async-communication">#</a></h3>
 <p>It might seem quite dramatic to deploy a sidecar application along with <em>every</em> service in a system, and indeed it's more resource-intensive and complicated on the infrastructure side. In practice it isn't terribly burdensome from an engineering standpoint, and it's not terribly complicated for the infrastructure team once they get it up and going. However, I sympathize with the inclination to want to avoid this if possible. Less is more.</p>
 <p>I've touched on the concept of asyncronous communication in <a href="https://ian.wold.guru/Series/fallacies_distributed_computing.html">my other posts on the fallacies</a>, but to quickly recap, this pattern can essentially be thought of as <em>reacting to events</em> instead of <em>sending requests to get a response</em>. In our previous example, ServiceB needed some resource from ServiceA so it dispatched a request to get that resource. In an asynchronous context, ServiceA would be publishing events notifying the system about updates to that resource, which ServiceB could then consume in order to maintain its own state for this resource.</p>
 <p>From a data normalization mindset this can seem like an antipattern, but in a distributed context it's often quite beneficial, as it allows an ultimate abstraction between services (particularly within the context we're discussing related to topology) while minimizing processing and communication overhead. Not all communication can be made asynchronous, but adopting asyncronous communication largely obviates the need for the more complicated patterns discussed earlier to handle request-response communication.</p>
-<h3>Self-Healing Architecture</h3>
+</section>
+<section id="self-healing-architecture">
+<h3>Self-Healing Architecture <a class="section-link" href="https://ian.wold.guru/Posts/topology_doesnt_change.html#self-healing-architecture">#</a></h3>
 <p>This is a key concept running a line through the considerations I've made so far. <em>Self-healing architectures</em> are, as their name implies, architectures which are designed to automate fault recovery as much as possible. For example, <em>service discovery</em> and <em>service meshes</em> provide tolerance by adjusting the routing through a system in the event of a failure at one point. Just as our services can be coupled to the topology when they dispatch requests onto the network, they can also be coupled to the topology when they encounter errors from it. Thus, implementing a self-healing architecture is a necessity in ensuring a proper decoupling between the services and topology.</p>
 <p>Implementing proper deployment strategies with automated rollbacks are quite beneficial at the service level, and these are facilitated by the patterns discussed earlier. <a href="https://en.wikipedia.org/wiki/Blue%E2%80%93green_deployment">Blue-green deployments</a>, whereby a new version of a service is installed alongside the old version, allows requests to be rolled onto the new version and rolled off if necessary. This can be done intelligently in a <a href="https://martinfowler.com/bliki/CanaryRelease.html">canary release</a> strategy for more control. Using appropriate health check or other monitoring tools, these can be entirely automated.</p>
 <p>Looking at a bit of a higher level, some of our self-healing patterns will themselves alter the topology, and so need to be carefully considered in the whole context so as to not introduce the errors we've discussed. Auto-scaling systems and load balancers will provide isolation across services and communication. The <a href="https://en.wikipedia.org/wiki/Circuit_breaker_design_pattern">circuit breaker pattern</a>, also discussed previously, is widely employed to isolate failures by breaking the connection to failed services.</p>
 <p>Each of these, combined with rollback strategies at the service level, provide an excellent resilience for the system. Their necessity also demonstrates the central point that the <em>topology is always changing</em>, giving us a strange feedback loop where the topology has to change in order to react, in part, to the effects of a changing topology. This cascade is an interesting subject for study!</p>
-<h2>Communication and Monitoring</h2>
+</section>
+</section>
+<section id="communication-and-monitoring">
+<h2>Communication and Monitoring <a class="section-link" href="https://ian.wold.guru/Posts/topology_doesnt_change.html#communication-and-monitoring">#</a></h2>
 <p>I've discussed communication, monitoring, and <em>people process</em> at the end of each of my posts on the fallacies, and I'm curious whether I've said enough or whether this discussion should take up half of each fallacy. Indeed, our processes are as important as the software we develop. We're never going to be able to engineer distributed systems which are perfectly resilient to the constantly-changing environments they run in, so errors are going to happen. <em>People</em> who implement a <em>process</em> involving both proactive and reactive <em>communication</em> with each other (very difficult, I know) and <em>monitoring</em> the production systems are the glue that holds it all together.</p>
 <p>This is very important then. Proactively, when manual changes are made to the topology these should be communicated in a way that all stakeholders can efficiently be made to know about them and have an opportunity to react if necessary. Most changes in topology are automatically done nowadays, I think, so it occurs to me that manual changes are probably quite serious or impactful. All the more reason to communicate.</p>
 <p>But that the vast majority of topology changes are minor and done without human intervention mean that we can only react to unhandled errors that crop up as a result. Where possible, systems which do these sorts of alterations should log what they do and when, allowing us to use our normal log monitoring tools to be able to correlate errors we observe with these updates.</p>
 <p><a href="https://principlesofchaos.org/">Chaos engineering</a> is, for a lot of engineers I know, the most exciting related process - probably more so for the destructive aspect. I don't know that employing this strategy is right for most organizations though, and this testing strategy really benefits larger distributed systems. In order to effectively deploy it, not only do you need excellent communication and collaboration, but the folks running the tests need to be quite diligent and competent.</p>
-<h2>Conclusion</h2>
+</section>
+<section id="conclusion">
+<h2>Conclusion <a class="section-link" href="https://ian.wold.guru/Posts/topology_doesnt_change.html#conclusion">#</a></h2>
 <p>The saving grace is that topology errors will impact more complicated systems over time. Sure, that can probably be said about all the fallacies, but I think this is the one where that primarily shows through. Given my simple example topology of ServiceB -&gt; ServiceA, the topology isn't going to change that much and simple strategies will resolve problems there. However, that network still requires that we set up proper security, and network failues and latency still impact the user experience.</p>
 <p>I tried to outline, particularly with request-response messages, a way to be able to ramp up onto more elaborate strategies to deal with topology abstraction. If you're developing a new system or distributing a legacy system, you might not need to worry about these issues as much up front, but you certainly need to plan for worrying about them. Architect your components in a way that they can be updated with these considerations in future, and ensure you have proper monitoring and processes in place to start with.</p>
 <p>I think that network topology - understanding it and coding around it - is one of the more interesting aspects in distributed systems. I think I share that opinion with several colleagues, but maybe not most. If you find this subject boring generally, leave a comment as to whether I was able to convey a sense of interest or whether I left the subject there, so to speak!</p>
 
+</section>
 
 	</section>
 

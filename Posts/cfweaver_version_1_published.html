@@ -115,25 +115,31 @@
 	<section class="e-content">
 		<p>I've just published verion 1.0.0 of [CFWeaver, my test generation project]! This tool has helped me on a few complicated projects at work, sorting out how systems behave. In fact, while I developed it to help generate integration test scenarios, I've used it more to help me map the functionality of some legacy bits of code.</p>
 <p>You can read my previous writing <a href="https://ian.wold.guru/Posts/thing_i_made_cfweaver.html">about CFWeaver</a> or more generally <a href="https://ian.wold.guru/Posts/book_club_1-2025.html">about this way of thinking</a> that the tool supports. The latest version is <a href="https://github.com/IanWold/CFWeaver/releases/tag/v1.0.0">available for download on GitHub</a> now!</p>
-<h3>Variables</h3>
+<section id="variables">
+<h3>Variables <a class="section-link" href="https://ian.wold.guru/Posts/cfweaver_version_1_published.html#variables">#</a></h3>
 <p>In this release I added the ability to define &quot;variables&quot; along with each step to make it easier to track certain properties of the system through to the table of results. I had previously decided on a syntax for conditions which had the condition specified after a <code>?</code>. This turned out to be conveniently similar to the URL query string syntax, so adding variable definitions was as simple as allowing <code>&amp;</code> after this to append variables to the result.</p>
 <pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-markdown"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #A6E22E;">*</span><span style="color: #F8F8F2;"> Step1: Result ? some condition &amp; myVar = value</span></div><textarea data-torchlight-original="true" style="display: none !important;">* Step1: Result ? some condition &amp; myVar = value
 </textarea></code></pre>
-<h3>Multi-Line Results</h3>
+</section>
+<section id="multi-line-results">
+<h3>Multi-Line Results <a class="section-link" href="https://ian.wold.guru/Posts/cfweaver_version_1_published.html#multi-line-results">#</a></h3>
 <p>This was a big one since it was getting tedious to append multiple results on the same line with <code>|</code>. Take:</p>
 <pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-markdown"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #A6E22E;">*</span><span style="color: #F8F8F2;"> AuthenticateOnExternalSystem: Success ? DidError = no | Timeout = 500 ? auth server timed out &amp; VerifyLog = auth server timeout &amp; DidError = yes | NotAuthenticated = 403 ? not authenticated | OtherError ? non-timeout error from auth server &amp; VerifyLog = auth server unknown error &amp; DidError = yes</span></div><textarea data-torchlight-original="true" style="display: none !important;">* AuthenticateOnExternalSystem: Success ? DidError = no | Timeout = 500 ? auth server timed out &amp; VerifyLog = auth server timeout &amp; DidError = yes | NotAuthenticated = 403 ? not authenticated | OtherError ? non-timeout error from auth server &amp; VerifyLog = auth server unknown error &amp; DidError = yes
 </textarea></code></pre>
 <p>That's not great to read. Much better is to have separate lines, and I had supposed early on that I might achieve that with nested lists. However, I really don't like whitespace dependence, even for a simple modeling language that's coopted markdown. Instead, I opted to use <code>-</code> as list bullets to distinguish a result list lien from a step line, which isn't the <em>greatest</em> either since it requires specific knowledge, but it strikes me as the least-bad option.</p>
-<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-markdown"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #A6E22E;">*</span><span style="color: #F8F8F2;"> AuthenticateOnExternalSystem</span></div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #A6E22E;">-</span><span style="color: #F8F8F2;"> Success ? DidError = no</span></div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #A6E22E;">-</span><span style="color: #F8F8F2;"> Timeout = 500 ? auth server timed out &amp; VerifyLog = auth server timeout &amp; DidError = yes</span></div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #A6E22E;">-</span><span style="color: #F8F8F2;"> NotAuthenticated = 403 ? not authenticated</span></div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #A6E22E;">-</span><span style="color: #F8F8F2;"> OtherError ? non-timeout error from auth server &amp; VerifyLog = auth server unknown error &amp; DidError = yes</span></div><textarea data-torchlight-original="true" style="display: none !important;">* AuthenticateOnExternalSystem
-    - Success ? DidError = no
-    - Timeout = 500 ? auth server timed out &amp; VerifyLog = auth server timeout &amp; DidError = yes
-    - NotAuthenticated = 403 ? not authenticated
-    - OtherError ? non-timeout error from auth server &amp; VerifyLog = auth server unknown error &amp; DidError = yes
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-markdown"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #A6E22E;">*</span><span style="color: #F8F8F2;"> AuthenticateOnExternalSystem</span></div><div class='line'><span style="color: #A6E22E;">-</span><span style="color: #F8F8F2;"> Success ? DidError = no</span></div><div class='line'><span style="color: #A6E22E;">-</span><span style="color: #F8F8F2;"> Timeout = 500 ? auth server timed out &amp; VerifyLog = auth server timeout &amp; DidError = yes</span></div><div class='line'><span style="color: #A6E22E;">-</span><span style="color: #F8F8F2;"> NotAuthenticated = 403 ? not authenticated</span></div><div class='line'><span style="color: #A6E22E;">-</span><span style="color: #F8F8F2;"> OtherError ? non-timeout error from auth server &amp; VerifyLog = auth server unknown error &amp; DidError = yes</span></div><textarea data-torchlight-original="true" style="display: none !important;">* AuthenticateOnExternalSystem
+- Success ? DidError = no
+- Timeout = 500 ? auth server timed out &amp; VerifyLog = auth server timeout &amp; DidError = yes
+- NotAuthenticated = 403 ? not authenticated
+- OtherError ? non-timeout error from auth server &amp; VerifyLog = auth server unknown error &amp; DidError = yes
 </textarea></code></pre>
-<h3>Tests</h3>
+</section>
+<section id="tests">
+<h3>Tests <a class="section-link" href="https://ian.wold.guru/Posts/cfweaver_version_1_published.html#tests">#</a></h3>
 <p>The last thing I've done in preparation for this release is I've added an integration testing apparatus. I don't have <em>everything</em> tested since I'm still considering the best way to test HTML and markdown output, but I do have all the errror conditions tested! This was an interesting process that I haven't done for a command line app yet.</p>
 <p>Crucially, I had to set up the application to inject the console and file I/O functionality; you can <a href="https://github.com/IanWold/CFWeaver/commit/80addb8ffb3822d804e14de5e2e7afd031154700">see that in this commit</a>. This allows the tests to inject fakes to capture these operations and allows me to run integration tests without needing to build the application and run it in Docker or some other squirrely setup for testing.</p>
 
+</section>
 
 	</section>
 

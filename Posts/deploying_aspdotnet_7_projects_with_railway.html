@@ -117,6 +117,134 @@
 		<nav>
 			<ul>
 				
+				<li>
+					<a href="#setting-up">
+						
+							<strong>Setting Up</strong>
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#setting-up-a-new-.net-api">
+						
+							Setting up a new .NET API
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#setting-up-railway">
+						
+							Setting up Railway
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#deploying-our-first-api">
+						
+							<strong>Deploying our first API</strong>
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#deploying-from-a-github-repo">
+						
+							Deploying From a GitHub Repo
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#configuring-the-repository-for-deployment">
+						
+							Configuring the Repository for Deployment
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#debugging-the-first-errors">
+						
+							Debugging the First Errors
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#overriding-railway's-port-assignment">
+						
+							Overriding Railway's Port Assignment
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#using-railway's-port-in-our-api">
+						
+							Using Railway's Port in our API
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#deploy-from-docker-or-cli">
+						
+							Deploy From Docker or CLI
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#deploying-a-blazor-app">
+						
+							<strong>Deploying a Blazor App</strong>
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#setting-up-a-blazor-project">
+						
+							Setting up a Blazor Project
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#configuring-railway-to-deploy-the-server">
+						
+							Configuring Railway to Deploy the Server
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#configuring-the-contentrootpath">
+						
+							Configuring the ContentRootPath
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#conclusion">
+						
+							<strong>Conclusion</strong>
+						
+					</a>
+				</li>
+				
+				<li>
+					<a href="#resources">
+						
+							Resources
+						
+					</a>
+				</li>
+				
 			</ul>
 		</nav>
 	
@@ -127,7 +255,8 @@
 <p>When you deploy with Railway, they'll shove your app into a Docker container and handle the management/scaling/etc. behind the scenes. In addition, they have the ability to stand up a database for you - as of the time of this writing, you can choose PostgreSQL, MySQL, Mongo, and Redis. That said, they of course allow you to deploy any docker image or volume, so if you're willing to put in a little more work I imagine you can make any stack work for you. That all means of course that Railway probably isn't the best solution if you need control over container orchestration, but for CRUD projects and startups it seems quite promising to me.</p>
 <p>What's especially great is their integration with GitHub - it takes just a couple minutes to sign up for Railway, authenticate with GitHub, point it at a repo, and Railway takes care of the deployment from there. It has some magic to sense what kind of project your repo is and attempt to construct a build pipeline for your project right away. This doesn't work too well in .NET, but their interface is very sparse and easy to use to get up and going with it.</p>
 <p>In the remainder of this article, I'm going to be demonstrating how to get a .NET 7 app deployed with Railway. I'll start with a simple ASP.NET API, and then I'll demonstrate getting Blazor working. I'd encourage you to follow along with me - it's no cost to you (you don't even need to type in a credit card) and I think you'll be impressed with how easy it is to get a little hobby app deployed with Railway.</p>
-<h2>Setting Up</h2>
+<section id="setting-up">
+<h2>Setting Up <a class="section-link" href="https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html#setting-up">#</a></h2>
 <p>We'll just need three things to get started:</p>
 <ul>
 <li>An ASP.NET API</li>
@@ -135,7 +264,8 @@
 <li>A Railway account</li>
 </ul>
 <p>Let's go top to bottom there</p>
-<h3>Setting up a new .NET API</h3>
+<section id="setting-up-a-new-.net-api">
+<h3>Setting up a new .NET API <a class="section-link" href="https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html#setting-up-a-new-.net-api">#</a></h3>
 <p>To begin with, I'll assume you have .NET installed, and you have a GitHub account. We can create a barebones API from the console:</p>
 <pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-plaintext"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">dotnet new web -n RailwayAspApiDemo</span></div><textarea data-torchlight-original="true" style="display: none !important;">dotnet new web -n RailwayAspApiDemo
 </textarea></code></pre>
@@ -156,14 +286,22 @@ git commit -m "Getting Started"
 git push -u origin master
 </textarea></code></pre>
 <p>For reference, you can <a href="https://github.com/IanWold/RailwayAspApiDemo">see this repo here</a>.</p>
-<h3>Setting up Railway</h3>
+</section>
+<section id="setting-up-railway">
+<h3>Setting up Railway <a class="section-link" href="https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html#setting-up-railway">#</a></h3>
 <p>This is real simple - just go to <a href="http://railway.app">railway.app</a>, click login at the top, and then you can login with GitHub.</p>
 <p>That's all you need in order to set up Railway. Seriously! Of course we're going to push ahead and click that shiny New Project button though...</p>
-<h2>Deploying our first API</h2>
+</section>
+</section>
+<section id="deploying-our-first-api">
+<h2>Deploying our first API <a class="section-link" href="https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html#deploying-our-first-api">#</a></h2>
 <p>If we had containerized our API with Docker, Railway would have been perfectly happy for us to give it a dockerfile, and it would deploy that no problem. However, Railway also supports building and deploying .NET apps without needing to containerize them. Let's do that first, since we're trying to keep things barebones to get started.</p>
-<h3>Deploying From a GitHub Repo</h3>
+<section id="deploying-from-a-github-repo">
+<h3>Deploying From a GitHub Repo <a class="section-link" href="https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html#deploying-from-a-github-repo">#</a></h3>
 <p>One of Railway's coolest features is that you can start a project off by pointing it at a GitHub repo, and it'll automatically (ish) deploy the repo, and set up hooks to listen to any changes on <code>master</code> and deploy then.</p>
-<h3>Configuring the Repository for Deployment</h3>
+</section>
+<section id="configuring-the-repository-for-deployment">
+<h3>Configuring the Repository for Deployment <a class="section-link" href="https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html#configuring-the-repository-for-deployment">#</a></h3>
 <p>After logging in, we should be faced with a big New Project button</p>
 <p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-new-project.png" alt="New Project button in Railway" /></p>
 <p>Here we'll select Deploy from GitHub repo</p>
@@ -174,22 +312,24 @@ git push -u origin master
 <p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-new-project-deploy-repo.png" alt="Deploy Repo in Railway" /></p>
 <p>We should see the deployment fail in just a few seconds.</p>
 <p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-deploy-first-fail.png" alt="Deploy Repo in Railway" /></p>
-<h3>Debugging the First Errors</h3>
+</section>
+<section id="debugging-the-first-errors">
+<h3>Debugging the First Errors <a class="section-link" href="https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html#debugging-the-first-errors">#</a></h3>
 <p>Let's click on the deployment and inspect the deploy logs. The first thing to notice is that Railway actually did a really good job guessing what our build config should be. At the top of the logs, we can see:</p>
-<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-plaintext"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;"> setup      │ dotnet-sdk                                    </span></div><div class='line'><span style="color: #F8F8F2;">────────────────────────────────────────────────────────────</span></div><div class='line'><span style="color: #F8F8F2;"> install    │ dotnet restore                                </span></div><div class='line'><span style="color: #F8F8F2;">────────────────────────────────────────────────────────────</span></div><div class='line'><span style="color: #F8F8F2;"> build      │ dotnet publish --no-restore -c Release -o out </span></div><div class='line'><span style="color: #F8F8F2;">────────────────────────────────────────────────────────────</span></div><div class='line'><span style="color: #F8F8F2;"> start      │ ./out/RailwayAspApiDemo</span></div><textarea data-torchlight-original="true" style="display: none !important;"> setup      │ dotnet-sdk                                    
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-plaintext"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;"> setup      │ dotnet-sdk</span></div><div class='line'><span style="color: #F8F8F2;">────────────────────────────────────────────────────────────</span></div><div class='line'><span style="color: #F8F8F2;">install    │ dotnet restore</span></div><div class='line'><span style="color: #F8F8F2;">────────────────────────────────────────────────────────────</span></div><div class='line'><span style="color: #F8F8F2;">build      │ dotnet publish --no-restore -c Release -o out</span></div><div class='line'><span style="color: #F8F8F2;">────────────────────────────────────────────────────────────</span></div><div class='line'><span style="color: #F8F8F2;">start      │ ./out/RailwayAspApiDemo</span></div><textarea data-torchlight-original="true" style="display: none !important;"> setup      │ dotnet-sdk
 ────────────────────────────────────────────────────────────
- install    │ dotnet restore                                
+install    │ dotnet restore
 ────────────────────────────────────────────────────────────
- build      │ dotnet publish --no-restore -c Release -o out 
+build      │ dotnet publish --no-restore -c Release -o out
 ────────────────────────────────────────────────────────────
- start      │ ./out/RailwayAspApiDemo                       
+start      │ ./out/RailwayAspApiDemo
 </textarea></code></pre>
 <p>That's really spectacular! Just because we had a <code>.csproj</code> file, it was able to fill this all out. But it's not all peaches and pringles, we've got a build error. And indeed we're able to see a failure just a few lines down:</p>
-<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-plaintext"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">#10 1.426 /nix/store/832ihvqk3vxgqqs5hvcyvg6bxqybky14-dotnet-sdk-6.0.403/sdk/6.0.403/Sdks</span></div><div class='line'><span style="color: #F8F8F2;">          /Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(144,5):</span></div><div class='line'><span style="color: #F8F8F2;">          error NETSDK1045: The current .NET SDK does not support targeting .NET 7.0.</span></div><div class='line'><span style="color: #F8F8F2;">          Either target .NET 6.0 or lower, or use a version of the .NET SDK</span></div><div class='line'><span style="color: #F8F8F2;">          that supports .NET 7.0. [/app/RailwayAspApiDemo.csproj]</span></div><textarea data-torchlight-original="true" style="display: none !important;">#10 1.426 /nix/store/832ihvqk3vxgqqs5hvcyvg6bxqybky14-dotnet-sdk-6.0.403/sdk/6.0.403/Sdks
-          /Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(144,5):
-          error NETSDK1045: The current .NET SDK does not support targeting .NET 7.0.
-          Either target .NET 6.0 or lower, or use a version of the .NET SDK
-          that supports .NET 7.0. [/app/RailwayAspApiDemo.csproj]
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-plaintext"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">#10 1.426 /nix/store/832ihvqk3vxgqqs5hvcyvg6bxqybky14-dotnet-sdk-6.0.403/sdk/6.0.403/Sdks</span></div><div class='line'><span style="color: #F8F8F2;">/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(144,5):</span></div><div class='line'><span style="color: #F8F8F2;">error NETSDK1045: The current .NET SDK does not support targeting .NET 7.0.</span></div><div class='line'><span style="color: #F8F8F2;">Either target .NET 6.0 or lower, or use a version of the .NET SDK</span></div><div class='line'><span style="color: #F8F8F2;">that supports .NET 7.0. [/app/RailwayAspApiDemo.csproj]</span></div><textarea data-torchlight-original="true" style="display: none !important;">#10 1.426 /nix/store/832ihvqk3vxgqqs5hvcyvg6bxqybky14-dotnet-sdk-6.0.403/sdk/6.0.403/Sdks
+/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(144,5):
+error NETSDK1045: The current .NET SDK does not support targeting .NET 7.0.
+Either target .NET 6.0 or lower, or use a version of the .NET SDK
+that supports .NET 7.0. [/app/RailwayAspApiDemo.csproj]
 </textarea></code></pre>
 <p>Classic cloud moment - we need to know how to configure the .NET SDK version. Thankfully, <a href="https://nixpacks.com/docs/providers/csharp">Railway's docs</a>, though sparse, do give us exactly what we need, an environment variable:</p>
 <pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-plaintext"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">NIXPACKS_CSHARP_SDK_VERSION=&quot;7.0&quot;</span></div><textarea data-torchlight-original="true" style="display: none !important;">NIXPACKS_CSHARP_SDK_VERSION="7.0"
@@ -215,22 +355,26 @@ info: Microsoft.Hosting.Lifetime[0]
 Content root path: /app
 </textarea></code></pre>
 <p>It says it's listening on port 3000, so it seems like the app is running, but why can't we see it? That's because when Railway deploys our app, it deploys it in a Docker container and generates a port for us. That means we either need to wire our app up to listen on the port that Railway dictates, or we need to tell Railway to use our nice, pretty port 3000. Luckily, Railway allows us to do both; the port number lives in the environment variable <code>PORT</code>, so we can either override that in Railway or consume the environment variable from our API.</p>
-<h3>Overriding Railway's Port Assignment</h3>
+</section>
+<section id="overriding-railway's-port-assignment">
+<h3>Overriding Railway's Port Assignment <a class="section-link" href="https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html#overriding-railway's-port-assignment">#</a></h3>
 <p>To override Railway's port assignment, we can just set the environment variable in the variables tab, just like how we set the <code>NIXPACKS_CSHARP_SDK_VERSION</code> variable earlier:</p>
 <pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-plaintext"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">PORT=&quot;3000&quot;</span></div><textarea data-torchlight-original="true" style="display: none !important;">PORT="3000"
 </textarea></code></pre>
 <p>This will trigger a redeploy, and then we'll cross our fingers, refresh the app, and...</p>
 <p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-hello-world-success.png" alt="Deploy Repo in Railway" /></p>
 <p>Nice!</p>
-<h3>Using Railway's Port in our API</h3>
+</section>
+<section id="using-railway's-port-in-our-api">
+<h3>Using Railway's Port in our API <a class="section-link" href="https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html#using-railway's-port-in-our-api">#</a></h3>
 <p>Alternatively, if you want to use the Railway-generated port, we can add just a bit of code to do that. Go ahead and delete the <code>PORT</code> environment variable if you added that.</p>
 <p>We can update our <code>Program.cs</code>:</p>
-<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-csharp"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F92672;">var</span><span style="color: #F8F8F2;"> builder </span><span style="color: #F92672;">=</span><span style="color: #F8F8F2;"> WebApplication.</span><span style="color: #A6E22E;">CreateBuilder</span><span style="color: #F8F8F2;">(args);</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F92672;">if</span><span style="color: #F8F8F2;"> (Environment.</span><span style="color: #A6E22E;">GetEnvironmentVariable</span><span style="color: #F8F8F2;">(</span><span style="color: #E6DB74;">&quot;PORT&quot;</span><span style="color: #F8F8F2;">) </span><span style="color: #F92672;">is</span><span style="color: #F8F8F2;"> </span><span style="color: #66D9EF;">not</span><span style="color: #F8F8F2;"> </span><span style="color: #AE81FF;">null</span><span style="color: #F8F8F2;"> and string environmentPort</span></div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #F92672;">&amp;&amp;</span><span style="color: #F8F8F2;"> int.</span><span style="color: #A6E22E;">TryParse</span><span style="color: #F8F8F2;">(environmentPort, </span><span style="color: #F92672;">out</span><span style="color: #F8F8F2;"> </span><span style="color: #F92672;">int</span><span style="color: #F8F8F2;"> port))</span></div><div class='line'><span style="color: #F8F8F2;">{</span></div><div class='line'><span style="color: #F8F8F2;">    builder.WebHost.</span><span style="color: #A6E22E;">ConfigureKestrel</span><span style="color: #F8F8F2;">(o </span><span style="color: #F92672;">=&gt;</span><span style="color: #F8F8F2;"> o.</span><span style="color: #A6E22E;">ListenAnyIP</span><span style="color: #F8F8F2;">(port));</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F92672;">var</span><span style="color: #F8F8F2;"> app </span><span style="color: #F92672;">=</span><span style="color: #F8F8F2;"> builder.</span><span style="color: #A6E22E;">Build</span><span style="color: #F8F8F2;">();</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">app.</span><span style="color: #A6E22E;">MapGet</span><span style="color: #F8F8F2;">(</span><span style="color: #E6DB74;">&quot;/&quot;</span><span style="color: #F8F8F2;">, () </span><span style="color: #F92672;">=&gt;</span><span style="color: #F8F8F2;"> </span><span style="color: #E6DB74;">&quot;Hello World!&quot;</span><span style="color: #F8F8F2;">);</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">app.</span><span style="color: #A6E22E;">Run</span><span style="color: #F8F8F2;">();</span></div><textarea data-torchlight-original="true" style="display: none !important;">var builder = WebApplication.CreateBuilder(args);
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-csharp"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F92672;">var</span><span style="color: #F8F8F2;"> builder </span><span style="color: #F92672;">=</span><span style="color: #F8F8F2;"> WebApplication.</span><span style="color: #A6E22E;">CreateBuilder</span><span style="color: #F8F8F2;">(args);</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F92672;">if</span><span style="color: #F8F8F2;"> (Environment.</span><span style="color: #A6E22E;">GetEnvironmentVariable</span><span style="color: #F8F8F2;">(</span><span style="color: #E6DB74;">&quot;PORT&quot;</span><span style="color: #F8F8F2;">) </span><span style="color: #F92672;">is</span><span style="color: #F8F8F2;"> </span><span style="color: #66D9EF;">not</span><span style="color: #F8F8F2;"> </span><span style="color: #AE81FF;">null</span><span style="color: #F8F8F2;"> and string environmentPort</span></div><div class='line'><span style="color: #F92672;">&amp;&amp;</span><span style="color: #F8F8F2;"> int.</span><span style="color: #A6E22E;">TryParse</span><span style="color: #F8F8F2;">(environmentPort, </span><span style="color: #F92672;">out</span><span style="color: #F8F8F2;"> </span><span style="color: #F92672;">int</span><span style="color: #F8F8F2;"> port))</span></div><div class='line'><span style="color: #F8F8F2;">{</span></div><div class='line'><span style="color: #F8F8F2;">builder.WebHost.</span><span style="color: #A6E22E;">ConfigureKestrel</span><span style="color: #F8F8F2;">(o </span><span style="color: #F92672;">=&gt;</span><span style="color: #F8F8F2;"> o.</span><span style="color: #A6E22E;">ListenAnyIP</span><span style="color: #F8F8F2;">(port));</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F92672;">var</span><span style="color: #F8F8F2;"> app </span><span style="color: #F92672;">=</span><span style="color: #F8F8F2;"> builder.</span><span style="color: #A6E22E;">Build</span><span style="color: #F8F8F2;">();</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">app.</span><span style="color: #A6E22E;">MapGet</span><span style="color: #F8F8F2;">(</span><span style="color: #E6DB74;">&quot;/&quot;</span><span style="color: #F8F8F2;">, () </span><span style="color: #F92672;">=&gt;</span><span style="color: #F8F8F2;"> </span><span style="color: #E6DB74;">&quot;Hello World!&quot;</span><span style="color: #F8F8F2;">);</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">app.</span><span style="color: #A6E22E;">Run</span><span style="color: #F8F8F2;">();</span></div><textarea data-torchlight-original="true" style="display: none !important;">var builder = WebApplication.CreateBuilder(args);
 
 if (Environment.GetEnvironmentVariable("PORT") is not null and string environmentPort
-    &amp;&amp; int.TryParse(environmentPort, out int port))
+&amp;&amp; int.TryParse(environmentPort, out int port))
 {
-    builder.WebHost.ConfigureKestrel(o =&gt; o.ListenAnyIP(port));
+builder.WebHost.ConfigureKestrel(o =&gt; o.ListenAnyIP(port));
 }
 
 var app = builder.Build();
@@ -241,11 +385,17 @@ app.Run();
 </textarea></code></pre>
 <p><em>Aside: I <strong>hate</strong> the syntax <code>is not null and string</code> but I'm not going to complain. Too much.</em></p>
 <p>Push that code to master and you should see Railway start deploying your API right away. Once that's up, you should see &quot;Hello, World!&quot; in the browser at your app.</p>
-<h3>Deploy From Docker or CLI</h3>
+</section>
+<section id="deploy-from-docker-or-cli">
+<h3>Deploy From Docker or CLI <a class="section-link" href="https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html#deploy-from-docker-or-cli">#</a></h3>
 <p>I could type out a whole section here, but honestly I would just be copying <a href="https://rendle.dev/posts/deploying-to-railway-with-dotnet/">Mark Rendle's excelent explanation</a>. His tutorial was quite helpful for me getting started, and I'd like to give some credit where it's due. So, if you want to containerize your app and use the dockerfile instead of Railway's build steps, or if you want to deploy using Railway's CLI, please give his article a visit!</p>
-<h2>Deploying a Blazor App</h2>
+</section>
+</section>
+<section id="deploying-a-blazor-app">
+<h2>Deploying a Blazor App <a class="section-link" href="https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html#deploying-a-blazor-app">#</a></h2>
 <p>We've got our barebones API up and running, but it's missing a number of things yet. Frankly, that's a trivial example that's hiding a number of problems that still exist. I think Blazor's a good way to demonstrate these, especially since an ASP.NET-hosted Blazor WASM project requires sharing static files.</p>
-<h3>Setting up a Blazor Project</h3>
+<section id="setting-up-a-blazor-project">
+<h3>Setting up a Blazor Project <a class="section-link" href="https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html#setting-up-a-blazor-project">#</a></h3>
 <p>Similar to the API we created above, we can get the default Blazor project initialized with</p>
 <pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-plaintext"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">dotnet new blazorwasm --hosted -n RailwayBlazorDemo</span></div><textarea data-torchlight-original="true" style="display: none !important;">dotnet new blazorwasm --hosted -n RailwayBlazorDemo
 </textarea></code></pre>
@@ -253,44 +403,52 @@ app.Run();
 <p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-blazor-default.png" alt="Deploy Repo in Railway" /></p>
 <p>Go ahead and push this to a new repository (for reference you can <a href="https://github.com/IanWold/RailwayBlazorDemo">see mine here</a>) and create a new project in Railway, linking to this new repository.</p>
 <p>That should start a deploy like before, and just like before you'll get a failed build. Remember to set the <code>NIXPACKS_CSHARP_SDK_VERSION</code> environment variable, and resolve the port issue however you choose. I'll choose to resolve it in my code. In order to do that, I'll edit the <code>/Server/Program.cs</code> file with the same lines we added to the barebones API. While that deploys, we also need to generate a domain for this app like we did before. And, don't you know it, I got lucky again: <a href="http://railwayblazordemo-production.up.railway.app">railwayblazordemo-production.up.railway.app</a>! Neat.</p>
-<h3>Configuring Railway to Deploy the Server</h3>
+</section>
+<section id="configuring-railway-to-deploy-the-server">
+<h3>Configuring Railway to Deploy the Server <a class="section-link" href="https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html#configuring-railway-to-deploy-the-server">#</a></h3>
 <p>At this point, we might expect it to work. However, you'll notice after building Railway attempts to start the service several times, but fails with the same message:</p>
 <pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-plaintext"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">/bin/bash: line 1: ./out/RailwayBlazorDemo.Client: No such file or directory</span></div><textarea data-torchlight-original="true" style="display: none !important;">/bin/bash: line 1: ./out/RailwayBlazorDemo.Client: No such file or directory
 </textarea></code></pre>
 <p>Uh oh - we don't want to deploy the <em>client</em>, we want to deploy the <em>server</em>, because the server is configured to serve the client. The cause of this can be seen in the build logs like we'd expect - the automagic build figurer-outer guessed that we wanted to deploy the client:</p>
-<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-plaintext"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">setup      │ dotnet-sdk_7                                  </span></div><div class='line'><span style="color: #F8F8F2;">───────────────────────────────────────────────────────────</span></div><div class='line'><span style="color: #F8F8F2;">install    │ dotnet restore                                </span></div><div class='line'><span style="color: #F8F8F2;">───────────────────────────────────────────────────────────</span></div><div class='line'><span style="color: #F8F8F2;">build      │ dotnet publish --no-restore -c Release -o out </span></div><div class='line'><span style="color: #F8F8F2;">───────────────────────────────────────────────────────────</span></div><div class='line'><span style="color: #F8F8F2;">start      │ ./out/RailwayBlazorDemo.Client</span></div><textarea data-torchlight-original="true" style="display: none !important;">setup      │ dotnet-sdk_7                                  
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-plaintext"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">setup      │ dotnet-sdk_7</span></div><div class='line'><span style="color: #F8F8F2;">───────────────────────────────────────────────────────────</span></div><div class='line'><span style="color: #F8F8F2;">install    │ dotnet restore</span></div><div class='line'><span style="color: #F8F8F2;">───────────────────────────────────────────────────────────</span></div><div class='line'><span style="color: #F8F8F2;">build      │ dotnet publish --no-restore -c Release -o out</span></div><div class='line'><span style="color: #F8F8F2;">───────────────────────────────────────────────────────────</span></div><div class='line'><span style="color: #F8F8F2;">start      │ ./out/RailwayBlazorDemo.Client</span></div><textarea data-torchlight-original="true" style="display: none !important;">setup      │ dotnet-sdk_7
 ───────────────────────────────────────────────────────────
-install    │ dotnet restore                                
+install    │ dotnet restore
 ───────────────────────────────────────────────────────────
-build      │ dotnet publish --no-restore -c Release -o out 
+build      │ dotnet publish --no-restore -c Release -o out
 ───────────────────────────────────────────────────────────
-start      │ ./out/RailwayBlazorDemo.Client                
+start      │ ./out/RailwayBlazorDemo.Client
 </textarea></code></pre>
 <p>This, like the other environment configuration issues in Railway, is simple to resolve. If you navigate back to the <code>Settings</code> tab on the UI for the service, scroll down and you'll see Deploy settings, with a helpful place to override the start command. In fact you can override any of the build steps in these settings, although you'll notice that they're pretty sparse. For our needs here though, those settings are all fine, so we'll just update the start command to <code>./out/RailwayBlazorDemo.Server</code>:</p>
 <p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-settings-start-command.png" alt="Deploy Repo in Railway" /></p>
 <p>This will trigger a rebuild, and that should succeed! Our app should now be at the address we generated earlier, right?</p>
 <p>Right?</p>
 <p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-failed-404.png" alt="Deploy Repo in Railway" /></p>
-<h3>Configuring the ContentRootPath</h3>
+</section>
+<section id="configuring-the-contentrootpath">
+<h3>Configuring the ContentRootPath <a class="section-link" href="https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html#configuring-the-contentrootpath">#</a></h3>
 <p>Well, that's interesting, because it's a different error than we got when first deploying the barebones API earlier. In that case, we got a nice error displayed with Railway's UI. This tells us that the server is up and running - of course though we verified that when the server started logging after it deployed a minute ago. Thus, we know that the problem is with the server being able to serve up the client app.</p>
 <p>What's going on here isn't entirely obvious and it relies on a bit of knowledge about Docker to be able to intuit what's going on. There are two key lines in the logs. The key line is in the deploy logs:</p>
 <pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-plaintext"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">Content root path: /app</span></div><textarea data-torchlight-original="true" style="display: none !important;">Content root path: /app
 </textarea></code></pre>
 <p>What's going on is that the client is stored as a static file on the server, and the server needs access to that file to be able to serve it, of course. ASP calls the root directory for static files the &quot;content root path&quot;, and this one is a bit bunked.</p>
 <p>This has a code solution. Replace the first line of <code>Server/Program.cs</code> with the following:</p>
-<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-csharp"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F92672;">var</span><span style="color: #F8F8F2;"> builder </span><span style="color: #F92672;">=</span><span style="color: #F8F8F2;"> WebApplication.</span><span style="color: #A6E22E;">CreateBuilder</span><span style="color: #F8F8F2;">(</span><span style="color: #F92672;">new</span><span style="color: #F8F8F2;"> </span><span style="color: #66D9EF;">WebApplicationOptions</span><span style="color: #F8F8F2;">() {</span></div><div class='line'><span style="color: #F8F8F2;">    Args </span><span style="color: #F92672;">=</span><span style="color: #F8F8F2;"> args,</span></div><div class='line'><span style="color: #F8F8F2;">    ContentRootPath </span><span style="color: #F92672;">=</span><span style="color: #F8F8F2;"> </span><span style="color: #E6DB74;">&quot;./&quot;</span></div><div class='line'><span style="color: #F8F8F2;">});</span></div><textarea data-torchlight-original="true" style="display: none !important;">var builder = WebApplication.CreateBuilder(new WebApplicationOptions() {
-    Args = args,
-    ContentRootPath = "./"
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-csharp"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F92672;">var</span><span style="color: #F8F8F2;"> builder </span><span style="color: #F92672;">=</span><span style="color: #F8F8F2;"> WebApplication.</span><span style="color: #A6E22E;">CreateBuilder</span><span style="color: #F8F8F2;">(</span><span style="color: #F92672;">new</span><span style="color: #F8F8F2;"> </span><span style="color: #66D9EF;">WebApplicationOptions</span><span style="color: #F8F8F2;">() {</span></div><div class='line'><span style="color: #F8F8F2;">Args </span><span style="color: #F92672;">=</span><span style="color: #F8F8F2;"> args,</span></div><div class='line'><span style="color: #F8F8F2;">ContentRootPath </span><span style="color: #F92672;">=</span><span style="color: #F8F8F2;"> </span><span style="color: #E6DB74;">&quot;./&quot;</span></div><div class='line'><span style="color: #F8F8F2;">});</span></div><textarea data-torchlight-original="true" style="display: none !important;">var builder = WebApplication.CreateBuilder(new WebApplicationOptions() {
+Args = args,
+ContentRootPath = "./"
 });
 </textarea></code></pre>
 <p>Yes, <code>ContentRootPath</code> is <em>supposed</em> to default to its root directory, but there's some weirdness that got introduced ... <em>*checks notes*</em> ... somewhere? Honestly, I'm not sure how this solves it - I've just debugged enough weird directory issues with Docker in my professional career that it triggered my spidey senses.</p>
 <p>Making that change and pushing to <code>master</code> will trigger a rebuild. Then, as if by magic, our app is working at the link:</p>
 <p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/deploy-railway-blazor-success.png" alt="Deploy Repo in Railway" /></p>
-<h2>Conclusion</h2>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion <a class="section-link" href="https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html#conclusion">#</a></h2>
 <p>Despite a few bumps in the road (which, apart from the content root path issue, make sense in context) we were able to get two .NET apps deployed in no time and with no money! In future, I think we'll explore adding a database with Railway and hooking our Blazor app up to it.</p>
 <p>I think this is the sort of case where Railway really excells. If you don't have an overly complicated backend system, deploying with Railway is extremely fast, simple, and cheap. Their focus on this area significantly reduces the barrier to entry to get a hobby app out the door. And, it seems that Railway does have enough capability to scale if you do attract users - at least through the first phase or two. Because of these factors, I'll be using Railway to deploy all my hobby apps in the future here! I'm very excited to discover a cloud provider this capable at this price.</p>
 <p>Railway's limitations are very apparent though - such is the tradeoff with the simplicity they've achieved. While you certainly can deploy any container with Railway, an overly complicated backend system could potentially become more burdensome to maintain than not. Really though, I don't know where that boundary is, but I suspect it's decently high enough that even if I do take some pet projects into production properly, I can rely on Railway to be able to serve them adequately.</p>
-<h3>Resources</h3>
+<section id="resources">
+<h3>Resources <a class="section-link" href="https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html#resources">#</a></h3>
 <p>You can see my GitHub repos used in this article here:</p>
 <ul>
 <li><a href="https://github.com/IanWold/RailwayAspApiDemo">RailwayAspApiDemo</a></li>
@@ -298,6 +456,8 @@ start      │ ./out/RailwayBlazorDemo.Client
 </ul>
 <p><a href="https://docs.railway.app/">Railway's documentation</a> is pretty good, but their <a href="https://discord.com/invite/railway">Discord server</a> is an excellent and lively place to get help when you need it.</p>
 
+</section>
+</section>
 
 	</section>
 

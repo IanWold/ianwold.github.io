@@ -120,7 +120,8 @@
 
 	<section class="e-content">
 		<p><a href="https://ian.wold.guru/Posts/deploying_aspdotnet_7_projects_with_railway.html">Last time I looked at Railway</a>, I got it up and running with a Blazor WASM app. Now, I'll look at adding a PostgreSQL database to it. As with the app I got working, Railway's interface will make it incredibly simple to provision the database, and we'll need to do minimal work to get the connection info to our app.</p>
-<h2>Provisioning the Database</h2>
+<section id="provisioning-the-database">
+<h2>Provisioning the Database <a class="section-link" href="https://ian.wold.guru/Posts/adding_a_database_to_our_railway_app.html#provisioning-the-database">#</a></h2>
 <p>From the Railway dashboard, you can click into your project, and there should be a New button at the top (as in a buttno that says &quot;New&quot;, not a button whose appearance would not heretofore be expected):</p>
 <p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/railway-database-new.png" alt="New Project button in Railway" /></p>
 <p>This brings up the familiar dialog to provision resources, from which we'll select Database:</p>
@@ -130,7 +131,9 @@
 <p>And look at that, it deploys a new PostgreSQL database! This is one of the things I love about Railway - their interface to set up resources has eliminated <em>all</em> of the steps to setup that aren't 100% necessary, and the default settings they choose are logical and easily overwritten later if we need.</p>
 <p>Notice also the attached <code>pgdata</code> volume. As discussed before, Railway just stores all of your resources in Docker images. This doesn't require that you create a <code>dockerfile</code> for each of your projects and resources, they can do that for you if you don't want to. It is to say that they give you all the tools you might want to use to be able to manage your resources as docker containers and volumes, so you can more or less choose the level of control you need over your resources.</p>
 <p>The way I use Railway, I let it manage all my resources for me, and I don't bog myself down in the weeds of Docker as much. I've got plenty of time in my day job to get frustrated with Docker!</p>
-<h2>Connecting to our Database</h2>
+</section>
+<section id="connecting-to-our-database">
+<h2>Connecting to our Database <a class="section-link" href="https://ian.wold.guru/Posts/adding_a_database_to_our_railway_app.html#connecting-to-our-database">#</a></h2>
 <p>If you click on your new database resource and then the <code>Variables</code> tab, you should see a bunch of variables:</p>
 <p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/railway-database-variables.png" alt="New Project button in Railway" /></p>
 <p>This contains all the information that our app will need to connect to it. Railway allows the resources within a project to reference each others' variables, so we just need to know which ones to reference to build a connection string.</p>
@@ -140,12 +143,13 @@
 <p>If you copy that as the value of a new variable in your application, it will fill in each of the references with the values from your database's variables, and that should be a sufficient connectino string to test that it works:</p>
 <p><img src="https://raw.githubusercontent.com/IanWold/ianwold.github.io/master/Static/images/railway-database-connection-string.png" alt="New Project button in Railway" /></p>
 <p>Note that I'm using the variable name <code>ConnectionStrings__Database</code>, with two underscores, which behaves as though I'm inserting the following into my <code>appsettings</code> (in a .NET context):</p>
-<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-json"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #E6DB74;">&quot;ConnectionStrings&quot;</span><span style="color: #F8F8F2;">: {</span></div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #66D9EF;">&quot;Database&quot;</span><span style="color: #F8F8F2;">: </span><span style="color: #CFCFC2;">&quot;...&quot;</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><textarea data-torchlight-original="true" style="display: none !important;">"ConnectionStrings": {
-    "Database": "..."
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-json"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #E6DB74;">&quot;ConnectionStrings&quot;</span><span style="color: #F8F8F2;">: {</span></div><div class='line'><span style="color: #66D9EF;">&quot;Database&quot;</span><span style="color: #F8F8F2;">: </span><span style="color: #CFCFC2;">&quot;...&quot;</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><textarea data-torchlight-original="true" style="display: none !important;">"ConnectionStrings": {
+"Database": "..."
 }
 </textarea></code></pre>
 <p>And that's all the configuration needed for your app to be able to consume your new database!</p>
 
+</section>
 
 	</section>
 
