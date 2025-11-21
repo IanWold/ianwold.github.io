@@ -666,8 +666,7 @@ sum (x:xs) = x + sum xs
 Is also equivalent in C#:
 
 ```csharp
-public static int Sum(IEnumerable<int> l) => l switch
-{
+public static int Sum(IEnumerable<int> l) => l switch {
     [] => 0,
     [var x, .. var xs] => x + Sum(xs),
 };
@@ -700,8 +699,7 @@ evaluate (Add a b) = evaluate a + evaluate b
 Since `Expression` is closed in Haskell we will have no problems detected by the compiler, but C# needs an extra line:
 
 ```csharp
-public static int Evaluate(Expression e) => e switch
-{
+public static int Evaluate(Expression e) => e switch {
     Const c => c.Value,
     Add(var l, var r) => Evaluate(l) + Evaluate(r),
     _ => throw new ArgumentException("Unknown expression")
