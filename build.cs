@@ -254,7 +254,7 @@ new MetalsharpProject(new MetalsharpOptions()
 
 	foreach (var post in posts)
 	{
-		var postLines = post.Text.Split('\r', '\n').Where(l => !string.IsNullOrWhiteSpace(l));
+		var postLines = post.Text.Split("\r\n");
 		var postBuilder = new StringBuilder();
 		var sections = new List<object>();
 		var isInContainingSection = false;
