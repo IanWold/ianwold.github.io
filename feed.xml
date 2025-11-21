@@ -2099,8 +2099,7 @@ sum [] = 0
 sum (x:xs) = x + sum xs
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Is also equivalent in C#:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;public static int Sum(IEnumerable&amp;lt;int&amp;gt; l) =&amp;gt; l switch
-{
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public static int Sum(IEnumerable&amp;lt;int&amp;gt; l) =&amp;gt; l switch {
     [] =&amp;gt; 0,
     [var x, .. var xs] =&amp;gt; x + Sum(xs),
 };
@@ -2121,8 +2120,7 @@ evaluate (Const n) = n
 evaluate (Add a b) = evaluate a + evaluate b
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Since &lt;code&gt;Expression&lt;/code&gt; is closed in Haskell we will have no problems detected by the compiler, but C# needs an extra line:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;public static int Evaluate(Expression e) =&amp;gt; e switch
-{
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public static int Evaluate(Expression e) =&amp;gt; e switch {
     Const c =&amp;gt; c.Value,
     Add(var l, var r) =&amp;gt; Evaluate(l) + Evaluate(r),
     _ =&amp;gt; throw new ArgumentException(&amp;quot;Unknown expression&amp;quot;)
