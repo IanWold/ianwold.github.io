@@ -421,6 +421,66 @@ They've journeyed forth, with purpose evergreen.&lt;/p&gt;
       <a10:updated>2025-01-27T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">book_club_10-11-2025</guid>
+      <link>https://ian.wold.guru/Posts/book_club_10-11-2025.html</link>
+      <title>Book Club 10&amp;11/2025: .NET 10, C# 14</title>
+      <description>&lt;p&gt;Happy Turkey Day! Last year when I published my newsletter on Thanksgiving, &lt;a href="https://ian.wold.guru/Posts/book_club_11-2024.html"&gt;I was thankful for my colleagues who make a habit of saying &amp;quot;no.&amp;quot;&lt;/a&gt;. This year I'm thankful for my colleagues who keep .NET applications updated to the latest versions; it's not just a burden to have to maintain many codebases at different versions, but each new .NET is a significant improvement over the last. .NET Framework had cultivated a well-earned reputation as a bogged-down runtime reached for by large enterprises who care more about their relationship with Microsoft than the quality of their line-of-business software. It could be said that .NET was born as MS-flavored Java and stayed there.&lt;/p&gt;
+&lt;p&gt;.NET (&lt;em&gt;just&lt;/em&gt; net, not &amp;quot;framework&amp;quot; or &amp;quot;core&amp;quot;) has, I think, completely lifted away from this problem. Not just multi-platform and AOT support, but performance optimizations and the inclusion of libraries that significantly improve development capabilities in networking, security, and performance, combined with an explosion of features in C# and F#, have put the ecosystem on-par with the best-optimized runtimes/languages. It seems more that Java is playing catch-up to .NET anymore. Great success!&lt;/p&gt;
+&lt;p&gt;The latest release this month, .NET 10, continues all of that but at a manageable pace. Microsoft has been sprinting with recent releases that have dramatically altered the .NET world, but .NET 10 is not shaking anything up that much ... on the surface.&lt;/p&gt;
+&lt;p&gt;A couple important developments though. First, they're calling Aspire just &amp;quot;Aspire&amp;quot; now, not &amp;quot;Aspire.NET&amp;quot;; it appears that they're attempting to develop this into a multi-language tool with utility for folks outside the .NET ecosystem. Reading the tea leaves from many miles away I might guess that Microsoft wants to create a platform for &lt;em&gt;any&lt;/em&gt; engineer to consider for distributed application development, and this would make sense with my understanding of Aspire being a plot to sell more Azure. Helpfully though, with .NET 10 allowing us to run single-file C# applications, Aspire can be segregated to some single file instead of needing a whole CSPROJ and separate directory and the like.&lt;/p&gt;
+&lt;p&gt;Speaking of running single files, yes! This is important for my &lt;a href="https://github.com/IanWold/Metalsharp"&gt;Metalsharp&lt;/a&gt; tool that generates my blog; I will be moving this forward to version 1.0.0 soon! You can see an (admittedly somewhat complex) example of a single file app &lt;a href="https://github.com/IanWold/ianwold.github.io/blob/master/build.cs"&gt;on my blog's repo&lt;/a&gt;. The fun bits are at the top.&lt;/p&gt;
+&lt;p&gt;C# got a new &lt;code&gt;field&lt;/code&gt; keyword exposing the compiler-generated field on each auto property. Finally. This should have been included along with auto properties back in the day but what can you do. More interesting though, C# has an &lt;code&gt;extension&lt;/code&gt; keyword now:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public static class Extensions {
+    // New extension keyword groups a bunch of extensions together for a type
+    extension(SomeType thing) {
+        // &amp;quot;static&amp;quot; and &amp;quot;this&amp;quot; are not needed!
+        public string GetHello() =&amp;gt; &amp;quot;Hi&amp;quot;;
+
+        // Whoa look it's an extension property!
+        public string SayHello =&amp;gt; &amp;quot;Hello&amp;quot;;
+    }
+
+    // But wait there's more! What if I don't name the extension argument?
+    extension(SomeType) {
+        // Whoa look, static extensions!
+        public static string Hello =&amp;gt; &amp;quot;Howdy&amp;quot;;
+    }
+}
+
+// Outputs:
+// Howdy
+// Hello
+// Hi
+public void TestExtensions() {
+    Console.WriteLine(SomeType.Hello);
+
+    var thing = new SomeType();
+    Console.WriteLine(thing.SayHello);
+    Console.WriteLine(thing.GetHello());
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This feature is really cool and seems innocuous. Well, in fact this is an important step towards what the C# team has called &amp;quot;extension everything.&amp;quot; The idea is that everything should be able to be extended at any scope, and it's an idea that goes back to the beginning of .NET Core. The language team has been very slow and deliberate in considering this feature, and I expect it to be roled out bit-by-bit in many versions. This is the first step to that.&lt;/p&gt;
+&lt;p&gt;Also absent from this release: discriminated unions! Not my favorite feature but my most-needed feature for so long. There's been important developments from the language team on this front though and I expect to see the first iteration of these roll out next year. I am impatient though so I wrote a source generator and analyzer as a proof-of-concept so I can have actual unions now, which I've aptly named &lt;a href="https://github.com/IanWold/UnionizeNow"&gt;UnionizeNow&lt;/a&gt;. Full explanation and kind of a blog post in that repo. It's very cool! I might not make this into a full Nuget package since unions are, in theory, around the corner, but two important things for me with it:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;It frees me to start developing union-dependent ideas in a way that will be mostly compatible with the unions that the language team will roll out (their thinking is far enough along to give confidence here), and&lt;/li&gt;
+&lt;li&gt;If the first iteration of unions are lacking some small features which I need, I hope I could easily retool this generator to graft those on.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Here's more reading on new .NET:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://ian.wold.guru/Posts/dotnet_from_framework_to_10.html"&gt;.NET: From Framework to 10 - Ian Wold&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://devblogs.microsoft.com/dotnet/performance-improvements-in-net-10/"&gt;Performance Improvements in .NET 10 - Stephen Toub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.bytehide.com/blog/whats-new-in-dotnet-10"&gt;What’s New in .NET 10: Everything You Need to Know - ByteHide&lt;/a&gt; (collects all the little bits)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.roundthecode.com/dotnet-tutorials/are-c-sharp-14-new-features-worth-updating-app-dotnet-10"&gt;Are C# 14's new features worth updating your app to .NET 10? - Round the Code&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Watching:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=x0725PDUho8"&gt;The Coolest Feature of .NET 10 is Here - Nick Chapsas&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Thu, 27 Nov 2025 00:00:00 Z</pubDate>
+      <a10:updated>2025-11-27T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">book_club_10-2023</guid>
       <link>https://ian.wold.guru/Posts/book_club_10-2023.html</link>
       <title>Book Club 10/2023: Functional Patterns in C#</title>
