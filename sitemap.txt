@@ -114,9 +114,9 @@ https://ian.wold.guru/Topics/testing.html
 https://ian.wold.guru/Topics/projects.html
 https://ian.wold.guru/Topics/learning.html
 https://ian.wold.guru/Topics/patterns.html
-https://ian.wold.guru/Topics/standards.html
 https://ian.wold.guru/Topics/languages.html
 https://ian.wold.guru/Topics/postgres.html
+https://ian.wold.guru/Topics/standards.html
 https://ian.wold.guru/Topics/devex.html
 https://ian.wold.guru/Topics/tooling.html
 https://ian.wold.guru/Topics/security.html
