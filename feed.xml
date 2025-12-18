@@ -2858,7 +2858,7 @@ Then the response should have status code 200 with body
     <item>
       <guid isPermaLink="false">ive_switched_to_linux</guid>
       <link>https://ian.wold.guru/Posts/ive_switched_to_linux.html</link>
-      <title>I've Sitched to Linux</title>
+      <title>I've Switched to Linux</title>
       <description>&lt;p&gt;I guess this is more of a short announcement post, but I would encourage other .NET engineers to consider doing the same. As .NET has progressed, its support on Linux has gotten better and better. The VS Code C# Dev Kit has all of the features from VS that I ever need to develop, and I don't find myself needing to develop a whole lot of super-Windows-specific desktop applications anymore.&lt;/p&gt;
 &lt;p&gt;With the .NET 10 release and a round of tooling updates, I've found that all of my development requirements are completely supported on Linux. Windows is increasingly bloated (and increasingly without the ability to unbloat it), the update experiences are extremely frustrating, and the sharp increase - even for Microsoft - in privacy violations as of late makes Windows more of a burden than a help, even though I primarily use Microsoft technologies in my day-to-day development.&lt;/p&gt;
 &lt;p&gt;The reality is that I can do all of the .NET development I want to from a much more lightweight system, &lt;em&gt;and&lt;/em&gt; I can close the book on worrying about (an amount of) Microsoft's spying. This is a step I've been hoping to take for a long time, and just as well it comes at this time of year that I can call it a Christmas present to myself!&lt;/p&gt;
