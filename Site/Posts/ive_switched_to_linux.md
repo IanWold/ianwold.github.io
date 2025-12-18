@@ -1,19 +1,18 @@
 ;;;
 {
 	"title": "I've Sitched to Linux",
-	"description": "Just i nth enick of time as Windows is speedrunning 'Worst OS Ever' all of my development activities are now supported on Linux.",
+	"description": "Just in the nick of time as Windows is speedrunning 'Worst OS Ever,' all of my development activities are now supported on Linux.",
 	"date": "18 December 2025",
 	"contents": false,
 	"hero": "photo-1595792463990-07008351a4fb",
     "topics": ["Blogging", "How-To"],
     "related": [
-		{ "title": ".NET: From Framework to 10"", "description": "Looking back at all of the new features introduced in C# and how they impact the way we develop .NET systems today.", "fileName": "dotnet_from_framework_to_10" },
+		{ "title": ".NET: From Framework to 10", "description": "Looking back at all of the new features introduced in C# and how they impact the way we develop .NET systems today.", "fileName": "dotnet_from_framework_to_10" },
 		{ "title": "I've Stopped Using Visual Studio", "description": "... mostly. And so can you!", "fileName": "ive_stopped_using_visual_studio" },
 		{ "title": "My (Continuing) Descent Into Madness", "description": "It started simply enough, when I asked myself if I should try an IDE other than Visual Studio. Mere months later, I'm now using a tiling window manager. This is the story of my (continuing) descent into madness.", "fileName": "my_continuing_descent_into_madness" }
     ]
 }
 ;;;
-
 
 I guess this is more of a short announcement post, but I would encourage other .NET engineers to consider doing the same. As .NET has progressed, its support on Linux has gotten better and better. The VS Code C# Dev Kit has all of the features from VS that I ever need to develop, and I don't find myself needing to develop a whole lot of super-Windows-specific desktop applications anymore.
 
