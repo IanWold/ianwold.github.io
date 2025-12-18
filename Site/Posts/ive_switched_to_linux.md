@@ -5,7 +5,7 @@
 	"date": "18 December 2025",
 	"contents": false,
 	"hero": "photo-1595792463990-07008351a4fb",
-    "topics": ["Blogging", "How-To"],
+    "topics": ["Industry", "Tooling"],
     "related": [
 		{ "title": ".NET: From Framework to 10", "description": "Looking back at all of the new features introduced in C# and how they impact the way we develop .NET systems today.", "fileName": "dotnet_from_framework_to_10" },
 		{ "title": "I've Stopped Using Visual Studio", "description": "... mostly. And so can you!", "fileName": "ive_stopped_using_visual_studio" },
