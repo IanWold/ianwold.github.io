@@ -1,6 +1,6 @@
 ;;;
 {
-	"title": "I've Sitched to Linux",
+	"title": "I've Switched to Linux",
 	"description": "Just in the nick of time as Windows is speedrunning 'Worst OS Ever,' all of my development activities are now supported on Linux.",
 	"date": "18 December 2025",
 	"contents": false,
