@@ -18,6 +18,8 @@ I keep [a blogroll](https://ian.wold.guru/Blogroll/) with all the other blogs I 
 
 ## Projects
 
+**PostgreSignalR** on [GitHub](https://github.com/IanWold/PostgreSignalR) and [NuGet](https://www.nuget.org/packages/PostgreSignalR): A PostgreSQL backplane for SignalR.
+
 **FreePlanningPoker.io** on [Web](https://freeplanningpoker.io) and [GitHub](https://github.com/IanWold/PlanningPoker): A free tool for software teams to do "planning poker" exercises. It's always going to be free, without limits.
 
 **StaticBlogroll** on [GitHub](https://github.com/IanWold/StaticBlogroll): Quickly publish a statically-generated blogroll with GitHub Actions and Pages.
