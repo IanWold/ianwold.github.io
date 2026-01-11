@@ -16,8 +16,8 @@ At this _very instant_ I am...
 
 **Updating** all my things to the new .NET version.
 
-**Developing** more apps like my [FreePlanningPoker.io](https://ian.wold.guru/Posts/free_planning_poker.html). A lot of simple apps require login credentials or expose your data to someone's server or run inefficiently or aren't open source or easily independently deployable. That's a lot of ors and I wish more of the tools I rely on were like this, so I'm making more.
+**Developing** [PostgreSignalR](https://github.com/IanWold/PostgreSignalR), a PostgreSQL backplane for SignalR.
 
-**Practicing** my skills in pool and billiards. [Snooker](https://en.wikipedia.org/wiki/Snooker) is my favorite sport, and while I don't have easy access to a table in Minneapolis, I can practice other cue sports. Fun fact: work colleagues and I invented [Full-Rack Pool](http://fullrackpool.com/)!
+**Searching** for more [business brunch](https://ian.wold.guru/Posts/best_business_brunch_spots_in_minneapolis.html) restaurants in Minneapolis.
 
 _This is a [now page](https://nownownow.com/about). You can see its [update history on GitHub](https://github.com/IanWold/ianwold.github.io/commits/master/Site/now.md)._
