@@ -94,6 +94,7 @@ https://ian.wold.guru/Posts/thing_i_made_cfweaver.html
 https://ian.wold.guru/Posts/three_laws.html
 https://ian.wold.guru/Posts/topology_doesnt_change.html
 https://ian.wold.guru/Posts/using_interfaces.html
+https://ian.wold.guru/Posts/why_dont_we_work_in_single_week_increments.html
 https://ian.wold.guru/Posts/why_i_have_this_blog.html
 https://ian.wold.guru/Posts/write_your_own_rdbms_versioned_migration_boilerplate.html
 https://ian.wold.guru/Series/fallacies_distributed_computing.html
