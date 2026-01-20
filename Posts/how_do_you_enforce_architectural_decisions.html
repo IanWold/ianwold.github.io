@@ -26,12 +26,31 @@
 		
 
 		<title>
-			Ian Wold | Industry 
+			Ian Wold | How do you Enforce Architectural Decisions? 
 		</title>
 
 		
 			<script type="application/ld+json">
-				
+				{
+	"@context": "https://schema.org",
+	"@type": "Article",
+	"author": [{
+		"@type": "Person",
+		"name": "Ian Wold"
+	}],
+	"datePublished": "1/20/2026 12:00:00 AM",
+	"image": "https://images.unsplash.com/photo-1504307651254-35680f356dfd",
+	"headline": "How do you Enforce Architectural Decisions?",
+	"description": "Depending on what you mean by decisions, enforcing, and architecture, this question can go a lot of different ways. Most are probably unhelpful.",
+	"publisher": {
+		"@type": "Person",
+		"name": "Ian Wold",
+		"logo": {
+			"@type": "ImageObject",
+			"url": "https://ian.wold.guru/images/hero1.svg"
+		}
+	},
+}
 			</script>
 		
 
@@ -55,159 +74,120 @@
 		<main>
 
 
-	
 
 
 
-
-
-
-
+<article class="h-entry">
 	<header>
-		
-			<h1>Topic: Industry</h1>
-		
+		<h1 class="p-name">How do you Enforce Architectural Decisions?</h1>
+		<section>
+			<small>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+				20 January 2026
+				<time class="dt-published" style="display: none;">
+					2026-01-20T00:00:00.0000000Z
+				</time>
+			</small>
+			<small>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+				7  Minutes 
+			</small>
+			<small>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-commit"><circle cx="12" cy="12" r="4"></circle><line x1="1.05" y1="12" x2="7" y2="12"></line><line x1="17.01" y1="12" x2="22.96" y2="12"></line></svg>
+				<a href="https://github.com/IanWold/ianwold.github.io/commits/master/Site/Posts/how_do_you_enforce_architectural_decisions.md">History</a>
+			</small>
+			
+				<small>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+					
+						<a href="../Topics/architecture.html">Architecture</a>
+					
+						<a href="../Topics/industry.html">Industry</a>
+					
+				</small>
+			
+		</section>
+		<p class="p-summary">Depending on what you mean by decisions, enforcing, and architecture, this question can go a lot of different ways. Most are probably unhelpful.</p>
+		<img class="u-photo" alt="hero" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1000&h=525&fit=crop&crop=entropy" alt="Header image" />
 	</header>
+
 	
-	<section>
-		
+	
+
+	<section class="e-content">
+		<p><em>&quot;My best-architected projects were the ones that never had an Architect.&quot;</em> I was recently told this by a former project manager who retired feeling unimpressed by colleagues over-eager to adopt the title <em>architect</em>. I can't blame him, on this blog I've documented a number of observations I've made of flawed attitudes towards architecture. That is, attitudes about the nature of software architecture and the work that should be expected of architects, not ideas about this-or-that architectural pattern. Indeed, it seems intuitive that a project could be seriously derailed by an architect with a particularly nonproductive attitude about their job.</p>
+<p>This is the sort of architect my project manager friend seems to have found, and he told me how he stopped hiring architects: During interviews, he started asking one question to which he never received a satisfactory answer. With that, he refused to hire any more architects, and his projects were all the better for it. I happen to be very comfortable, though, professionally describing myself with the <em>architect</em> title, so I'm curious to answer this question. <em>How do you enforce architectural decisions?</em></p>
+<p>Imagine you've applied for an architectural position and you're asked this - what is <em>your</em> answer? It's really not straightforward; the answer depends a great deal on your conception of the practice of architecture. I can imagine a lot of potential answers, and it's not hard to figure how one could go years without hearing a satisfactory one.</p>
+<p>For me, this is a trick question; at least, I'll answer it like it's a trick question. It's certainly a leading question by my reading, supposing that it's in the architects' nature to make and enforce decisions. This may be so, but I'd venture that most folks in our industry are going to adopt the model of the architect-as-superior; that architectural decisions are apart from and supercede engineering decisions. This is the trap.</p>
+<p>I think it sometimes does our industry a disservice that we lean on a construction analogy to describe our roles. In building a house, the to-be homeowner consults with an architect over floor plans and renders which result in a final blueprint passed to builders who assemble the final, tangible house. It's right to forgive anyone who mistakenly thinks that the analogy with our industry maps the homeowners to the business, builders to software engineers, and the architect to software architects. This is completely wrong though, and that this mistake has tangible implications for millions of software professionals and the projects we're meant to steward is a serious fault. In fact, the analogy would be to map the homeowner to everyone with a stake in the software's quality, the building architect to the software engineer, and the house builder to our compilers.</p>
+<p>Except for a very small number of cases, software is not developed by making a complete, abstract definition of the final product before writing all the code to fulfil the definition. Rather, software tends to be constantly created and recreated in an interactive process; typing is significantly less resource-intensive than constantly erecting and destroying walls and rooms and roofs. We iterate a bit, deploy that iteration for all stakeholders (clients/users are stakeholders too), they give us feedback, and we rejigger what we need for that new feedback. What part of the house-building process does that sound like? That's right, it's the consultation between the homeowner and the architect. Remember the homeowner maps the stakeholders and users and all that; the house architect maps to the software engineers. The code is the blueprint we're all consulting on, and it's trivially cheap to ask the house builders to build a brand new version of our blueprints - after all, the house builder maps to the compiler that takes seconds to produce the built software.</p>
+<p>I will reiterate - it's a grave mistake to think that the software engineering process is the analogy-equivalent of the house builders building the blueprint. If you will, close your eyes and imagine a small office with a house architect and a couple commissioning her to build them a new home. There's a blueprint on the desk and a big, red button that says &quot;BUILD.&quot; The couple asks the house architect to make changes to the blueprint to accommodate some requirement they have, and the architect obliges and updates the blueprint. Let's imagine this office sits at the head of a long road, which we can look down through a window in the office. The road is lined with houses, each next house a bit different from the first, with addresses like &quot;v1.0.101&quot;, &quot;v1.0.102&quot;, and so on. The house architect hits her BUILD button, and within seconds a new house appears at the end of the row of houses - address &quot;v1.0.103.&quot; <em>This</em> is what software engineering is, the process inside the office. Let's not let ourselves be distracted by any misdirections from the imperfection of the construction analogy.</p>
+<p>So where does that leave Mr. Software Architect? It might look like we've squeezed him out of the picture, but that's not true. Well, not entirely; I want to very intentionally exclude anyone who draws diagrams before any code is written and berates colleagues for not implementing his diagrams. Software architecture is not brought into existence by diagrams or charts or whitepapers or anything like that; these are just tools which can help us to explain and teach an architecture after it comes into existence. Software architecture is made by the very process of writing the software; the architecture emerges from the code that is actually written (and for aggregate systems the components that are deployed and the interactions that emerge between them). Software architecture is an artifact that emerges from the engineering process - remember the office before the row of houses.</p>
+<p>If we're trying to think about software architecture as something abstract, separate from and superior to the code or the engineering process, we're completely missing the fundamentals. Software architecture might be better understood as subordinate to the engineering process, but really it's best understood as being <em>one of</em> the essential components of what goes into doing software engineering. Every software engineer is making architectural decisions, every day. Every software engineer is, to a greater or lesser extent, a software architect. Not because they've developed a separate skill, but because software architecture is an aspect of doing software engineering.</p>
+<p>Where that leaves Mr. Software Architect then is that he is a sofware engineer all the same as his colleagues on his team. If we have somebody with the <em>architect</em> title, what we ideally have is an engineer who's particularly understanding of this architecture aspect of engineering, somebody who strengthens the whole team by setting a quality example of this particular aspect of engineering. Other folks on the team will have other strengths like design or security or performance, which are all themselves aspects of software engineering. How does our colleague who's good at performance lead the team to deliver a performant product? This seems like a silly question because the answer is obvious: if they're a professional then they'll act <em>professionally</em> with the team on performance. All the same with our colleague who's good at architecture.</p>
+<p>So I object to the question <em>how do you enforce architectural decisions</em> because I see neither &quot;decisions&quot; nor &quot;enforcement&quot; in any of this. However, if we want to have a conversation about how an architecturally-inclined member of the team can best contribute their skills to the whole, then we can talk.</p>
+
+
 	</section>
 
-
-
+	<footer>
+		<div id="webmentions"></div>
 	
-	
-		<section id="2026">
-			
-				<h2>2026</h2>
-			
+		<div class="comments">
+			<script src="https://giscus.app/client.js"
+				data-repo="IanWold/ianwold.github.io"
+				data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk1NDkyNzI="
+				data-category="Posts"
+				data-category-id="DIC_kwDOCYKHWM4CZH2Y"
+				data-mapping="title"
+				data-strict="0"
+				data-reactions-enabled="0"
+				data-emit-metadata="0"
+				data-input-position="top"
+				data-theme="light"
+				data-lang="en"
+				data-loading="lazy"
+				crossorigin="anonymous"
+				async>
+			</script>
+		</div>
+	</footer>
+</article>
+<footer>
+	<section>
+		<img src="../images/hero1.svg" alt="Ian's Logo" />
+		<section>
+			<h2>
+				Hi, I'm Ian
+			</h2>
+			<p>
+				I'm a software engineer, architect, and team leader in Minneapolis. My career has largely focused on .NET and web technologies, spread across several industries. Currently I'm working for Crate &amp; Barrel on their ecommerce solutions. You can find me on this blog, contributing to open source repositories, and at conferences around the Midwest.
+			</p>
+			<hr>
+			<p>
+				If you'd like to keep up with me, please subscribe to my <a href="https://buttondown.email/ianwold" target="_blank">book club</a> or <a href="https://ian.wold.guru/feed.xml" target="_blank">RSS feed</a>. If you'd like to help me out with server costs, I would be forever grateful if you <a href="https://ko-fi.com/ianwold">bought me a coffee</a>!
+			</p>
+			<hr>
+			<p>
+				Some other posts you might be interested in:
+			</p>
 			<ul>
 				
-				
 					<li>
-						<time>01.20</time>
-						<a href="../Posts/how_do_you_enforce_architectural_decisions.html">
-							<h3>How do you Enforce Architectural Decisions?</h3>
-							<small>Depending on what you mean by decisions, enforcing, and architecture, this question can go a lot of different ways. Most are probably unhelpful.</small>
+						<a href="../Posts/shenanigans_as_an_accelerator.html">
+							<h3>Shenanigans as an Accelerator</h3>
+							<small>A short story about Wordle and scripts</small>
 						</a>
 					</li>
 				
 					<li>
-						<time>01.11</time>
-						<a href="../Posts/why_dont_we_work_in_single_week_increments.html">
-							<h3>Okay but Seriously, Why Don't we Work in Single-Week Increments?</h3>
-							<small>A single week is the most reasonable amount of time for which some work goal can be set, this unit ought form the basis of our work management.</small>
-						</a>
-					</li>
-				
-			</ul>
-		</section>
-	
-
-	
-	
-		<section id="2025">
-			
-				<h2>2025</h2>
-			
-			<ul>
-				
-				
-					<li>
-						<time>12.18</time>
-						<a href="../Posts/ive_switched_to_linux.html">
-							<h3>I've Switched to Linux</h3>
-							<small>Just in the nick of time as Windows is speedrunning 'Worst OS Ever,' all of my development activities are now supported on Linux.</small>
+						<a href="../Posts/principles_for_successful_teams.html">
+							<h3>Principles for Successful Teams</h3>
+							<small>We don't need the thousands of several-hundred-page books to understand what makes a team, department, or firm successful.</small>
 						</a>
 					</li>
 				
 					<li>
-						<time>05.02</time>
-						<a href="../Posts/best_business_brunch_spots_in_minneapolis.html">
-							<h3>The Best Business Brunch in Minneapolis (So Far)</h3>
-							<small>Keeping in touch with colleagues is best done over a Business Brunch™; here's where I go in Minneapolis.</small>
-						</a>
-					</li>
-				
-					<li>
-						<time>02.19</time>
-						<a href="../Posts/the_modular_monolith_wont_save_you.html">
-							<h3>The Modular Monolith Won't Save You</h3>
-							<small>I must once again insist there are no silver bullets; knowing architectural patterns is no substitute for knowing how to write software.</small>
-						</a>
-					</li>
-				
-					<li>
-						<time>01.22</time>
-						<a href="../Posts/the_art_of_hype_driven_development.html">
-							<h3>The Art of Hype-Driven Development</h3>
-							<small>The five simple steps to embracing and weilding the hype cycle for drudgery and someone else's profit.</small>
-						</a>
-					</li>
-				
-			</ul>
-		</section>
-	
-
-	
-	
-		<section id="2024">
-			
-				<h2>2024</h2>
-			
-			<ul>
-				
-				
-					<li>
-						<time>12.13</time>
-						<a href="../Posts/intuiting_jevons_paradox.html">
-							<h3>Intuiting Jevon's Paradox</h3>
-							<small>On the unintuitive pattern of resource consumption and how it relates to software engineering.</small>
-						</a>
-					</li>
-				
-					<li>
-						<time>11.28</time>
-						<a href="../Posts/book_club_11-2024.html">
-							<h3>Book Club 11/2024: No</h3>
-							<small>On forming quality opinions and saying 'no'</small>
-						</a>
-					</li>
-				
-					<li>
-						<time>09.02</time>
-						<a href="../Posts/book_club_8-2024.html">
-							<h3>Book Club 8/2024: Labor</h3>
-							<small>Using Labor Day as an excuse to wonder about some recent trends in the industry</small>
-						</a>
-					</li>
-				
-					<li>
-						<time>06.05</time>
-						<a href="../Posts/scrum_is_not_agile.html">
-							<h3>Scrum is not Agile</h3>
-							<small>Taking a step back to try to be a bit more rigorous about these process terms we use.</small>
-						</a>
-					</li>
-				
-					<li>
-						<time>03.27</time>
-						<a href="../Posts/farewell_twin_cities_code_camp.html">
-							<h3>Farewell, Twin Cities Code Camp</h3>
-							<small>Looking back on my favorite local conference.</small>
-						</a>
-					</li>
-				
-					<li>
-						<time>01.24</time>
-						<a href="../Posts/book_club_1-2024.html">
-							<h3>Book Club 1/2024: What is a Software Architect?</h3>
-							<small>A few meandering and maybe unhelpful thoughts on the title "Software Architect"</small>
-						</a>
-					</li>
-				
-					<li>
-						<time>01.17</time>
 						<a href="../Posts/eight_maxims.html">
 							<h3>Eight Maxims</h3>
 							<small>A few principles for thoughtful software engineering.</small>
@@ -216,30 +196,52 @@
 				
 			</ul>
 		</section>
-	
+	</section>
+</footer>
 
-	
-	
-		<section id="2023">
-			
-				<h2>2023</h2>
-			
-			<ul>
-				
-				
-					<li>
-						<time>12.16</time>
-						<a href="../Posts/book_club_12-2023.html">
-							<h3>Book Club 12/2023: Workflow, Process, and Agile</h3>
-							<small>Some thoughts on how to organize software development and teams, and how non-technical factors help (or hinder) us developing better software.</small>
-						</a>
-					</li>
-				
-			</ul>
-		</section>
-	
+<script>
+	const nav = document.querySelector('main nav');
+	if (nav) {
+		nav.style.setProperty('--element-height', `${nav.offsetHeight}px`);
+	}
 
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch(`https://webmention.io/api/mentions.jf2?target=${window.location.href}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Ope!`);
+            }
 
+            return response.json();
+        })
+        .then(json => {
+            const mentionList = document.createElement('ul');
+
+            json.children.forEach(child => {
+                const date = new Date(child.published);
+                const formattedDate = date.toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric"
+                });
+
+                var itemHtml = document.createElement('li');
+                itemHtml.innerHTML = `<a href="${child.url}">${child.author.name} on ${formattedDate}</a>`;
+                mentionList.appendChild(itemHtml);
+            });
+
+			const webmentionsDiv = document.getElementById('webmentions');
+
+            if (mentionList.children.length > 0) {
+                webmentionsDiv.innerHTML = '<section><p><strong>This post has been webmentioned by:</strong></p></section>';
+                console.log(webmentionsDiv.firstChild.firstChild);
+                webmentionsDiv.firstChild.firstChild.appendChild(mentionList);
+            } else {
+				webmentionsDiv.remove();
+			}
+        });
+    });
+</script>
 
 		</main>
 		<footer>
@@ -258,6 +260,25 @@
 		</footer>
 
 		<script>
+			
+				window.addEventListener('DOMContentLoaded', () => {
+					const observer = new IntersectionObserver(entries => {
+						entries.forEach(entry => {
+							const id = entry.target.getAttribute('id');
+							let classList = document.querySelector(`main nav li a[href="#${id}"]`).parentElement.classList;
+
+							if (entry.intersectionRatio > 0) {
+								classList.add('active');
+							} else {
+								classList.remove('active');
+							}
+						});
+					});
+
+					document.querySelectorAll('section[id]').forEach((section) => {
+						observer.observe(section);
+					});
+				});
 			
 
 			const darkModeToggle = document.getElementById("dark-mode-toggle");
