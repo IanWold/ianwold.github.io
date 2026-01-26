@@ -1,6 +1,6 @@
 ;;;
 {
-	"title": "Book Club 1/26: C#, Without Allocation",
+	"title": "Book Club 1/2026: C#, Without Allocation",
 	"description": "Some resources on writing allocation-less (or -free) C#",
 	"date": "25 January 2026",
 	"contents": false,
