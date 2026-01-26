@@ -421,6 +421,40 @@ They've journeyed forth, with purpose evergreen.&lt;/p&gt;
       <a10:updated>2025-01-27T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">book_club_1-2026</guid>
+      <link>https://ian.wold.guru/Posts/book_club_1-2026.html</link>
+      <title>Book Club 1/2026: C#, Without Allocation</title>
+      <description>&lt;p&gt;I'm not &lt;em&gt;very&lt;/em&gt; good at coding for performance. I can do some rudimentary profiling, and if you give me a couple metrics to optimize for I can do a pretty good job getting those numbers down. When I sit down to write a piece of software though, performance is maybe my second or third concern, after ensuring the software works properly, it's well-formed (for readability and extensibility), it's well-documented, I can deploy it easily, and the like. Intentionally, I write software both in a language/runtime and in the sorts of domains for which this approach works.&lt;/p&gt;
+&lt;p&gt;I don't think that every engineer on a team needs to be extremely performance-focused. We have colleagues who are fantastic at performance, and I hold their contributions to a high esteem. At the same time though, it's no good allowing anyone to think it's alright for an engineer to neglect developing a decent knowledge of engineering for performance, and it should especially be discouraged for anyone to not consider performance altogether. The worst offense would be to develop a habit of slopping performance concerns on our performance colleague; often code written without an eye towards performance is code that &lt;em&gt;can't&lt;/em&gt; be made more performant.&lt;/p&gt;
+&lt;p&gt;I know plenty of folks will disagree with my enumerating &amp;quot;performance&amp;quot; among the sorts of &lt;em&gt;skills&lt;/em&gt; that software engineers can have - for the above reason no less - but the fact is that there are many different sorts of considerations that need to be held in the head of a software engineer, and it's natural that we will each be good at some considerations but not all of them. Again, this is not to give anyone a reason to neglect performance. Instead, this presents an opportunity to ask: &lt;em&gt;how frequently do you review your own code through a performance lens?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;My answer is &amp;quot;not as frequently as I'd like,&amp;quot; which I think is a good opportunity to practice more performant development. One aspect of writing performant code, particularly in a garbage-collected language like C#, is to consider how the runtime allocates data. Reducing allocations in languages like C# or Java isn't just about making sure less memory is used - more memory use &lt;em&gt;also&lt;/em&gt; increases garbage collector time, which can result in its own set of difficult-to-debug issues if left unchecked. Using the wrong kind of object (&lt;code&gt;class&lt;/code&gt;/&lt;code&gt;struct&lt;/code&gt;) depending on your use case can cause copying where there doesn't need to be any.&lt;/p&gt;
+&lt;p&gt;Fortunately, we don't need to go looking through IL to be able to learn some fundamentals that can significantly help us here! I've collected some resources on writing allocation-free C#. Notice: there's a lot of repeated information between the sources isn't there?&lt;/p&gt;
+&lt;p&gt;Before listing these links though, I want to point everyone to one of my favorite C# engineers, though I have never spoken with them. &lt;a href="https://github.com/neuecc"&gt;Yoshifumi Kawai (@neuecc)&lt;/a&gt; and their company &lt;a href="https://github.com/Cysharp"&gt;Cysharp&lt;/a&gt; have published a wealth of open-source projects that provide a master class in practical, performant C#. From a &lt;a href="https://github.com/Cysharp/ZLinq"&gt;zero-allocation LINQ implementation&lt;/a&gt; to maybe the fastest &lt;a href="https://github.com/Cysharp/MemoryPack"&gt;binary (de)serializer&lt;/a&gt; for .NET, I am a huge fan.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Reading&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/performance/"&gt;Reduce memory allocations using new C# features - MSDN&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://blog.maartenballiauw.be/posts/2016-10-19-making-net-code-less-allocatey-garbage-collector/"&gt;Making .NET code less allocatey - Allocations and the Garbage Collector - Maarten Balliauw&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://endjin.com/blog/2023/09/optimising-dotnet-code-2-hunting-for-allocations"&gt;Optimising .NET code: Hunting for allocations - Jonathan George&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://medium.com/c-sharp-programming/zero-allocation-patterns-in-modern-net-web-apis-8c06c18743b4"&gt;Zero-Allocation Patterns in Modern .NET Web APIs - Sukhpinder Singh&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.sebaslab.com/zero-allocation-code-in-unity/"&gt;Zero allocation code in C# and Unity - Sebastiano Mandalà&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/nazarovsa/csharp-zero-allocation/blob/main/Presentation.pdf"&gt;Writing zero-allocation code with C# - Sergey Nazarov&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Writing&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=nK54s84xRRs"&gt;Writing Allocation Free Code in C# - Matt Ellis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=B2yOjLyEZk0"&gt;Writing C# without allocating ANY memory - Nick Chapsas&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=mLX1sYVf-Xg"&gt;Pushing C# to the limit - Joe Albahari&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=9FEfy9y0fFQ"&gt;Exploring NET's Memory Management — A Trip Down Memory Lane - Maarten Balliauw&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;And a preview of more performance things...&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=3r6gbZFRDHs"&gt;High-performance code design patterns in C# - Konrad Kokosa&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Sun, 25 Jan 2026 00:00:00 Z</pubDate>
+      <a10:updated>2026-01-25T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">book_club_10-11-2025</guid>
       <link>https://ian.wold.guru/Posts/book_club_10-11-2025.html</link>
       <title>Book Club 10&amp;11/2025: .NET 10, C# 14</title>
