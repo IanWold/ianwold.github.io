@@ -2,7 +2,7 @@
 {
 	"title": "Minneapolis, January 2026",
 	"description": "On recent events and ICE in my city.",
-	"date": "31 January 2025",
+	"date": "31 January 2026",
 	"contents": false,
 	"hero": "photo-1575341606544-71df52f9bdf2",
     "topics": [],
