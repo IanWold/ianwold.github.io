@@ -3551,6 +3551,15 @@ CREATE TRIGGER trigger_cart_items_delete BEFORE DELETE ON items FOR EACH ROW EXE
       <a10:updated>2024-12-18T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">question_of_the_week</guid>
+      <link>https://ian.wold.guru/Posts/question_of_the_week.html</link>
+      <title>Thing I Made: Question of the Week</title>
+      <description>&lt;p&gt;I like asking dumb questions each week as a teambuilding thing; I made a site to show a random question each week: &lt;a href="https://questionoftheweek.io"&gt;QuestionOfTheWeek.io&lt;/a&gt;!&lt;/p&gt;
+</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 Z</pubDate>
+      <a10:updated>2026-02-11T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">quick_and_dirty_sequential_ids_in_mongo</guid>
       <link>https://ian.wold.guru/Posts/quick_and_dirty_sequential_ids_in_mongo.html</link>
       <title>Quick &amp; Dirty Sequential IDs in MongoDB</title>
