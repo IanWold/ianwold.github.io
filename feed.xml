@@ -3482,6 +3482,30 @@ CREATE TRIGGER trigger_cart_items_delete BEFORE DELETE ON items FOR EACH ROW EXE
       <a10:updated>2025-03-03T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">provocative_holub_opinion_tier_list</guid>
+      <link>https://ian.wold.guru/Posts/provocative_holub_opinion_tier_list.html</link>
+      <title>Provocative Holub Opinion Tier List</title>
+      <description>&lt;p&gt;If you're new to my blog, one important thing to note is that my thinking regarding team and organizational practices tends to align with that of &lt;a href="https://holub.com/"&gt;Allen Holub&lt;/a&gt;, at least so far as what I've gleaned from a number of talks and blog posts he's done.&lt;/p&gt;
+&lt;p&gt;Holub has come upon a number of beliefs which, while not necessarily being among the most controversial opinions in our industry, are nonetheless heterodox to the normal prescriptions we find in our industry with respect to organization. He has branded a number of these in a hashtag format such as &amp;quot;#NoStandups&amp;quot; or &amp;quot;#NoRetrospectives,&amp;quot; stemming from an earlier trend around the hashtag &amp;quot;#NoEstimates.&amp;quot; Below I sort these into &lt;a href="https://en.wikipedia.org/wiki/Tier_list"&gt;tiers&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;&lt;a href="https://holub.com/noestimates-an-introduction/"&gt;#NoEstimates&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This is the original &amp;quot;no&amp;quot; hashtag, there's a reason it began a trend. This is the one best-supported by empirical data: studies have shown that counting cards (rate of backlog accrual vs rate of completion) allow projecting the completion date of a project within plus or minus two weeks. By using completion date projection instead of the more common and opposite practice of trying to estimate completion dates, businesses and teams gain a finer level of control on what products they ship when.&lt;/p&gt;
+&lt;p&gt;This one goes in the S tier: it is very widely applicable and impossible to argue against when outside of limited cases.&lt;/p&gt;
+&lt;h2&gt;&lt;a href="https://holub.com/nostandups/"&gt;#NoStandups&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In his opening paragraph on the matter, Holub introduces the standup meeting as &amp;quot;a band-aid that’s hiding ineffective communication.&amp;quot; This may be true in a number of cases, and regular, daily standup meetings may well not be needed by a lot of teams (particularly long-running product teams). However, There are lots of cases where a daily check-in meeting is a benefit, and the standup format is a good standard for check-in meetings.&lt;/p&gt;
+&lt;p&gt;This one goes in the B tier: most teams will certainly benefit from reevaluating how they check in and monitor progress and I suspect that most honest teams will conclude that a daily standup isn't necessary, however &amp;quot;#NoStandups&amp;quot; isn't as widely applicable a banner.&lt;/p&gt;
+&lt;h2&gt;&lt;a href="https://holub.com/improvement-boards/"&gt;#NoRetrospectives&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This idea is to track process impediments as cards in the same way we track work items as cards; that every sprint (or whatever iteration) at least one impediment will be worked on and resolved. This is a good idea! Is that what you thought of when you read &amp;quot;#NoRetrospectives&amp;quot; though?&lt;/p&gt;
+&lt;p&gt;This one goes in D tier: apart from being false advertising - it is &lt;em&gt;not&lt;/em&gt; advocating &amp;quot;no retrospectives&amp;quot; - it would also probably function better in the form of &amp;quot;here's how to give your retro meetings some teeth.&amp;quot;&lt;/p&gt;
+&lt;h2&gt;&lt;a href="https://holub.com/noaccountability/"&gt;#NoAccountability&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Holub argues, convincingly I think, that &amp;quot;accountability&amp;quot; in the business sphere tends to be reduced to meaning &amp;quot;you can be punished for this thing that I, your manager, am foisting on you.&amp;quot; The #NoAccountability idea then is to promote shared ownership and collaboration over point-person ownership.&lt;/p&gt;
+&lt;p&gt;This one goes in A tier: while not as flashy as the more widely cited #NoEstimates, it identifies a real, universal problem and posits a workable philosophy as the solution. Unfortunately, the nature of the solution is not a step-by-step &amp;quot;here's what to do,&amp;quot; instead requiring a mindset change to effect.&lt;/p&gt;
+&lt;h2&gt;See Also&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://holub.com/words/"&gt;Words&lt;/a&gt;&lt;/p&gt;
+</description>
+      <pubDate>Sun, 15 Feb 2026 00:00:00 Z</pubDate>
+      <a10:updated>2026-02-15T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">publish_your_blogroll_now</guid>
       <link>https://ian.wold.guru/Posts/publish_your_blogroll_now.html</link>
       <title>Publish Your Blogroll Now</title>

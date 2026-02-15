@@ -72,6 +72,7 @@ https://ian.wold.guru/Posts/my_continuing_descent_into_madness.html
 https://ian.wold.guru/Posts/on_task_priority.html
 https://ian.wold.guru/Posts/postgres_use_views_to_refactor_to_soft_delete.html
 https://ian.wold.guru/Posts/principles_for_successful_teams.html
+https://ian.wold.guru/Posts/provocative_holub_opinion_tier_list.html
 https://ian.wold.guru/Posts/publish_your_blogroll_now.html
 https://ian.wold.guru/Posts/pull_requests_are_just_fine_thanks.html
 https://ian.wold.guru/Posts/question_of_the_week.html
