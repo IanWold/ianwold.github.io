@@ -4,7 +4,7 @@
 	"description": "In the process of reevaluating my tools, GitHub now appears on the chopping block",
 	"date": "21 February 2026",
 	"contents": false,
-	"hero": "hoto-1556075798-4825dfaaf498",
+	"hero": "photo-1556075798-4825dfaaf498",
     "topics": ["Tooling", "DevEx"],
     "related": [
 		{ "title": "I've Switched to Linux", "description": "Just in the nick of time as Windows is speedrunning 'Worst OS Ever,' all of my development activities are now supported on Linux.", "fileName": "ive_switched_to_linux" },
