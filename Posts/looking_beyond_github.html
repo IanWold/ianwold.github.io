@@ -26,12 +26,31 @@
 		
 
 		<title>
-			Ian Wold | Tooling 
+			Ian Wold | Looking Beyond GitHub 
 		</title>
 
 		
 			<script type="application/ld+json">
-				
+				{
+	"@context": "https://schema.org",
+	"@type": "Article",
+	"author": [{
+		"@type": "Person",
+		"name": "Ian Wold"
+	}],
+	"datePublished": "2/21/2026 12:00:00 AM",
+	"image": "https://images.unsplash.com/hoto-1556075798-4825dfaaf498",
+	"headline": "Looking Beyond GitHub",
+	"description": "In the process of reevaluating my tools, GitHub now appears on the chopping block",
+	"publisher": {
+		"@type": "Person",
+		"name": "Ian Wold",
+		"logo": {
+			"@type": "ImageObject",
+			"url": "https://ian.wold.guru/images/hero1.svg"
+		}
+	},
+}
 			</script>
 		
 
@@ -55,58 +74,106 @@
 		<main>
 
 
-	
 
 
 
-
-
-
-
+<article class="h-entry">
 	<header>
-		
-			<h1>Topic: Tooling</h1>
-		
+		<h1 class="p-name">Looking Beyond GitHub</h1>
+		<section>
+			<small>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+				21 February 2026
+				<time class="dt-published" style="display: none;">
+					2026-02-21T00:00:00.0000000Z
+				</time>
+			</small>
+			<small>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+				3  Minutes 
+			</small>
+			<small>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-commit"><circle cx="12" cy="12" r="4"></circle><line x1="1.05" y1="12" x2="7" y2="12"></line><line x1="17.01" y1="12" x2="22.96" y2="12"></line></svg>
+				<a href="https://github.com/IanWold/ianwold.github.io/commits/master/Site/Posts/looking_beyond_github.md">History</a>
+			</small>
+			
+				<small>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+					
+						<a href="../Topics/tooling.html">Tooling</a>
+					
+						<a href="../Topics/devex.html">DevEx</a>
+					
+				</small>
+			
+		</section>
+		<p class="p-summary">In the process of reevaluating my tools, GitHub now appears on the chopping block</p>
+		<img class="u-photo" alt="hero" src="https://images.unsplash.com/hoto-1556075798-4825dfaaf498?w=1000&h=525&fit=crop&crop=entropy" alt="Header image" />
 	</header>
+
 	
-	<section>
-		
+	
+
+	<section class="e-content">
+		<p>Like most folks in our industry, I've been using GitHub extensively for a long time, and I've become very familiar with it (and, as a consequence, Git). For the most part, I do like doing version control in Git. There's a number of efforts afoot to try to propose alternate VC systems that solve common issues with Git, but I don't really see these gaining a huge traction. Then again, there's a lot of folks reevaluating a lot of common practices these days.</p>
+<p>GitHub is a huge advantage gained for using Git: the tool makes it incredibly easy for me to host public and private projects, with all the CI bells and pages whistles I need. Nonetheless, I'm going to be working on getting myself off of GitHub over the next several months. Instead, I'll be spinning up my own <a href="https://about.gitea.com/">Gitea server</a> on Railway. Why? Ownership, cost, and control.</p>
+<p>I have a very significant amount of code in GitHub: some public, mostly private, some in between. GitHub has fine features to facilitate collaboration on code, but nothing so granular as what I can do with my own server. Controlling code access is one thing, but being able to have easier control over my CI/CD infrastructure is also appealing. I might be getting some cost saving in some areas, but more importantly it's easier to set up custom infrastructure with my own server than fooling around with GitHub.</p>
+<p>At an even higher level though, being able to have ownership of your own things is good these days. It's <a href="https://docs.gitea.com/installation/install-with-docker">devastatingly simple to spin up a Gitea</a>, committing me to not much more time than I normally would put into maintaining my GitHub while gaining a bit more platform independence. Lately I've been a huge advocate for owning your own tools; I think this mirrors my preference to roll your own code where practical. Increasingly, everything about our lives is becoming a subscription service requiring us to pay for the privilege of owning less - how exponentially impoverished we're becoming! Ownership isn't now about wealth; it's a matter of freedom.</p>
+<p>So I'll be spinning up my own Gitea server, migrating off GitHub, and gaining a huge benefit - by my eyes. There remain issues:</p>
+<ol>
+<li>If I delete my GitHub, how do I find others' repos? How do they find mine?</li>
+<li>Gitea doesn't have an equivalent to Pages, but obviously this can be done through Railway. Need to figure a good architectural approach.</li>
+<li>Railway, funny enough, is built entirely around &quot;give me a GitHub repo and we deploy that with no effort.&quot; There will be more effort now.</li>
+</ol>
+<p>These problems will be ironed out, and I'll document on my blog how I get through these. The first point is a sticky one though: the industry is so used to being on GitHub. That's not as hard an expectation now as it was five years ago, but lacking any separate protocol for repo discovery this may be interesting. For public projects I might set up some kind of GitHub replication. Goodness knows!</p>
+
+
 	</section>
 
-
-
+	<footer>
+		<div id="webmentions"></div>
 	
-	
-		<section id="2026">
-			
-				<h2>2026</h2>
-			
+		<div class="comments">
+			<script src="https://giscus.app/client.js"
+				data-repo="IanWold/ianwold.github.io"
+				data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk1NDkyNzI="
+				data-category="Posts"
+				data-category-id="DIC_kwDOCYKHWM4CZH2Y"
+				data-mapping="title"
+				data-strict="0"
+				data-reactions-enabled="0"
+				data-emit-metadata="0"
+				data-input-position="top"
+				data-theme="light"
+				data-lang="en"
+				data-loading="lazy"
+				crossorigin="anonymous"
+				async>
+			</script>
+		</div>
+	</footer>
+</article>
+<footer>
+	<section>
+		<img src="../images/hero1.svg" alt="Ian's Logo" />
+		<section>
+			<h2>
+				Hi, I'm Ian
+			</h2>
+			<p>
+				I'm a software engineer, architect, and team leader in Minneapolis. My career has largely focused on .NET and web technologies, spread across several industries. Currently I'm working for Crate &amp; Barrel on their ecommerce solutions. You can find me on this blog, contributing to open source repositories, and at conferences around the Midwest.
+			</p>
+			<hr>
+			<p>
+				If you'd like to keep up with me, please subscribe to my <a href="https://buttondown.email/ianwold" target="_blank">book club</a> or <a href="https://ian.wold.guru/feed.xml" target="_blank">RSS feed</a>. If you'd like to help me out with server costs, I would be forever grateful if you <a href="https://ko-fi.com/ianwold">bought me a coffee</a>!
+			</p>
+			<hr>
+			<p>
+				Some other posts you might be interested in:
+			</p>
 			<ul>
 				
-				
 					<li>
-						<time>02.21</time>
-						<a href="../Posts/looking_beyond_github.html">
-							<h3>Looking Beyond GitHub</h3>
-							<small>In the process of reevaluating my tools, GitHub now appears on the chopping block</small>
-						</a>
-					</li>
-				
-			</ul>
-		</section>
-	
-
-	
-	
-		<section id="2025">
-			
-				<h2>2025</h2>
-			
-			<ul>
-				
-				
-					<li>
-						<time>12.18</time>
 						<a href="../Posts/ive_switched_to_linux.html">
 							<h3>I've Switched to Linux</h3>
 							<small>Just in the nick of time as Windows is speedrunning 'Worst OS Ever,' all of my development activities are now supported on Linux.</small>
@@ -114,36 +181,6 @@
 					</li>
 				
 					<li>
-						<time>02.05</time>
-						<a href="../Posts/thing_i_made_cfweaver.html">
-							<h3>Thing I Made: CFWeaver</h3>
-							<small>I made a simple CLI tool to generate comprehensive test scenarios from control flow models in simple markdown</small>
-						</a>
-					</li>
-				
-			</ul>
-		</section>
-	
-
-	
-	
-		<section id="2024">
-			
-				<h2>2024</h2>
-			
-			<ul>
-				
-				
-					<li>
-						<time>09.30</time>
-						<a href="../Posts/ive_stopped_using_visual_studio.html">
-							<h3>I've Stopped Using Visual Studio</h3>
-							<small>... mostly. And so can you!</small>
-						</a>
-					</li>
-				
-					<li>
-						<time>04.01</time>
 						<a href="../Posts/ive_indiewebbed_my_site.html">
 							<h3>I've IndieWebbed My Site</h3>
 							<small>A small, loose collection of formats and protocols, IndieWeb is an interesting supplement (maybe alternative) to social media</small>
@@ -151,47 +188,60 @@
 					</li>
 				
 					<li>
-						<time>02.12</time>
-						<a href="../Posts/consider_a_tiling_window_manager.html">
-							<h3>Windows Users: Consider a Tiling Window Manager</h3>
-							<small>Tiling window managers are what all the cool kids have been doing for 40 years, yet they're almost entirely overlooked on Windows.</small>
+						<a href="../Posts/i_have_a_blogroll_now.html">
+							<h3>I Have a Blogroll Now!</h3>
+							<small>An actual blogroll, not just a blog post with a bulletted list of links!</small>
 						</a>
 					</li>
 				
 			</ul>
 		</section>
-	
+	</section>
+</footer>
 
-	
-	
-		<section id="2023">
-			
-				<h2>2023</h2>
-			
-			<ul>
-				
-				
-					<li>
-						<time>12.09</time>
-						<a href="../Posts/my_continuing_descent_into_madness.html">
-							<h3>My (Continuing) Descent Into Madness</h3>
-							<small>It started simply enough, when I asked myself if I should try an IDE other than Visual Studio. Mere months later, I'm now using a tiling window manager. This is the story of my (continuing) descent into madness.</small>
-						</a>
-					</li>
-				
-					<li>
-						<time>09.14</time>
-						<a href="../Posts/giscus_is_awesome.html">
-							<h3>Giscus Is Awesome</h3>
-							<small>I can add comments to my statically generated blog? Using GitHub Discussions?? For Free??? And it works????</small>
-						</a>
-					</li>
-				
-			</ul>
-		</section>
-	
+<script>
+	const nav = document.querySelector('main nav');
+	if (nav) {
+		nav.style.setProperty('--element-height', `${nav.offsetHeight}px`);
+	}
 
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch(`https://webmention.io/api/mentions.jf2?target=${window.location.href}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Ope!`);
+            }
 
+            return response.json();
+        })
+        .then(json => {
+            const mentionList = document.createElement('ul');
+
+            json.children.forEach(child => {
+                const date = new Date(child.published);
+                const formattedDate = date.toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric"
+                });
+
+                var itemHtml = document.createElement('li');
+                itemHtml.innerHTML = `<a href="${child.url}">${child.author.name} on ${formattedDate}</a>`;
+                mentionList.appendChild(itemHtml);
+            });
+
+			const webmentionsDiv = document.getElementById('webmentions');
+
+            if (mentionList.children.length > 0) {
+                webmentionsDiv.innerHTML = '<section><p><strong>This post has been webmentioned by:</strong></p></section>';
+                console.log(webmentionsDiv.firstChild.firstChild);
+                webmentionsDiv.firstChild.firstChild.appendChild(mentionList);
+            } else {
+				webmentionsDiv.remove();
+			}
+        });
+    });
+</script>
 
 		</main>
 		<footer>
@@ -210,6 +260,25 @@
 		</footer>
 
 		<script>
+			
+				window.addEventListener('DOMContentLoaded', () => {
+					const observer = new IntersectionObserver(entries => {
+						entries.forEach(entry => {
+							const id = entry.target.getAttribute('id');
+							let classList = document.querySelector(`main nav li a[href="#${id}"]`).parentElement.classList;
+
+							if (entry.intersectionRatio > 0) {
+								classList.add('active');
+							} else {
+								classList.remove('active');
+							}
+						});
+					});
+
+					document.querySelectorAll('section[id]').forEach((section) => {
+						observer.observe(section);
+					});
+				});
 			
 
 			const darkModeToggle = document.getElementById("dark-mode-toggle");
