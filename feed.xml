@@ -819,7 +819,7 @@ ints = [1, 2, 3];
     if (age is &amp;lt; 18 or &amp;gt; 120)
         throw new ArgumentOutOfRangeException(nameof(age), &amp;quot;Age must be between 18 and 120.&amp;quot;);
 
-    if (email is null or { Length: 0 } or not { } e || !e.Contains(&amp;quot;@&amp;quot;))
+    if (email is null or { Length: &amp;lt;= 3 })
         throw new ArgumentException(&amp;quot;A valid email address must be provided.&amp;quot;, nameof(email));
 
     if (accountBalance is &amp;lt; 0m)
