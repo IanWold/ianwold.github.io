@@ -141,7 +141,7 @@ public User CreateUser(
     if (age is < 18 or > 120)
         throw new ArgumentOutOfRangeException(nameof(age), "Age must be between 18 and 120.");
 
-    if (email is null or { Length: 0 } or not { } e || !e.Contains("@"))
+    if (email is null or { Length: <= 3 })
         throw new ArgumentException("A valid email address must be provided.", nameof(email));
 
     if (accountBalance is < 0m)
