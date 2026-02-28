@@ -5,7 +5,7 @@
 	"date": "28 February 2026",
 	"contents": false,
 	"hero": "photo-1672309558498-cfcc89afff25",
-    "topics": ["How-To", "Dotnet", "Performance", "Patterns"],
+    "topics": ["Patterns", "Languages", "Standards"],
 	"series": "Book Club",
     "related": [
 		{ "title": "Book Club 1/2026: C#, Without Allocation", "description": "Some resources on writing allocation-less (or -free) C#", "fileName": "book_club_1-2026" },
