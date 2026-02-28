@@ -26,7 +26,7 @@
 		
 
 		<title>
-			Ian Wold | Book Club 8&9/2025: Async 
+			Ian Wold | Book Club 2/2026: Constraints 
 		</title>
 
 		
@@ -38,10 +38,10 @@
 		"@type": "Person",
 		"name": "Ian Wold"
 	}],
-	"datePublished": "9/27/2025 12:00:00 AM",
+	"datePublished": "2/28/2026 12:00:00 AM",
 	"image": "https://images.unsplash.com/photo-1672309558498-cfcc89afff25",
-	"headline": "Book Club 8&9/2025: Async",
-	"description": "Not the keyword, but asynchronous communication. It just seemed that 'Async' as a title was more interesting.",
+	"headline": "Book Club 2/2026: Constraints",
+	"description": "Taking a top-level look at the varied and nerdy topic of 'constraints'",
 	"publisher": {
 		"@type": "Person",
 		"name": "Ian Wold",
@@ -79,39 +79,39 @@
 
 <article class="h-entry">
 	<header>
-		<h1 class="p-name">Book Club 8&9/2025: Async</h1>
+		<h1 class="p-name">Book Club 2/2026: Constraints</h1>
 		<section>
 			<small>
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-				27 September 2025
+				28 February 2026
 				<time class="dt-published" style="display: none;">
-					2025-09-27T00:00:00.0000000Z
+					2026-02-28T00:00:00.0000000Z
 				</time>
 			</small>
 			<small>
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-				3  Minutes 
+				9  Minutes 
 			</small>
 			<small>
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-commit"><circle cx="12" cy="12" r="4"></circle><line x1="1.05" y1="12" x2="7" y2="12"></line><line x1="17.01" y1="12" x2="22.96" y2="12"></line></svg>
-				<a href="https://github.com/IanWold/ianwold.github.io/commits/master/Site/Posts/book_club_8-9-2025.md">History</a>
+				<a href="https://github.com/IanWold/ianwold.github.io/commits/master/Site/Posts/book_club_2-2026.md">History</a>
 			</small>
 			
 				<small>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
 					
+						<a href="../Topics/how-to.html">How-To</a>
+					
+						<a href="../Topics/dotnet.html">Dotnet</a>
+					
+						<a href="../Topics/performance.html">Performance</a>
+					
 						<a href="../Topics/patterns.html">Patterns</a>
-					
-						<a href="../Topics/standards.html">Standards</a>
-					
-						<a href="../Topics/architecture.html">Architecture</a>
-					
-						<a href="../Topics/distribution.html">Distribution</a>
 					
 				</small>
 			
 		</section>
-		<p class="p-summary">Not the keyword, but asynchronous communication. It just seemed that 'Async' as a title was more interesting.</p>
+		<p class="p-summary">Taking a top-level look at the varied and nerdy topic of 'constraints'</p>
 		<img class="u-photo" alt="hero" src="https://images.unsplash.com/photo-1672309558498-cfcc89afff25?w=1000&h=525&fit=crop&crop=entropy" alt="Header image" />
 	</header>
 
@@ -124,37 +124,140 @@
 	
 
 	<section class="e-content">
-		<p>These last two months, the interesting thing that I'm researching is asynchronous communication patterns. Last year I wrote a whole <a href="https://ian.wold.guru/Series/fallacies_distributed_computing.html">series on the Fallacies of Distributed Computing</a> exploring some common dos and don'ts for systems that rely on network communication. Asynchronous communication (which, I'm just going to type &quot;async&quot; here on out) is a common solution to reach for as the number of nodes in the distributed network increases. It solves the problem of huge latency in requests that need to chain through several services, though at the expense of system complexity and comprehension.</p>
-<p>In an ideal world, systems would be quite &quot;flat&quot;, with user-level requests being able to be serviced in only a single network call to the server. Plenty of systems can't accommodate this for one reason or another, a backend might need to consult other services to fulfill a request; here though, plenty of systems can be designed so that <em>those</em> bottom-level services don't need to make blocking calls to each other to fulfill their own requirements. Commonly, there might be a <em>backend-for-fronend</em> that owns all of the synchronous calls, making it easier to manage temporal dependencies by isolating them all to a particular area.</p>
-<p>Suppose the lower-level services <em>do</em> need to exchange data? Alternately, suppose we end up with too many temporal dependencies, resulting in long-running calls even though we've made them architecturally understandable within a single layer? That's where we should be inclined to reach for async. I'm supposing here that we're imagining a relatively well-designed system; that the call patterns are well-considered to fulfill actual business needs.</p>
-<p>How does async work? At the top level, when transformations happen to any data or state in the system, the service doing the changing emits an event through a shared bus, which is then read by systems that care about that transformation. Those systems will store their own representations of the data they care about, and are free to service requests on the &quot;hot path&quot; without having to introduce blocking calls. This has several implications: data is duplicated in many points throughout the system, the data is eventually consistent, the code for each service becomes more complex, considerations need to be made to prevent data drift, and plenty more there.</p>
-<p>Given the set of problems solved by async and the implications of adopting it, there are many patterns and ideas around them. I haven't been terribly organized or disciplined in this research; this is a grab-bag of things that have caught my eye these last two months:</p>
+		<p>Constraints, in a very broad sense, have been on my mind this last month. I have spent, as I imagine we all have, a lot of my career wrangling systems suffering from constraint problems. I mean &quot;constraint&quot; in the technical sense; the data or rules of the system have not been appropriately constrained. Interestingly, the age of a system doesn't seem to correlate to systems having poorly-implemented constraints; it seems to be a skill issue mostly.</p>
+<p>Constraints are a first-class tool we have for defining our systems. It might not seem the most intuitive at first: if we're told &quot;the system needs to be <em>able</em> to do X, Y, and Z,&quot; the first thought will surely be how we craft our systems <em>for</em> X, Y, and Z. However, by saying I want the system to behave <em>some</em> way, I'm necessarily also saying I want it to <em>not</em> behave in contradictory ways: if A, B, or C inhibit X, Y, or Z, then I have to also constrain my system to <em>not</em> A, B, or C. Constraints aren't <em>enabling</em> requirements, instead they are <em>preventing</em> errors and error states.</p>
+<p>There's a lot of ways we can consider programming with constraints; <a href="https://en.wikipedia.org/wiki/Constraint_programming">constraint programming</a> is a topic in its own right. I'm going to list a number of areas of focus I've had this last month, starting with the more esoteric.</p>
+<section id="constraint-logic-programming">
+<h3>Constraint Logic Programming <a class="section-link" href="https://ian.wold.guru/Posts/book_club_2-2026.html#constraint-logic-programming">#</a></h3>
+<p>Or CLP, this is not something with which most of us are regularly engaged. <a href="https://en.wikipedia.org/wiki/Logic_programming">Logic programming</a>, is its own paradigm of programming, separate to the rest, concerned with crafting programs as repositories of logical facts. A program executes in this context when a question is asked about these facts; programs are essentially interpreted by logic solving algorithms. Take this example lifted from the Wikipedia:</p>
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-prolog"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #A6E22E;">is_parent</span><span style="color: #F8F8F2;">(</span><span style="color: #AE81FF;">bob</span><span style="color: #F8F8F2;">, </span><span style="color: #AE81FF;">sue</span><span style="color: #F8F8F2;">)</span><span style="color: #F92672;">.</span></div><div class='line'><span style="color: #A6E22E;">is_parent</span><span style="color: #F8F8F2;">(</span><span style="color: #AE81FF;">bob</span><span style="color: #F8F8F2;">, </span><span style="color: #AE81FF;">john</span><span style="color: #F8F8F2;">)</span><span style="color: #F92672;">.</span></div><div class='line'><span style="color: #A6E22E;">is_sibling</span><span style="color: #F8F8F2;">(</span><span style="color: #FD971F;">X</span><span style="color: #F8F8F2;">, </span><span style="color: #FD971F;">Y</span><span style="color: #F8F8F2;">) </span><span style="color: #F92672;">:-</span></div><div class='line'><span style="color: #F8F8F2;">    is_parent(</span><span style="color: #FD971F;">Z</span><span style="color: #F8F8F2;">, </span><span style="color: #FD971F;">X</span><span style="color: #F8F8F2;">),</span></div><div class='line'><span style="color: #F8F8F2;">    is_parent(</span><span style="color: #FD971F;">Z</span><span style="color: #F8F8F2;">, </span><span style="color: #FD971F;">Y</span><span style="color: #F8F8F2;">)</span><span style="color: #F92672;">.</span></div><textarea data-torchlight-original="true" style="display: none !important;">is_parent(bob, sue).
+is_parent(bob, john).
+is_sibling(X, Y) :-
+    is_parent(Z, X),
+    is_parent(Z, Y).
+</textarea></code></pre>
+<p>And then a question to run a program:</p>
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-prolog"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">?- is_sibling(sue, A).</span></div><div class='line'><span style="color: #A6E22E;">A</span><span style="color: #F8F8F2;"> = </span><span style="color: #AE81FF;">john</span></div><textarea data-torchlight-original="true" style="display: none !important;">?- is_sibling(sue, A).
+A = john
+</textarea></code></pre>
+<p>This is already a form of programming by constraints; I'm <em>constraining</em> the definitions of parentage and siblingness. However, we can go more constrainey with better constraint-aware algorithms to do the solving. Hence we get <a href="https://en.wikipedia.org/wiki/Constraint_logic_programming">constraint logic programming</a>, which is indeed much more powerful and has practical applications. If you want to learn to program with constraints, this is the holy grail: programs are (I'll wave my hand a bit here) composed entirely of constraints.</p>
+<p>Most problems - much more than you might think - can be very well-defined by their constraints; well-defined in the sense that the code I write makes sense for the problem. Remember that to programming constraints is to program <em>out</em> error conditions; writing programs with CLP then is probably the best-class solution for a whole set of problems. Programming a user interface, though, is not necessarily one of those problems; HTTP clients are probably not best served by CLP also. That leaves CLP in a bit of a bind: if I want some other language bookending my whole system, why keep a separate CLP in the middle?</p>
+<p>Aha! Here is exactly the great practicality of logic programming: because the programs are <em>just</em> a particular application of proof-solving algorithms, these languages can be expressed perfectly naturally as libraries within other languages. <a href="https://minikanren.org/">MiniKanren</a> is a lightweight DSL library with sibling implementations in most languages; C# has <a href="https://github.com/naasking/uKanren.NET">uKanren.NET</a>. There's plenty other libraries in most languages, and frankly it's trivially simple to implement a proof solver. <a href="https://github.com/lifebeyondfife/Decider">Decider</a> is an actively maintained non-Kanren system. This gives you an engine in whichever language you fancy to express deserving logic using CLP. It's too bad that this is so often overlooked; really a huge amount of logic can be more elegantly expressed with these tools.</p>
+<p><strong>Reading</strong></p>
 <ul>
-<li><a href="https://learn.microsoft.com/en-us/azure/architecture/guide/multitenant/approaches/messaging">Architectural approaches for messaging in multitenant solutions - Microsoft</a> Surprisingly fine overview of patterns.</li>
-<li><a href="https://medium.com/@jaredhatfield/lessons-in-asynchronous-messaging-patterns-pitfalls-and-best-practices-35254b3218e8">Lessons in Asynchronous Messaging: Patterns, Pitfalls, and Best Practices - Jared Hatfield</a></li>
-<li><a href="https://www.martinfowler.com/articles/distributed-objects-microservices.html">Microservices and the First Law of Distributed Objects - Martin Fowler</a></li>
-<li><a href="https://brandur.org/notifier">The Notifier Pattern for Applications That Use Postgres - brandur</a></li>
-<li><a href="https://joeduffyblog.com/2015/11/19/asynchronous-everything/">Asynchronous Everything - Joe Duffy</a></li>
-<li><a href="https://www.infoq.com/articles/async-high-perf-login-web-farms/">Asynchronous, High-Performance Login for Web Farms - Udi Dahan</a></li>
-<li><a href="https://www.infoq.com/articles/orchestrating-resilience-modern-asynchronous-systems/">Orchestrating Resilience Building Modern Asynchronous Systems - Sai Pragna Etikyala and Vikranth Etikyala</a></li>
-<li><a href="https://www.infoq.com/news/2025/02/dropbox-messaging-system-model/">Dropbox’s Asynchronous Platform Evolution: from Challenges to a Unified Messaging System Model - Aditya Kulkarni</a></li>
+<li><a href="https://medium.com/vptech/a-practical-introduction-to-constraint-programming-2037c91833ba">A practical introduction to Constraint Programming - Lorenzo Tabacchini</a></li>
+<li><a href="https://lpn.swi-prolog.org/lpnpage.php?pageid=online">Learn Prolog Now!</a></li>
+<li><a href="https://blogit.michelin.io/an-introduction-to-datalog/">An Introduction to Datalog - Fabien Alberi</a> (curiously, hosted by Michelin)</li>
+<li><a href="https://minikanren.org/workshop/2020/minikanren-2020-paper5.pdf">Kanren Light - Marco Maggesi, Massimo Nocentini</a></li>
+<li><a href="https://news.ycombinator.com/item?id=9248107">HackerNews: A year ago I asked about real-world use cases for Prolog</a></li>
+<li><a href="https://dstrohmaier.com/why-learn-prolog-in-2021/">Why Learn Prolog in 2021? - David Strohmaier</a></li>
 </ul>
-<p>Kind of related:</p>
+<p><strong>Watching</strong></p>
 <ul>
-<li><a href="https://martinfowler.com/bliki/ServiceOrientedAmbiguity.html">Service Oriented Ambiguity - Martin Fowler</a></li>
-<li><a href="https://www.michaelnygard.com/blog/2018/01/services-by-lifecycle/">Services By Lifecycle - Michael T. Nygard</a></li>
-<li><a href="https://www.michaelnygard.com/blog/2008/05/soa-at-3.5-million-transactions-per-hour/">SOA at 3.5 Million Transactions Per Hour - Michael T. Nygard</a></li>
+<li><a href="https://www.youtube.com/watch?v=R2Aa4PivG0g">I See What You Mean - Peter Alvaro</a></li>
+<li><a href="https://www.youtube.com/watch?v=oa0qq75i9oc">Three Things I Wish I Knew When I Started Designing Languages - Peter Alvaro</a></li>
+<li><a href="https://www.youtube.com/watch?v=G_eYTctGZw8">Production Prolog - Michael Hendricks</a></li>
 </ul>
-<p>Watching:</p>
+</section>
+<section id="dependent-typing">
+<h3>Dependent Typing <a class="section-link" href="https://ian.wold.guru/Posts/book_club_2-2026.html#dependent-typing">#</a></h3>
+<p>This is some crazy voodoo magic. Most programmers (especially if you're reading my blog) are familiar with type theory - maybe not at the theoretical level, but you intuit that this won't compile:</p>
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-csharp"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F92672;">string</span><span style="color: #F8F8F2;"> variable </span><span style="color: #F92672;">=</span><span style="color: #F8F8F2;"> </span><span style="color: #AE81FF;">12</span></div><textarea data-torchlight-original="true" style="display: none !important;">string variable = 12
+</textarea></code></pre>
+<p><code>string</code> is a type, <code>variable</code> cannot have values that aren't <code>string</code>s, and <code>12</code> is not a <code>string</code>. This is incredibly simple: a <code>string</code> is a <code>string</code> is a <code>string</code>. A more complicated type might be an array:</p>
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-csharp"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F92672;">var</span><span style="color: #F8F8F2;"> ints </span><span style="color: #F92672;">=</span><span style="color: #F8F8F2;"> </span><span style="color: #F92672;">new</span><span style="color: #F8F8F2;"> </span><span style="color: #F92672;">int</span><span style="color: #F8F8F2;">[</span><span style="color: #AE81FF;">2</span><span style="color: #F8F8F2;">];</span></div><div class='line'><span style="color: #F8F8F2;">ints </span><span style="color: #F92672;">=</span><span style="color: #F8F8F2;"> [1, 2, 3];</span></div><textarea data-torchlight-original="true" style="display: none !important;">var ints = new int[2];
+ints = [1, 2, 3];
+</textarea></code></pre>
+<p>C# allows the above, but it is a curious bit of code. Why would I specify a length of 2 and then overwrite the array with a length of 3? C# allows this because the type of <code>ints</code> is just <code>int[]</code>, but it seems like the author might have intended something else. Alas, C# does not allow its types to rely on literal values. This is what <em>dependent typing</em> is: allowing types themselves to have values. In a dependently-typed language, the above would not compile, as <code>ints</code> would be able to have type <code>int[2]</code>.</p>
+<p>This can be an extremely powerful way of programming, which puts constraints directly in the type system. In the array example, I <em>constrain</em> my array to only ever have length 2. Indeed, dependently-typed languages allow the programmer to apply any constraints that might be needed. So frequently we write programs expecting data to have certain shapes or properties or values; dependent typing allows us to write programs that make misrepresentations impossible, eliminating a whole class of errors.</p>
+<p>This knowledge has less practical application. To start, dependent typing is a fundamentally functional concept; the type checking algorithms that can validate these sorts of systems rely on functional constructs. Being a more esoteric branch in the functional tradition, then, the syntaxes that implementors are drawn to are, could I say, difficult to read. <a href="https://en.wikipedia.org/wiki/Agda_(programming_language)">Agda</a> will let you use any unicode character in a variable name. From the Wikipedia:</p>
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-agda"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">data _≤_ : ℕ → ℕ → Set where</span></div><div class='line'><span style="color: #F8F8F2;">  z≤n : {n : ℕ} → zero ≤ n</span></div><div class='line'><span style="color: #F8F8F2;">  s≤s : {n m : ℕ} → n ≤ m → suc n ≤ suc m</span></div><textarea data-torchlight-original="true" style="display: none !important;">data _≤_ : ℕ → ℕ → Set where
+  z≤n : {n : ℕ} → zero ≤ n
+  s≤s : {n m : ℕ} → n ≤ m → suc n ≤ suc m
+</textarea></code></pre>
+<p>Studying this form is still hugely beneficial, as it teaches a mindset of loading assumptions into the <em>type system</em> rather than runtime. This allows problems to be caught at compile time, and is the main tool for those looking to <a href="https://fsharpforfunandprofit.com/posts/designing-with-types-making-illegal-states-unrepresentable/">make illegal states unrepresentable</a>.</p>
+<p><strong>Reading</strong></p>
 <ul>
-<li><a href="https://particular.net/videos/cqrs-user-interaction-patterns">Better CQRS through asynchronous user interaction patterns - Udi Dahan</a></li>
-<li><a href="https://www.infoq.com/presentations/rest-evolution-async-operations">No REST - Architecting Real-Time Bulk Async APIs - Michael Uzquiano</a></li>
-<li><a href="https://www.infoq.com/presentations/distributed-systems-theory/">Distributed Systems Theory for Practical Engineers - Alvaro Videla</a></li>
-<li><a href="https://www.youtube.com/watch?v=FPBkz24QkZI">Loosely coupled orchestration with messaging - Udi Dahan</a></li>
-<li><a href="https://www.youtube.com/watch?v=eW4JgrkwWEM">Microservices communication patterns, messaging basics, RabbitMQ | Messaging in distributed systems - DevMentors</a></li>
+<li><a href="https://functional.works-hub.com/learn/dependent-types-explained-2e233">Dependent Types, Explained - Marty Stumpf</a></li>
+<li><a href="https://medium.com/background-thread/the-future-of-programming-is-dependent-types-programming-word-of-the-day-fcd5f2634878">The Future of Programming is Dependent Types — Marin Benčević</a></li>
+<li><a href="https://www.idris-lang.org/index.html">The Idris Language</a></li>
+<li><a href="https://www.type-driven.org.uk/edwinb/papers/impldtp.pdf">dris, a General Purpose Dependently Typed Programming Language: Design and Implementation - Edwin Brady</a></li>
+<li><a href="https://www.cs.princeton.edu/%7Edpw/papers/DTDT-tr.pdf">Dynamic Typing with Dependent Types - Xinming Ou, Gang Tan, Yitzhak Mandelbaum, and David Walker</a></li>
 </ul>
-<p>This has all taken me down a rabbit hole about <a href="https://www.asyncapi.com/">AsyncAPI</a>, but that may be for another time...</p>
+<p><strong>Watching</strong></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=4i7KrG1Afbk">Idris: Practical Dependent Types with Practical Examples - Brian McKenna</a></li>
+<li><a href="https://www.youtube.com/watch?v=VxINoKFm-S4">A Little Taste of Dependent Types - David Christiansen</a></li>
+<li><a href="https://www.youtube.com/watch?v=jgFAkmnBHwU">Dependent Types: Through The Looking Glass - Owein Reese</a></li>
+<li><a href="https://www.youtube.com/watch?v=IOiZatlZtGU">Propositions as Types - Philip Wadler</a></li>
+<li><a href="https://www.youtube.com/watch?v=_2jrmgO_Gq0">Making Dependent Types Practical - Chris Casinghino</a></li>
+</ul>
+</section>
+<section id="refinement-typing">
+<h3>Refinement Typing <a class="section-link" href="https://ian.wold.guru/Posts/book_club_2-2026.html#refinement-typing">#</a></h3>
+<p>While fewer folks yet are looking at refinement typing, I think there is vastly more potential practical benefit here than in dependent typing. Actually, the two dovetail. I'm incredibly excited about this area. I would love to see <a href="https://en.wikipedia.org/wiki/Refinement_type">refinement typing</a> become the next big thing; most languages could probably implement this with some ease.</p>
+<p>While dependent types allow types to depend on <em>values</em>, refinement typing allows types to depend on some pure constraint about them - not a value that could be some program variable, but some predicate function. Though, I might try to explain it another way: most languages anymore have pattern matching syntax. C# has a robust one:</p>
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-csharp"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F92672;">if</span><span style="color: #F8F8F2;"> (value </span><span style="color: #F92672;">is</span><span style="color: #F8F8F2;"> </span><span style="color: #F92672;">&gt;=</span><span style="color: #F8F8F2;"> </span><span style="color: #AE81FF;">0</span><span style="color: #F8F8F2;"> and </span><span style="color: #F92672;">&lt;=</span><span style="color: #F8F8F2;"> </span><span style="color: #AE81FF;">100</span><span style="color: #F8F8F2;">)</span></div><div class='line'><span style="color: #F8F8F2;">{</span></div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #88846F;">//...</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><textarea data-torchlight-original="true" style="display: none !important;">if (value is &gt;= 0 and &lt;= 100)
+{
+    //...
+}
+</textarea></code></pre>
+<p>Although this is a large wave of the hand, I think of refinement typing as attaching some pattern matching statement onto a base type; the resulting refined type is guaranteed that this pattern will always match the value of the variable with that type. The above example matches some <code>int</code> with a pattern, perhaps we could imagine a C# with refinement types (I am <em>not</em> proposing a syntax, mind you):</p>
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-csharp"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F8F8F2;">int{</span><span style="color: #F92672;">&gt;=</span><span style="color: #F8F8F2;"> </span><span style="color: #AE81FF;">0</span><span style="color: #F8F8F2;"> and </span><span style="color: #F92672;">&lt;=</span><span style="color: #F8F8F2;"> </span><span style="color: #AE81FF;">100</span><span style="color: #F8F8F2;">} value </span><span style="color: #F92672;">=</span><span style="color: #F8F8F2;"> </span><span style="color: #AE81FF;">12</span><span style="color: #F8F8F2;">;</span></div><textarea data-torchlight-original="true" style="display: none !important;">int{&gt;= 0 and &lt;= 100} value = 12;
+</textarea></code></pre>
+<p>So long as we're not allowing runtime variables into this pattern statement, this is not a difficult task for the type checker. The power here, though, is immense: think of how many methods your code has with lots of guard clauses at the front? Example:</p>
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-csharp"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F92672;">public</span><span style="color: #F8F8F2;"> </span><span style="color: #66D9EF;">User</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">CreateUser</span><span style="color: #F8F8F2;">(</span></div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #F92672;">string</span><span style="color: #F8F8F2;"> username,</span></div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #F92672;">int</span><span style="color: #F8F8F2;"> age,</span></div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #F92672;">string</span><span style="color: #F8F8F2;"> email,</span></div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #F92672;">decimal</span><span style="color: #F8F8F2;"> accountBalance</span></div><div class='line'><span style="color: #F8F8F2;">)</span></div><div class='line'><span style="color: #F8F8F2;">{</span></div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #F92672;">if</span><span style="color: #F8F8F2;"> (username </span><span style="color: #F92672;">is</span><span style="color: #F8F8F2;"> </span><span style="color: #66D9EF;">null</span><span style="color: #F8F8F2;"> or { Length: </span><span style="color: #AE81FF;">0</span><span style="color: #F8F8F2;"> })</span></div><div class='line'><span style="color: #F8F8F2;">        </span><span style="color: #F92672;">throw</span><span style="color: #F8F8F2;"> </span><span style="color: #F92672;">new</span><span style="color: #F8F8F2;"> </span><span style="color: #66D9EF;">ArgumentException</span><span style="color: #F8F8F2;">(</span><span style="color: #E6DB74;">&quot;Username must be provided.&quot;</span><span style="color: #F8F8F2;">, </span><span style="color: #F92672;">nameof</span><span style="color: #F8F8F2;">(username));</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #F92672;">if</span><span style="color: #F8F8F2;"> (age </span><span style="color: #F92672;">is</span><span style="color: #F8F8F2;"> </span><span style="color: #F92672;">&lt;</span><span style="color: #F8F8F2;"> </span><span style="color: #AE81FF;">18</span><span style="color: #F8F8F2;"> or </span><span style="color: #F92672;">&gt;</span><span style="color: #F8F8F2;"> </span><span style="color: #AE81FF;">120</span><span style="color: #F8F8F2;">)</span></div><div class='line'><span style="color: #F8F8F2;">        </span><span style="color: #F92672;">throw</span><span style="color: #F8F8F2;"> </span><span style="color: #F92672;">new</span><span style="color: #F8F8F2;"> </span><span style="color: #66D9EF;">ArgumentOutOfRangeException</span><span style="color: #F8F8F2;">(</span><span style="color: #F92672;">nameof</span><span style="color: #F8F8F2;">(age), </span><span style="color: #E6DB74;">&quot;Age must be between 18 and 120.&quot;</span><span style="color: #F8F8F2;">);</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #F92672;">if</span><span style="color: #F8F8F2;"> (email </span><span style="color: #F92672;">is</span><span style="color: #F8F8F2;"> </span><span style="color: #66D9EF;">null</span><span style="color: #F8F8F2;"> or { Length: </span><span style="color: #AE81FF;">0</span><span style="color: #F8F8F2;"> } or not { } e </span><span style="color: #F92672;">||</span><span style="color: #F8F8F2;"> </span><span style="color: #F92672;">!</span><span style="color: #F8F8F2;">e.</span><span style="color: #A6E22E;">Contains</span><span style="color: #F8F8F2;">(</span><span style="color: #E6DB74;">&quot;@&quot;</span><span style="color: #F8F8F2;">))</span></div><div class='line'><span style="color: #F8F8F2;">        </span><span style="color: #F92672;">throw</span><span style="color: #F8F8F2;"> </span><span style="color: #F92672;">new</span><span style="color: #F8F8F2;"> </span><span style="color: #66D9EF;">ArgumentException</span><span style="color: #F8F8F2;">(</span><span style="color: #E6DB74;">&quot;A valid email address must be provided.&quot;</span><span style="color: #F8F8F2;">, </span><span style="color: #F92672;">nameof</span><span style="color: #F8F8F2;">(email));</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #F92672;">if</span><span style="color: #F8F8F2;"> (accountBalance </span><span style="color: #F92672;">is</span><span style="color: #F8F8F2;"> </span><span style="color: #F92672;">&lt;</span><span style="color: #F8F8F2;"> </span><span style="color: #AE81FF;">0m</span><span style="color: #F8F8F2;">)</span></div><div class='line'><span style="color: #F8F8F2;">        </span><span style="color: #F92672;">throw</span><span style="color: #F8F8F2;"> </span><span style="color: #F92672;">new</span><span style="color: #F8F8F2;"> </span><span style="color: #66D9EF;">ArgumentOutOfRangeException</span><span style="color: #F8F8F2;">(</span><span style="color: #F92672;">nameof</span><span style="color: #F8F8F2;">(accountBalance), </span><span style="color: #E6DB74;">&quot;Account balance cannot be negative.&quot;</span><span style="color: #F8F8F2;">);</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #88846F;">// Implementation</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><textarea data-torchlight-original="true" style="display: none !important;">public User CreateUser(
+    string username,
+    int age,
+    string email,
+    decimal accountBalance
+)
+{
+    if (username is null or { Length: 0 })
+        throw new ArgumentException("Username must be provided.", nameof(username));
 
+    if (age is &lt; 18 or &gt; 120)
+        throw new ArgumentOutOfRangeException(nameof(age), "Age must be between 18 and 120.");
+
+    if (email is null or { Length: 0 } or not { } e || !e.Contains("@"))
+        throw new ArgumentException("A valid email address must be provided.", nameof(email));
+
+    if (accountBalance is &lt; 0m)
+        throw new ArgumentOutOfRangeException(nameof(accountBalance), "Account balance cannot be negative.");
+
+    // Implementation
+}
+</textarea></code></pre>
+<p>If I could move these constraints into the types, I can eliminate the guards, catch errors at compile time, and ensure that callers are guarding data appropriately:</p>
+<pre class="torchlight" style="background-color: #272822; --theme-selection-background: #878b9180;" data-torchlight-processed="3449c9e5e332f1dbb81505cd739fbf3f"><code class="language-csharp"><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #F92672;">public</span><span style="color: #F8F8F2;"> </span><span style="color: #66D9EF;">User</span><span style="color: #F8F8F2;"> </span><span style="color: #A6E22E;">CreateUser</span><span style="color: #F8F8F2;">(</span></div><div class='line'><span style="color: #F8F8F2;">    string{</span><span style="color: #66D9EF;">not</span><span style="color: #F8F8F2;"> null and {Length: &gt; 0}} username,</span></div><div class='line'><span style="color: #F8F8F2;">    int{&gt; 18 and &lt; 120} age,</span></div><div class='line'><span style="color: #F8F8F2;">    string{</span><span style="color: #66D9EF;">not</span><span style="color: #F8F8F2;"> null and {Length: &gt; 3}} email,</span></div><div class='line'><span style="color: #F8F8F2;">    decimal{&gt; 0} accountBalance</span></div><div class='line'><span style="color: #F8F8F2;">)</span></div><div class='line'><span style="color: #F8F8F2;">{</span></div><div class='line'><span style="color: #F8F8F2;">    </span><span style="color: #88846F;">// Implementation</span></div><div class='line'><span style="color: #F8F8F2;">}</span></div><textarea data-torchlight-original="true" style="display: none !important;">public User CreateUser(
+    string{not null and {Length: &gt; 0}} username,
+    int{&gt; 18 and &lt; 120} age,
+    string{not null and {Length: &gt; 3}} email,
+    decimal{&gt; 0} accountBalance
+)
+{
+    // Implementation
+}
+</textarea></code></pre>
+<p><em>That's</em> a pretty neat deal to me.</p>
+<p><strong>Reading</strong></p>
+<p>Note these are all academic; there isn't a great into article I've found. Future post idea?</p>
+<ul>
+<li><a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/MSR-TR-2009-147-SP1.pdf">Principles and Applications of Refinement Types - Andrew D. Gordon, Cédric Fournet</a></li>
+<li><a href="https://arxiv.org/pdf/2010.07763">Refinement Types - Ranjit Jhala, Niki Vazou</a></li>
+<li><a href="https://ucsd-progsys.github.io/liquidhaskell-tutorial/">Programming with Refinement Types An Introduction to LiquidHaskell - Ranjit Jhala, Eric Seidel, Niki Vazou</a></li>
+<li><a href="https://dl.acm.org/doi/epdf/10.1145/3610408">Focusing on Refinement Typing - Dimitrios J. Economou, Neel Krishnaswami, Jana Dunfield</a></li>
+</ul>
+<p><strong>Watching</strong></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=OEdXcn1rx6k">An Introduction to Refinement Types - Ranjit Jhala</a></li>
+<li><a href="https://www.youtube.com/watch?v=oYTGXNrMEho">Pursuing Practical Refinement Types - Michael Perucca</a></li>
+<li><a href="https://www.youtube.com/watch?v=pnktXb-BY54">Refinement Kinds: Type-Safe Programming with Practical Type-Level Computation  - Luís Caires, Bernardo Toninho</a></li>
+<li><a href="https://www.youtube.com/watch?v=KZwpQIpqbf4">Program Synthesis from Refinement Types - Nadia Polikarpova</a></li>
+<li><a href="https://www.youtube.com/watch?v=Ye0luMc4vGU">Liquid Haskell: Verification with Refinement Types - Niki Vazou</a></li>
+</ul>
+
+</section>
 
 	</section>
 
@@ -202,23 +305,23 @@
 			<ul>
 				
 					<li>
-						<a href="../Posts/book_club_6-7-2025.html">
-							<h3>Book Club 6&7/2025: OOP</h3>
-							<small>Just some blabbering about OOP, paradigms, and being non-dogmatic</small>
+						<a href="../Posts/book_club_1-2026.html">
+							<h3>Book Club 1/2026: C#, Without Allocation</h3>
+							<small>Some resources on writing allocation-less (or -free) C#</small>
 						</a>
 					</li>
 				
 					<li>
-						<a href="../Posts/book_club_4-5-2025.html">
-							<h3>Book Club 4&5/2025: Incidents and Resiliency</h3>
-							<small>Thinking more about responding to and preventing incidents</small>
+						<a href="../Posts/book_club_10-11-2025.html">
+							<h3>Book Club 10&11/2025: .NET 10, C# 14</h3>
+							<small>Another Thanksgiving, another .NET!</small>
 						</a>
 					</li>
 				
 					<li>
-						<a href="../Posts/book_club_2-3-2025.html">
-							<h3>Book Club 2&3/2025: Slack: Communication, Organization, Teams</h3>
-							<small>On various aspects of teamwork, communication, and the like</small>
+						<a href="../Posts/book_club_8-9-2025.html">
+							<h3>Book Club 8&9/2025: Async</h3>
+							<small>Not the keyword, but asynchronous communication. It just seemed that 'Async' as a title was more interesting.</small>
 						</a>
 					</li>
 				

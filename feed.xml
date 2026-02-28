@@ -726,6 +726,141 @@ public void TestExtensions() {
       <a10:updated>2024-12-30T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">book_club_2-2026</guid>
+      <link>https://ian.wold.guru/Posts/book_club_2-2026.html</link>
+      <title>Book Club 2/2026: Constraints</title>
+      <description>&lt;p&gt;Constraints, in a very broad sense, have been on my mind this last month. I have spent, as I imagine we all have, a lot of my career wrangling systems suffering from constraint problems. I mean &amp;quot;constraint&amp;quot; in the technical sense; the data or rules of the system have not been appropriately constrained. Interestingly, the age of a system doesn't seem to correlate to systems having poorly-implemented constraints; it seems to be a skill issue mostly.&lt;/p&gt;
+&lt;p&gt;Constraints are a first-class tool we have for defining our systems. It might not seem the most intuitive at first: if we're told &amp;quot;the system needs to be &lt;em&gt;able&lt;/em&gt; to do X, Y, and Z,&amp;quot; the first thought will surely be how we craft our systems &lt;em&gt;for&lt;/em&gt; X, Y, and Z. However, by saying I want the system to behave &lt;em&gt;some&lt;/em&gt; way, I'm necessarily also saying I want it to &lt;em&gt;not&lt;/em&gt; behave in contradictory ways: if A, B, or C inhibit X, Y, or Z, then I have to also constrain my system to &lt;em&gt;not&lt;/em&gt; A, B, or C. Constraints aren't &lt;em&gt;enabling&lt;/em&gt; requirements, instead they are &lt;em&gt;preventing&lt;/em&gt; errors and error states.&lt;/p&gt;
+&lt;p&gt;There's a lot of ways we can consider programming with constraints; &lt;a href="https://en.wikipedia.org/wiki/Constraint_programming"&gt;constraint programming&lt;/a&gt; is a topic in its own right. I'm going to list a number of areas of focus I've had this last month, starting with the more esoteric.&lt;/p&gt;
+&lt;h2&gt;Constraint Logic Programming&lt;/h2&gt;
+&lt;p&gt;Or CLP, this is not something with which most of us are regularly engaged. &lt;a href="https://en.wikipedia.org/wiki/Logic_programming"&gt;Logic programming&lt;/a&gt;, is its own paradigm of programming, separate to the rest, concerned with crafting programs as repositories of logical facts. A program executes in this context when a question is asked about these facts; programs are essentially interpreted by logic solving algorithms. Take this example lifted from the Wikipedia:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-prolog"&gt;is_parent(bob, sue).
+is_parent(bob, john).
+is_sibling(X, Y) :-
+    is_parent(Z, X),
+    is_parent(Z, Y).
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And then a question to run a program:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-prolog"&gt;?- is_sibling(sue, A).
+A = john
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is already a form of programming by constraints; I'm &lt;em&gt;constraining&lt;/em&gt; the definitions of parentage and siblingness. However, we can go more constrainey with better constraint-aware algorithms to do the solving. Hence we get &lt;a href="https://en.wikipedia.org/wiki/Constraint_logic_programming"&gt;constraint logic programming&lt;/a&gt;, which is indeed much more powerful and has practical applications. If you want to learn to program with constraints, this is the holy grail: programs are (I'll wave my hand a bit here) composed entirely of constraints.&lt;/p&gt;
+&lt;p&gt;Most problems - much more than you might think - can be very well-defined by their constraints; well-defined in the sense that the code I write makes sense for the problem. Remember that to programming constraints is to program &lt;em&gt;out&lt;/em&gt; error conditions; writing programs with CLP then is probably the best-class solution for a whole set of problems. Programming a user interface, though, is not necessarily one of those problems; HTTP clients are probably not best served by CLP also. That leaves CLP in a bit of a bind: if I want some other language bookending my whole system, why keep a separate CLP in the middle?&lt;/p&gt;
+&lt;p&gt;Aha! Here is exactly the great practicality of logic programming: because the programs are &lt;em&gt;just&lt;/em&gt; a particular application of proof-solving algorithms, these languages can be expressed perfectly naturally as libraries within other languages. &lt;a href="https://minikanren.org/"&gt;MiniKanren&lt;/a&gt; is a lightweight DSL library with sibling implementations in most languages; C# has &lt;a href="https://github.com/naasking/uKanren.NET"&gt;uKanren.NET&lt;/a&gt;. There's plenty other libraries in most languages, and frankly it's trivially simple to implement a proof solver. &lt;a href="https://github.com/lifebeyondfife/Decider"&gt;Decider&lt;/a&gt; is an actively maintained non-Kanren system. This gives you an engine in whichever language you fancy to express deserving logic using CLP. It's too bad that this is so often overlooked; really a huge amount of logic can be more elegantly expressed with these tools.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Reading&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://medium.com/vptech/a-practical-introduction-to-constraint-programming-2037c91833ba"&gt;A practical introduction to Constraint Programming - Lorenzo Tabacchini&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://lpn.swi-prolog.org/lpnpage.php?pageid=online"&gt;Learn Prolog Now!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://blogit.michelin.io/an-introduction-to-datalog/"&gt;An Introduction to Datalog - Fabien Alberi&lt;/a&gt; (curiously, hosted by Michelin)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://minikanren.org/workshop/2020/minikanren-2020-paper5.pdf"&gt;Kanren Light - Marco Maggesi, Massimo Nocentini&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://news.ycombinator.com/item?id=9248107"&gt;HackerNews: A year ago I asked about real-world use cases for Prolog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dstrohmaier.com/why-learn-prolog-in-2021/"&gt;Why Learn Prolog in 2021? - David Strohmaier&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Watching&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=R2Aa4PivG0g"&gt;I See What You Mean - Peter Alvaro&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=oa0qq75i9oc"&gt;Three Things I Wish I Knew When I Started Designing Languages - Peter Alvaro&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=G_eYTctGZw8"&gt;Production Prolog - Michael Hendricks&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Dependent Typing&lt;/h2&gt;
+&lt;p&gt;This is some crazy voodoo magic. Most programmers (especially if you're reading my blog) are familiar with type theory - maybe not at the theoretical level, but you intuit that this won't compile:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;string variable = 12
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;string&lt;/code&gt; is a type, &lt;code&gt;variable&lt;/code&gt; cannot have values that aren't &lt;code&gt;string&lt;/code&gt;s, and &lt;code&gt;12&lt;/code&gt; is not a &lt;code&gt;string&lt;/code&gt;. This is incredibly simple: a &lt;code&gt;string&lt;/code&gt; is a &lt;code&gt;string&lt;/code&gt; is a &lt;code&gt;string&lt;/code&gt;. A more complicated type might be an array:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;var ints = new int[2];
+ints = [1, 2, 3];
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;C# allows the above, but it is a curious bit of code. Why would I specify a length of 2 and then overwrite the array with a length of 3? C# allows this because the type of &lt;code&gt;ints&lt;/code&gt; is just &lt;code&gt;int[]&lt;/code&gt;, but it seems like the author might have intended something else. Alas, C# does not allow its types to rely on literal values. This is what &lt;em&gt;dependent typing&lt;/em&gt; is: allowing types themselves to have values. In a dependently-typed language, the above would not compile, as &lt;code&gt;ints&lt;/code&gt; would be able to have type &lt;code&gt;int[2]&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This can be an extremely powerful way of programming, which puts constraints directly in the type system. In the array example, I &lt;em&gt;constrain&lt;/em&gt; my array to only ever have length 2. Indeed, dependently-typed languages allow the programmer to apply any constraints that might be needed. So frequently we write programs expecting data to have certain shapes or properties or values; dependent typing allows us to write programs that make misrepresentations impossible, eliminating a whole class of errors.&lt;/p&gt;
+&lt;p&gt;This knowledge has less practical application. To start, dependent typing is a fundamentally functional concept; the type checking algorithms that can validate these sorts of systems rely on functional constructs. Being a more esoteric branch in the functional tradition, then, the syntaxes that implementors are drawn to are, could I say, difficult to read. &lt;a href="https://en.wikipedia.org/wiki/Agda_(programming_language)"&gt;Agda&lt;/a&gt; will let you use any unicode character in a variable name. From the Wikipedia:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-agda"&gt;data _≤_ : ℕ → ℕ → Set where
+  z≤n : {n : ℕ} → zero ≤ n
+  s≤s : {n m : ℕ} → n ≤ m → suc n ≤ suc m
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Studying this form is still hugely beneficial, as it teaches a mindset of loading assumptions into the &lt;em&gt;type system&lt;/em&gt; rather than runtime. This allows problems to be caught at compile time, and is the main tool for those looking to &lt;a href="https://fsharpforfunandprofit.com/posts/designing-with-types-making-illegal-states-unrepresentable/"&gt;make illegal states unrepresentable&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Reading&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://functional.works-hub.com/learn/dependent-types-explained-2e233"&gt;Dependent Types, Explained - Marty Stumpf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://medium.com/background-thread/the-future-of-programming-is-dependent-types-programming-word-of-the-day-fcd5f2634878"&gt;The Future of Programming is Dependent Types — Marin Benčević&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.idris-lang.org/index.html"&gt;The Idris Language&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.type-driven.org.uk/edwinb/papers/impldtp.pdf"&gt;dris, a General Purpose Dependently Typed Programming Language: Design and Implementation - Edwin Brady&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.cs.princeton.edu/%7Edpw/papers/DTDT-tr.pdf"&gt;Dynamic Typing with Dependent Types - Xinming Ou, Gang Tan, Yitzhak Mandelbaum, and David Walker&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Watching&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=4i7KrG1Afbk"&gt;Idris: Practical Dependent Types with Practical Examples - Brian McKenna&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=VxINoKFm-S4"&gt;A Little Taste of Dependent Types - David Christiansen&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=jgFAkmnBHwU"&gt;Dependent Types: Through The Looking Glass - Owein Reese&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=IOiZatlZtGU"&gt;Propositions as Types - Philip Wadler&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=_2jrmgO_Gq0"&gt;Making Dependent Types Practical - Chris Casinghino&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Refinement Typing&lt;/h2&gt;
+&lt;p&gt;While fewer folks yet are looking at refinement typing, I think there is vastly more potential practical benefit here than in dependent typing. Actually, the two dovetail. I'm incredibly excited about this area. I would love to see &lt;a href="https://en.wikipedia.org/wiki/Refinement_type"&gt;refinement typing&lt;/a&gt; become the next big thing; most languages could probably implement this with some ease.&lt;/p&gt;
+&lt;p&gt;While dependent types allow types to depend on &lt;em&gt;values&lt;/em&gt;, refinement typing allows types to depend on some pure constraint about them - not a value that could be some program variable, but some predicate function. Though, I might try to explain it another way: most languages anymore have pattern matching syntax. C# has a robust one:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;if (value is &amp;gt;= 0 and &amp;lt;= 100)
+{
+    //...
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Although this is a large wave of the hand, I think of refinement typing as attaching some pattern matching statement onto a base type; the resulting refined type is guaranteed that this pattern will always match the value of the variable with that type. The above example matches some &lt;code&gt;int&lt;/code&gt; with a pattern, perhaps we could imagine a C# with refinement types (I am &lt;em&gt;not&lt;/em&gt; proposing a syntax, mind you):&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;int{&amp;gt;= 0 and &amp;lt;= 100} value = 12;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So long as we're not allowing runtime variables into this pattern statement, this is not a difficult task for the type checker. The power here, though, is immense: think of how many methods your code has with lots of guard clauses at the front? Example:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public User CreateUser(
+    string username,
+    int age,
+    string email,
+    decimal accountBalance
+)
+{
+    if (username is null or { Length: 0 })
+        throw new ArgumentException(&amp;quot;Username must be provided.&amp;quot;, nameof(username));
+
+    if (age is &amp;lt; 18 or &amp;gt; 120)
+        throw new ArgumentOutOfRangeException(nameof(age), &amp;quot;Age must be between 18 and 120.&amp;quot;);
+
+    if (email is null or { Length: 0 } or not { } e || !e.Contains(&amp;quot;@&amp;quot;))
+        throw new ArgumentException(&amp;quot;A valid email address must be provided.&amp;quot;, nameof(email));
+
+    if (accountBalance is &amp;lt; 0m)
+        throw new ArgumentOutOfRangeException(nameof(accountBalance), &amp;quot;Account balance cannot be negative.&amp;quot;);
+
+    // Implementation
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If I could move these constraints into the types, I can eliminate the guards, catch errors at compile time, and ensure that callers are guarding data appropriately:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public User CreateUser(
+    string{not null and {Length: &amp;gt; 0}} username,
+    int{&amp;gt; 18 and &amp;lt; 120} age,
+    string{not null and {Length: &amp;gt; 3}} email,
+    decimal{&amp;gt; 0} accountBalance
+)
+{
+    // Implementation
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;That's&lt;/em&gt; a pretty neat deal to me.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Reading&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Note these are all academic; there isn't a great into article I've found. Future post idea?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/MSR-TR-2009-147-SP1.pdf"&gt;Principles and Applications of Refinement Types - Andrew D. Gordon, Cédric Fournet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://arxiv.org/pdf/2010.07763"&gt;Refinement Types - Ranjit Jhala, Niki Vazou&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ucsd-progsys.github.io/liquidhaskell-tutorial/"&gt;Programming with Refinement Types An Introduction to LiquidHaskell - Ranjit Jhala, Eric Seidel, Niki Vazou&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dl.acm.org/doi/epdf/10.1145/3610408"&gt;Focusing on Refinement Typing - Dimitrios J. Economou, Neel Krishnaswami, Jana Dunfield&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Watching&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=OEdXcn1rx6k"&gt;An Introduction to Refinement Types - Ranjit Jhala&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=oYTGXNrMEho"&gt;Pursuing Practical Refinement Types - Michael Perucca&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=pnktXb-BY54"&gt;Refinement Kinds: Type-Safe Programming with Practical Type-Level Computation  - Luís Caires, Bernardo Toninho&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=KZwpQIpqbf4"&gt;Program Synthesis from Refinement Types - Nadia Polikarpova&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Ye0luMc4vGU"&gt;Liquid Haskell: Verification with Refinement Types - Niki Vazou&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 Z</pubDate>
+      <a10:updated>2026-02-28T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">book_club_2-3-2025</guid>
       <link>https://ian.wold.guru/Posts/book_club_2-3-2025.html</link>
       <title>Book Club 2&amp;3/2025: Slack: Communication, Organization, Teams</title>
@@ -998,7 +1133,7 @@ public void TestExtensions() {
     <item>
       <guid isPermaLink="false">book_club_8-9-2025</guid>
       <link>https://ian.wold.guru/Posts/book_club_8-9-2025.html</link>
-      <title>Book Club 6&amp;7/2025: Async</title>
+      <title>Book Club 8&amp;9/2025: Async</title>
       <description>&lt;p&gt;These last two months, the interesting thing that I'm researching is asynchronous communication patterns. Last year I wrote a whole &lt;a href="https://ian.wold.guru/Series/fallacies_distributed_computing.html"&gt;series on the Fallacies of Distributed Computing&lt;/a&gt; exploring some common dos and don'ts for systems that rely on network communication. Asynchronous communication (which, I'm just going to type &amp;quot;async&amp;quot; here on out) is a common solution to reach for as the number of nodes in the distributed network increases. It solves the problem of huge latency in requests that need to chain through several services, though at the expense of system complexity and comprehension.&lt;/p&gt;
 &lt;p&gt;In an ideal world, systems would be quite &amp;quot;flat&amp;quot;, with user-level requests being able to be serviced in only a single network call to the server. Plenty of systems can't accommodate this for one reason or another, a backend might need to consult other services to fulfill a request; here though, plenty of systems can be designed so that &lt;em&gt;those&lt;/em&gt; bottom-level services don't need to make blocking calls to each other to fulfill their own requirements. Commonly, there might be a &lt;em&gt;backend-for-fronend&lt;/em&gt; that owns all of the synchronous calls, making it easier to manage temporal dependencies by isolating them all to a particular area.&lt;/p&gt;
 &lt;p&gt;Suppose the lower-level services &lt;em&gt;do&lt;/em&gt; need to exchange data? Alternately, suppose we end up with too many temporal dependencies, resulting in long-running calls even though we've made them architecturally understandable within a single layer? That's where we should be inclined to reach for async. I'm supposing here that we're imagining a relatively well-designed system; that the call patterns are well-considered to fulfill actual business needs.&lt;/p&gt;
