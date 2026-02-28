@@ -1,6 +1,6 @@
 ;;;
 {
-	"title": "Book Club 6&7/2025: Async",
+	"title": "Book Club 8&9/2025: Async",
 	"description": "Not the keyword, but asynchronous communication. It just seemed that 'Async' as a title was more interesting.",
 	"date": "27 September 2025",
 	"contents": false,

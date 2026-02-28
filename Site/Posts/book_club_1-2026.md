@@ -9,7 +9,7 @@
 	"series": "Book Club",
     "related": [
 		{ "title": "Book Club 10&11/2025: .NET 10, C# 14", "description": "Another Thanksgiving, another .NET!", "fileName": "book_club_10-11-2025" },
-		{ "title": "Book Club 6&7/2025: Async", "description": "Not the keyword, but asynchronous communication. It just seemed that 'Async' as a title was more interesting.", "fileName": "book_club_8-9-2025" },
+		{ "title": "Book Club 8&9/2025: Async", "description": "Not the keyword, but asynchronous communication. It just seemed that 'Async' as a title was more interesting.", "fileName": "book_club_8-9-2025" },
 		{ "title": "Book Club 6&7/2025: OOP", "description": "Just some blabbering about OOP, paradigms, and being non-dogmatic", "fileName": "book_club_6-7-2025" }
 	]
 }
