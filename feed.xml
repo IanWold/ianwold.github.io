@@ -1473,6 +1473,179 @@ ints = [1, 2, 3];
       <a10:updated>2014-04-26T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">create_typed_signalr_clients_with_typedsignalr_client</guid>
+      <link>https://ian.wold.guru/Posts/create_typed_signalr_clients_with_typedsignalr_client.html</link>
+      <title>Create Typed SignalR Clients with ... TypedSignalR.Client</title>
+      <description>&lt;p&gt;SignalR is, I think, a good bidirectional networking library. I like its interface; it offers fully-typed server implementations without onerous reflection overhead - other libraries like &lt;a href=""&gt;MediatR&lt;/a&gt; are no-gos for me due to this. However, the typing experience in SignalR doesn't extend to its C# clients. Microsoft's own documentation recommends magic strings, disappointingly.&lt;/p&gt;
+&lt;p&gt;Curiously, Microsoft &lt;em&gt;does&lt;/em&gt; have &lt;a href="https://kristoffer-strube.dk/post/typed-signalr-clients-making-type-safe-real-time-communication-in-dotnet/"&gt;a Nuget package&lt;/a&gt; to support source-generated typed clients, and I have made good use of it. Disappointingly again though they do not reference this library in their documentation. More disappointingly yet, this is surely as they have left this in a pre-release version for years. Most disappointingly, when the release of .NET 9 &lt;a href="https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-9.0?view=aspnetcore-10.0#signalr"&gt;brought updates to SignalR&lt;/a&gt;, this library was left behind, now lacking support for some SignalR uses.&lt;/p&gt;
+&lt;p&gt;Nonetheless, I have continued using Microsoft's solution; I refuse to use magic strings. A couple months ago I ran into &lt;a href="https://github.com/IanWold/PostgreSignalR"&gt;a need to support this feature on clients&lt;/a&gt;, leaving me worried that this would spiral into a side project of writing my own source generator, spinning off new side projects to support yet-unfinished projects. Lucky me though, someone else has beaten me to it.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/nenoNaninu/TypedSignalR.Client"&gt;TypedSignalR.Client&lt;/a&gt;, aptly named, is a production-ready and up-to-date source generator for typed SignalR clients. I've switched myself over to this library, and I would recommend it. Here's how client implementations work -&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;As a refresher, servers can be implemented in a typed fashion using interfaces to define the clients:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public interface IClient
+{
+    Task OnSomeEventAsync();
+}
+
+public class MyServer : IHub&amp;lt;IClient&amp;gt;
+{
+    public async Task DoSomething()
+    {
+        await Clients.Group(someId).OnSomeEventAsync();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This can be called from clients using magic strings:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public class MyClient
+{
+    private readonly HubConnection _connection;
+
+    public MySignalRClient(string hubUrl)
+    {
+        _connection = new HubConnectionBuilder()
+            .WithUrl(hubUrl)
+            .WithAutomaticReconnect()
+            .Build();
+
+        _connection.On(&amp;quot;OnSomeEventAsync&amp;quot;, OnSomeEventAsync);
+    }
+
+    public async Task DoSomethingAsync() =&amp;gt;
+        await _connection.InvokeAsync(&amp;quot;DoSomethingAsync&amp;quot;);
+
+    public async Task OnSomeEventAsync() { ... }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And that's all yucky. To use the new &lt;code&gt;TypedSignalR.Client&lt;/code&gt;, we'll first need a server interface:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public interface IServer
+{
+    Task DoSomethingAsync();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The server class should implement this now. We'll also want to update the client to implement IClient, but while we're at it we'll also implement a new &lt;code&gt;IHubConnectionObserver&lt;/code&gt; interface that comes from our new Nuget package, letting us observe SignalR events.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public class MyClient : IClient, IHubConnectionObserver // [tl! ++ **]
+{
+    private readonly HubConnection _connection;
+
+    public MySignalRClient(string hubUrl)
+    {
+        _connection = new HubConnectionBuilder()
+            .WithUrl(hubUrl)
+            .WithAutomaticReconnect()
+            .Build();
+
+        _connection.On(&amp;quot;OnSomeEventAsync&amp;quot;, OnSomeEventAsync);
+    }
+
+    public async Task OnClosed(Exception? exception) { ... } // [tl! ++ **]
+    public async Task OnReconnected(string? connectionId) { ... } // [tl! ++ **]
+    public async Task OnReconnecting(Exception? exception) { ... } // [tl! ++ **]
+
+    public async Task DoSomethingAsync() =&amp;gt;
+        await _connection.InvokeAsync(&amp;quot;DoSomethingAsync&amp;quot;);
+
+    public async Task OnSomeEventAsync() { ... }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In order to call the typed server, we'll use the new &lt;code&gt;_connection.CreateHubProxy&lt;/code&gt; extension:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class MyClient : IClient, IHubConnectionObserver
+{
+    private readonly HubConnection _connection;
+    private readonly IServer _serverProxy; // [tl! ++ **]
+
+    public MySignalRClient(string hubUrl)
+    {
+        _connection = new HubConnectionBuilder()
+            .WithUrl(hubUrl)
+            .WithAutomaticReconnect()
+            .Build();
+
+        _serverProxy = connection.CreateHubProxy&amp;lt;IHub&amp;gt;(); // [tl! ++ **]
+
+        _connection.On(&amp;quot;OnSomeEventAsync&amp;quot;, OnSomeEventAsync);
+    }
+
+    public async Task OnClosed(Exception? exception) { ... }
+    public async Task OnReconnected(string? connectionId) { ... }
+    public async Task OnReconnecting(Exception? exception) { ... }
+
+    public async Task DoSomethingAsync() =&amp;gt;
+        await _serverProxy.DoSomethingAsync(); // [tl! ++ **]
+
+    public async Task OnSomeEventAsync() { ... }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then to be rid of the magic string in the event listener we'll use the &lt;code&gt;Register&lt;/code&gt; extension.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public class MyClient : IClient, IHubConnectionObserver
+{
+    private readonly HubConnection _connection;
+    private readonly IServer _serverProxy;
+    private readonly IDisposable _subscription; // [tl! ++ **]
+
+    public MySignalRClient(string hubUrl)
+    {
+        _connection = new HubConnectionBuilder()
+            .WithUrl(hubUrl)
+            .WithAutomaticReconnect()
+            .Build();
+
+        _serverProxy = connection.CreateHubProxy&amp;lt;IHub&amp;gt;();
+        _connection.On(&amp;quot;OnSomeEventAsync&amp;quot;, OnSomeEventAsync); // [tl! -- **]
+        _subscription = connection.Register&amp;lt;IReceiver&amp;gt;(this); // [tl! ++ **]
+    }
+
+    public async Task OnClosed(Exception? exception) { ... }
+    public async Task OnReconnected(string? connectionId) { ... }
+    public async Task OnReconnecting(Exception? exception) { ... }
+
+    public async Task DoSomethingAsync() =&amp;gt;
+        await _serverProxy.DoSomethingAsync();
+
+    public async Task OnSomeEventAsync() { ... }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To wrap it up, it's good practice to implement IDisposable. Further, the library author recommends using a custom cancellation token source when creating the proxy:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public class MyClient : IClient, IHubConnectionObserver, IDisposable // [tl! ++ **]
+{
+    private readonly HubConnection _connection;
+    private readonly IServer _serverProxy;
+    private readonly IDisposable _subscription;
+    private readonly CancellationTokenSource _cancellationTokenSource = new();
+
+    public MySignalRClient(string hubUrl)
+    {
+        _connection = new HubConnectionBuilder()
+            .WithUrl(hubUrl)
+            .WithAutomaticReconnect()
+            .Build();
+
+        _serverProxy = connection.CreateHubProxy&amp;lt;IHub&amp;gt;(); // [tl! -- **]
+        _serverProxy = connection.CreateHubProxy&amp;lt;IHub&amp;gt;(_cancellationTokenSource.Token); // [tl! ++ **]
+        _subscription = connection.Register&amp;lt;IReceiver&amp;gt;(this);
+    }
+
+    public async Task OnClosed(Exception? exception) { ... }
+    public async Task OnReconnected(string? connectionId) { ... }
+    public async Task OnReconnecting(Exception? exception) { ... }
+
+    public async Task DoSomethingAsync() =&amp;gt;
+        await _serverProxy.DoSomethingAsync();
+
+    public async Task OnSomeEventAsync() { ... }
+
+    public void Dispose() // [tl! ++ **]
+    { // [tl! ++ **]
+        _subscription.Dispose(); // [tl! ++ **]
+        // ... // [tl! ++ **]
+    } // [tl! ++ **]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Bit of extra work but not enough to keep the juice from being worth the squeeze!&lt;/p&gt;
+</description>
+      <pubDate>Thu, 12 Mar 2026 00:00:00 Z</pubDate>
+      <a10:updated>2026-03-12T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">daily_grug</guid>
       <link>https://ian.wold.guru/Posts/daily_grug.html</link>
       <title>Daily Grug</title>
