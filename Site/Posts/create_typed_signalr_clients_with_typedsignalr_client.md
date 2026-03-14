@@ -4,7 +4,7 @@
 	"description": "Much better to avoid magic strings",
 	"date": "12 March 2026",
 	"contents": false,
-	"hero": "photo-1686061593213-98dad7c599b9",
+	"hero": "photo-1521790797524-b2497295b8a0",
     "topics": ["Learning", "Dotnet"],
     "related": [
 		{ "title": ".NET: From Framework to 10", "description": "Looking back at all of the new features introduced in C# and how they impact the way we develop .NET systems today.", "fileName": "dotnet_from_framework_to_10" },
