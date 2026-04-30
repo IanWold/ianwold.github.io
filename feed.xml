@@ -1007,6 +1007,24 @@ ints = [1, 2, 3];
       <a10:updated>2024-04-24T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">book_club_4-2026</guid>
+      <link>https://ian.wold.guru/Posts/book_club_4-2026.html</link>
+      <title>Book Club 4/2026: Work/Life Balance</title>
+      <description>&lt;p&gt;Greetings from Nottingham! I'm on vacation this month, you might have noticed that I haven't posted a blog in April. I'm still keeping up (somewhat) with side projects, and that includes this blog. However, I haven't been researching &lt;em&gt;anything&lt;/em&gt; in the domain of software for a bit now, so since I promise to use this book club to track what is currently on my mind, here's some thinking on taking time off and maintaining a life balance.&lt;/p&gt;
+&lt;p&gt;Software engineering is rife with romantic stories of overworked founders and startup employees; glamorizing the idea of the hyper-productive engineer is probably a major contributor to negative trends like &lt;a href="https://cse.engin.umich.edu/stories/study-explores-drug-use-in-programming-jobs-tension-between-policy-and-reality"&gt;engineers abusing Adderall&lt;/a&gt; or the dreaded &lt;em&gt;&amp;quot;sure, we can use blockchain for that&amp;quot;&lt;/em&gt; attitude. Working in the appropriate moderation is better; having the necessary time to pursue leisure and hobbies and &lt;em&gt;life&lt;/em&gt; forces us to use work-time to pursue quality work. Not blockchain. Diligence in only working so many hours in a day, days in a week, and weeks in a year is a higher virtue than being able to crank a million lines of code in one sitting, I think.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.benkuhn.net/contra/"&gt;You should try contra dancing - Ben Kuhn&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.benkuhn.net/weeklyessays/"&gt;My favorite essays of life advice - Ben Kuhn&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://jvns.ca/blog/2018/03/28/open-source-sabbatical---awesome/"&gt;Open source sabbatical = awesome - Julia Evans&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://overreacted.io/things-i-dont-know-as-of-2018/"&gt;Things I Don’t Know as of 2018 - Dan Abramov&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://renegadeotter.com/2023/08/24/getting-your-focus-back.html"&gt;Getting Our Focus Back - Andrei Taranchenko&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://taylor.town/10-minutes"&gt;10 Minutes is 1% of Your Day - Taylor Troesh&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Thu, 30 Apr 2026 00:00:00 Z</pubDate>
+      <a10:updated>2026-04-30T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">book_club_4-5-2025</guid>
       <link>https://ian.wold.guru/Posts/book_club_4-5-2025.html</link>
       <title>Book Club 4&amp;5/2025: Incidents and Resiliency</title>
