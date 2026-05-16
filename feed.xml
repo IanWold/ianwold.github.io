@@ -1556,7 +1556,7 @@ public class MyServer : IHub&amp;lt;IClient&amp;gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;And that's all yucky. To use the new &lt;code&gt;TypedSignalR.Client&lt;/code&gt;, we'll first need a server interface:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;public interface IServer
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public interface IServer
 {
     Task DoSomethingAsync();
 }
@@ -1587,7 +1587,7 @@ public class MyServer : IHub&amp;lt;IClient&amp;gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;In order to call the typed server, we'll use the new &lt;code&gt;_connection.CreateHubProxy&lt;/code&gt; extension:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;public class MyClient : IClient, IHubConnectionObserver
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public class MyClient : IClient, IHubConnectionObserver
 {
     private readonly HubConnection _connection;
     private readonly IServer _serverProxy; // [tl! ++ **]
