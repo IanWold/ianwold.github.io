@@ -67,7 +67,7 @@ public class MyClient
 
 And that's all yucky. To use the new `TypedSignalR.Client`, we'll first need a server interface:
 
-```
+```csharp
 public interface IServer
 {
     Task DoSomethingAsync();
@@ -104,7 +104,7 @@ public class MyClient : IClient, IHubConnectionObserver // [tl! ++ **]
 
 In order to call the typed server, we'll use the new `_connection.CreateHubProxy` extension:
 
-```
+```csharp
 public class MyClient : IClient, IHubConnectionObserver
 {
     private readonly HubConnection _connection;
