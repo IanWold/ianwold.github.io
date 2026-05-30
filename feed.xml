@@ -5409,6 +5409,69 @@ public async Task TestErrorLogged()
       <a10:updated>2025-01-12T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">the-ontology-doc</guid>
+      <link>https://ian.wold.guru/Posts/the-ontology-doc.html</link>
+      <title>The Ontology Doc</title>
+      <description>&lt;p&gt;You know how you're not supposed to start an essay with a dictionary definition? Just as well that this one starts with a question. Anyway, &lt;a href="https://www.merriam-webster.com/dictionary/ontology"&gt;Webster's defines &lt;em&gt;ontology&lt;/em&gt;&lt;/a&gt; as:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;a particular theory about the nature of being or the kinds of things that have existence&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Software engineers dael in ontology every day, but we usually use the word &amp;quot;domain&amp;quot; to refer to this concept. &amp;quot;Domain&amp;quot; has become laden with a lot of pieces though, when we discuss domain we're not necessarily just talking about the &lt;em&gt;things&lt;/em&gt; that exist within it. A &lt;em&gt;domain&lt;/em&gt; will have an &lt;em&gt;ontology&lt;/em&gt; - some opinion about the things and &lt;em&gt;kinds&lt;/em&gt; of things in the domain.&lt;/p&gt;
+&lt;p&gt;We inevitably spend a lot of time talking about the ontology of the domain without explicitly naming it. That's not necessarily a problem, but we end up missing a very powerful tool when we don't consider the &lt;em&gt;ontology&lt;/em&gt; as an &lt;em&gt;ontology&lt;/em&gt;; that is, a proper &lt;em&gt;theory&lt;/em&gt; about the &lt;em&gt;kinds&lt;/em&gt; of &lt;em&gt;things&lt;/em&gt; in the domain. I've seen a lot of &amp;quot;domain glossaries,&amp;quot; sometimes presented as a plan SQL schema and/or entity diagram, when I attempt to inquire about the objects of a domain. SQL schemas are a bit dry on the &amp;quot;what purpose does this have&amp;quot; side but do a good job of showing relations, whereas bullet point glossaries have the opposite problem. Both approaches lack an overall vision; what is the limit o fthe space these objects exist in, what principle(s) guide their relations, and what principles guide their existences?&lt;/p&gt;
+&lt;p&gt;Especially for more complicated domains, it's ideal to have a proper ontology developed: not just a view of the particular objects as they exist, but a theory about what the whole domain is and principles for how objects come to be in it and how relations get made. This is approaching a proper ontology, and can be captured in an Ontology Doc. Now, there's a whole practice of &lt;a href="https://en.wikipedia.org/wiki/Ontology_engineering"&gt;ontology engineering&lt;/a&gt; that has methods well in excess of what I'm proposing here. It all seems a bit niche to me, and instead I've charted my own course with how I handle domain ontology. With the caveat that I am very much an outsider to formal ontology engineering, here's what I have come to like in an Ontology Doc:&lt;/p&gt;
+&lt;h2&gt;1. What is the domain boundary?&lt;/h2&gt;
+&lt;p&gt;We want to answer what world we're modeling and what we're &lt;em&gt;not&lt;/em&gt; modeling. We want to define the boundaries of what definitely is or is not the domain. Why does the system exist? What real-world &lt;em&gt;thing&lt;/em&gt; is it modeling? What problem is it solving? Does the system serve some process, relation, or object in the real world?&lt;/p&gt;
+&lt;p&gt;I work in ecommerce presently, I might say something at the broad level like &amp;quot;the domain models the exchange of goods between economic actors.&amp;quot; If I drill down to an individual product page, I'm no longer modeling the exchange but the individual product. Taken as a user relation, the domain might be &amp;quot;the interaction between a purchaser and an individual product.&amp;quot; For the broader ecommerce context I might say that I am not modeling accounting or legal practices; for the narrower product page context I might say I am not modeling physical delivery.&lt;/p&gt;
+&lt;p&gt;Alternately, some project management application might be said to model &amp;quot;commitments made by actors toward outcomes over time,&amp;quot; or some healthcare startup app might be said to model &amp;quot;observations, interventions, and responsibilities concerning human health.&amp;quot; Domains are quite broad at the top level, but being clear about its proper purpoes and boundaries gives us a context to work in.&lt;/p&gt;
+&lt;h2&gt;2. What are the assumptions of the domain?&lt;/h2&gt;
+&lt;p&gt;At a bullet level, what characteristics are we assuming as requirements for the domain? Take an identity system as an example, I might assume:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Every user possesses one or more identities&lt;/li&gt;
+&lt;li&gt;Identities may change&lt;/li&gt;
+&lt;li&gt;Historical identity state must remain recoverable&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And so on. Almost every team has something like this already documented, just in a location separate to the entities. I see these a lot as a preface to a repository of &amp;quot;feature sets.&amp;quot;&lt;/p&gt;
+&lt;h2&gt;3. What are the fundamental entity categories?&lt;/h2&gt;
+&lt;p&gt;Not specific entities, but categories. In a larger firm these might frequently map onto teams, or in domain-driven-design they might map onto areas. In ecommerce I might map something like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;User
+&lt;ul&gt;
+&lt;li&gt;Customer&lt;/li&gt;
+&lt;li&gt;Admin&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Resource
+&lt;ul&gt;
+&lt;li&gt;Family&lt;/li&gt;
+&lt;li&gt;Item&lt;/li&gt;
+&lt;li&gt;Set&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Order
+&lt;ul&gt;
+&lt;li&gt;Purchase&lt;/li&gt;
+&lt;li&gt;Refund&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For each category, we want to know why it exists based on the assumptions of the domain. We might say the &amp;quot;user&amp;quot; category fulfils some domain assumption that &amp;quot;customers will be able to view their history of exchanges with us,&amp;quot; or that the &amp;quot;order&amp;quot; category fulfils some domain assumption that &amp;quot;economic exchanges will be trackable and reportable&amp;quot;. We're focused on explaining why and giving rationality for each step: when some new guy comes on and asks why we have the specific divisions we do, we can point to this reasoning.&lt;/p&gt;
+&lt;h2&gt;4. What are the existence rules in these categories?&lt;/h2&gt;
+&lt;p&gt;For each &lt;em&gt;category&lt;/em&gt;, I want to know what makes objects under them come into existence, what makes them disappear, and what makes them the &lt;em&gt;same&lt;/em&gt; object over time? Existence and identity are two sides of the same coin, remember!&lt;/p&gt;
+&lt;p&gt;An object in the &lt;em&gt;order&lt;/em&gt; category comes into existence when the user decides to commit to some ordering action (they want to purchase or refund something, for example). An object in the refund category stops existing when the refund is posted to the user, but we might also say that the object in the refund category will transform into an &amp;quot;archive&amp;quot; version of itself; then we'd say &amp;quot;refund archive&amp;quot; objects come into existence on the completion of refund objects.&lt;/p&gt;
+&lt;p&gt;We might say a user remains the same user in spite of changes to username, email, phone number, and so on.&lt;/p&gt;
+&lt;p&gt;By keeping rules at a category-level, we're putting more generic constraints on more braod areas of the system. When we need to fashion specific objects, we can more clearly see the rules across the whole system to see where those specific objects should exist. For example, we might not want &amp;quot;refund archive&amp;quot; objects to be under the &amp;quot;refund&amp;quot; category; instead, we might define &amp;quot;archive&amp;quot; as a separate category fulfilling a different domain assumption, with objects under that category more similar to each other.&lt;/p&gt;
+&lt;h2&gt;5. What drives relationships?&lt;/h2&gt;
+&lt;p&gt;Intuitively, we know that users and purchases will have a one-to-many relationship. Instead of bulleting that out, we want to define &lt;em&gt;why&lt;/em&gt; that is based on the domain assumptions: &amp;quot;users contain many purchases to fulfil the domain assumption that customers will purchase things from us.&amp;quot; Contrived a bit, but I think you get my point there.&lt;/p&gt;
+&lt;p&gt;This is explicitly stating the &amp;quot;why&amp;quot; of relationships instead of &lt;em&gt;just&lt;/em&gt; mapping relationships as they exist. Again, we're wanting to move from our domain assumptions and fundamental principles to create constraints for the system more broadly. When I need to consider creating new object relations, I can better see the &lt;em&gt;whys&lt;/em&gt; of what presently exists, and what parts of the system are going to be more accommodating to the updates I need to make. When I do make updates, justifying them along the same lines based on the domain assumptions allows me to slot the updates more neatly into the broader system.&lt;/p&gt;
+&lt;h2&gt;6. Now, what specifics exist?&lt;/h2&gt;
+&lt;p&gt;Having defined the broad shape and constraints of the system, it should be pretty simple to derive objects and relationships. What's more though is that pretty much any concrete thing we want to define can come from these principles. For example: state change (lifecycle) modeling becomes easy from the existence rules, and domain events are usually derivations of state change points.&lt;/p&gt;
+&lt;h2&gt;Altering the Ontology&lt;/h2&gt;
+&lt;p&gt;When we get new information about the domain, this can have a ripple effect down the system. If we're adding assumptions, we need to make sure the new assumptions don't clash with the existing ones, and that derived constraints aren't accidentally impeding new development from satisfying the new constraints. If we're altering previous assumptions, we'll want to revisit all the rules we derived from that assumption. There aren't great software tools I know of that can capture every change and ramification, so the Ontology Doc should be kept relatively general and lean; it should be a tool to be able to double check system-wide alterations, and a learning platform for new folks.&lt;/p&gt;
+</description>
+      <pubDate>Sat, 30 May 2026 00:00:00 Z</pubDate>
+      <a10:updated>2026-05-30T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">theres_always_money_in_the_banana_stand</guid>
       <link>https://ian.wold.guru/Posts/theres_always_money_in_the_banana_stand.html</link>
       <title>There's Always Money in the Banana Stand</title>
