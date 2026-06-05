@@ -1274,6 +1274,39 @@ ints = [1, 2, 3];
       <a10:updated>2024-09-28T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">brandon_sandersons_laws_of_software_architecture</guid>
+      <link>https://ian.wold.guru/Posts/brandon_sandersons_laws_of_software_architecture.html</link>
+      <title>Brandon Sanderson's Laws of Software Architecture</title>
+      <description>&lt;p&gt;Just hear me out on this one: software architecture is like magic in fantasy novels. Not perfectly, and maybe they only bear a passing resemblance, but so too do ERD diagrams and building blueprints. I will not explicitly propose that we retitle architects as wizards, but I also won't stop you from reading that into my post here.&lt;/p&gt;
+&lt;p&gt;Magic systems are created by authors of fantasy novels to provide a foundation for the narrative and parameterize how magic solves problems within the text. Corrollarily, software architectures are created by engineers of applications or systems to provide a foundation for the solution and parameterize how architecture solves problems within the code.&lt;/p&gt;
+&lt;p&gt;I get that any two disparate concepts can be moulded into bein analagous on a whim; the point of drawing an analogy isn't to assert &lt;em&gt;that&lt;/em&gt; the analogy exists, but to use the analogy as a tool to learn about its subject. How can this particular analogy teach us about software architecture? Apart from that software engineers are probably disproportionately well-versed in the fantasy genre, there has been quite a bit written about magic systems from a perspective of &lt;em&gt;developing&lt;/em&gt; the magic system and the system's &lt;em&gt;impact&lt;/em&gt; on narrative; carrying these aspects across the analogy reveals that these speak to relatively less-well-commented-upon aspects of software architecture.&lt;/p&gt;
+&lt;p&gt;The author Brandon Sanderson might well be the most-cited understander of magic systems, to the point that even the most cursory research into narrative magic will immediately uncover his &lt;em&gt;Laws of Magic&lt;/em&gt;: three laws he developed to ground the development of these magic systems. I propose that these can easily be analogously understood to apply to software architectures, and that this exercise reveals some considerations we should probably keep more at the fore in our architectures. Sanderson's Laws, which I will recontextualize below, are (&lt;a href="https://en.wikipedia.org/wiki/Brandon_Sanderson#Sanderson%27s_Laws_of_Magic"&gt;from Wikipedia&lt;/a&gt;):&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;An author's ability to solve conflict with magic is directly proportional to how well the reader understands said magic.&lt;/li&gt;
+&lt;li&gt;Weaknesses, limits and costs are more interesting than powers.&lt;/li&gt;
+&lt;li&gt;The author should expand on what is already a part of the magic system before something entirely new is added, as this may otherwise entirely change how the magic system fits into the fictional world.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;1. Our ability to solve problems with architecture is directly proportional to how well we understand said architecture&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;&amp;quot;Well duh,&amp;quot;&lt;/em&gt; I hear you thinking, &lt;em&gt;&amp;quot;of course we need to tell our colleagues what the established architecture is!&amp;quot;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Certainly, the architecture should be documented. More fundamentally though, the architecture should be &lt;em&gt;documentable&lt;/em&gt;. If you need to take two weeks to slop together a 100-slide powerpoint to teach me a system's architecture, I won't understand it. Similarly, if you find a way to encode an extremely complex architecture into a short description, I still won't understand it. If your architecture can be explained in &lt;a href="https://en.wikipedia.org/wiki/Basic_English"&gt;Basic English&lt;/a&gt; in a well-contained blog post then I can understand it.&lt;/p&gt;
+&lt;p&gt;This seems like an obvious point to make, but I find more often than not that obvious points &lt;em&gt;need&lt;/em&gt; to be made: if I don't understand your architecture, I can't use it to resolve my problems. I can't use it, I can't conform to it, I can't do anything with it.&lt;/p&gt;
+&lt;h2&gt;2. Constraints are more helpful than prescriptions&lt;/h2&gt;
+&lt;p&gt;&amp;quot;Use algorithm X&amp;quot;; &amp;quot;ServiceY sould be used when...&amp;quot;; &amp;quot;Implement the Z pattern if...&amp;quot; and so on are prescriptions. Prescriptions are necessary, to be sure. They're not guiding though, even if they seem like it. They don't establish any boundaries for the architecture, they're never universally applicable, and interestingly they don't really convey the &lt;em&gt;intent&lt;/em&gt; of the architecture.&lt;/p&gt;
+&lt;p&gt;Constraints, on the other hand - &amp;quot;Don't use &lt;code&gt;System.Reflection&lt;/code&gt; in runtime code&amp;quot;; &amp;quot;Serializable models must be immutable&amp;quot; - are more powerful, applicable, and helpful. These give the real boundaries wherein the solution must fall. If I tell you that we can't use reflection at runtime, you know my &lt;em&gt;intent&lt;/em&gt; is performance.&lt;/p&gt;
+&lt;h2&gt;3. Elaborate on existing architecture before adding new rules&lt;/h2&gt;
+&lt;p&gt;Or, I could translate this one as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;When writing code, just conform to the existing understanding of the architecture instead of trying to conjure new patterns, or&lt;/li&gt;
+&lt;li&gt;Don't expand the arch docs until you really need to, or&lt;/li&gt;
+&lt;li&gt;Be restrained in describing the architecture&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;No system needs an architecture with a thousand bullet points (remember understandability), and no set of future problems can be comprehensively predicted by any architectural prescription (remember constraint &amp;gt; prescription).&lt;/p&gt;
+&lt;p&gt;When you have some properties of your architecture, understand them, and let that be your architecture. You'll &lt;em&gt;know&lt;/em&gt; when it becomes too limited to be a useful problem solving tool (meaning it needs expansion), and you'll &lt;em&gt;know&lt;/em&gt; when it becomes a liability preventing appropriate solutions (meaning it needs altering or reduction). We don't need to anticipatorially add anything to the architectural canon, nor do we need to be too eager to edit it.&lt;/p&gt;
+</description>
+      <pubDate>Fri, 05 Jun 2026 00:00:00 Z</pubDate>
+      <a10:updated>2026-06-05T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">building_a_documentation_habit</guid>
       <link>https://ian.wold.guru/Posts/building_a_documentation_habit.html</link>
       <title>Building a Documentation Habit</title>
