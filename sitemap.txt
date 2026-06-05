@@ -94,7 +94,6 @@ https://ian.wold.guru/Posts/sprachejson.html
 https://ian.wold.guru/Posts/sprache_comments.html
 https://ian.wold.guru/Posts/successful_personal_projects.html
 https://ian.wold.guru/Posts/testing_logging_in_asp_net_core.html
-https://ian.wold.guru/Posts/the-ontology-doc.html
 https://ian.wold.guru/Posts/theres_always_money_in_the_banana_stand.html
 https://ian.wold.guru/Posts/there_is_one_admin.html
 https://ian.wold.guru/Posts/the_art_of_hype_driven_development.html
@@ -102,6 +101,7 @@ https://ian.wold.guru/Posts/the_case_for_single_reviewer_prs.html
 https://ian.wold.guru/Posts/the_modular_monolith_wont_save_you.html
 https://ian.wold.guru/Posts/the_network_is_reliable.html
 https://ian.wold.guru/Posts/the_network_is_secure.html
+https://ian.wold.guru/Posts/the_ontology_doc.html
 https://ian.wold.guru/Posts/thing_i_made_cfweaver.html
 https://ian.wold.guru/Posts/three_laws.html
 https://ian.wold.guru/Posts/topology_doesnt_change.html
