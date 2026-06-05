@@ -14,7 +14,6 @@
 }
 ;;;
 
-
 You know how you're not supposed to start an essay with a dictionary definition? Just as well that this one starts with a question. Anyway, [Webster's defines _ontology_](https://www.merriam-webster.com/dictionary/ontology) as:
 
 > a particular theory about the nature of being or the kinds of things that have existence
