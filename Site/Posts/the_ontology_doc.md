@@ -18,9 +18,9 @@ You know how you're not supposed to start an essay with a dictionary definition?
 
 > a particular theory about the nature of being or the kinds of things that have existence
 
-Software engineers dael in ontology every day, but we usually use the word "domain" to refer to this concept. "Domain" has become laden with a lot of pieces though, when we discuss domain we're not necessarily just talking about the _things_ that exist within it. A _domain_ will have an _ontology_ - some opinion about the things and _kinds_ of things in the domain.
+Software engineers deal in ontology every day, but we usually use the word "domain" to refer to this concept. "Domain" has become laden with a lot of pieces though, when we discuss domain we're not necessarily just talking about the _things_ that exist within it. A _domain_ will have an _ontology_ - some opinion about the things and _kinds_ of things in the domain.
 
-We inevitably spend a lot of time talking about the ontology of the domain without explicitly naming it. That's not necessarily a problem, but we end up missing a very powerful tool when we don't consider the _ontology_ as an _ontology_; that is, a proper _theory_ about the _kinds_ of _things_ in the domain. I've seen a lot of "domain glossaries," sometimes presented as a plan SQL schema and/or entity diagram, when I attempt to inquire about the objects of a domain. SQL schemas are a bit dry on the "what purpose does this have" side but do a good job of showing relations, whereas bullet point glossaries have the opposite problem. Both approaches lack an overall vision; what is the limit o fthe space these objects exist in, what principle(s) guide their relations, and what principles guide their existences?
+We inevitably spend a lot of time talking about the ontology of the domain without explicitly naming it. That's not necessarily a problem, but we end up missing a very powerful tool when we don't consider the _ontology_ as an _ontology_; that is, a proper _theory_ about the _kinds_ of _things_ in the domain. I've seen a lot of "domain glossaries," sometimes presented as a plan SQL schema and/or entity diagram, when I attempt to inquire about the objects of a domain. SQL schemas are a bit dry on the "what purpose does this have" side but do a good job of showing relations, whereas bullet point glossaries have the opposite problem. Both approaches lack an overall vision; what is the limit of the space these objects exist in, what principle(s) guide their relations, and what principles guide their existences?
 
 Especially for more complicated domains, it's ideal to have a proper ontology developed: not just a view of the particular objects as they exist, but a theory about what the whole domain is and principles for how objects come to be in it and how relations get made. This is approaching a proper ontology, and can be captured in an Ontology Doc. Now, there's a whole practice of [ontology engineering](https://en.wikipedia.org/wiki/Ontology_engineering) that has methods well in excess of what I'm proposing here. It all seems a bit niche to me, and instead I've charted my own course with how I handle domain ontology. With the caveat that I am very much an outsider to formal ontology engineering, here's what I have come to like in an Ontology Doc:
 
@@ -30,7 +30,7 @@ We want to answer what world we're modeling and what we're _not_ modeling. We wa
 
 I work in ecommerce presently, I might say something at the broad level like "the domain models the exchange of goods between economic actors." If I drill down to an individual product page, I'm no longer modeling the exchange but the individual product. Taken as a user relation, the domain might be "the interaction between a purchaser and an individual product." For the broader ecommerce context I might say that I am not modeling accounting or legal practices; for the narrower product page context I might say I am not modeling physical delivery.
 
-Alternately, some project management application might be said to model "commitments made by actors toward outcomes over time," or some healthcare startup app might be said to model "observations, interventions, and responsibilities concerning human health." Domains are quite broad at the top level, but being clear about its proper purpoes and boundaries gives us a context to work in.
+Alternately, some project management application might be said to model "commitments made by actors toward outcomes over time," or some healthcare startup app might be said to model "observations, interventions, and responsibilities concerning human health." Domains are quite broad at the top level, but being clear about its proper purposes and boundaries gives us a context to work in.
 
 ## 2. What are the assumptions of the domain?
 
@@ -57,7 +57,7 @@ Not specific entities, but categories. In a larger firm these might frequently m
   * Purchase
   * Refund
 
-For each category, we want to know why it exists based on the assumptions of the domain. We might say the "user" category fulfils some domain assumption that "customers will be able to view their history of exchanges with us," or that the "order" category fulfils some domain assumption that "economic exchanges will be trackable and reportable". We're focused on explaining why and giving rationality for each step: when some new guy comes on and asks why we have the specific divisions we do, we can point to this reasoning.
+For each category, we want to know why it exists based on the assumptions of the domain. We might say the "user" category fulfills some domain assumption that "customers will be able to view their history of exchanges with us," or that the "order" category fulfills some domain assumption that "economic exchanges will be trackable and reportable". We're focused on explaining why and giving rationality for each step: when some new guy comes on and asks why we have the specific divisions we do, we can point to this reasoning.
 
 ## 4. What are the existence rules in these categories?
 
@@ -67,11 +67,11 @@ An object in the _order_ category comes into existence when the user decides to 
 
 We might say a user remains the same user in spite of changes to username, email, phone number, and so on.
 
-By keeping rules at a category-level, we're putting more generic constraints on more braod areas of the system. When we need to fashion specific objects, we can more clearly see the rules across the whole system to see where those specific objects should exist. For example, we might not want "refund archive" objects to be under the "refund" category; instead, we might define "archive" as a separate category fulfilling a different domain assumption, with objects under that category more similar to each other.
+By keeping rules at a category-level, we're putting more generic constraints on more broad areas of the system. When we need to fashion specific objects, we can more clearly see the rules across the whole system to see where those specific objects should exist. For example, we might not want "refund archive" objects to be under the "refund" category; instead, we might define "archive" as a separate category fulfilling a different domain assumption, with objects under that category more similar to each other.
 
 ## 5. What drives relationships?
 
-Intuitively, we know that users and purchases will have a one-to-many relationship. Instead of bulleting that out, we want to define _why_ that is based on the domain assumptions: "users contain many purchases to fulfil the domain assumption that customers will purchase things from us." Contrived a bit, but I think you get my point there.
+Intuitively, we know that users and purchases will have a one-to-many relationship. Instead of bulleting that out, we want to define _why_ that is based on the domain assumptions: "users contain many purchases to fulfill the domain assumption that customers will purchase things from us." Contrived a bit, but I think you get my point there.
 
 This is explicitly stating the "why" of relationships instead of _just_ mapping relationships as they exist. Again, we're wanting to move from our domain assumptions and fundamental principles to create constraints for the system more broadly. When I need to consider creating new object relations, I can better see the _whys_ of what presently exists, and what parts of the system are going to be more accommodating to the updates I need to make. When I do make updates, justifying them along the same lines based on the domain assumptions allows me to slot the updates more neatly into the broader system.
 
