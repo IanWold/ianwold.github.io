@@ -25,7 +25,7 @@ jobs:
 
     - name: Setup dotnet
       if: ${{ steps.cache-dotnet.outputs.cache-hit != 'true' }}
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@v6
       with:
         dotnet-version: 10.0.100-preview.5.25277.114
 
