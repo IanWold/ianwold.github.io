@@ -24,6 +24,6 @@ I keep [a blogroll](https://ian.wold.guru/Blogroll/) with all the other blogs I 
 
 **FreePlanningPoker.io** on [Web](https://freeplanningpoker.io) and [GitHub](https://github.com/IanWold/PlanningPoker): A free tool for software teams to do "planning poker" exercises.
 
-**Metalsharp** on [GitHub](https://github.com/IanWold/Metalsharp) and [NuGet](https://www.nuget.org/packages/Metalsharp/): A tiny and extendable C# library for generating static sites, inspired by Metalsmith.
+**Metalsharp** on [GitHub](https://github.com/IanWold/Metalsharp), [Web](https://metalsharp.net), and [NuGet](https://www.nuget.org/packages/Metalsharp/): A tiny and extendable C# library for generating static sites, inspired by Metalsmith.
 
 **PostgreSignalR** on [GitHub](https://github.com/IanWold/PostgreSignalR) and [NuGet](https://www.nuget.org/packages/PostgreSignalR): A PostgreSQL backplane for SignalR.
