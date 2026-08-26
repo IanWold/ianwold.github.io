@@ -5974,8 +5974,8 @@ public async Task TestErrorLogged()
 &lt;p&gt;The exact location of your project's readme relative to the csproj will probably vary, but you can see the awk command reads out fine after breaking down the pieces (unlike most awk scripts). If you've got other bits of your readme you like to filter out or modify before it goes to Nuget, you'd just need to update that awk script. The whole csproj, for reference, &lt;a href="https://github.com/IanWold/Dovetail/blob/main/Dovetail/Dovetail.csproj"&gt;is on GitHub&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Now, my readme looks very nice indeed &lt;a href="https://www.nuget.org/packages/Dovetail"&gt;on Nuget&lt;/a&gt;!&lt;/p&gt;
 </description>
-      <pubDate>Sat, 25 Apr 2026 00:00:00 Z</pubDate>
-      <a10:updated>2026-04-25T00:00:00Z</a10:updated>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 Z</pubDate>
+      <a10:updated>2026-08-25T00:00:00Z</a10:updated>
     </item>
     <item>
       <guid isPermaLink="false">using_interfaces</guid>
