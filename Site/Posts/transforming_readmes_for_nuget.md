@@ -52,6 +52,6 @@ Smashing those two together yields the desired output, now this needs to run whe
 </Target>
 ```
 
-The exact location of your project's readme relative to the csproj will probably vary, but you can see the awk command reads out fine after breaking down the pieces (unlike most awk scripts). If you've got other bits of your readme you like to filter out or modify before it goes to Nuget, you'd just need to update that awk script. The whole csproj, for reference, [is on GitHub](https://github.com/IanWold/Dovetail/blob/main/Dovetail/Dovetail.csproj)
+The exact location of your project's readme relative to the csproj will probably vary, but you can see the awk command reads out fine after breaking down the pieces (unlike most `awk` scripts). If you've got other bits of your readme you like to filter out or modify before it goes to Nuget, you'd just need to update that `awk` script. The whole csproj, for reference, [is on GitHub](https://github.com/IanWold/Dovetail/blob/main/Dovetail/Dovetail.csproj).
 
 Now, my readme looks very nice indeed [on Nuget](https://www.nuget.org/packages/Dovetail)!
