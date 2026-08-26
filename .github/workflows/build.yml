@@ -13,11 +13,11 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v7
 
     - name: Cache dotnet
       id: cache-dotnet
-      uses: actions/cache@v3
+      uses: actions/cache@v6
       with:
         path: ${{ env.DOTNET_INSTALL_DIR }}
         key: ${{ runner.os }}-dotnet-10
@@ -25,15 +25,15 @@ jobs:
 
     - name: Setup dotnet
       if: ${{ steps.cache-dotnet.outputs.cache-hit != 'true' }}
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@v6
       with:
         dotnet-version: 10.0.100-preview.5.25277.114
 
     - name: Setup node
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v7
       
     - name: Cache NPM packages
-      uses: actions/cache@v3
+      uses: actions/cache@v6
       with:
         path: ~/.npm
         key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
@@ -52,7 +52,7 @@ jobs:
       run: npx torchlight
 
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./output
