@@ -5945,6 +5945,39 @@ public async Task TestErrorLogged()
       <a10:updated>2024-06-19T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">transforming_readmes_for_nuget</guid>
+      <link>https://ian.wold.guru/Posts/transforming_readmes_for_nuget.html</link>
+      <title>Transforming READMEs for Nuget</title>
+      <description>&lt;p&gt;I'm a fan of pretty readme files. In fact, I like having centered content on the top. I'm particularly happy with my readmes for &lt;a href="https://github.com/IanWold/PlanningPoker"&gt;PlanningPoker&lt;/a&gt;, &lt;a href="https://github.com/IanWold/PostgreSignalR"&gt;PostgreSignalR&lt;/a&gt;, and my very recent &lt;a href="https://github.com/IanWold/Dovetail"&gt;Dovetail&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It's on that last project in fact - Dovetail - that I spent quite a bit of time on the readme. It's a small library that doesn't need lots of documentation files, so I figured it would be a fun exercise to make a nice, pretty readme that covered all the topics it would need to.&lt;/p&gt;
+&lt;p&gt;This turned out to be an excellent exercise, and one which I might recommend. GitHub has a lot of features you can use to render different kinds of &lt;em&gt;things&lt;/em&gt; on your readme, which in turn you can use to keep content readable and well-organized. The readme I've ended up with is a little on the longer side, but really I'm quite proud of it.&lt;/p&gt;
+&lt;p&gt;There is a bit of a downside though: it seems like every fun feature that GitHub has put into their Markdown rendering is absent from how Nuget renders its readme files. The biggest issue is that Nuget doesn't allow &lt;code&gt;&amp;lt;div align=&amp;quot;center&amp;quot;&amp;gt;&lt;/code&gt;, which causes a bunch of ugly HTML to show up right at the top of the readme. Another annoyance is that &lt;a href="https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts"&gt;callout&lt;/a&gt; headers will render as plain text.&lt;/p&gt;
+&lt;p&gt;The solution, of course, is to have some kind of scrubbing mechanism run as part of the packaging step to remove unwanted artifacts from the README that gets sent to Nuget. But, how?&lt;/p&gt;
+&lt;p&gt;Well, &lt;a href="https://ian.wold.guru/Posts/ive_switched_to_linux.html"&gt;having switched to Linux recently&lt;/a&gt;, I now have easier access to a lot of tools I haven't used much before, and I've been enjoying learning them. One of those is &lt;a href="https://en.wikipedia.org/wiki/AWK"&gt;&lt;code&gt;awk&lt;/code&gt;&lt;/a&gt; - seems like I should have had a grasp of that before but c'est la vie. Anywho, that's the ideal tool for this surely (adding the obvious requirement that I'll be running my CI on Linux). But again, how?&lt;/p&gt;
+&lt;p&gt;Well, first I need an &lt;code&gt;awk&lt;/code&gt; script. Really, this is simple enough: my centered content always appears before the first line break (&lt;code&gt;---&lt;/code&gt;), so I just need to exclude everything above that:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-awk"&gt;/^---$/{f=1; next} f
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And then callout headers match a pretty simple regex:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-regex"&gt;&amp;gt; \[![A-Z]*\]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Smashing those two together yields the desired output, now this needs to run when msbuild packages all the files together. This is the kind of thing that &lt;a href="https://learn.microsoft.com/en-us/visualstudio/msbuild/msbuild-targets?view=visualstudio"&gt;msbuild targets&lt;/a&gt; are for. In this case, the target we'd want is &lt;code&gt;_GetPackageFiles&lt;/code&gt;. I'll drop the whole &lt;code&gt;&amp;lt;Target&amp;gt;&lt;/code&gt; here:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;Target Name=&amp;quot;GenerateNuGetReadme&amp;quot; BeforeTargets=&amp;quot;_GetPackageFiles&amp;quot;&amp;gt;
+    &amp;lt;PropertyGroup&amp;gt;
+        &amp;lt;_NuGetReadmePath&amp;gt;$(IntermediateOutputPath)README.md&amp;lt;/_NuGetReadmePath&amp;gt;
+    &amp;lt;/PropertyGroup&amp;gt;
+    &amp;lt;Exec Command=&amp;quot;awk '/^---$/{f=1; next} f &amp;amp;amp;&amp;amp;amp; !/&amp;amp;gt; \[![A-Z]*\]/' &amp;amp;quot;$(MSBuildProjectDirectory)/../README.md&amp;amp;quot; &amp;amp;gt; &amp;amp;quot;$(_NuGetReadmePath)&amp;amp;quot;&amp;quot; /&amp;gt;
+    &amp;lt;ItemGroup&amp;gt;
+        &amp;lt;None Include=&amp;quot;$(_NuGetReadmePath)&amp;quot; Pack=&amp;quot;true&amp;quot; PackagePath=&amp;quot;README.md&amp;quot; Visible=&amp;quot;false&amp;quot; /&amp;gt;
+    &amp;lt;/ItemGroup&amp;gt;
+&amp;lt;/Target&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The exact location of your project's readme relative to the csproj will probably vary, but you can see the awk command reads out fine after breaking down the pieces (unlike most awk scripts). If you've got other bits of your readme you like to filter out or modify before it goes to Nuget, you'd just need to update that awk script. The whole csproj, for reference, &lt;a href="https://github.com/IanWold/Dovetail/blob/main/Dovetail/Dovetail.csproj"&gt;is on GitHub&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Now, my readme looks very nice indeed &lt;a href="https://www.nuget.org/packages/Dovetail"&gt;on Nuget&lt;/a&gt;!&lt;/p&gt;
+</description>
+      <pubDate>Sat, 25 Apr 2026 00:00:00 Z</pubDate>
+      <a10:updated>2026-04-25T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">using_interfaces</guid>
       <link>https://ian.wold.guru/Posts/using_interfaces.html</link>
       <title>Using Interfaces</title>
