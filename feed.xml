@@ -5971,7 +5971,7 @@ public async Task TestErrorLogged()
     &amp;lt;/ItemGroup&amp;gt;
 &amp;lt;/Target&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The exact location of your project's readme relative to the csproj will probably vary, but you can see the awk command reads out fine after breaking down the pieces (unlike most awk scripts). If you've got other bits of your readme you like to filter out or modify before it goes to Nuget, you'd just need to update that awk script. The whole csproj, for reference, &lt;a href="https://github.com/IanWold/Dovetail/blob/main/Dovetail/Dovetail.csproj"&gt;is on GitHub&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The exact location of your project's readme relative to the csproj will probably vary, but you can see the awk command reads out fine after breaking down the pieces (unlike most &lt;code&gt;awk&lt;/code&gt; scripts). If you've got other bits of your readme you like to filter out or modify before it goes to Nuget, you'd just need to update that &lt;code&gt;awk&lt;/code&gt; script. The whole csproj, for reference, &lt;a href="https://github.com/IanWold/Dovetail/blob/main/Dovetail/Dovetail.csproj"&gt;is on GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Now, my readme looks very nice indeed &lt;a href="https://www.nuget.org/packages/Dovetail"&gt;on Nuget&lt;/a&gt;!&lt;/p&gt;
 </description>
       <pubDate>Tue, 25 Aug 2026 00:00:00 Z</pubDate>
