@@ -2,7 +2,7 @@
 {
 	"title": "Transforming READMEs for Nuget",
 	"description": "I like making my project's README look pretty, but Nuget doesn't support all the same rendering options that git providers usuall have; it is necessary to set up some intermediary transform.",
-	"date": "25 April 2026",
+	"date": "25 August 2026",
 	"contents": false,
 	"hero": "photo-1702467439812-eef67d80539d",
     "topics": ["How-To", "Deployment", "Nuget"],
