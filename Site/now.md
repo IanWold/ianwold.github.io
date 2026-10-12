@@ -16,7 +16,7 @@ At this _very instant_ I am...
 
 **Updating** all my things to the new .NET version.
 
-**Developing** [PostgreSignalR](https://github.com/IanWold/PostgreSignalR), a PostgreSQL backplane for SignalR.
+**Moving** my coworking to the [EscLab Co-Op](https://esclab.io/)!
 
 **Searching** for more [business brunch](https://ian.wold.guru/Posts/best_business_brunch_spots_in_minneapolis.html) restaurants in Minneapolis.
 
