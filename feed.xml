@@ -3603,6 +3603,17 @@ Then the response should have status code 200 with body
       <a10:updated>2023-12-09T00:00:00Z</a10:updated>
     </item>
     <item>
+      <guid isPermaLink="false">new_coworking_new_job</guid>
+      <link>https://ian.wold.guru/Posts/new_coworking_new_job.html</link>
+      <title>New Coworking, New Job</title>
+      <description>&lt;p&gt;I don't post too many life updates here but my work life has been turned around quite aggressively this month:&lt;/p&gt;
+&lt;p&gt;First, the excellent CoCo coworking space in the Minneapolis Grain Exchange is closing at the end of this month. I've been working here for many years, and it's sad to have to leave the trading floor. It's a beautiful space which has been a focal point for tech in Minnesota for almost two decades. On the bright side, several folks in the Twin Cities area have started up a new coworking co-op, &lt;a href="esclab.io"&gt;EscLab&lt;/a&gt;, in the Lumber Exchange building. If you're in tech, in the Cities, and interested in coworking, reach out to us!&lt;/p&gt;
+&lt;p&gt;Second, I am no longer working at &lt;a href="crateandbarrel.com"&gt;Crate &amp;amp; Barrel&lt;/a&gt;: I've decided to take a new position at &lt;a href="amanomcgann.com"&gt;Amano McGann&lt;/a&gt;. I've enjoyed my time at Crate &amp;amp; Barrel, but it's time for me to move on. I'll still be focusing on the same technology areas, just from a different perspective - with some luck I'll have some different insights to share on this blog going forward.&lt;/p&gt;
+</description>
+      <pubDate>Sat, 14 Nov 2026 00:00:00 Z</pubDate>
+      <a10:updated>2026-11-14T00:00:00Z</a10:updated>
+    </item>
+    <item>
       <guid isPermaLink="false">on_task_priority</guid>
       <link>https://ian.wold.guru/Posts/on_task_priority.html</link>
       <title>On Task Priority</title>
